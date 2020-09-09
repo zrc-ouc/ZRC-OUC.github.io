@@ -7,17 +7,17 @@
 	<body>
 		<video id="video" width="1024" height="800" autoplay>
 		</video>
-		<button onclick="window.location.href = 'https://www.baidu.com/'">µãÎÒÌø×ª</button>
+		<button onclick="window.location.href = 'MyApp.html'">ç‚¹æˆ‘è·³è½¬</button>
 		<canvas id="canvas" width="1024" height="800"></canvas>
 		<script type="text/javascript">
 			var video = document.getElementById("video");
 			var canvas=document.getElementById("canvas");
 			var context=canvas.getContext('2d');
-			//»ñÈ¡ÉãÏñÍ·¶ÔÏó
+			//è·å–æ‘„åƒå¤´å¯¹è±¡
 			navigator.getUserMedia=navigator.getUserMedia||navigator.webkitGetUserMedia||navigator.mozGetUserMedia||navigator.msGetUserMedia;
-			navigator.getUsrMedia({video:true,audio: true},gotStream,noStream);//´ò¿ªÉãÏñÍ·
+			navigator.getUsrMedia({video:true,audio: true},gotStream,noStream);//æ‰“å¼€æ‘„åƒå¤´
 
-			//³É¹¦´ò¿ªÉãÏñÍ·
+			//æˆåŠŸæ‰“å¼€æ‘„åƒå¤´
 			function gotStream(stream){
 				video.src =URL.createObjectURL(stream);
 				video.onerror= function(){
@@ -26,10 +26,10 @@
 				stream.onended = noStream;
 				video.onloadedmetadata =function()
 				{
-					alert("³É¹¦´ò¿ªÉãÏñÍ·")
+					alert("æˆåŠŸæ‰“å¼€æ‘„åƒå¤´")
 				};
 			}			
-			//´ò¿ªÉãÏñÍ·Ê§°Ü
+			//æ‰“å¼€æ‘„åƒå¤´å¤±è´¥
 			function noStream(error){
 				alert(error)
 			}
