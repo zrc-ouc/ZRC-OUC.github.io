@@ -1,42 +1,79 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-		<video id="video" width="1024" height="800" autoplay>
-		</video>
-		<button id="snap">截图</button>
-		<button onclick="window.location.href = 'https://www.baidu.com/'">百度</button>
-		<canvas id="canvas" width="1024" height="800"></canvas>
-		<script type="text/javascript">
-			var video = document.getElementById("video");
-			var canvas=document.getElementById("canvas");
-			var context=canvas.getContext('2d');
-			//获取摄像头对象
-			navigator.getUserMedia=navigator.getUserMedia||navigator.webkitGetUserMedia||navigator.mozGetUserMedia||navigator.msGetUserMedia;
-			navigator.getUsrMedia({video:true,audio: true},gotStream,noStream);//打开摄像头
 
-			//成功打开摄像头
-			function gotStream(stream){
-				video.src =URL.createObjectURL(stream);
-				video.onerror= function(){
-				stream.stop();
-				}
-				stream.onended = noStream;
-				video.onloadedmetadata =function()
-				{
-					alert("成功打开摄像头")
-				};
-			}			
-			//打开摄像头失败
-			function noStream(error){
-				alert(error)
-			}
-			document.getElementById("snap").addEventListener("click",function(){
-				context.drawImage(video,0,0,1024,800)
-			});
-		</script>
-	</body>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title></title>
+
+</head>
+
+<body>
+
+<video id="video" width="1024" height="800" autoplay>
+
+</video>
+
+<button id="snap">截图</button>
+
+<canvas id="canvas" width="1024" height="800"></canvas>
+
+<script type="text/javascript">
+
+var video = document.getElementById("video");
+
+var canvas=document.getElementById("canvas");
+
+var context=canvas.getContext('2d');
+
+//获取摄像头对象
+
+navigator.getUserMedia=navigator.getUserMedia||navigator.webkitGetUserMedia||navigator.mozGetUserMedia||navigator.msGetUserMedia;
+
+navigator.getUserMedia({video:true,audio: true},gotStream,noStream);//打开摄像头
+
+//成功打开摄像头
+
+function gotStream(stream){
+
+video.src =URL.createObjectURL(stream);
+
+video.onerror= function(){
+
+stream.stop();
+
+}
+
+stream.onended = noStream;
+
+video.onloadedmetadata =function()
+
+{
+
+alert("成功打开摄像头")
+
+};
+
+}
+
+//打开摄像头失败
+
+function noStream(error){
+
+alert(error)
+
+}
+
+document.getElementById("snap").addEventListener("click",function(){
+
+context.drawImage(video,0,0,1024,800)
+
+});
+
+</script>
+
+</body>
+
 </html>
