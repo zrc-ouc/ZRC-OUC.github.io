@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<title>
+		</title>
+	</head>
+	<body>
+		<img src="p1.jpg" width="600" height="328"/>
+    		<p id="ymd"></p>
+    		<script>
+        			var date = new Date()
+        			var y = date.getFullYear();
+        			var m = date.getMonth()+1;
+        			var d = date.getDate();
+        			var h = date.getHours();
+        			var min = date.getMinutes();
+				if(m<10){m="0"+m;}
+				if(d<10){d="0"+d;}
+				if(h<10){h="0"+h;}
+				if(min<10){min="0"+min;}
+       			document.getElementById("ymd").innerHTML = y+"-"+m+"-"+d+" "+h+":"+min;
+    		</script>
+    		<script type="text/javascript" src="dtxt1.js"></script>
+		<img src="p2.jpg" width="600" height="1050"/>
+	</body>
+</html>
