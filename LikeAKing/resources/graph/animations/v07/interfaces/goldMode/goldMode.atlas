@@ -1,0 +1,223 @@
+
+goldMode.png
+size: 1024,1024
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+assets/blink
+  rotate: true
+  xy: 549, 606
+  size: 29, 49
+  orig: 29, 49
+  offset: 0, 0
+  index: -1
+assets/coin1
+  rotate: false
+  xy: 426, 589
+  size: 71, 53
+  orig: 71, 53
+  offset: 0, 0
+  index: -1
+assets/coin1Shine
+  rotate: false
+  xy: 350, 531
+  size: 71, 52
+  orig: 71, 52
+  offset: 0, 0
+  index: -1
+assets/coin2
+  rotate: true
+  xy: 295, 508
+  size: 76, 53
+  orig: 76, 53
+  offset: 0, 0
+  index: -1
+assets/coin2Shine
+  rotate: true
+  xy: 295, 432
+  size: 74, 53
+  orig: 74, 53
+  offset: 0, 0
+  index: -1
+assets/coin3
+  rotate: false
+  xy: 295, 586
+  size: 57, 75
+  orig: 57, 75
+  offset: 0, 0
+  index: -1
+assets/coin3Shine
+  rotate: false
+  xy: 295, 356
+  size: 54, 74
+  orig: 54, 74
+  offset: 0, 0
+  index: -1
+assets/coin4
+  rotate: true
+  xy: 354, 585
+  size: 57, 70
+  orig: 57, 70
+  offset: 0, 0
+  index: -1
+assets/coin4Shine
+  rotate: true
+  xy: 147, 2
+  size: 55, 65
+  orig: 55, 65
+  offset: 0, 0
+  index: -1
+assets/coin5
+  rotate: true
+  xy: 983, 930
+  size: 92, 34
+  orig: 92, 34
+  offset: 0, 0
+  index: -1
+assets/coin5Shine
+  rotate: true
+  xy: 238, 95
+  size: 91, 32
+  orig: 91, 32
+  offset: 0, 0
+  index: -1
+assets/coinsColumn
+  rotate: false
+  xy: 2, 17
+  size: 143, 251
+  orig: 143, 251
+  offset: 0, 0
+  index: -1
+assets/coinsColumnShine1
+  rotate: false
+  xy: 2, 2
+  size: 22, 13
+  orig: 22, 13
+  offset: 0, 0
+  index: -1
+assets/coinsColumnShine2
+  rotate: false
+  xy: 499, 599
+  size: 48, 43
+  orig: 48, 43
+  offset: 0, 0
+  index: -1
+assets/coinsColumnShine3
+  rotate: true
+  xy: 295, 283
+  size: 71, 57
+  orig: 71, 57
+  offset: 0, 0
+  index: -1
+assets/coinsColumnShine4
+  rotate: true
+  xy: 350, 446
+  size: 83, 40
+  orig: 83, 40
+  offset: 0, 0
+  index: -1
+assets/coinsColumnShine5
+  rotate: true
+  xy: 238, 188
+  size: 80, 51
+  orig: 80, 51
+  offset: 0, 0
+  index: -1
+assets/coinsColumnShine6
+  rotate: false
+  xy: 551, 637
+  size: 100, 67
+  orig: 100, 67
+  offset: 0, 0
+  index: -1
+assets/gemBlink
+  rotate: false
+  xy: 665, 798
+  size: 16, 10
+  orig: 16, 10
+  offset: 0, 0
+  index: -1
+assets/glow
+  rotate: false
+  xy: 2, 663
+  size: 358, 359
+  orig: 358, 359
+  offset: 0, 0
+  index: -1
+assets/stripeShine1
+  rotate: true
+  xy: 214, 2
+  size: 55, 36
+  orig: 55, 36
+  offset: 0, 0
+  index: -1
+assets/stripeShine2
+  rotate: false
+  xy: 817, 904
+  size: 164, 118
+  orig: 164, 118
+  offset: 0, 0
+  index: -1
+assets/stripe_blue0
+  rotate: false
+  xy: 561, 885
+  size: 254, 137
+  orig: 254, 137
+  offset: 0, 0
+  index: -1
+assets/stripe_blue1
+  rotate: true
+  xy: 392, 460
+  size: 69, 43
+  orig: 69, 43
+  offset: 0, 0
+  index: -1
+assets/stripe_blue2
+  rotate: false
+  xy: 561, 810
+  size: 120, 73
+  orig: 120, 73
+  offset: 0, 0
+  index: -1
+assets/stripe_red
+  rotate: true
+  xy: 147, 59
+  size: 209, 89
+  orig: 209, 89
+  offset: 0, 0
+  index: -1
+assets/sword
+  rotate: false
+  xy: 2, 270
+  size: 291, 391
+  orig: 291, 391
+  offset: 0, 0
+  index: -1
+assets/swordGemShine1
+  rotate: true
+  xy: 683, 791
+  size: 92, 104
+  orig: 92, 104
+  offset: 0, 0
+  index: -1
+assets/swordGemShine2
+  rotate: false
+  xy: 551, 706
+  size: 112, 102
+  orig: 112, 102
+  offset: 0, 0
+  index: -1
+assets/swordShine1
+  rotate: false
+  xy: 362, 817
+  size: 197, 205
+  orig: 197, 205
+  offset: 0, 0
+  index: -1
+assets/swordShine2
+  rotate: false
+  xy: 362, 644
+  size: 187, 171
+  orig: 187, 171
+  offset: 0, 0
+  index: -1
