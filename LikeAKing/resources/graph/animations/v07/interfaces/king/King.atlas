@@ -1,0 +1,727 @@
+
+King.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+KingAssets/Custom/0_SEPARATE/assBrown
+  rotate: false
+  xy: 2, 2
+  size: 48, 26
+  orig: 48, 26
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/assGrey
+  rotate: true
+  xy: 398, 261
+  size: 48, 27
+  orig: 48, 27
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/beltLeatherDark
+  rotate: true
+  xy: 80, 139
+  size: 107, 20
+  orig: 107, 20
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/bodyHuman
+  rotate: true
+  xy: 2, 139
+  size: 107, 76
+  orig: 107, 76
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/bodyOrc
+  rotate: false
+  xy: 334, 434
+  size: 107, 76
+  orig: 107, 76
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftan
+  rotate: true
+  xy: 2, 30
+  size: 107, 76
+  orig: 107, 76
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanBottomRight
+  rotate: false
+  xy: 529, 377
+  size: 45, 53
+  orig: 45, 53
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanBottomRightBrown
+  rotate: false
+  xy: 576, 377
+  size: 45, 53
+  orig: 45, 53
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanBrown
+  rotate: false
+  xy: 443, 434
+  size: 107, 76
+  orig: 107, 76
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanHand
+  rotate: false
+  xy: 695, 306
+  size: 33, 31
+  orig: 33, 31
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanHandBrown
+  rotate: true
+  xy: 110, 68
+  size: 33, 31
+  orig: 33, 31
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanKneeLeftBrown
+  rotate: false
+  xy: 135, 195
+  size: 64, 47
+  orig: 64, 47
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanKneeRightBrown
+  rotate: false
+  xy: 659, 339
+  size: 57, 35
+  orig: 57, 35
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanLapel
+  rotate: true
+  xy: 238, 338
+  size: 24, 66
+  orig: 24, 66
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanLapel2
+  rotate: true
+  xy: 919, 409
+  size: 22, 39
+  orig: 22, 39
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanLapel2Brown
+  rotate: true
+  xy: 556, 295
+  size: 22, 40
+  orig: 22, 40
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanLapelBrown
+  rotate: true
+  xy: 338, 358
+  size: 24, 66
+  orig: 24, 66
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanShoulder
+  rotate: false
+  xy: 556, 319
+  size: 40, 31
+  orig: 40, 31
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanShoulderBrown
+  rotate: false
+  xy: 643, 280
+  size: 40, 31
+  orig: 40, 31
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanSleeveBrightFront
+  rotate: false
+  xy: 321, 210
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanSleeveBrightSide
+  rotate: false
+  xy: 110, 103
+  size: 20, 37
+  orig: 20, 37
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanSleeveFront
+  rotate: false
+  xy: 356, 217
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/caftanSleeveSide
+  rotate: false
+  xy: 813, 374
+  size: 25, 42
+  orig: 25, 42
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/collarHuman
+  rotate: false
+  xy: 2, 422
+  size: 138, 88
+  orig: 138, 88
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/collarOrc
+  rotate: false
+  xy: 2, 332
+  size: 138, 88
+  orig: 138, 88
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handHuman1
+  rotate: false
+  xy: 427, 269
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handHuman10
+  rotate: true
+  xy: 202, 149
+  size: 45, 50
+  orig: 45, 50
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handHuman11
+  rotate: true
+  xy: 135, 156
+  size: 37, 65
+  orig: 37, 65
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handHuman12
+  rotate: false
+  xy: 238, 364
+  size: 48, 62
+  orig: 48, 62
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handHuman13
+  rotate: true
+  xy: 758, 418
+  size: 23, 67
+  orig: 23, 67
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handHuman15
+  rotate: false
+  xy: 80, 2
+  size: 58, 33
+  orig: 58, 33
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handHuman16
+  rotate: true
+  xy: 467, 395
+  size: 37, 60
+  orig: 37, 60
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handHuman2
+  rotate: false
+  xy: 685, 270
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handHuman3
+  rotate: false
+  xy: 297, 300
+  size: 39, 36
+  orig: 39, 36
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handHuman4
+  rotate: true
+  xy: 623, 377
+  size: 53, 39
+  orig: 53, 39
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handHuman5
+  rotate: false
+  xy: 664, 376
+  size: 55, 41
+  orig: 55, 41
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handHuman6
+  rotate: false
+  xy: 468, 357
+  size: 59, 36
+  orig: 59, 36
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handHuman8
+  rotate: false
+  xy: 433, 310
+  size: 39, 44
+  orig: 39, 44
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handHuman9
+  rotate: true
+  xy: 201, 196
+  size: 46, 48
+  orig: 46, 48
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handOrc1
+  rotate: false
+  xy: 515, 311
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handOrc10
+  rotate: false
+  xy: 338, 306
+  size: 45, 50
+  orig: 45, 50
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handOrc11
+  rotate: true
+  xy: 400, 395
+  size: 37, 65
+  orig: 37, 65
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handOrc12
+  rotate: false
+  xy: 288, 364
+  size: 48, 62
+  orig: 48, 62
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handOrc13
+  rotate: true
+  xy: 920, 433
+  size: 23, 67
+  orig: 23, 67
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handOrc15
+  rotate: true
+  xy: 989, 398
+  size: 58, 33
+  orig: 58, 33
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handOrc16
+  rotate: true
+  xy: 406, 356
+  size: 37, 60
+  orig: 37, 60
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handOrc2
+  rotate: true
+  xy: 881, 371
+  size: 34, 35
+  orig: 34, 35
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handOrc3
+  rotate: false
+  xy: 840, 406
+  size: 39, 36
+  orig: 39, 36
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handOrc4
+  rotate: true
+  xy: 273, 245
+  size: 53, 39
+  orig: 53, 39
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handOrc5
+  rotate: false
+  xy: 756, 375
+  size: 55, 41
+  orig: 55, 41
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handOrc6
+  rotate: false
+  xy: 598, 339
+  size: 59, 36
+  orig: 59, 36
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handOrc8
+  rotate: false
+  xy: 474, 311
+  size: 39, 44
+  orig: 39, 44
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/handOrc9
+  rotate: false
+  xy: 254, 149
+  size: 46, 48
+  orig: 46, 48
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/headOrcRed
+  rotate: false
+  xy: 2, 248
+  size: 103, 82
+  orig: 103, 82
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/legLeftOrc
+  rotate: false
+  xy: 356, 253
+  size: 40, 51
+  orig: 40, 51
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/legRightOrc
+  rotate: false
+  xy: 227, 246
+  size: 44, 52
+  orig: 44, 52
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/mouthHuman3
+  rotate: false
+  xy: 146, 285
+  size: 77, 46
+  orig: 77, 46
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/mouthHuman4
+  rotate: false
+  xy: 138, 103
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/mouthHuman5
+  rotate: false
+  xy: 754, 443
+  size: 81, 67
+  orig: 81, 67
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/mouthHuman6
+  rotate: false
+  xy: 647, 313
+  size: 46, 24
+  orig: 46, 24
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/mouthHuman7
+  rotate: true
+  xy: 1018, 473
+  size: 37, 4
+  orig: 37, 4
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/mouthHuman7Tongue
+  rotate: false
+  xy: 110, 37
+  size: 32, 29
+  orig: 32, 29
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/mouthHuman8
+  rotate: true
+  xy: 721, 378
+  size: 39, 33
+  orig: 39, 33
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/mouthOrc3
+  rotate: true
+  xy: 107, 248
+  size: 82, 37
+  orig: 82, 37
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/mouthOrc4
+  rotate: false
+  xy: 52, 2
+  size: 18, 26
+  orig: 18, 26
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/mouthOrc5
+  rotate: false
+  xy: 837, 444
+  size: 81, 66
+  orig: 81, 66
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/mouthOrc6
+  rotate: true
+  xy: 1003, 464
+  size: 46, 13
+  orig: 46, 13
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/mouthOrc7
+  rotate: true
+  xy: 132, 103
+  size: 37, 4
+  orig: 37, 4
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/mouthOrc7Tongue
+  rotate: false
+  xy: 138, 125
+  size: 32, 29
+  orig: 32, 29
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/mouthOrc8
+  rotate: false
+  xy: 840, 371
+  size: 39, 33
+  orig: 39, 33
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/necklaceBone
+  rotate: false
+  xy: 920, 458
+  size: 81, 52
+  orig: 81, 52
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/necklaceGold
+  rotate: true
+  xy: 102, 158
+  size: 88, 31
+  orig: 88, 31
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/noseOrcRed
+  rotate: true
+  xy: 225, 316
+  size: 15, 11
+  orig: 15, 11
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/0_SEPARATE/skull
+  rotate: false
+  xy: 142, 409
+  size: 85, 101
+  orig: 85, 101
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/armors/armor03FL
+  rotate: false
+  xy: 314, 246
+  size: 40, 52
+  orig: 40, 52
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/armors/armor03FLbg
+  rotate: false
+  xy: 385, 311
+  size: 46, 43
+  orig: 46, 43
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/armors/armor03FR
+  rotate: true
+  xy: 251, 199
+  size: 44, 52
+  orig: 44, 52
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/armors/armor03FRbg
+  rotate: false
+  xy: 598, 284
+  size: 43, 29
+  orig: 43, 29
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/armors/armor03KL
+  rotate: false
+  xy: 338, 384
+  size: 60, 48
+  orig: 60, 48
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/armors/armor03KR
+  rotate: false
+  xy: 238, 300
+  size: 57, 36
+  orig: 57, 36
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/common/brow
+  rotate: false
+  xy: 881, 407
+  size: 36, 35
+  orig: 36, 35
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/common/crownShadow
+  rotate: false
+  xy: 529, 352
+  size: 67, 23
+  orig: 67, 23
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/hats/hat02
+  rotate: false
+  xy: 664, 443
+  size: 88, 67
+  orig: 88, 67
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/human/HumanEyelid
+  rotate: false
+  xy: 306, 347
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/human/humanEye
+  rotate: true
+  xy: 172, 123
+  size: 31, 25
+  orig: 31, 25
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/human/humanEyeBall
+  rotate: false
+  xy: 685, 306
+  size: 6, 5
+  orig: 6, 5
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/human/humanEyeBg
+  rotate: false
+  xy: 261, 122
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/human/humanHairs/humanHairs01
+  rotate: false
+  xy: 960, 403
+  size: 27, 28
+  orig: 27, 28
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/human/humanHairs/humanHairs01B2
+  rotate: false
+  xy: 552, 450
+  size: 110, 60
+  orig: 110, 60
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/human/humanHairs/humanHairs01M
+  rotate: true
+  xy: 80, 37
+  size: 100, 28
+  orig: 100, 28
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/human/humanHead2
+  rotate: false
+  xy: 142, 333
+  size: 94, 74
+  orig: 94, 74
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/human/humanMouth2
+  rotate: true
+  xy: 158, 103
+  size: 20, 4
+  orig: 20, 4
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/human/humanNose2
+  rotate: true
+  xy: 143, 86
+  size: 15, 14
+  orig: 15, 14
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/orc/orcEye
+  rotate: false
+  xy: 199, 122
+  size: 31, 25
+  orig: 31, 25
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/orc/orcEyelid
+  rotate: false
+  xy: 102, 142
+  size: 30, 14
+  orig: 30, 14
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/orc/orcHairs/orcHairs012
+  rotate: true
+  xy: 232, 121
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/orc/orcHairs/orcHairs01B2
+  rotate: false
+  xy: 146, 244
+  size: 79, 39
+  orig: 79, 39
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/orc/orcHead2
+  rotate: false
+  xy: 229, 428
+  size: 103, 82
+  orig: 103, 82
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/orc/orcMouth2
+  rotate: false
+  xy: 664, 419
+  size: 92, 22
+  orig: 92, 22
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/orc/orcNose2
+  rotate: true
+  xy: 827, 426
+  size: 15, 11
+  orig: 15, 11
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/scars/scar01
+  rotate: true
+  xy: 598, 315
+  size: 22, 47
+  orig: 22, 47
+  offset: 0, 0
+  index: -1
+KingAssets/Custom/scars/scar02
+  rotate: false
+  xy: 305, 203
+  size: 14, 40
+  orig: 14, 40
+  offset: 0, 0
+  index: -1
+KingAssets/kvShadow1
+  rotate: false
+  xy: 552, 432
+  size: 110, 16
+  orig: 110, 16
+  offset: 0, 0
+  index: -1
