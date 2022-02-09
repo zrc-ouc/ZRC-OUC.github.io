@@ -1,0 +1,128 @@
+{"frames": {
+
+"season2_pic.jpg":
+{
+	"frame": {"x":909,"y":100,"w":385,"h":315},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":385,"h":315},
+	"sourceSize": {"w":385,"h":315}
+},
+"seasonMenu_cellAsset_1.png":
+{
+	"frame": {"x":1,"y":100,"w":245,"h":452},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":245,"h":452},
+	"sourceSize": {"w":245,"h":452}
+},
+"seasonMenu_cellAsset_2.png":
+{
+	"frame": {"x":455,"y":100,"w":245,"h":452},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":245,"h":452},
+	"sourceSize": {"w":245,"h":452}
+},
+"seasonMenu_cellAsset_done.png":
+{
+	"frame": {"x":1364,"y":193,"w":76,"h":67},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":67},
+	"sourceSize": {"w":76,"h":67}
+},
+"seasonMenu_cellBankBack.png":
+{
+	"frame": {"x":1517,"y":1,"w":490,"h":371},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":490,"h":371},
+	"sourceSize": {"w":490,"h":371}
+},
+"seasonMenu_cellReadyToOpenBack.png":
+{
+	"frame": {"x":1296,"y":312,"w":130,"h":71},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":130,"h":71},
+	"sourceSize": {"w":130,"h":71}
+},
+"seasonMenu_freeLineBack.png":
+{
+	"frame": {"x":1296,"y":100,"w":210,"h":66},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":66},
+	"sourceSize": {"w":210,"h":66}
+},
+"seasonMenu_lineFront.png":
+{
+	"frame": {"x":1364,"y":262,"w":7,"h":44},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":1,"w":7,"h":44},
+	"sourceSize": {"w":7,"h":46}
+},
+"seasonsMenu_backgroundAsset_1.png":
+{
+	"frame": {"x":1,"y":1,"w":97,"h":756},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":756},
+	"sourceSize": {"w":97,"h":756}
+},
+"seasonsMenu_backgroundAsset_2.png":
+{
+	"frame": {"x":759,"y":1,"w":97,"h":756},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":756},
+	"sourceSize": {"w":97,"h":756}
+},
+"seasonsMenu_backgroundAsset_3.png":
+{
+	"frame": {"x":1364,"y":100,"w":84,"h":91},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":84,"h":91},
+	"sourceSize": {"w":84,"h":91}
+},
+"seasonsMenu_backgroundAsset_4.png":
+{
+	"frame": {"x":1,"y":347,"w":43,"h":395},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":0,"w":43,"h":395},
+	"sourceSize": {"w":52,"h":395}
+},
+"seasonsMenu_backgroundAsset_5.png":
+{
+	"frame": {"x":398,"y":347,"w":49,"h":361},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":49,"h":361},
+	"sourceSize": {"w":52,"h":361}
+},
+"seasonsMenu_progressAsset_1.png":
+{
+	"frame": {"x":1410,"y":262,"w":10,"h":7},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":10,"h":7},
+	"sourceSize": {"w":10,"h":7}
+}},
+"animations": {
+	"seasonMenu_cellAsset": ["seasonMenu_cellAsset_1.png","seasonMenu_cellAsset_2.png"],
+	"seasonsMenu_backgroundAsset": ["seasonsMenu_backgroundAsset_1.png","seasonsMenu_backgroundAsset_2.png","seasonsMenu_backgroundAsset_3.png","seasonsMenu_backgroundAsset_4.png","seasonsMenu_backgroundAsset_5.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "seasons-v07.png",
+	"format": "RGBA8888",
+	"size": {"w":2008,"h":416},
+	"scale": "0.7",
+	"smartupdate": "$TexturePacker:SmartUpdate:6f4669851e76ec29914b50238887e8c5:cc802bf7682fef446b82d1c718d466d2:b991edcc4b2525cac217777a3e387130$"
+}
+}
