@@ -1,0 +1,160 @@
+
+cardEffects.png
+size: 2048,512
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+CEassets/0_SpecialEffect_angelWave1
+  rotate: false
+  xy: 1118, 313
+  size: 183, 183
+  orig: 183, 183
+  offset: 0, 0
+  index: -1
+CEassets/CEcardInnerGlow
+  rotate: true
+  xy: 2, 2
+  size: 150, 197
+  orig: 150, 197
+  offset: 0, 0
+  index: -1
+CEassets/CEcardOuterGlow
+  rotate: true
+  xy: 627, 163
+  size: 193, 240
+  orig: 193, 240
+  offset: 0, 0
+  index: -1
+CEassets/CEdonutGlow
+  rotate: false
+  xy: 2, 154
+  size: 350, 342
+  orig: 350, 342
+  offset: 0, 0
+  index: -1
+CEassets/CEdotEpic
+  rotate: false
+  xy: 851, 402
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+CEassets/CEdotLegendary
+  rotate: false
+  xy: 1421, 331
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+CEassets/CEdotMythic
+  rotate: false
+  xy: 1850, 462
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+CEassets/CElineEpic
+  rotate: true
+  xy: 1726, 480
+  size: 16, 122
+  orig: 16, 122
+  offset: 0, 0
+  index: -1
+CEassets/CElineLegendary
+  rotate: true
+  xy: 1726, 462
+  size: 16, 122
+  orig: 16, 122
+  offset: 0, 0
+  index: -1
+CEassets/CElineMythic
+  rotate: true
+  xy: 1850, 480
+  size: 16, 122
+  orig: 16, 122
+  offset: 0, 0
+  index: -1
+CEassets/CEwaveInner
+  rotate: false
+  xy: 354, 358
+  size: 495, 60
+  orig: 495, 60
+  offset: 0, 0
+  index: -1
+CEassets/CEwaveOuter
+  rotate: false
+  xy: 354, 420
+  size: 520, 76
+  orig: 520, 76
+  offset: 0, 0
+  index: -1
+CEassets/MythicLine2
+  rotate: false
+  xy: 1303, 319
+  size: 116, 28
+  orig: 116, 28
+  offset: 0, 0
+  index: -1
+CEassets/cardForm
+  rotate: true
+  xy: 876, 314
+  size: 182, 240
+  orig: 182, 240
+  offset: 0, 0
+  index: -1
+CEassets/cardFormGlow
+  rotate: true
+  xy: 354, 143
+  size: 213, 271
+  orig: 213, 271
+  offset: 0, 0
+  index: -1
+CEassets/cardRoughFrame
+  rotate: true
+  xy: 1303, 349
+  size: 147, 195
+  orig: 147, 195
+  offset: 0, 0
+  index: -1
+CEassets/cardUpgradeArrow
+  rotate: true
+  xy: 1500, 364
+  size: 132, 152
+  orig: 132, 152
+  offset: 0, 0
+  index: -1
+CEassets/cardUpgradeTail
+  rotate: true
+  xy: 627, 147
+  size: 14, 137
+  orig: 14, 137
+  offset: 0, 0
+  index: -1
+CEassets/cellForm
+  rotate: false
+  xy: 201, 15
+  size: 137, 137
+  orig: 137, 137
+  offset: 0, 0
+  index: -1
+CEassets/circle100x100
+  rotate: false
+  xy: 1654, 426
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+CEassets/selectArrow
+  rotate: false
+  xy: 1654, 378
+  size: 67, 46
+  orig: 67, 46
+  offset: 0, 0
+  index: -1
+CEassets/wisp_mustaches
+  rotate: false
+  xy: 1726, 440
+  size: 92, 20
+  orig: 92, 20
+  offset: 0, 0
+  index: -1
