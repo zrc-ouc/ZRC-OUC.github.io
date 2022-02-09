@@ -1,0 +1,167 @@
+
+humanAssasin.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hASblade1
+  rotate: true
+  xy: 179, 13
+  size: 18, 40
+  orig: 18, 40
+  offset: 0, 0
+  index: -1
+hASbody1
+  rotate: false
+  xy: 179, 33
+  size: 37, 29
+  orig: 37, 29
+  offset: 0, 0
+  index: -1
+hASfootBack1
+  rotate: false
+  xy: 46, 2
+  size: 10, 11
+  orig: 10, 11
+  offset: 0, 0
+  index: -1
+hASfootBack1R
+  rotate: false
+  xy: 58, 2
+  size: 10, 11
+  orig: 10, 11
+  offset: 0, 0
+  index: -1
+hASfootBack1V
+  rotate: false
+  xy: 70, 2
+  size: 10, 11
+  orig: 10, 11
+  offset: 0, 0
+  index: -1
+hASfootFront1
+  rotate: true
+  xy: 2, 2
+  size: 11, 13
+  orig: 11, 13
+  offset: 0, 0
+  index: -1
+hASfootFront1R
+  rotate: true
+  xy: 17, 2
+  size: 11, 13
+  orig: 11, 13
+  offset: 0, 0
+  index: -1
+hASfootFront1V
+  rotate: true
+  xy: 32, 2
+  size: 11, 12
+  orig: 11, 12
+  offset: 0, 0
+  index: -1
+hAShandBack1
+  rotate: false
+  xy: 422, 44
+  size: 22, 18
+  orig: 22, 18
+  offset: 0, 0
+  index: -1
+hAShandBack1R
+  rotate: false
+  xy: 446, 44
+  size: 22, 18
+  orig: 22, 18
+  offset: 0, 0
+  index: -1
+hAShandBack1V
+  rotate: false
+  xy: 470, 44
+  size: 22, 18
+  orig: 22, 18
+  offset: 0, 0
+  index: -1
+hAShandFront1
+  rotate: true
+  xy: 397, 44
+  size: 18, 23
+  orig: 18, 23
+  offset: 0, 0
+  index: -1
+hAShandFront1R
+  rotate: false
+  xy: 221, 14
+  size: 17, 23
+  orig: 17, 23
+  offset: 0, 0
+  index: -1
+hAShandFront1V
+  rotate: false
+  xy: 240, 14
+  size: 17, 23
+  orig: 17, 23
+  offset: 0, 0
+  index: -1
+hAShead1
+  rotate: false
+  xy: 2, 15
+  size: 57, 47
+  orig: 57, 47
+  offset: 0, 0
+  index: -1
+hAShead1R
+  rotate: false
+  xy: 61, 15
+  size: 57, 47
+  orig: 57, 47
+  offset: 0, 0
+  index: -1
+hAShead1V
+  rotate: false
+  xy: 120, 15
+  size: 57, 47
+  orig: 57, 47
+  offset: 0, 0
+  index: -1
+hASscarf1
+  rotate: false
+  xy: 218, 39
+  size: 41, 23
+  orig: 41, 23
+  offset: 0, 0
+  index: -1
+hASscarf1R
+  rotate: false
+  xy: 261, 39
+  size: 41, 23
+  orig: 41, 23
+  offset: 0, 0
+  index: -1
+hASscarf1V
+  rotate: false
+  xy: 304, 39
+  size: 41, 23
+  orig: 41, 23
+  offset: 0, 0
+  index: -1
+hASshadow1
+  rotate: false
+  xy: 347, 49
+  size: 48, 13
+  orig: 48, 13
+  offset: 0, 0
+  index: -1
+hASshoulderBack1
+  rotate: false
+  xy: 494, 47
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+hASshoulderFront1
+  rotate: false
+  xy: 259, 22
+  size: 14, 15
+  orig: 14, 15
+  offset: 0, 0
+  index: -1

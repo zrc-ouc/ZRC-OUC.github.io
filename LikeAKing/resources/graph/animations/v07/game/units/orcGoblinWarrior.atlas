@@ -1,0 +1,188 @@
+
+orcGoblinWarrior.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+oGW/OGWearFront1
+  rotate: true
+  xy: 152, 31
+  size: 15, 29
+  orig: 15, 29
+  offset: 0, 0
+  index: -1
+oGW/oGWbody1
+  rotate: false
+  xy: 350, 35
+  size: 33, 27
+  orig: 33, 27
+  offset: 0, 0
+  index: -1
+oGW/oGWearBack1
+  rotate: true
+  xy: 385, 28
+  size: 11, 29
+  orig: 11, 29
+  offset: 0, 0
+  index: -1
+oGW/oGWfeather1
+  rotate: true
+  xy: 350, 27
+  size: 6, 18
+  orig: 6, 18
+  offset: 0, 0
+  index: -1
+oGW/oGWfeather1R
+  rotate: true
+  xy: 84, 5
+  size: 6, 17
+  orig: 6, 17
+  offset: 0, 0
+  index: -1
+oGW/oGWfeather1V
+  rotate: true
+  xy: 100, 24
+  size: 6, 18
+  orig: 6, 18
+  offset: 0, 0
+  index: -1
+oGW/oGWfootBack1
+  rotate: false
+  xy: 139, 18
+  size: 11, 12
+  orig: 11, 12
+  offset: 0, 0
+  index: -1
+oGW/oGWfootFront1
+  rotate: true
+  xy: 183, 34
+  size: 12, 13
+  orig: 12, 13
+  offset: 0, 0
+  index: -1
+oGW/oGWhairsLeft1
+  rotate: true
+  xy: 420, 42
+  size: 20, 33
+  orig: 20, 33
+  offset: 0, 0
+  index: -1
+oGW/oGWhairsLeft1R
+  rotate: true
+  xy: 455, 42
+  size: 20, 33
+  orig: 20, 33
+  offset: 0, 0
+  index: -1
+oGW/oGWhairsLeft1V
+  rotate: true
+  xy: 385, 41
+  size: 21, 33
+  orig: 21, 33
+  offset: 0, 0
+  index: -1
+oGW/oGWhairsRight1
+  rotate: true
+  xy: 239, 29
+  size: 33, 35
+  orig: 33, 35
+  offset: 0, 0
+  index: -1
+oGW/oGWhairsRight1R
+  rotate: true
+  xy: 276, 30
+  size: 32, 35
+  orig: 32, 35
+  offset: 0, 0
+  index: -1
+oGW/oGWhairsRight1V
+  rotate: true
+  xy: 313, 30
+  size: 32, 35
+  orig: 32, 35
+  offset: 0, 0
+  index: -1
+oGW/oGWhandBack1
+  rotate: false
+  xy: 74, 13
+  size: 23, 15
+  orig: 23, 15
+  offset: 0, 0
+  index: -1
+oGW/oGWhandBackFinger1
+  rotate: false
+  xy: 74, 2
+  size: 8, 9
+  orig: 8, 9
+  offset: 0, 0
+  index: -1
+oGW/oGWhandFront1
+  rotate: false
+  xy: 490, 43
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+oGW/oGWhead1
+  rotate: false
+  xy: 198, 30
+  size: 39, 32
+  orig: 39, 32
+  offset: 0, 0
+  index: -1
+oGW/oGWshadow
+  rotate: false
+  xy: 100, 32
+  size: 50, 14
+  orig: 50, 14
+  offset: 0, 0
+  index: -1
+oGW/oGWshoulderBack1
+  rotate: true
+  xy: 120, 16
+  size: 14, 17
+  orig: 14, 17
+  offset: 0, 0
+  index: -1
+oGW/oGWshoulderFront1
+  rotate: true
+  xy: 2, 2
+  size: 26, 22
+  orig: 26, 22
+  offset: 0, 0
+  index: -1
+oGW/oGWshoulderFront1R
+  rotate: true
+  xy: 26, 2
+  size: 26, 22
+  orig: 26, 22
+  offset: 0, 0
+  index: -1
+oGW/oGWshoulderFront1V
+  rotate: true
+  xy: 50, 2
+  size: 26, 22
+  orig: 26, 22
+  offset: 0, 0
+  index: -1
+oGW/oGWspear1
+  rotate: true
+  xy: 2, 47
+  size: 15, 96
+  orig: 15, 96
+  offset: 0, 0
+  index: -1
+oGW/oGWspear1R
+  rotate: true
+  xy: 100, 48
+  size: 14, 96
+  orig: 14, 96
+  offset: 0, 0
+  index: -1
+oGW/oGWspear1V
+  rotate: true
+  xy: 2, 30
+  size: 15, 96
+  orig: 15, 96
+  offset: 0, 0
+  index: -1

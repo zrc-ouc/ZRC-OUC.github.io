@@ -1,0 +1,195 @@
+
+humanPeasant.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hPbody1
+  rotate: false
+  xy: 2, 3
+  size: 43, 35
+  orig: 43, 35
+  offset: 0, 0
+  index: -1
+hPbody1R
+  rotate: false
+  xy: 67, 28
+  size: 43, 34
+  orig: 43, 34
+  offset: 0, 0
+  index: -1
+hPbody1V
+  rotate: false
+  xy: 112, 28
+  size: 43, 34
+  orig: 43, 34
+  offset: 0, 0
+  index: -1
+hPclub1
+  rotate: true
+  xy: 2, 40
+  size: 22, 63
+  orig: 22, 63
+  offset: 0, 0
+  index: -1
+hPfootBack1
+  rotate: false
+  xy: 234, 33
+  size: 12, 13
+  orig: 12, 13
+  offset: 0, 0
+  index: -1
+hPfootBack1R
+  rotate: false
+  xy: 62, 2
+  size: 12, 13
+  orig: 12, 13
+  offset: 0, 0
+  index: -1
+hPfootBack1V
+  rotate: false
+  xy: 76, 2
+  size: 12, 13
+  orig: 12, 13
+  offset: 0, 0
+  index: -1
+hPfootFront1
+  rotate: true
+  xy: 457, 49
+  size: 13, 15
+  orig: 13, 15
+  offset: 0, 0
+  index: -1
+hPfootFront1R
+  rotate: true
+  xy: 491, 50
+  size: 12, 15
+  orig: 12, 15
+  offset: 0, 0
+  index: -1
+hPfootFront1V
+  rotate: true
+  xy: 474, 49
+  size: 13, 15
+  orig: 13, 15
+  offset: 0, 0
+  index: -1
+hPhairs1
+  rotate: false
+  xy: 285, 35
+  size: 27, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+hPhandBack1
+  rotate: false
+  xy: 396, 48
+  size: 21, 14
+  orig: 21, 14
+  offset: 0, 0
+  index: -1
+hPhandFront1
+  rotate: false
+  xy: 372, 47
+  size: 22, 15
+  orig: 22, 15
+  offset: 0, 0
+  index: -1
+hPlevels/hP01eyeLeft
+  rotate: false
+  xy: 62, 34
+  size: 3, 4
+  orig: 3, 4
+  offset: 0, 0
+  index: -1
+hPlevels/hP01eyeRight
+  rotate: false
+  xy: 314, 36
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+hPlevels/hP01head
+  rotate: false
+  xy: 157, 25
+  size: 38, 37
+  orig: 38, 37
+  offset: 0, 0
+  index: -1
+hPlevels/hP01mustaches
+  rotate: true
+  xy: 47, 4
+  size: 34, 13
+  orig: 34, 13
+  offset: 0, 0
+  index: -1
+hPlevels/hP10hairs
+  rotate: true
+  xy: 299, 2
+  size: 31, 15
+  orig: 31, 15
+  offset: 0, 0
+  index: -1
+hPlevels/hP10hat
+  rotate: false
+  xy: 314, 43
+  size: 32, 19
+  orig: 32, 19
+  offset: 0, 0
+  index: -1
+hPlevels/hP10mouth
+  rotate: false
+  xy: 348, 46
+  size: 22, 16
+  orig: 22, 16
+  offset: 0, 0
+  index: -1
+hPlevels/hP13clubFlame
+  rotate: false
+  xy: 270, 2
+  size: 27, 29
+  orig: 27, 29
+  offset: 0, 0
+  index: -1
+hPshadow
+  rotate: false
+  xy: 197, 48
+  size: 50, 14
+  orig: 50, 14
+  offset: 0, 0
+  index: -1
+hPshield1
+  rotate: true
+  xy: 197, 17
+  size: 29, 35
+  orig: 29, 35
+  offset: 0, 0
+  index: -1
+hPshield1R
+  rotate: true
+  xy: 249, 33
+  size: 29, 34
+  orig: 29, 34
+  offset: 0, 0
+  index: -1
+hPshield1V
+  rotate: true
+  xy: 234, 2
+  size: 29, 34
+  orig: 29, 34
+  offset: 0, 0
+  index: -1
+hPshoulderBack1
+  rotate: true
+  xy: 438, 50
+  size: 12, 17
+  orig: 12, 17
+  offset: 0, 0
+  index: -1
+hPshoulderFront1
+  rotate: true
+  xy: 419, 49
+  size: 13, 17
+  orig: 13, 17
+  offset: 0, 0
+  index: -1

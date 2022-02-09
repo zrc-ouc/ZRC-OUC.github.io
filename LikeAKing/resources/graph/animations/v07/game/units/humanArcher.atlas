@@ -1,0 +1,174 @@
+
+humanArcher.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hAarrow1
+  rotate: true
+  xy: 218, 10
+  size: 12, 58
+  orig: 12, 58
+  offset: 0, 0
+  index: -1
+hAarrow1R
+  rotate: true
+  xy: 158, 9
+  size: 13, 58
+  orig: 13, 58
+  offset: 0, 0
+  index: -1
+hAarrow1V
+  rotate: true
+  xy: 281, 45
+  size: 13, 58
+  orig: 13, 58
+  offset: 0, 0
+  index: -1
+hAbody1
+  rotate: false
+  xy: 158, 24
+  size: 39, 34
+  orig: 39, 34
+  offset: 0, 0
+  index: -1
+hAbody1R
+  rotate: false
+  xy: 199, 24
+  size: 39, 34
+  orig: 39, 34
+  offset: 0, 0
+  index: -1
+hAbody1V
+  rotate: false
+  xy: 240, 24
+  size: 39, 34
+  orig: 39, 34
+  offset: 0, 0
+  index: -1
+hAbow1
+  rotate: true
+  xy: 281, 21
+  size: 22, 47
+  orig: 22, 47
+  offset: 0, 0
+  index: -1
+hAhandBack1
+  rotate: false
+  xy: 450, 41
+  size: 18, 17
+  orig: 18, 17
+  offset: 0, 0
+  index: -1
+hAhandFront1
+  rotate: false
+  xy: 426, 42
+  size: 22, 16
+  orig: 22, 16
+  offset: 0, 0
+  index: -1
+hAhead1
+  rotate: false
+  xy: 2, 6
+  size: 50, 52
+  orig: 50, 52
+  offset: 0, 0
+  index: -1
+hAhead1R
+  rotate: false
+  xy: 106, 7
+  size: 50, 51
+  orig: 50, 51
+  offset: 0, 0
+  index: -1
+hAhead1V
+  rotate: false
+  xy: 54, 6
+  size: 50, 52
+  orig: 50, 52
+  offset: 0, 0
+  index: -1
+hAlegBack1
+  rotate: false
+  xy: 360, 28
+  size: 12, 13
+  orig: 12, 13
+  offset: 0, 0
+  index: -1
+hAlegBack1R
+  rotate: false
+  xy: 374, 28
+  size: 12, 13
+  orig: 12, 13
+  offset: 0, 0
+  index: -1
+hAlegBack1V
+  rotate: true
+  xy: 388, 25
+  size: 12, 13
+  orig: 12, 13
+  offset: 0, 0
+  index: -1
+hAlegFront1
+  rotate: false
+  xy: 313, 4
+  size: 13, 15
+  orig: 13, 15
+  offset: 0, 0
+  index: -1
+hAlegFront1R
+  rotate: false
+  xy: 330, 26
+  size: 13, 15
+  orig: 13, 15
+  offset: 0, 0
+  index: -1
+hAlegFront1V
+  rotate: false
+  xy: 345, 26
+  size: 13, 15
+  orig: 13, 15
+  offset: 0, 0
+  index: -1
+hAquiver1
+  rotate: true
+  xy: 393, 39
+  size: 19, 31
+  orig: 19, 31
+  offset: 0, 0
+  index: -1
+hAshadow
+  rotate: false
+  xy: 341, 43
+  size: 50, 15
+  orig: 50, 15
+  offset: 0, 0
+  index: -1
+hAshoulderBack1
+  rotate: false
+  xy: 298, 2
+  size: 13, 17
+  orig: 13, 17
+  offset: 0, 0
+  index: -1
+hAshoulderFront1
+  rotate: false
+  xy: 470, 40
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+hAshoulderFront1R
+  rotate: false
+  xy: 490, 40
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+hAshoulderFront1V
+  rotate: true
+  xy: 278, 2
+  size: 17, 18
+  orig: 17, 18
+  offset: 0, 0
+  index: -1

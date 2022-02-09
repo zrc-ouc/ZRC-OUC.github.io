@@ -1,0 +1,272 @@
+
+humanKnight.png
+size: 1024,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hKbeard1
+  rotate: false
+  xy: 350, 26
+  size: 47, 36
+  orig: 47, 36
+  offset: 0, 0
+  index: -1
+hKbody1
+  rotate: false
+  xy: 642, 29
+  size: 41, 33
+  orig: 41, 33
+  offset: 0, 0
+  index: -1
+hKeyes1
+  rotate: false
+  xy: 790, 35
+  size: 12, 5
+  orig: 12, 5
+  offset: 0, 0
+  index: -1
+hKeyesRoar1
+  rotate: false
+  xy: 114, 2
+  size: 29, 11
+  orig: 29, 11
+  offset: 0, 0
+  index: -1
+hKfootBack1
+  rotate: true
+  xy: 669, 12
+  size: 15, 13
+  orig: 15, 13
+  offset: 0, 0
+  index: -1
+hKfootFront1
+  rotate: false
+  xy: 790, 42
+  size: 23, 20
+  orig: 23, 20
+  offset: 0, 0
+  index: -1
+hKhandBack1
+  rotate: false
+  xy: 593, 2
+  size: 29, 25
+  orig: 29, 25
+  offset: 0, 0
+  index: -1
+hKhandFront1
+  rotate: false
+  xy: 641, 6
+  size: 26, 21
+  orig: 26, 21
+  offset: 0, 0
+  index: -1
+hKhelm1
+  rotate: true
+  xy: 399, 26
+  size: 36, 47
+  orig: 36, 47
+  offset: 0, 0
+  index: -1
+hKhelm1R
+  rotate: true
+  xy: 448, 26
+  size: 36, 47
+  orig: 36, 47
+  offset: 0, 0
+  index: -1
+hKhelm1V
+  rotate: true
+  xy: 497, 26
+  size: 36, 47
+  orig: 36, 47
+  offset: 0, 0
+  index: -1
+hKhorseBody1
+  rotate: false
+  xy: 546, 24
+  size: 45, 38
+  orig: 45, 38
+  offset: 0, 0
+  index: -1
+hKhorseEarBack1
+  rotate: false
+  xy: 463, 8
+  size: 9, 16
+  orig: 9, 16
+  offset: 0, 0
+  index: -1
+hKhorseEarFront1
+  rotate: true
+  xy: 669, 2
+  size: 8, 19
+  orig: 8, 19
+  offset: 0, 0
+  index: -1
+hKhorseHair
+  rotate: false
+  xy: 815, 51
+  size: 23, 11
+  orig: 23, 11
+  offset: 0, 0
+  index: -1
+hKhorseHandBack1
+  rotate: false
+  xy: 129, 15
+  size: 11, 17
+  orig: 11, 17
+  offset: 0, 0
+  index: -1
+hKhorseHandFront1
+  rotate: false
+  xy: 114, 15
+  size: 13, 17
+  orig: 13, 17
+  offset: 0, 0
+  index: -1
+hKhorseHead1
+  rotate: false
+  xy: 593, 29
+  size: 47, 33
+  orig: 47, 33
+  offset: 0, 0
+  index: -1
+hKhorseHoofBack1
+  rotate: true
+  xy: 133, 34
+  size: 11, 13
+  orig: 11, 13
+  offset: 0, 0
+  index: -1
+hKhorseHoofFront1
+  rotate: false
+  xy: 443, 6
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+hKhorseLegAssTopBack1
+  rotate: true
+  xy: 725, 38
+  size: 24, 34
+  orig: 24, 34
+  offset: 0, 0
+  index: -1
+hKhorseLegAssTopFront1
+  rotate: true
+  xy: 685, 35
+  size: 27, 38
+  orig: 27, 38
+  offset: 0, 0
+  index: -1
+hKhorseShoulderBack1
+  rotate: false
+  xy: 624, 2
+  size: 15, 25
+  orig: 15, 25
+  offset: 0, 0
+  index: -1
+hKhorseShoulderFront1
+  rotate: false
+  xy: 396, 2
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1
+hKmouth1
+  rotate: false
+  xy: 145, 2
+  size: 13, 11
+  orig: 13, 11
+  offset: 0, 0
+  index: -1
+hKmustaches1
+  rotate: false
+  xy: 96, 34
+  size: 35, 11
+  orig: 35, 11
+  offset: 0, 0
+  index: -1
+hKroar1
+  rotate: false
+  xy: 414, 4
+  size: 27, 20
+  orig: 27, 20
+  offset: 0, 0
+  index: -1
+hKsaddle1
+  rotate: false
+  xy: 40, 2
+  size: 35, 29
+  orig: 35, 29
+  offset: 0, 0
+  index: -1
+hKsaddle1R
+  rotate: false
+  xy: 2, 2
+  size: 36, 29
+  orig: 36, 29
+  offset: 0, 0
+  index: -1
+hKsaddle1V
+  rotate: false
+  xy: 77, 2
+  size: 35, 29
+  orig: 35, 29
+  offset: 0, 0
+  index: -1
+hKshadow
+  rotate: false
+  xy: 96, 47
+  size: 74, 15
+  orig: 74, 15
+  offset: 0, 0
+  index: -1
+hKshield1
+  rotate: true
+  xy: 172, 15
+  size: 47, 58
+  orig: 47, 58
+  offset: 0, 0
+  index: -1
+hKshield1R
+  rotate: true
+  xy: 232, 15
+  size: 47, 57
+  orig: 47, 57
+  offset: 0, 0
+  index: -1
+hKshield1V
+  rotate: true
+  xy: 291, 15
+  size: 47, 57
+  orig: 47, 57
+  offset: 0, 0
+  index: -1
+hKshoulderBack1
+  rotate: false
+  xy: 350, 2
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
+hKshoulderFront1
+  rotate: false
+  xy: 374, 2
+  size: 20, 22
+  orig: 20, 22
+  offset: 0, 0
+  index: -1
+hKsword1
+  rotate: true
+  xy: 2, 33
+  size: 29, 92
+  orig: 29, 92
+  offset: 0, 0
+  index: -1
+hKtail1
+  rotate: false
+  xy: 761, 35
+  size: 27, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1

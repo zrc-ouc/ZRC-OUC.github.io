@@ -1,0 +1,139 @@
+
+orcHuntress.png
+size: 512,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+oSbody1
+  rotate: false
+  xy: 294, 30
+  size: 27, 32
+  orig: 27, 32
+  offset: 0, 0
+  index: -1
+oSbody1R
+  rotate: false
+  xy: 323, 30
+  size: 27, 32
+  orig: 27, 32
+  offset: 0, 0
+  index: -1
+oSbody1V
+  rotate: false
+  xy: 352, 31
+  size: 27, 31
+  orig: 27, 31
+  offset: 0, 0
+  index: -1
+oSboobs1
+  rotate: false
+  xy: 294, 13
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+oSboobs1R
+  rotate: false
+  xy: 411, 47
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+oSboobs1V
+  rotate: false
+  xy: 443, 47
+  size: 30, 15
+  orig: 30, 15
+  offset: 0, 0
+  index: -1
+oSfootBack1
+  rotate: true
+  xy: 84, 19
+  size: 12, 18
+  orig: 12, 18
+  offset: 0, 0
+  index: -1
+oSfootFront1
+  rotate: true
+  xy: 326, 15
+  size: 13, 18
+  orig: 13, 18
+  offset: 0, 0
+  index: -1
+oShandBack1
+  rotate: true
+  xy: 475, 44
+  size: 18, 25
+  orig: 18, 25
+  offset: 0, 0
+  index: -1
+oShandFront1
+  rotate: true
+  xy: 52, 2
+  size: 15, 19
+  orig: 15, 19
+  offset: 0, 0
+  index: -1
+oShead1
+  rotate: true
+  xy: 117, 7
+  size: 55, 57
+  orig: 55, 57
+  offset: 0, 0
+  index: -1
+oShead1R
+  rotate: true
+  xy: 176, 7
+  size: 55, 57
+  orig: 55, 57
+  offset: 0, 0
+  index: -1
+oShead1V
+  rotate: true
+  xy: 235, 7
+  size: 55, 57
+  orig: 55, 57
+  offset: 0, 0
+  index: -1
+oSmouth1
+  rotate: false
+  xy: 52, 19
+  size: 30, 12
+  orig: 30, 12
+  offset: 0, 0
+  index: -1
+oSroar1
+  rotate: false
+  xy: 381, 40
+  size: 28, 22
+  orig: 28, 22
+  offset: 0, 0
+  index: -1
+oSshadow
+  rotate: false
+  xy: 2, 18
+  size: 48, 13
+  orig: 48, 13
+  offset: 0, 0
+  index: -1
+oSshoulderBack1
+  rotate: false
+  xy: 2, 2
+  size: 19, 14
+  orig: 19, 14
+  offset: 0, 0
+  index: -1
+oSshoulderFront1
+  rotate: false
+  xy: 326, 2
+  size: 18, 11
+  orig: 18, 11
+  offset: 0, 0
+  index: -1
+oSspear1
+  rotate: true
+  xy: 2, 33
+  size: 29, 113
+  orig: 29, 113
+  offset: 0, 0
+  index: -1
