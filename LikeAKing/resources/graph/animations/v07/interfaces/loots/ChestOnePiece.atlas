@@ -1,0 +1,139 @@
+
+ChestOnePiece.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ChestOnePiece01
+  rotate: false
+  xy: 423, 147
+  size: 140, 148
+  orig: 140, 148
+  offset: 0, 0
+  index: -1
+ChestOnePiece02
+  rotate: true
+  xy: 799, 187
+  size: 164, 165
+  orig: 164, 165
+  offset: 0, 0
+  index: -1
+ChestOnePiece03
+  rotate: true
+  xy: 799, 353
+  size: 156, 183
+  orig: 156, 183
+  offset: 0, 0
+  index: -1
+ChestOnePiece04
+  rotate: false
+  xy: 214, 117
+  size: 207, 180
+  orig: 207, 180
+  offset: 0, 0
+  index: -1
+ChestShadow
+  rotate: false
+  xy: 214, 92
+  size: 186, 23
+  orig: 186, 23
+  offset: 0, 0
+  index: -1
+GlowCircle
+  rotate: false
+  xy: 2, 290
+  size: 210, 219
+  orig: 210, 219
+  offset: 0, 0
+  index: -1
+GlowLine
+  rotate: true
+  xy: 426, 297
+  size: 20, 164
+  orig: 20, 164
+  offset: 0, 0
+  index: -1
+blink
+  rotate: false
+  xy: 379, 22
+  size: 42, 68
+  orig: 42, 68
+  offset: 0, 0
+  index: -1
+chestExplosionParts_01
+  rotate: false
+  xy: 618, 330
+  size: 179, 179
+  orig: 179, 179
+  offset: 0, 0
+  index: -1
+chestExplosionParts_02
+  rotate: false
+  xy: 2, 78
+  size: 210, 210
+  orig: 210, 210
+  offset: 0, 0
+  index: -1
+chestExplosionParts_03
+  rotate: false
+  xy: 214, 299
+  size: 210, 210
+  orig: 210, 210
+  offset: 0, 0
+  index: -1
+chestExplosionParts_04
+  rotate: true
+  xy: 2, 6
+  size: 70, 141
+  orig: 70, 141
+  offset: 0, 0
+  index: -1
+chestExplosionParts_06
+  rotate: false
+  xy: 426, 319
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+coin02
+  rotate: true
+  xy: 423, 15
+  size: 130, 135
+  orig: 130, 135
+  offset: 0, 0
+  index: -1
+confetti_01
+  rotate: false
+  xy: 145, 2
+  size: 83, 74
+  orig: 83, 74
+  offset: 0, 0
+  index: -1
+confetti_02
+  rotate: false
+  xy: 565, 161
+  size: 62, 62
+  orig: 62, 62
+  offset: 0, 0
+  index: -1
+confetti_03
+  rotate: false
+  xy: 565, 225
+  size: 69, 70
+  orig: 69, 70
+  offset: 0, 0
+  index: -1
+confetti_04
+  rotate: true
+  xy: 294, 31
+  size: 59, 83
+  orig: 59, 83
+  offset: 0, 0
+  index: -1
+confetti_05
+  rotate: false
+  xy: 230, 9
+  size: 62, 81
+  orig: 62, 81
+  offset: 0, 0
+  index: -1

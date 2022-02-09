@@ -1,0 +1,223 @@
+
+Chest.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Chest01Bot
+  rotate: true
+  xy: 560, 529
+  size: 160, 83
+  orig: 160, 83
+  offset: 0, 0
+  index: -1
+Chest01Top
+  rotate: false
+  xy: 423, 691
+  size: 182, 114
+  orig: 182, 114
+  offset: 0, 0
+  index: -1
+Chest01khGreen
+  rotate: false
+  xy: 423, 648
+  size: 27, 41
+  orig: 27, 41
+  offset: 0, 0
+  index: -1
+Chest01khYellow
+  rotate: true
+  xy: 942, 859
+  size: 27, 41
+  orig: 27, 41
+  offset: 0, 0
+  index: -1
+Chest02Bot
+  rotate: true
+  xy: 561, 367
+  size: 160, 90
+  orig: 160, 90
+  offset: 0, 0
+  index: -1
+Chest02Top
+  rotate: false
+  xy: 810, 901
+  size: 186, 121
+  orig: 186, 121
+  offset: 0, 0
+  index: -1
+Chest02khGreen
+  rotate: false
+  xy: 998, 980
+  size: 24, 42
+  orig: 24, 42
+  offset: 0, 0
+  index: -1
+Chest02khYellow
+  rotate: true
+  xy: 135, 2
+  size: 24, 42
+  orig: 24, 42
+  offset: 0, 0
+  index: -1
+Chest03Bot
+  rotate: true
+  xy: 454, 517
+  size: 172, 104
+  orig: 172, 104
+  offset: 0, 0
+  index: -1
+Chest03Top
+  rotate: false
+  xy: 618, 878
+  size: 190, 144
+  orig: 190, 144
+  offset: 0, 0
+  index: -1
+Chest03khGreen
+  rotate: false
+  xy: 998, 942
+  size: 24, 36
+  orig: 24, 36
+  offset: 0, 0
+  index: -1
+Chest03khYellow
+  rotate: true
+  xy: 179, 2
+  size: 24, 36
+  orig: 24, 36
+  offset: 0, 0
+  index: -1
+Chest10Bot
+  rotate: true
+  xy: 350, 411
+  size: 217, 102
+  orig: 217, 102
+  offset: 0, 0
+  index: -1
+Chest10Top
+  rotate: true
+  xy: 214, 409
+  size: 219, 134
+  orig: 219, 134
+  offset: 0, 0
+  index: -1
+Chest11Bot
+  rotate: true
+  xy: 135, 28
+  size: 195, 95
+  orig: 195, 95
+  offset: 0, 0
+  index: -1
+Chest11Top
+  rotate: true
+  xy: 2, 2
+  size: 221, 131
+  orig: 221, 131
+  offset: 0, 0
+  index: -1
+Chest11khGreen
+  rotate: false
+  xy: 870, 847
+  size: 34, 39
+  orig: 34, 39
+  offset: 0, 0
+  index: -1
+Chest11khYellow
+  rotate: false
+  xy: 906, 847
+  size: 34, 39
+  orig: 34, 39
+  offset: 0, 0
+  index: -1
+ChestOnePiece04
+  rotate: false
+  xy: 214, 630
+  size: 207, 180
+  orig: 207, 180
+  offset: 0, 0
+  index: -1
+ChestShadow
+  rotate: false
+  xy: 426, 807
+  size: 186, 23
+  orig: 186, 23
+  offset: 0, 0
+  index: -1
+GlowCircle
+  rotate: false
+  xy: 2, 803
+  size: 210, 219
+  orig: 210, 219
+  offset: 0, 0
+  index: -1
+GlowLine
+  rotate: false
+  xy: 183, 240
+  size: 20, 164
+  orig: 20, 164
+  offset: 0, 0
+  index: -1
+chestExclaimer
+  rotate: false
+  xy: 454, 356
+  size: 105, 159
+  orig: 105, 159
+  offset: 0, 0
+  index: -1
+chestExplosionParts_01
+  rotate: false
+  xy: 2, 225
+  size: 179, 179
+  orig: 179, 179
+  offset: 0, 0
+  index: -1
+chestExplosionParts_02
+  rotate: false
+  xy: 2, 591
+  size: 210, 210
+  orig: 210, 210
+  offset: 0, 0
+  index: -1
+chestExplosionParts_03
+  rotate: false
+  xy: 214, 812
+  size: 210, 210
+  orig: 210, 210
+  offset: 0, 0
+  index: -1
+chestExplosionParts_05
+  rotate: true
+  xy: 810, 888
+  size: 11, 183
+  orig: 11, 183
+  offset: 0, 0
+  index: -1
+chestExplosionParts_06
+  rotate: false
+  xy: 426, 832
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1
+chestGlow
+  rotate: false
+  xy: 2, 406
+  size: 210, 183
+  orig: 210, 183
+  offset: 0, 0
+  index: -1
+glowColumn
+  rotate: true
+  xy: 614, 810
+  size: 11, 242
+  orig: 11, 242
+  offset: 0, 0
+  index: -1
+glowColumn2
+  rotate: true
+  xy: 618, 823
+  size: 53, 250
+  orig: 53, 250
+  offset: 0, 0
+  index: -1
