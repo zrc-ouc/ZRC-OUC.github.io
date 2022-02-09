@@ -1,0 +1,209 @@
+
+goblin.png
+size: 512,256
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+goblinAssets/goblinBag
+  rotate: false
+  xy: 2, 79
+  size: 183, 175
+  orig: 183, 175
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinBagEnd
+  rotate: true
+  xy: 295, 169
+  size: 85, 107
+  orig: 85, 107
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinBlink
+  rotate: true
+  xy: 86, 2
+  size: 25, 42
+  orig: 25, 42
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinBody
+  rotate: false
+  xy: 404, 169
+  size: 100, 85
+  orig: 100, 85
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinBrowLeft
+  rotate: true
+  xy: 329, 57
+  size: 31, 28
+  orig: 31, 28
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinBrowRight
+  rotate: false
+  xy: 443, 84
+  size: 51, 27
+  orig: 51, 27
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinEarBack
+  rotate: true
+  xy: 187, 72
+  size: 31, 86
+  orig: 31, 86
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinEarFront
+  rotate: true
+  xy: 289, 110
+  size: 42, 84
+  orig: 42, 84
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinEarFrontRing
+  rotate: true
+  xy: 442, 65
+  size: 17, 38
+  orig: 17, 38
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinEyeDotLeft
+  rotate: false
+  xy: 432, 160
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinEyeDotRight
+  rotate: true
+  xy: 275, 95
+  size: 8, 12
+  orig: 8, 12
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinEyeballLeft
+  rotate: true
+  xy: 220, 2
+  size: 29, 27
+  orig: 29, 27
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinEyeballRight
+  rotate: false
+  xy: 272, 16
+  size: 43, 39
+  orig: 43, 39
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinEyelidRightBottom
+  rotate: true
+  xy: 317, 11
+  size: 44, 20
+  orig: 44, 20
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinEyelidRightTop
+  rotate: true
+  xy: 339, 11
+  size: 44, 20
+  orig: 44, 20
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinFootBack
+  rotate: false
+  xy: 361, 20
+  size: 32, 35
+  orig: 32, 35
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinFootFront
+  rotate: false
+  xy: 359, 57
+  size: 36, 36
+  orig: 36, 36
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinFurBack
+  rotate: true
+  xy: 397, 54
+  size: 39, 43
+  orig: 39, 43
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinFurFront
+  rotate: false
+  xy: 375, 95
+  size: 66, 57
+  orig: 66, 57
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinHairs
+  rotate: false
+  xy: 2, 8
+  size: 82, 69
+  orig: 82, 69
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinHandBack
+  rotate: true
+  xy: 86, 29
+  size: 48, 81
+  orig: 48, 81
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinHandFront
+  rotate: false
+  xy: 443, 113
+  size: 51, 54
+  orig: 51, 54
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinHeadBase
+  rotate: false
+  xy: 187, 157
+  size: 106, 97
+  orig: 106, 97
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinMouth
+  rotate: false
+  xy: 289, 90
+  size: 53, 18
+  orig: 53, 18
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinNose
+  rotate: false
+  xy: 275, 57
+  size: 52, 31
+  orig: 52, 31
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinShadow
+  rotate: false
+  xy: 295, 154
+  size: 135, 13
+  orig: 135, 13
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinShoulderBack
+  rotate: false
+  xy: 169, 27
+  size: 49, 43
+  orig: 49, 43
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinShoulderFront
+  rotate: false
+  xy: 220, 33
+  size: 50, 37
+  orig: 50, 37
+  offset: 0, 0
+  index: -1
+goblinAssets/goblinSmile
+  rotate: false
+  xy: 187, 105
+  size: 100, 50
+  orig: 100, 50
+  offset: 0, 0
+  index: -1
