@@ -1,0 +1,62 @@
+
+shopItem.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+shopItemsAssets/coin01
+  rotate: false
+  xy: 819, 134
+  size: 113, 96
+  orig: 113, 96
+  offset: 0, 0
+  index: -1
+shopItemsAssets/coin02
+  rotate: true
+  xy: 682, 100
+  size: 130, 135
+  orig: 130, 135
+  offset: 0, 0
+  index: -1
+shopItemsAssets/coin03
+  rotate: true
+  xy: 522, 96
+  size: 134, 158
+  orig: 134, 158
+  offset: 0, 0
+  index: -1
+shopItemsAssets/coin04
+  rotate: false
+  xy: 197, 71
+  size: 158, 159
+  orig: 158, 159
+  offset: 0, 0
+  index: -1
+shopItemsAssets/coin05
+  rotate: true
+  xy: 357, 91
+  size: 139, 163
+  orig: 139, 163
+  offset: 0, 0
+  index: -1
+shopItemsAssets/coin06
+  rotate: false
+  xy: 2, 35
+  size: 193, 195
+  orig: 193, 195
+  offset: 0, 0
+  index: -1
+shopItemsAssets/shopItemsEffects_06
+  rotate: false
+  xy: 197, 40
+  size: 20, 29
+  orig: 20, 29
+  offset: 0, 0
+  index: -1
+shopItemsAssets/shopItemsEffects_07
+  rotate: false
+  xy: 2, 2
+  size: 134, 31
+  orig: 134, 31
+  offset: 0, 0
+  index: -1
