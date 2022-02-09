@@ -1,0 +1,29 @@
+{
+  "ldrURL" : "resources/",
+  "srcURL" : "resources/",
+  "sndURL" : "resources/sounds/",
+  "cnfURL" : "conf/",
+  "scrURL" : "scr/",
+
+  "provider" : "pokiConnector",
+  "ads" : "pokiAds",
+  "analytics" : "pokiAnalytics",
+
+  "partLoad" : true,
+
+  "platforms" : {
+    "list" : [],
+    "default" : "poki"
+  },
+
+  "appdata" : {
+    "ads" : {
+      "interstitialActive" : 1,
+      "interstitialMinLevel" : 1,
+      "interstitialMaxLevel" : 1000,
+      "interstitialDelay" : 0,
+      "rewardedActive" : 1,
+      "rewardedLimit" : 500
+    }
+  }
+}
