@@ -1,0 +1,24 @@
+html, body {
+    height:100%;
+    width:100%;
+    margin:0;
+}
+.root {
+    background-color: black;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+    max-height: calc(1080 * (100vw / 1700));
+    width: 100%;
+}
+.body-space {
+    background-image: url("../assets/frame/frameBack.jpg");
+}
+.waiter {
+    display: block;
+    position: relative;
+    height: 30%;
+    margin: auto;
+    top: 30%;
+}
