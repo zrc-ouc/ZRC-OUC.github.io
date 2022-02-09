@@ -1,0 +1,272 @@
+
+emojiOrcs.png
+size: 2048,128
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+emojiAssets/common/crown1
+  rotate: false
+  xy: 1551, 86
+  size: 53, 40
+  orig: 53, 40
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcAngerBeard
+  rotate: false
+  xy: 1153, 88
+  size: 99, 38
+  orig: 99, 38
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcAngerEyeLeft
+  rotate: false
+  xy: 1645, 100
+  size: 34, 26
+  orig: 34, 26
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcAngerEyeRight
+  rotate: false
+  xy: 709, 54
+  size: 24, 19
+  orig: 24, 19
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcAngerFire1
+  rotate: true
+  xy: 2, 7
+  size: 119, 127
+  orig: 119, 127
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcAngerFire2
+  rotate: false
+  xy: 348, 16
+  size: 104, 110
+  orig: 104, 110
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcAngerHeadTop
+  rotate: false
+  xy: 757, 76
+  size: 108, 50
+  orig: 108, 50
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcAngerHeadTopRed
+  rotate: false
+  xy: 647, 75
+  size: 108, 51
+  orig: 108, 51
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcAngerJaw
+  rotate: false
+  xy: 867, 64
+  size: 95, 62
+  orig: 95, 62
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcAngerJawRed
+  rotate: false
+  xy: 964, 64
+  size: 95, 62
+  orig: 95, 62
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcAngerMouth
+  rotate: false
+  xy: 1254, 79
+  size: 76, 47
+  orig: 76, 47
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcAngerTeeth
+  rotate: false
+  xy: 1479, 92
+  size: 70, 34
+  orig: 70, 34
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcAngerTeethBottom
+  rotate: false
+  xy: 1403, 85
+  size: 74, 41
+  orig: 74, 41
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcCryEyeLeft
+  rotate: true
+  xy: 1758, 99
+  size: 27, 29
+  orig: 27, 29
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcCryEyeLeftTears
+  rotate: false
+  xy: 1403, 77
+  size: 20, 6
+  orig: 20, 6
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcCryEyeRight
+  rotate: false
+  xy: 1606, 93
+  size: 37, 33
+  orig: 37, 33
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcCryEyeRightTears
+  rotate: true
+  xy: 1144, 42
+  size: 26, 7
+  orig: 26, 7
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcCryEyeball
+  rotate: false
+  xy: 1193, 71
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcCryHead
+  rotate: false
+  xy: 131, 12
+  size: 107, 114
+  orig: 107, 114
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcCryLip
+  rotate: false
+  xy: 1722, 104
+  size: 34, 22
+  orig: 34, 22
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcCryNose
+  rotate: false
+  xy: 647, 46
+  size: 20, 6
+  orig: 20, 6
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcCryTear
+  rotate: false
+  xy: 1789, 101
+  size: 11, 7
+  orig: 11, 7
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcCryTearDrop
+  rotate: false
+  xy: 735, 60
+  size: 6, 13
+  orig: 6, 13
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcCryTearSlide
+  rotate: false
+  xy: 454, 2
+  size: 17, 14
+  orig: 17, 14
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcCryTearfallLeft2
+  rotate: true
+  xy: 647, 54
+  size: 19, 60
+  orig: 19, 60
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcCryTearfallRight
+  rotate: true
+  xy: 454, 18
+  size: 26, 71
+  orig: 26, 71
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcCryWave1
+  rotate: false
+  xy: 473, 2
+  size: 6, 14
+  orig: 6, 14
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcCryWave2
+  rotate: true
+  xy: 1153, 71
+  size: 15, 38
+  orig: 15, 38
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcLaughtHeadBottom
+  rotate: false
+  xy: 454, 46
+  size: 99, 80
+  orig: 99, 80
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcLaughtHeadTop
+  rotate: false
+  xy: 1061, 70
+  size: 90, 56
+  orig: 90, 56
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcLaughtMouth
+  rotate: true
+  xy: 555, 43
+  size: 83, 90
+  orig: 83, 90
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcLaughtMouthPart
+  rotate: true
+  xy: 1681, 106
+  size: 20, 39
+  orig: 20, 39
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcRespectBrowLeft
+  rotate: false
+  xy: 1153, 58
+  size: 13, 11
+  orig: 13, 11
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcRespectBrowRight
+  rotate: false
+  xy: 1789, 110
+  size: 20, 16
+  orig: 20, 16
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcRespectEarring
+  rotate: false
+  xy: 527, 21
+  size: 21, 23
+  orig: 21, 23
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcRespectHand
+  rotate: true
+  xy: 1332, 77
+  size: 49, 69
+  orig: 49, 69
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcRespectHead
+  rotate: false
+  xy: 240, 12
+  size: 106, 114
+  orig: 106, 114
+  offset: 0, 0
+  index: -1
+emojiAssets/orcs/orcRespectMouth
+  rotate: false
+  xy: 1061, 2
+  size: 81, 66
+  orig: 81, 66
+  offset: 0, 0
+  index: -1
