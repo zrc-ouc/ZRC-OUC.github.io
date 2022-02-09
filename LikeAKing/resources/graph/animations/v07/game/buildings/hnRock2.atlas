@@ -1,0 +1,27 @@
+
+hnRock2.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+rock02HumansBlue
+  rotate: false
+  xy: 2, 2
+  size: 78, 102
+  orig: 78, 102
+  offset: 0, 0
+  index: -1
+rock02HumansRed
+  rotate: false
+  xy: 82, 2
+  size: 78, 102
+  orig: 78, 102
+  offset: 0, 0
+  index: -1
+rock02HumansViolet
+  rotate: false
+  xy: 162, 2
+  size: 78, 102
+  orig: 78, 102
+  offset: 0, 0
+  index: -1

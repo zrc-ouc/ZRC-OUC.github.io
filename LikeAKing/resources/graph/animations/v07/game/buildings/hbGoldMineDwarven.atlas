@@ -1,0 +1,76 @@
+
+hbGoldMineDwarven.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hbGoldmine2
+  rotate: false
+  xy: 2, 43
+  size: 96, 83
+  orig: 96, 83
+  offset: 0, 0
+  index: -1
+hbGoldmine2Lights01
+  rotate: false
+  xy: 2, 2
+  size: 37, 39
+  orig: 37, 39
+  offset: 0, 0
+  index: -1
+hbGoldmine2Lights02
+  rotate: false
+  xy: 41, 24
+  size: 16, 17
+  orig: 16, 17
+  offset: 0, 0
+  index: -1
+hbGoldmine2Lights03
+  rotate: false
+  xy: 296, 91
+  size: 17, 15
+  orig: 17, 15
+  offset: 0, 0
+  index: -1
+hbGoldmine2Lights04
+  rotate: false
+  xy: 296, 108
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+hbGoldmine2Lights05
+  rotate: false
+  xy: 59, 34
+  size: 8, 7
+  orig: 8, 7
+  offset: 0, 0
+  index: -1
+hbGoldmine2Lights06
+  rotate: false
+  xy: 316, 110
+  size: 12, 16
+  orig: 12, 16
+  offset: 0, 0
+  index: -1
+hbGoldmine2R
+  rotate: false
+  xy: 100, 43
+  size: 96, 83
+  orig: 96, 83
+  offset: 0, 0
+  index: -1
+hbGoldmine2V
+  rotate: false
+  xy: 198, 43
+  size: 96, 83
+  orig: 96, 83
+  offset: 0, 0
+  index: -1
+hbGoldmineLight1
+  rotate: false
+  xy: 41, 9
+  size: 10, 13
+  orig: 10, 13
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,41 @@
+
+hbPeasantTraining.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hbPeasantTraining
+  rotate: false
+  xy: 2, 32
+  size: 81, 92
+  orig: 81, 92
+  offset: 0, 0
+  index: -1
+hbPeasantTrainingLight1
+  rotate: false
+  xy: 49, 6
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+hbPeasantTrainingLight2
+  rotate: false
+  xy: 2, 2
+  size: 45, 28
+  orig: 45, 28
+  offset: 0, 0
+  index: -1
+hbPeasantTrainingR
+  rotate: false
+  xy: 85, 32
+  size: 81, 92
+  orig: 81, 92
+  offset: 0, 0
+  index: -1
+hbPeasantTrainingV
+  rotate: false
+  xy: 168, 32
+  size: 81, 92
+  orig: 81, 92
+  offset: 0, 0
+  index: -1

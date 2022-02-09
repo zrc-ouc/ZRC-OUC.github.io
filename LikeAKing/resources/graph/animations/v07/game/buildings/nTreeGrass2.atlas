@@ -1,0 +1,13 @@
+
+nTreeGrass2.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+TreeGrass02
+  rotate: false
+  xy: 2, 2
+  size: 90, 104
+  orig: 90, 104
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,27 @@
+
+onRock1.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+rock01OrcsBlue
+  rotate: false
+  xy: 2, 2
+  size: 81, 92
+  orig: 81, 92
+  offset: 0, 0
+  index: -1
+rock01OrcsRed
+  rotate: false
+  xy: 85, 2
+  size: 81, 92
+  orig: 81, 92
+  offset: 0, 0
+  index: -1
+rock01OrcsViolet
+  rotate: false
+  xy: 168, 2
+  size: 81, 92
+  orig: 81, 92
+  offset: 0, 0
+  index: -1

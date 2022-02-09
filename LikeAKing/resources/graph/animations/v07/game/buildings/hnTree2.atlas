@@ -1,0 +1,27 @@
+
+hnTree2.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+TreeHumans02Blue
+  rotate: false
+  xy: 2, 2
+  size: 90, 104
+  orig: 90, 104
+  offset: 0, 0
+  index: -1
+TreeHumans02Red
+  rotate: false
+  xy: 94, 2
+  size: 90, 104
+  orig: 90, 104
+  offset: 0, 0
+  index: -1
+TreeHumans02Violet
+  rotate: false
+  xy: 186, 2
+  size: 90, 104
+  orig: 90, 104
+  offset: 0, 0
+  index: -1

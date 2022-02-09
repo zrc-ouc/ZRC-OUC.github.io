@@ -1,0 +1,27 @@
+
+hbMarksmanTower.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hbMarksmanTower
+  rotate: true
+  xy: 2, 2
+  size: 78, 126
+  orig: 78, 126
+  offset: 0, 0
+  index: -1
+hbMarksmanTowerR
+  rotate: true
+  xy: 130, 2
+  size: 78, 126
+  orig: 78, 126
+  offset: 0, 0
+  index: -1
+hbMarksmanTowerV
+  rotate: true
+  xy: 258, 2
+  size: 78, 126
+  orig: 78, 126
+  offset: 0, 0
+  index: -1

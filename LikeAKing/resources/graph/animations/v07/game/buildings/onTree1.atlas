@@ -1,0 +1,27 @@
+
+onTree1.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+TreeOrcs01Blue
+  rotate: false
+  xy: 2, 2
+  size: 88, 99
+  orig: 88, 99
+  offset: 0, 0
+  index: -1
+TreeOrcs01Red
+  rotate: false
+  xy: 92, 2
+  size: 88, 99
+  orig: 88, 99
+  offset: 0, 0
+  index: -1
+TreeOrcs01Violet
+  rotate: false
+  xy: 182, 2
+  size: 88, 99
+  orig: 88, 99
+  offset: 0, 0
+  index: -1

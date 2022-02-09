@@ -1,0 +1,62 @@
+
+hbGoldMine.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hbGoldmine
+  rotate: false
+  xy: 2, 22
+  size: 91, 94
+  orig: 91, 94
+  offset: 0, 0
+  index: -1
+hbGoldmineLight1
+  rotate: false
+  xy: 29, 7
+  size: 10, 13
+  orig: 10, 13
+  offset: 0, 0
+  index: -1
+hbGoldmineLight2
+  rotate: false
+  xy: 2, 2
+  size: 25, 18
+  orig: 25, 18
+  offset: 0, 0
+  index: -1
+hbGoldmineLight3
+  rotate: false
+  xy: 335, 101
+  size: 13, 15
+  orig: 13, 15
+  offset: 0, 0
+  index: -1
+hbGoldmineLight4
+  rotate: false
+  xy: 281, 51
+  size: 22, 18
+  orig: 22, 18
+  offset: 0, 0
+  index: -1
+hbGoldmineLight5
+  rotate: false
+  xy: 281, 71
+  size: 52, 45
+  orig: 52, 45
+  offset: 0, 0
+  index: -1
+hbGoldmineR
+  rotate: false
+  xy: 95, 22
+  size: 91, 94
+  orig: 91, 94
+  offset: 0, 0
+  index: -1
+hbGoldmineV
+  rotate: false
+  xy: 188, 22
+  size: 91, 94
+  orig: 91, 94
+  offset: 0, 0
+  index: -1

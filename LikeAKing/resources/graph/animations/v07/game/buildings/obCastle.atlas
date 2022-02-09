@@ -1,0 +1,48 @@
+
+obCastle.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+obCastle
+  rotate: false
+  xy: 2, 2
+  size: 93, 113
+  orig: 93, 113
+  offset: 0, 0
+  index: -1
+obCastleLight1
+  rotate: false
+  xy: 287, 71
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+obCastleLight2
+  rotate: false
+  xy: 287, 56
+  size: 18, 13
+  orig: 18, 13
+  offset: 0, 0
+  index: -1
+obCastleLight3
+  rotate: false
+  xy: 333, 102
+  size: 18, 13
+  orig: 18, 13
+  offset: 0, 0
+  index: -1
+obCastleR
+  rotate: false
+  xy: 192, 2
+  size: 93, 113
+  orig: 93, 113
+  offset: 0, 0
+  index: -1
+obCastleV
+  rotate: false
+  xy: 97, 2
+  size: 93, 113
+  orig: 93, 113
+  offset: 0, 0
+  index: -1

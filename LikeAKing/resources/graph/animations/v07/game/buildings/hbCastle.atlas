@@ -1,0 +1,48 @@
+
+hbCastle.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hbCastle
+  rotate: false
+  xy: 2, 2
+  size: 88, 106
+  orig: 88, 106
+  offset: 0, 0
+  index: -1
+hbCastleLight1
+  rotate: false
+  xy: 324, 90
+  size: 17, 18
+  orig: 17, 18
+  offset: 0, 0
+  index: -1
+hbCastleLight2
+  rotate: false
+  xy: 272, 44
+  size: 29, 23
+  orig: 29, 23
+  offset: 0, 0
+  index: -1
+hbCastleLight3
+  rotate: false
+  xy: 272, 69
+  size: 50, 39
+  orig: 50, 39
+  offset: 0, 0
+  index: -1
+hbCastleR
+  rotate: false
+  xy: 92, 2
+  size: 88, 106
+  orig: 88, 106
+  offset: 0, 0
+  index: -1
+hbCastleV
+  rotate: false
+  xy: 182, 2
+  size: 88, 106
+  orig: 88, 106
+  offset: 0, 0
+  index: -1

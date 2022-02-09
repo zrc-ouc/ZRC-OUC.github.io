@@ -1,0 +1,13 @@
+
+nRock1.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+rock01
+  rotate: false
+  xy: 2, 2
+  size: 81, 92
+  orig: 81, 92
+  offset: 0, 0
+  index: -1
