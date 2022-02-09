@@ -1,0 +1,90 @@
+
+bolt.png
+size: 256,64
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+projectilesAssets/hAarrow1HitCircle
+  rotate: false
+  xy: 2, 14
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+projectilesAssets/hAarrow1HitRound
+  rotate: false
+  xy: 102, 28
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+projectilesAssets/hAarrow1HitSpark
+  rotate: true
+  xy: 104, 5
+  size: 8, 37
+  orig: 8, 37
+  offset: 0, 0
+  index: -1
+projectilesAssets/hAarrow1HitWave
+  rotate: false
+  xy: 52, 14
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+projectilesAssets/hCRbolt1
+  rotate: true
+  xy: 137, 46
+  size: 16, 60
+  orig: 16, 60
+  offset: 0, 0
+  index: -1
+projectilesAssets/hCRbolt1Cut
+  rotate: true
+  xy: 2, 2
+  size: 10, 32
+  orig: 10, 32
+  offset: 0, 0
+  index: -1
+projectilesAssets/hCRbolt1CutR
+  rotate: true
+  xy: 36, 2
+  size: 10, 32
+  orig: 10, 32
+  offset: 0, 0
+  index: -1
+projectilesAssets/hCRbolt1CutV
+  rotate: true
+  xy: 102, 15
+  size: 11, 32
+  orig: 11, 32
+  offset: 0, 0
+  index: -1
+projectilesAssets/hCRbolt1CutY
+  rotate: true
+  xy: 70, 2
+  size: 10, 32
+  orig: 10, 32
+  offset: 0, 0
+  index: -1
+projectilesAssets/hCRbolt1R
+  rotate: false
+  xy: 199, 2
+  size: 16, 60
+  orig: 16, 60
+  offset: 0, 0
+  index: -1
+projectilesAssets/hCRbolt1V
+  rotate: false
+  xy: 217, 2
+  size: 15, 60
+  orig: 15, 60
+  offset: 0, 0
+  index: -1
+projectilesAssets/hCRbolt1Y
+  rotate: true
+  xy: 137, 28
+  size: 16, 60
+  orig: 16, 60
+  offset: 0, 0
+  index: -1
