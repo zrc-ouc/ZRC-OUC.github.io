@@ -1,0 +1,84 @@
+{
+  "id" : "o_mineRaider",
+  "deck" : true,
+  "unlockLevel" : 3,
+  "category" : 3,
+  "cardType" : "mine",
+  "race" : "orc",
+  "name" : "O_MINE_RAIDER",
+  "description" : "O_MINE_RAIDER_DESC",
+  "buildPrice" : 170,
+  "destroyPrice" : -85,
+  "radius" : 50,
+  "height": 30,
+  "areaDistance" : 2,
+  "mineTime" : 2000,
+  "timeToBuild" : 3000,
+  "timeToDeath" : 0,
+  "icon" : "icon_o_mine2.png",
+  "skin" : "oGoldmineRaider",
+  "baseState" : [{"skn" : "idle", "snd" : ["snd_mineReady"]}],
+  "actionState" : [{"skn" : "work"}],
+  "buildState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "destroyState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions" : ["build", "destroy"],
+  "levels" : {
+    "1" : {
+      "special" : [
+        {"t" : "mine_destroyer", "val" : 100}
+      ],
+      "hp" : 220,
+      "mineCoins" : 14
+    },
+    "2" : {
+      "special" : [
+        {"t" : "mine_destroyer", "val" : 125}
+      ],
+      "hp" : 271,
+      "mineCoins" : 15
+    },
+    "3" : {
+      "special" : [
+        {"t" : "mine_destroyer", "val" : 140}
+      ],
+      "hp" : 332,
+      "mineCoins" : 16
+    },
+    "4" : {
+      "special" : [
+        {"t" : "mine_destroyer", "val" : 150}
+      ],
+      "hp" : 402,
+      "mineCoins" : 17
+    },
+    "5" : {
+      "special" : [
+        {"t" : "mine_destroyer", "val" : 160}
+      ],
+      "hp" : 482,
+      "mineCoins" : 18
+    },
+    "6" : {
+      "special" : [
+        {"t" : "mine_destroyer", "val" : 170}
+      ],
+      "hp" : 572,
+      "mineCoins" : 19
+    },
+    "7" : {
+      "special" : [
+        {"t" : "mine_destroyer", "val" : 180}
+      ],
+      "hp" : 672,
+      "mineCoins" : 20
+    },
+    "8" : {
+      "special" : [
+        {"t" : "mine_destroyer", "val" : 200}
+      ],
+      "hp" : 782,
+      "mineCoins" : 21
+    }
+  }
+}

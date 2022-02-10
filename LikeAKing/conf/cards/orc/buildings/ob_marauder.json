@@ -1,0 +1,44 @@
+{
+  "id" : "ob_marauder",
+  "deck" : true,
+  "unlockLevel" : 4,
+  "category" : 4,
+  "cardType" : "melee",
+  "race" : "orc",
+  "name" : "O_B_MARAUDER",
+  "description" : "O_B_MARAUDER_DESC",
+  "buildPrice" : 270,
+  "destroyPrice" : -135,
+  "radius" : 50,
+  "height": 30,
+  "areaDistance" : 2,
+  "timeToRespawn" : [6000, 11000],
+  "timeToBuild" : 6000,
+  "timeToDeath" : 0,
+  "unit" : "ou_marauder",
+  "icon" : "icon_ob_marauder.png",
+  "skin" : "obMarauder",
+  "baseState" : [{"skn" : "idle", "snd" : ["snd_barrackReady"]}],
+  "actionState" : [{"skn" : "work"}],
+  "buildState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "destroyState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions" : ["build", "destroy", "remove_way"],
+  "levels" : {
+    "1" : {
+      "hp" : 160
+    },
+    "2" : {
+      "hp" : 203
+    },
+    "3" : {
+      "hp" : 255
+    },
+    "4" : {
+      "hp" : 317
+    },
+    "5" : {
+      "hp" : 391
+    }
+  }
+}

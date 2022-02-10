@@ -1,0 +1,62 @@
+{
+  "id" : "ob_sapper",
+  "deck" : true,
+  "unlockLevel" : 5,
+  "category" : 2,
+  "cardType" : "range",
+  "race" : "orc",
+  "name" : "O_B_SAPPER",
+  "description" : "O_B_SAPPER_DESC",
+  "buildPrice" : 230,
+  "destroyPrice" : -115,
+  "radius" : 50,
+  "height": 30,
+  "areaDistance" : 2,
+  "timeToRespawn" : [7000, 10000],
+  "timeToBuild" : 6000,
+  "timeToDeath" : 0,
+  "unit" : "ou_sapper",
+  "icon" : "icon_ob_sapper.png",
+  "skin" : "obSapper",
+  "baseState" : [{"skn" : "idle", "snd" : ["snd_barrackReady"]}],
+  "actionState" : [{"skn" : "work"}],
+  "buildState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "destroyState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions" : ["build", "destroy", "remove_way"],
+  "levels" : {
+    "1" : {
+      "hp" : 300
+    },
+    "2" : {
+      "hp" : 360
+    },
+    "3" : {
+      "hp" : 428
+    },
+    "4" : {
+      "hp" : 503
+    },
+    "5" : {
+      "hp" : 586
+    },
+    "6" : {
+      "hp" : 675
+    },
+    "7" : {
+      "hp" : 770
+    },
+    "8" : {
+      "hp" : 870
+    },
+    "9" : {
+      "hp" : 973
+    },
+    "10" : {
+      "hp" : 1077
+    },
+    "11" : {
+      "hp" : 1181
+    }
+  }
+}

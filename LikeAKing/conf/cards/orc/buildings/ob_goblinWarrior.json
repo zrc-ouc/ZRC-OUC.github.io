@@ -1,0 +1,68 @@
+{
+  "id" : "ob_goblinWarrior",
+  "deck" : true,
+  "unlockLevel" : 2,
+  "category" : 1,
+  "cardType" : "melee",
+  "race" : "orc",
+  "name" : "O_B_GOBLIN_WARRIOR",
+  "description" : "O_B_GOBLIN_WARRIOR_DESC",
+  "buildPrice" : 200,
+  "destroyPrice" : -100,
+  "radius" : 50,
+  "height": 30,
+  "areaDistance" : 2,
+  "timeToRespawn" : [4000, 5000],
+  "timeToBuild" : 4000,
+  "timeToDeath" : 0,
+  "unit" : "ou_goblinWarrior",
+  "icon" : "icon_ob_goblinWarrior.png",
+  "skin" : "obGoblinWarrior",
+  "baseState" : [{"skn" : "idle", "snd" : ["snd_barrackReady"]}],
+  "actionState" : [{"skn" : "work"}],
+  "buildState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "destroyState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions" : ["build", "destroy", "remove_way"],
+  "levels" : {
+    "1" : {
+      "hp" : 180
+    },
+    "2" : {
+      "hp" : 216
+    },
+    "3" : {
+      "hp" : 259
+    },
+    "4" : {
+      "hp" : 306
+    },
+    "5" : {
+      "hp" : 357
+    },
+    "6" : {
+      "hp" : 411
+    },
+    "7" : {
+      "hp" : 466
+    },
+    "8" : {
+      "hp" : 521
+    },
+    "9" : {
+      "hp" : 574
+    },
+    "10" : {
+      "hp" : 624
+    },
+    "11" : {
+      "hp" : 669
+    },
+    "12" : {
+      "hp" : 707
+    },
+    "13" : {
+      "hp" : 737
+    }
+  }
+}
