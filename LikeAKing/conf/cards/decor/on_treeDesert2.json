@@ -1,0 +1,27 @@
+{
+  "id" : "on_treeDesert2",
+  "cardType" : "decor",
+  "race" : "orc",
+  "destroyPrice" : 100,
+  "timeToBuild" : 2000,
+  "timeToDeath" : 0,
+  "radius" : 30,
+  "height": 30,
+  "skin" : "TreeHumans02",
+  "baseState" : [{"skn" : "idle"}],
+  "buildState" : [],
+  "actionState" : [],
+  "destroyState" : [{"skn" : "removing", "snd" : ["snd_treeDestroy"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_treeDeath"]}],
+  "byRace" : {
+    "n" : "n_treeDesert2",
+    "human" : "hn_treeDesert2",
+    "orc" : "on_treeDesert2",
+    "elf" : "hn_treeDesert2",
+    "undead" : "un_treeDesert2"
+  },
+  "actions" : ["destroy_tree"],
+  "levels" : {
+    "1" : {}
+  }
+}

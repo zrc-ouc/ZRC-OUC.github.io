@@ -1,0 +1,27 @@
+{
+  "id" : "on_treeSwamp2",
+  "cardType" : "decor",
+  "race" : "orc",
+  "destroyPrice" : 100,
+  "timeToBuild" : 2000,
+  "timeToDeath" : 0,
+  "radius" : 30,
+  "height": 30,
+  "skin" : "TreeHumans02",
+  "baseState" : [{"skn" : "idle"}],
+  "buildState" : [],
+  "actionState" : [],
+  "destroyState" : [{"skn" : "removing", "snd" : ["snd_treeDestroy"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_treeDeath"]}],
+  "byRace" : {
+    "n" : "n_treeSwamp2",
+    "human" : "hn_treeSwamp2",
+    "orc" : "on_treeSwamp2",
+    "elf" : "hn_treeSwamp2",
+    "undead" : "un_treeSwamp2"
+  },
+  "actions" : ["destroy_tree"],
+  "levels" : {
+    "1" : {}
+  }
+}

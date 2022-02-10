@@ -1,0 +1,27 @@
+{
+  "id" : "on_treeWinter1",
+  "cardType" : "decor",
+  "race" : "orc",
+  "destroyPrice" : 100,
+  "timeToBuild" : 2000,
+  "timeToDeath" : 0,
+  "radius" : 30,
+  "height": 30,
+  "skin" : "TreeHumans01",
+  "baseState" : [{"skn" : "idle"}],
+  "buildState" : [],
+  "actionState" : [],
+  "destroyState" : [{"skn" : "removing", "snd" : ["snd_treeDestroy"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_treeDeath"]}],
+  "byRace" : {
+    "n" : "n_treeWinter1",
+    "human" : "hn_treeWinter1",
+    "orc" : "on_treeWinter1",
+    "elf" : "hn_treeWinter1",
+    "undead" : "un_treeWinter1"
+  },
+  "actions" : ["destroy_tree"],
+  "levels" : {
+    "1" : {}
+  }
+}
