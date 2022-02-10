@@ -1,0 +1,1724 @@
+{
+  "reg" : {
+    "tutorial" : {
+      "levels" : {
+        "1" : {"state" : 1}
+      }
+    },
+    "chapter_1" : {
+      "levels" : {
+        "1" : {"state" : 1}
+      }
+    }
+  },
+  "instantPrice" : {"2" : 50},
+  "trainings" : [
+    {
+      "id" : "training",
+      "ai": [{"ai" : "ai2"}]
+    }
+  ],
+  "campaigns" : [
+    {
+      "id" : "tutorial",
+      "levels" : [
+        {
+          "id":1,
+          "ai": [
+            {
+              "ai" : "tutorial1",
+              "level" : 1,
+              "name" : "TRAINER_1",
+              "king" : "o_king_1",
+              "power" : 0.3,
+              "deck" : [
+                {"id" : "ht_archer", "lvl" : 1}
+              ]
+            }],
+          "location" : "tutorial_1",
+          "loot" : ["tutorLoot1"]
+        },
+        {
+          "id":2,
+          "ai": [
+            {
+              "ai" : "tutorial2",
+              "level" : 1,
+              "name" : "TRAINER_2",
+              "king" : "h_king_1",
+              "power" : 0.4,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 1},
+                {"id" : "hb_archer", "lvl" : 1},
+                {"id" : "hb_peasant", "lvl" : 1},
+                {"id" : "ht_archer", "lvl" : 1}
+              ]
+            }],
+          "location" : "tutorial_2",
+          "loot" : ["tutorLoot2"]
+        },
+        {
+          "id":3,
+          "ai": [
+            {
+              "ai" : "tutorial3",
+              "level" : 1,
+              "name" : "TRAINER_3",
+              "king" : "o_king_1",
+              "power" : 0.5,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 2},
+                {"id" : "hb_archer", "lvl" : 1},
+                {"id" : "hb_peasant", "lvl" : 1},
+                {"id" : "ht_archer", "lvl" : 1}
+              ]
+            }],
+          "location" : "tutorial_3",
+          "loot" : ["tutorLoot3"]
+        },
+        {
+          "id":4,
+          "ai": [
+            {
+              "ai" : "tutorial4",
+              "level" : 1,
+              "name" : "TRAINER_4",
+              "king" : "h_king_1",
+              "power" : 0.6,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 2},
+                {"id" : "hb_archer", "lvl" : 1},
+                {"id" : "hb_peasant", "lvl" : 2},
+                {"id" : "ht_archer", "lvl" : 1}
+              ]
+            }],
+          "location" : "tutorial_4",
+          "loot" : ["tutorLoot4"]
+        }
+      ]
+    },
+    {
+      "id" : "chapter_1",
+      "name" : "CAMPAIGN_CH_1",
+      "skin" : ["mapPart1", "mapPart2"],
+      "bosses" : [
+        {"id":1,"x":1183,"y":453,"unit" : "hu_crossbowman", "direction" : -1},
+        {"id":2,"x":1888,"y":439,"unit" : "hu_warrior", "direction" : 1},
+        {"id":3,"x":3473,"y":1189,"unit" : "uu_ghoul", "direction" : 1},
+        {"id":4,"x":2690,"y":1090,"unit" : "ou_elder", "direction" : -1},
+        {"id":5,"x":3593,"y":1798,"unit" : "ou_marauder", "direction" : 1},
+        {"id":6,"x":929,"y":1508,"unit" : "uu_spider", "direction" : 1}
+      ],
+      "levels" : [
+        {
+          "id":1,"x":329,"y":276,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 1,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 0.6,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 2},
+                {"id" : "ht_archer", "lvl" : 1},
+                {"id" : "ht_archer", "lvl" : 2},
+                {"id" : "hb_peasant", "lvl" : 2},
+                {"id" : "hb_archer", "lvl" : 1}
+            ]
+          }],
+          "location" : "winter_1",
+          "loot" : ["campaign_typical_1"]
+        },
+        {
+          "id":2,"x":499,"y":283,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 1,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 0.7,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 2},
+                {"id" : "ht_archer", "lvl" : 2},
+                {"id" : "hb_peasant", "lvl" : 2},
+                {"id" : "hb_archer", "lvl" : 1},
+                {"id" : "hb_archer", "lvl" : 2}
+              ]
+            }],
+          "location" : "winter_2",
+          "loot" : ["campaign_typical_1"]
+        },
+        {
+          "id":3,"x":607,"y":414,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 1,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 0.8,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 2},
+                {"id" : "ht_archer", "lvl" : 2},
+                {"id" : "hb_peasant", "lvl" : 2},
+                {"id" : "ob_hunter", "lvl" : 1}
+              ]
+            }],
+          "location" : "winter_3",
+          "loot" : ["campaign_typical_1", "campaign_conventional_1", "campaign_ob_hunter"]
+        },
+        {
+          "id":4,"x":496,"y":518,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 2,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 0.8,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 2},
+                {"id" : "ht_archer", "lvl" : 2},
+                {"id" : "hb_peasant", "lvl" : 2},
+                {"id" : "hb_archer", "lvl" : 2},
+                {"id" : "ob_hunter", "lvl" : 1}
+              ]
+            }],
+          "location" : "winter_1",
+          "loot" : ["campaign_typical_1", "campaign_conventional_1"]
+        },
+        {
+          "id":5,"x":672,"y":655,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 2,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 0.6,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 2},
+                {"id" : "ht_archer", "lvl" : 1},
+                {"id" : "hb_peasant", "lvl" : 2},
+                {"id" : "hb_archer", "lvl" : 2}
+              ]
+            },
+            {
+              "ai" : "ai2",
+              "level" : 2,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 0.6,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 2},
+                {"id" : "ht_archer", "lvl" : 1},
+                {"id" : "hb_peasant", "lvl" : 2},
+                {"id" : "ob_hunter", "lvl" : 1}
+              ]
+            }],
+          "location" : "winter_4",
+          "loot" : ["campaign_typical_1", "campaign_gold"]
+        },
+        {
+          "id":6,"x":523,"y":708,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 2,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 0.9,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 2},
+                {"id" : "h_mine", "lvl" : 3},
+                {"id" : "ot_archer", "lvl" : 2},
+                {"id" : "hb_peasant", "lvl" : 2},
+                {"id" : "ob_hunter", "lvl" : 1},
+                {"id" : "ob_hunter", "lvl" : 2}
+              ]
+            }],
+          "location" : "grass_1",
+          "loot" : ["campaign_typical_1", "campaign_conventional_1", "campaign_ot_archer"]
+        },
+        {
+          "id":7,"x":313,"y":746,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 3,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 3},
+                {"id" : "ot_archer", "lvl" : 2},
+                {"id" : "ht_archer", "lvl" : 3},
+                {"id" : "hb_peasant", "lvl" : 2},
+                {"id" : "ob_hunter", "lvl" : 2}
+              ]
+            }],
+          "location" : "grass_2",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":8,"x":428,"y":871,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 3,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 3},
+                {"id" : "ot_archer", "lvl" : 3},
+                {"id" : "hb_peasant", "lvl" : 3},
+                {"id" : "ob_hunter", "lvl" : 2}
+              ]
+            }],
+          "location" : "grass_3",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":9,"x":595,"y":902,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 3,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 3},
+                {"id" : "h_mine", "lvl" : 4},
+                {"id" : "ot_archer", "lvl" : 3},
+                {"id" : "ob_goblinWarrior", "lvl" : 2},
+                {"id" : "ob_hunter", "lvl" : 2}
+              ]
+            }],
+          "location" : "grass_1",
+          "loot" : ["campaign_typical_1", "campaign_conventional_1", "campaign_ob_goblinWarrior"]
+        },
+        {
+          "id":10,"x":778,"y":888,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 3,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 0.6,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 3},
+                {"id" : "ot_archer", "lvl" : 2},
+                {"id" : "ob_goblinWarrior", "lvl" : 2},
+                {"id" : "ob_hunter", "lvl" : 2}
+              ]
+            },
+            {
+              "ai" : "ai2",
+              "level" : 3,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 0.6,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 3},
+                {"id" : "ht_archer", "lvl" : 2},
+                {"id" : "hb_peasant", "lvl" : 3},
+                {"id" : "hb_archer", "lvl" : 4}
+              ]
+            }],
+          "location" : "grass_4",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":11,"x":939,"y":871,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 4,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 3},
+                {"id" : "ot_archer", "lvl" : 2},
+                {"id" : "ht_archer", "lvl" : 3},
+                {"id" : "ob_goblinWarrior", "lvl" : 2},
+                {"id" : "hb_archer", "lvl" : 4},
+                {"id" : "ob_hunter", "lvl" : 2}
+              ]
+            }],
+          "location" : "grass_3",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":12,"x":1082,"y":798,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 4,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 3},
+                {"id" : "h_mine", "lvl" : 4},
+                {"id" : "ot_archer", "lvl" : 3},
+                {"id" : "ob_goblinWarrior", "lvl" : 3},
+                {"id" : "hb_archer", "lvl" : 4},
+                {"id" : "ob_hunter", "lvl" : 3}
+              ]
+            }],
+          "location" : "grass_1",
+          "loot" : ["campaign_typical_1"]
+        },
+        {
+          "id":13,"x":1221,"y":750,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 4,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 4},
+                {"id" : "ot_archer", "lvl" : 3},
+                {"id" : "hb_peasant", "lvl" : 4},
+                {"id" : "hb_archer", "lvl" : 4},
+                {"id" : "ob_hunter", "lvl" : 3}
+              ]
+            }],
+          "location" : "grass_2",
+          "loot" : ["campaign_typical_1"]
+        },
+        {
+          "id":14,"x":1361,"y":746,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 4,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 2},
+                {"id" : "ot_archer", "lvl" : 3},
+                {"id" : "hb_peasant", "lvl" : 4},
+                {"id" : "hb_archer", "lvl" : 4},
+                {"id" : "ob_hunter", "lvl" : 3}
+              ]
+            }],
+          "location" : "grass_3",
+          "loot" : ["campaign_conventional_1", "campaign_o_mineRaider", "campaign_epic_1"]
+        },
+        {
+          "id":15,"x":1542,"y":737,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 4,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 0.7,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 2},
+                {"id" : "ot_archer", "lvl" : 3},
+                {"id" : "ob_goblinWarrior", "lvl" : 3},
+                {"id" : "ob_hunter", "lvl" : 3}
+              ]
+            },
+            {
+              "ai" : "ai2",
+              "level" : 4,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 0.7,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 4},
+                {"id" : "ht_archer", "lvl" : 4},
+                {"id" : "hb_peasant", "lvl" : 4},
+                {"id" : "hb_archer", "lvl" : 4}
+              ]
+            }],
+          "location" : "grass_4",
+          "loot" : ["campaign_conventional_1", "campaign_epic_1", "campaign_gold"]
+        },
+        {
+          "id":16,"x":1706,"y":728,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 5,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 3},
+                {"id" : "ht_archer", "lvl" : 4},
+                {"id" : "ot_archer", "lvl" : 4},
+                {"id" : "hb_peasant", "lvl" : 4},
+                {"id" : "ob_goblinWarrior", "lvl" : 3},
+                {"id" : "ob_hunter", "lvl" : 3}
+              ]
+            }],
+          "location" : "grass_1",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":17,"x":1891,"y":675,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 5,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 3},
+                {"id" : "ot_archer", "lvl" : 4},
+                {"id" : "ob_goblinWarrior", "lvl" : 4},
+                {"id" : "ob_hunter", "lvl" : 4}
+              ]
+            }],
+          "location" : "grass_2",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":18,"x":2052,"y":672,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 5,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 4},
+                {"id" : "ot_archer", "lvl" : 4},
+                {"id" : "ob_goblinWarrior", "lvl" : 4},
+                {"id" : "ob_hunter", "lvl" : 4}
+              ]
+            }],
+          "location" : "grass_3",
+          "loot" : ["campaign_typical_1"]
+        },
+        {
+          "id":19,"x":2195,"y":640,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 5,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 5},
+                {"id" : "ht_archer", "lvl" : 5},
+                {"id" : "hb_assassin", "lvl" : 3},
+                {"id" : "hb_archer", "lvl" : 5}
+              ]
+            }],
+          "location" : "grass_1",
+          "loot" : ["campaign_typical_1", "campaign_conventional_1", "campaign_hb_assassin"]
+        },
+        {
+          "id":20,"x":2372,"y":661,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 5,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 0.8,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 4},
+                {"id" : "ot_archer", "lvl" : 3},
+                {"id" : "ob_goblinWarrior", "lvl" : 4},
+                {"id" : "ob_hunter", "lvl" : 4}
+              ]
+            },
+            {
+              "ai" : "ai2",
+              "level" : 5,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 0.8,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 5},
+                {"id" : "ht_archer", "lvl" : 4},
+                {"id" : "hb_assassin", "lvl" : 3},
+                {"id" : "hb_archer", "lvl" : 4}
+              ]
+            }],
+          "location" : "grass_4",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":21,"x":2498,"y":601,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 5,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 4},
+                {"id" : "h_mine", "lvl" : 5},
+                {"id" : "ot_archer", "lvl" : 4},
+                {"id" : "hb_assassin", "lvl" : 4},
+                {"id" : "hb_archer", "lvl" : 5}
+              ]
+            }],
+          "location" : "grass_2",
+          "loot" : ["campaign_typical_1", "campaign_epic_1"]
+        },
+        {
+          "id":22,"x":2665,"y":494,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 5,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 6},
+                {"id" : "ot_archer", "lvl" : 5},
+                {"id" : "hb_assassin", "lvl" : 4},
+                {"id" : "hb_archer", "lvl" : 5}
+              ]
+            }],
+          "location" : "grass_1",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":23,"x":2757,"y":581,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 6,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 4},
+                {"id" : "ht_archer", "lvl" :6},
+                {"id" : "hb_assassin", "lvl" : 4},
+                {"id" : "hb_rifleman", "lvl" : 3}
+              ]
+            }],
+          "location" : "grass_2",
+          "loot" : ["campaign_conventional_1", "campaign_hb_rifleman"]
+        },
+        {
+          "id":24,"x":2917,"y":593,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 6,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 4},
+                {"id" : "ht_archer", "lvl" :5},
+                {"id" : "hb_assassin", "lvl" : 4},
+                {"id" : "hb_peasant", "lvl" : 6},
+                {"id" : "hb_rifleman", "lvl" : 3}
+              ]
+            }],
+          "location" : "grass_1",
+          "loot" : ["campaign_typical_1", "campaign_epic_1"]
+        },
+        {
+          "id":25,"x":3078,"y":593,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 6,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 0.8,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 6},
+                {"id" : "ht_archer", "lvl" :5},
+                {"id" : "hb_assassin", "lvl" : 3},
+                {"id" : "hb_rifleman", "lvl" : 3}
+              ]
+            },
+            {
+              "ai" : "ai2",
+              "level" : 6,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 0.8,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 4},
+                {"id" : "ot_archer", "lvl" :4},
+                {"id" : "ob_goblinWarrior", "lvl" : 4},
+                {"id" : "ob_hunter", "lvl" : 4}
+              ]
+            }],
+          "location" : "grass_4",
+          "loot" : ["campaign_typical_1", "campaign_conventional_1", "campaign_gold"]
+        },
+        {
+          "id":26,"x":3181,"y":728,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 6,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 6},
+                {"id" : "o_mineRaider", "lvl" : 4},
+                {"id" : "ot_archer", "lvl" :5},
+                {"id" : "hb_assassin", "lvl" : 3},
+                {"id" : "ob_goblinWarrior", "lvl" : 4},
+                {"id" : "hb_rifleman", "lvl" : 3},
+                {"id" : "ob_hunter", "lvl" : 4}
+              ]
+            }],
+          "location" : "grass_1",
+          "loot" : ["campaign_typical_1"]
+        },
+        {
+          "id":27,"x":3228,"y":892,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 6,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mine", "lvl" : 6},
+                {"id" : "o_mineRaider", "lvl" : 4},
+                {"id" : "ot_archer", "lvl" :5},
+                {"id" : "hb_assassin", "lvl" : 4},
+                {"id" : "ob_goblinWarrior", "lvl" : 4},
+                {"id" : "hb_rifleman", "lvl" : 4},
+                {"id" : "ob_hunter", "lvl" : 5}
+              ]
+            }],
+          "location" : "desert_3",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":28,"x":3080,"y":977,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 7,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 5},
+                {"id" : "ot_archer", "lvl" : 5},
+                {"id" : "hb_assassin", "lvl" : 4},
+                {"id" : "ob_goblinWarrior", "lvl" : 5},
+                {"id" : "hb_rifleman", "lvl" : 4},
+                {"id" : "ob_hunter", "lvl" : 5}
+              ]
+            }],
+          "location" : "desert_1",
+          "loot" : ["campaign_typical_1", "campaign_epic_1"]
+        },
+        {
+          "id":29,"x":3316,"y":1066,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 7,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 5},
+                {"id" : "ot_archer", "lvl" : 5},
+                {"id" : "ob_marauder", "lvl" : 2},
+                {"id" : "ob_hunter", "lvl" : 5}
+              ]
+            }],
+          "location" : "desert_2",
+          "loot" : ["campaign_conventional_1", "campaign_ob_marauder", "campaign_legendary_1"]
+        },
+        {
+          "id":30,"x":3181,"y":1183,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 7,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 0.9,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 5},
+                {"id" : "ot_archer", "lvl" : 4},
+                {"id" : "ob_marauder", "lvl" : 2},
+                {"id" : "ob_hunter", "lvl" : 4}
+              ]
+            },
+            {
+              "ai" : "ai2",
+              "level" : 7,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 0.9,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 5},
+                {"id" : "ot_archer", "lvl" : 4},
+                {"id" : "ob_marauder", "lvl" : 2},
+                {"id" : "ob_hunter", "lvl" : 4}
+              ]
+            }],
+          "location" : "desert_4",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":31,"x":3115,"y":1344,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 7,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 5},
+                {"id" : "ot_archer", "lvl" : 5},
+                {"id" : "ob_marauder", "lvl" : 2},
+                {"id" : "hb_assassin", "lvl" : 4},
+                {"id" : "hb_rifleman", "lvl" : 5},
+                {"id" : "ob_hunter", "lvl" : 4}
+              ]
+            }],
+          "location" : "desert_1",
+          "loot" : ["campaign_conventional_1", "campaign_legendary_1"]
+        },
+        {
+          "id":32,"x":3048,"y":1473,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 7,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 5},
+                {"id" : "ot_archer", "lvl" : 5},
+                {"id" : "hb_assassin", "lvl" : 5},
+                {"id" : "hb_rifleman", "lvl" : 5},
+                {"id" : "ob_hunter", "lvl" : 5}
+              ]
+            }],
+          "location" : "desert_2",
+          "loot" : ["campaign_epic_1"]
+        },
+        {
+          "id":33,"x":3188,"y":1601,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 7,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 5},
+                {"id" : "ot_archer", "lvl" : 6},
+                {"id" : "ob_marauder", "lvl" : 3},
+                {"id" : "hb_rifleman", "lvl" : 5},
+                {"id" : "ob_hunter", "lvl" : 4}
+              ]
+            }],
+          "location" : "desert_3",
+          "loot" : ["campaign_typical_1", "campaign_conventional_1"]
+        },
+        {
+          "id":34,"x":3071,"y":1695,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 8,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 5},
+                {"id" : "ot_archer", "lvl" : 6},
+                {"id" : "ob_marauder", "lvl" : 3},
+                {"id" : "hb_assassin", "lvl" : 5},
+                {"id" : "hb_rifleman", "lvl" : 6},
+                {"id" : "ob_hunter", "lvl" : 5}
+              ]
+            }],
+          "location" : "desert_2",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":35,"x":2868,"y":1717,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 8,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 5},
+                {"id" : "ot_archer", "lvl" : 5},
+                {"id" : "ob_marauder", "lvl" : 2},
+                {"id" : "hb_assassin", "lvl" : 4},
+                {"id" : "hb_rifleman", "lvl" : 5},
+                {"id" : "ob_hunter", "lvl" : 4}
+              ]
+            },
+            {
+              "ai" : "ai2",
+              "level" : 8,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 5},
+                {"id" : "ot_archer", "lvl" : 5},
+                {"id" : "ob_marauder", "lvl" : 2},
+                {"id" : "hb_assassin", "lvl" : 4},
+                {"id" : "hb_rifleman", "lvl" : 5},
+                {"id" : "ob_hunter", "lvl" : 4}
+              ]
+            }],
+          "location" : "desert_4",
+          "loot" : ["campaign_typical_1", "campaign_gold"]
+        },
+        {
+          "id":36,"x":2833,"y":1867,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 8,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 3},
+                {"id" : "ot_archer", "lvl" : 7},
+                {"id" : "ob_marauder", "lvl" : 3},
+                {"id" : "ob_hunter", "lvl" : 5}
+              ]
+            }],
+          "location" : "desert_2",
+          "loot" : ["campaign_typical_1", "campaign_h_mineDwarven", "campaign_epic_1"]
+        },
+        {
+          "id":37,"x":2680,"y":1936,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 8,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 3},
+                {"id" : "o_mineRaider", "lvl" : 4},
+                {"id" : "ot_archer", "lvl" : 7},
+                {"id" : "ob_marauder", "lvl" : 3},
+                {"id" : "ob_hunter", "lvl" : 5}
+              ]
+            }],
+          "location" : "desert_1",
+          "loot" : ["campaign_conventional_1", "campaign_legendary_1"]
+        },
+        {
+          "id":38,"x":2516,"y":1920,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 8,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 4},
+                {"id" : "ot_archer", "lvl" : 7},
+                {"id" : "ob_marauder", "lvl" : 3},
+                {"id" : "hb_rifleman", "lvl" : 5},
+                {"id" : "ob_hunter", "lvl" : 6}
+              ]
+            }],
+          "location" : "desert_3",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":39,"x":2329,"y":1867,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 9,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 5},
+                {"id" : "h_mineDwarven", "lvl" : 4},
+                {"id" : "ot_archer", "lvl" : 7},
+                {"id" : "ob_marauder", "lvl" : 4},
+                {"id" : "hb_rifleman", "lvl" : 5},
+                {"id" : "ob_hunter", "lvl" : 6}
+              ]
+            }],
+          "location" : "desert_3",
+          "loot" : ["campaign_conventional_1", "campaign_legendary_1"]
+        },
+        {
+          "id":40,"x":2109,"y":1889,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 9,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 5},
+                {"id" : "h_mineDwarven", "lvl" : 4},
+                {"id" : "ot_archer", "lvl" : 7},
+                {"id" : "ob_marauder", "lvl" : 3},
+                {"id" : "hb_assassin", "lvl" : 6},
+                {"id" : "hb_rifleman", "lvl" : 5},
+                {"id" : "ob_hunter", "lvl" : 6}
+              ]
+            },
+            {
+              "ai" : "ai2",
+              "level" : 9,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 5},
+                {"id" : "h_mineDwarven", "lvl" : 4},
+                {"id" : "ot_archer", "lvl" : 7},
+                {"id" : "ob_marauder", "lvl" : 3},
+                {"id" : "hb_assassin", "lvl" : 6},
+                {"id" : "hb_rifleman", "lvl" : 5},
+                {"id" : "ob_hunter", "lvl" : 6}
+              ]
+            }],
+          "location" : "swamp_4",
+          "loot" : ["campaign_typical_1", "campaign_conventional_1"]
+        },
+        {
+          "id":41,"x":1916,"y":1860,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 9,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 4},
+                {"id" : "ot_archer", "lvl" : 7},
+                {"id" : "hb_assassin", "lvl" : 6},
+                {"id" : "hb_mage", "lvl" : 3}
+              ]
+            }],
+          "location" : "swamp_1",
+          "loot" : ["campaign_typical_1", "campaign_hb_mage", "campaign_epic_1"]
+        },
+        {
+          "id":42,"x":1775,"y":1797,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 9,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 5},
+                {"id" : "ot_archer", "lvl" : 7},
+                {"id" : "hb_assassin", "lvl" : 6},
+                {"id" : "hb_mage", "lvl" : 3}
+              ]
+            }],
+          "location" : "swamp_2",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":43,"x":1799,"y":1601,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 10,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 5},
+                {"id" : "ht_mage", "lvl" : 3},
+                {"id" : "hb_assassin", "lvl" : 6},
+                {"id" : "hb_mage", "lvl" : 3}
+              ]
+            }],
+          "location" : "swamp_3",
+          "loot" : ["campaign_typical_1", "campaign_conventional_1", "campaign_ht_mage"]
+        },
+        {
+          "id":44,"x":1954,"y":1469,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 10,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 5},
+                {"id" : "ht_mage", "lvl" : 4},
+                {"id" : "hb_assassin", "lvl" : 6},
+                {"id" : "hb_mage", "lvl" : 3}
+              ]
+            }],
+          "location" : "swamp_1",
+          "loot" : ["campaign_typical_1", "campaign_conventional_1", "campaign_legendary_1"]
+        },
+        {
+          "id":45,"x":2107,"y":1426,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 10,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 5},
+                {"id" : "ht_mage", "lvl" : 3},
+                {"id" : "hb_assassin", "lvl" : 6},
+                {"id" : "hb_assassin", "lvl" : 7},
+                {"id" : "hb_mage", "lvl" : 4}
+              ]
+            },
+            {
+              "ai" : "ai2",
+              "level" : 10,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 5},
+                {"id" : "ht_mage", "lvl" : 3},
+                {"id" : "hb_assassin", "lvl" : 6},
+                {"id" : "hb_assassin", "lvl" : 7},
+                {"id" : "hb_mage", "lvl" : 4}
+              ]
+            }
+          ],
+          "location" : "swamp_4",
+          "loot" : ["campaign_typical_1", "campaign_epic_1", "campaign_gold"]
+        },
+        {
+          "id":46,"x":2152,"y":1256,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 10,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 5},
+                {"id" : "h_mineDwarven", "lvl" : 6},
+                {"id" : "ht_mage", "lvl" : 3},
+                {"id" : "ht_mage", "lvl" : 4},
+                {"id" : "hb_assassin", "lvl" : 6},
+                {"id" : "hb_assassin", "lvl" : 7},
+                {"id" : "hb_mage", "lvl" : 4}
+              ]
+            }],
+          "location" : "grass_1",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":47,"x":2262,"y":1091,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 10,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 6},
+                {"id" : "ht_mage", "lvl" : 4},
+                {"id" : "ob_marauder", "lvl" : 4},
+                {"id" : "hb_mage", "lvl" : 4},
+                {"id" : "hb_mage", "lvl" : 5}
+              ]
+            }],
+          "location" : "grass_2",
+          "loot" : ["campaign_typical_1", "campaign_epic_1", "campaign_legendary_1"]
+        },
+        {
+          "id":48,"x":2195,"y":895,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 10,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 6},
+                {"id" : "ht_mage", "lvl" : 4},
+                {"id" : "ob_marauder", "lvl" : 4},
+                {"id" : "ob_sapper", "lvl" : 4}
+              ]
+            }],
+          "location" : "grass_3",
+          "loot" : ["campaign_conventional_1", "campaign_ob_sapper"]
+        },
+        {
+          "id":49,"x":2052,"y":956,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 11,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 6},
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ht_mage", "lvl" : 4},
+                {"id" : "ht_mage", "lvl" : 5},
+                {"id" : "ob_marauder", "lvl" : 4},
+                {"id" : "ob_sapper", "lvl" : 4}
+              ]
+            }],
+          "location" : "grass_1",
+          "loot" : ["campaign_typical_1", "campaign_legendary_1"]
+        },
+        {
+          "id":50,"x":2038,"y":1120,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 11,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 6},
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ht_mage", "lvl" : 4},
+                {"id" : "ob_marauder", "lvl" : 4},
+                {"id" : "ob_sapper", "lvl" : 3}
+              ]
+            },
+            {
+              "ai" : "ai2",
+              "level" : 11,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 6},
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ht_mage", "lvl" : 4},
+                {"id" : "ob_marauder", "lvl" : 4},
+                {"id" : "ob_sapper", "lvl" : 3}
+              ]
+            }],
+          "location" : "grass_4",
+          "loot" : ["campaign_conventional_1", "campaign_epic_1"]
+        },
+        {
+          "id":51,"x":1885,"y":1226,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 11,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ht_mage", "lvl" : 5},
+                {"id" : "ob_marauder", "lvl" : 4},
+                {"id" : "ob_sapper", "lvl" : 5}
+              ]
+            }],
+          "location" : "swamp_2",
+          "loot" : ["campaign_typical_1"]
+        },
+        {
+          "id":52,"x":1728,"y":1172,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 11,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "o_mineRaider", "lvl" : 8},
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ht_mage", "lvl" : 5},
+                {"id" : "ob_marauder", "lvl" : 4},
+                {"id" : "ob_sapper", "lvl" : 5}
+              ]
+            }],
+          "location" : "swamp_3",
+          "loot" : ["campaign_typical_1", "campaign_conventional_1"]
+        },
+        {
+          "id":53,"x":1560,"y":1157,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 11,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ht_mage", "lvl" : 5},
+                {"id" : "hb_knight", "lvl" : 2},
+                {"id" : "hb_mage", "lvl" : 5}
+              ]
+            }],
+          "location" : "swamp_1",
+          "loot" : ["campaign_conventional_1", "campaign_hb_knight", "campaign_legendary_1"]
+        },
+        {
+          "id":54,"x":1443,"y":1074,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 11,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ht_mage", "lvl" : 5},
+                {"id" : "ht_mage", "lvl" : 6},
+                {"id" : "hb_knight", "lvl" : 2},
+                {"id" : "ob_sapper", "lvl" : 6},
+                {"id" : "hb_mage", "lvl" : 5}
+              ]
+            }],
+          "location" : "grass_2",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":55,"x":1304,"y":1011,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 11,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ht_mage", "lvl" : 5},
+                {"id" : "hb_knight", "lvl" : 2},
+                {"id" : "hb_mage", "lvl" : 5}
+              ]
+            },
+            {
+              "ai" : "ai2",
+              "level" : 11,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ht_mage", "lvl" : 5},
+                {"id" : "ob_marauder", "lvl" : 4},
+                {"id" : "ob_sapper", "lvl" : 6}
+              ]
+            }],
+          "location" : "grass_4",
+          "loot" : ["campaign_conventional_1", "campaign_legendary_1", "campaign_gold"]
+        },
+        {
+          "id":56,"x":1136,"y":998,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ht_mage", "lvl" : 6},
+                {"id" : "hb_knight", "lvl" : 3},
+                {"id" : "ob_marauder", "lvl" : 5},
+                {"id" : "ob_sapper", "lvl" : 6},
+                {"id" : "hb_mage", "lvl" : 6}
+              ]
+            }],
+          "location" : "grass_3",
+          "loot" : ["campaign_typical_1", "campaign_epic_1"]
+        },
+        {
+          "id":57,"x":1061,"y":1104,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ht_mage", "lvl" : 7},
+                {"id" : "hb_knight", "lvl" : 3},
+                {"id" : "ob_marauder", "lvl" : 5},
+                {"id" : "ob_sapper", "lvl" : 6},
+                {"id" : "hb_mage", "lvl" : 6}
+              ]
+            }],
+          "location" : "grass_2",
+          "loot" : ["campaign_conventional_1"]
+        },
+        {
+          "id":58,"x":1187,"y":1197,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ot_archer", "lvl" : 10},
+                {"id" : "ob_goblinWarrior", "lvl" : 10},
+                {"id" : "ob_hunter", "lvl" : 10}
+              ]
+            }],
+          "location" : "grass_1",
+          "loot" : ["campaign_typical_1", "campaign_epic_1"]
+        },
+        {
+          "id":59,"x":1302,"y":1309,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ht_mortar", "lvl" : 2},
+                {"id" : "hb_knight", "lvl" : 4},
+                {"id" : "hb_mage", "lvl" : 6}
+              ]
+            }],
+          "location" : "grass_3",
+          "loot" : ["campaign_conventional_1", "campaign_ht_mortar"]
+        },
+        {
+          "id":60,"x":1462,"y":1309,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ht_mortar", "lvl" : 2},
+                {"id" : "hb_knight", "lvl" : 4},
+                {"id" : "hb_mage", "lvl" : 6}
+              ]
+            },
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ot_archer", "lvl" : 10},
+                {"id" : "ob_goblinWarrior", "lvl" : 10},
+                {"id" : "ob_hunter", "lvl" : 10}
+              ]
+            }],
+          "location" : "swamp_4",
+          "loot" : ["campaign_typical_1", "campaign_conventional_1"]
+        },
+        {
+          "id":61,"x":1548,"y":1425,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 7},
+                {"id" : "ht_mortar", "lvl" : 3},
+                {"id" : "hb_knight", "lvl" : 4},
+                {"id" : "ob_sapper", "lvl" : 8},
+                {"id" : "hb_mage", "lvl" : 7}
+              ]
+            }],
+          "location" : "swamp_3",
+          "loot" : []
+        },
+        {
+          "id":62,"x":1419,"y":1525,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 8},
+                {"id" : "ht_mortar", "lvl" : 3},
+                {"id" : "hb_knight", "lvl" : 4},
+                {"id" : "ob_marauder", "lvl" : 5},
+                {"id" : "ob_sapper", "lvl" : 8},
+                {"id" : "hb_mage", "lvl" : 7}
+              ]
+            }],
+          "location" : "swamp_2",
+          "loot" : ["campaign_typical_1", "campaign_conventional_1", "campaign_legendary_1"]
+        },
+        {
+          "id":63,"x":1281,"y":1579,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 8},
+                {"id" : "ht_mortar", "lvl" : 4},
+                {"id" : "hb_assassin", "lvl" : 10},
+                {"id" : "hb_rifleman", "lvl" : 10}
+              ]
+            }],
+          "location" : "swamp_3",
+          "loot" : ["campaign_typical_1", "campaign_epic_1"]
+        },
+        {
+          "id":64,"x":1166,"y":1643,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 8},
+                {"id" : "ht_mortar", "lvl" : 4},
+                {"id" : "hb_knight", "lvl" : 4},
+                {"id" : "hb_mage", "lvl" : 8}
+              ]
+            }],
+          "location" : "swamp_1",
+          "loot" : ["campaign_typical_1", "campaign_epic_1"]
+        },
+        {
+          "id":65,"x":1034,"y":1622,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 8},
+                {"id" : "ht_mortar", "lvl" : 4},
+                {"id" : "hb_assassin", "lvl" : 10},
+                {"id" : "hb_rifleman", "lvl" : 10}
+              ]
+            },
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "resources" : 300,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 8},
+                {"id" : "ht_mortar", "lvl" : 4},
+                {"id" : "hb_knight", "lvl" : 4},
+                {"id" : "hb_mage", "lvl" : 8}
+              ]
+            }],
+          "location" : "swamp_4",
+          "loot" : ["campaign_conventional_1", "campaign_gold"]
+        },
+        {
+          "id":66,"x":905,"y":1671,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 8},
+                {"id" : "ht_mortar", "lvl" : 4},
+                {"id" : "hb_knight", "lvl" : 5},
+                {"id" : "hb_mage", "lvl" : 8}
+              ]
+            }],
+          "location" : "swamp_1",
+          "loot" : ["campaign_conventional_1", "campaign_legendary_1"]
+        },
+        {
+          "id":67,"x":801,"y":1749,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 8},
+                {"id" : "ht_mortar", "lvl" : 4},
+                {"id" : "hb_knight", "lvl" : 4},
+                {"id" : "ob_marauder", "lvl" : 5},
+                {"id" : "hb_mage", "lvl" : 8}
+              ]
+            }],
+          "location" : "swamp_2",
+          "loot" : ["campaign_conventional_1", "campaign_legendary_1"]
+        },
+        {
+          "id":68,"x":660,"y":1780,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "h_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 8},
+                {"id" : "ht_mortar", "lvl" : 4},
+                {"id" : "hb_knight", "lvl" : 5},
+                {"id" : "ob_marauder", "lvl" : 5},
+                {"id" : "hb_mage", "lvl" : 8}
+              ]
+            }],
+          "location" : "swamp_3",
+          "loot" : ["campaign_conventional_1", "campaign_legendary_1"]
+        },
+        {
+          "id":69,"x":523,"y":1830,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 8},
+                {"id" : "ht_mortar", "lvl" : 5},
+                {"id" : "hb_knight", "lvl" : 5},
+                {"id" : "ob_sapper", "lvl" : 11}
+              ]
+            }],
+          "location" : "swamp_2",
+          "loot" : ["campaign_epic_1", "campaign_legendary_1"]
+        },
+        {
+          "id":70,"x":343,"y":1823,
+          "ai": [
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "resources" : 450,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 8},
+                {"id" : "ht_mortar", "lvl" : 5},
+                {"id" : "hb_knight", "lvl" : 5},
+                {"id" : "ob_sapper", "lvl" : 11}
+              ]
+            },
+            {
+              "ai" : "ai2",
+              "level" : 12,
+              "name" : "EBOT",
+              "king" : "o_king_1",
+              "power" : 1,
+              "resources" : 450,
+              "deck" : [
+                {"id" : "h_mineDwarven", "lvl" : 8},
+                {"id" : "ht_mage", "lvl" : 8},
+                {"id" : "hb_knight", "lvl" : 5},
+                {"id" : "hb_mage", "lvl" : 8}
+              ]
+            }],
+          "location" : "grass_2",
+          "loot" : ["campaign_epic_1", "campaign_legendary_1"]
+        }
+      ]
+    }
+  ]
+}
