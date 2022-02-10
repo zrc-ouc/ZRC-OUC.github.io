@@ -1,0 +1,53 @@
+{
+  "human" : {
+    "castle" : "h_castle",
+    "name" : "RACE_NAME_HUMAN",
+    "builder" : "hBuildAsset",
+    "hover" : "hover_human",
+    "place" : {
+      "full": [
+        "areaFull_1_1.png",
+        "areaFull_1_2.png",
+        "areaFull_1_3.png",
+        "areaFull_1_4.png"
+      ],
+      "border": [
+        "areaFragment_1_1.png",
+        "areaFragment_1_2.png",
+        "areaFragment_1_3.png",
+        "areaFragment_1_4.png",
+        "areaFragment_1_5.png",
+        "areaFragment_1_6.png",
+        "areaFragment_1_7.png",
+        "areaFragment_1_8.png"
+      ]
+    }
+  },
+  "orc" : {
+    "castle" : "o_castle",
+    "name" : "RACE_NAME_ORC",
+    "builder" : "oBuildAsset",
+    "hover" : "hover_orc",
+    "place" : {
+      "full": [
+        "areaFull_2_1.png",
+        "areaFull_2_2.png",
+        "areaFull_2_3.png",
+        "areaFull_2_4.png"
+      ],
+      "border": [
+        "areaFragment_2_1.png",
+        "areaFragment_2_2.png",
+        "areaFragment_2_3.png",
+        "areaFragment_2_4.png",
+        "areaFragment_2_5.png",
+        "areaFragment_2_6.png",
+        "areaFragment_2_7.png",
+        "areaFragment_2_8.png"
+      ]
+    }
+  },
+  "n" : {
+    "closed" : true
+  }
+}
