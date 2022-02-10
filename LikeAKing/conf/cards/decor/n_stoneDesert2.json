@@ -1,0 +1,23 @@
+{
+  "id" : "n_stoneDesert2",
+  "cardType" : "decor",
+  "race" : "neutral",
+  "radius" : 30,
+  "height": 30,
+  "skin" : "Rock4",
+  "baseState" : [{"skn" : "idle"}],
+  "buildState" : [],
+  "actionState" : [],
+  "destroyState" : ["idle"],
+  "deathState" : [],
+  "byRace" : {
+    "n" : "n_stoneDesert2",
+    "human" : "hn_stoneDesert2",
+    "orc" : "on_stoneDesert2",
+    "elf" : "hn_stoneDesert2",
+    "undead" : "un_stoneDesert2"
+  },
+  "levels" : {
+    "1" : {}
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id" : "n_treeGrass1",
+  "cardType" : "decor",
+  "race" : "neutral",
+  "radius" : 30,
+  "height": 30,
+  "skin" : "TreeGrass01",
+  "baseState" : [{"skn" : "idle"}],
+  "buildState" : [],
+  "actionState" : [],
+  "destroyState" : ["idle"],
+  "deathState" : [],
+  "byRace" : {
+    "n" : "n_treeGrass1",
+    "human" : "hn_treeGrass1",
+    "orc" : "on_treeGrass1",
+    "elf" : "hn_treeGrass1",
+    "undead" : "un_treeGrass1"
+  },
+  "levels" : {
+    "1" : {}
+  }
+}

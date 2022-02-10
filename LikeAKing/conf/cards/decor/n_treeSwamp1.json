@@ -1,0 +1,23 @@
+{
+  "id" : "n_treeSwamp1",
+  "cardType" : "decor",
+  "race" : "neutral",
+  "radius" : 30,
+  "height": 30,
+  "skin" : "TreeSwamp01",
+  "baseState" : [{"skn" : "idle"}],
+  "buildState" : [],
+  "actionState" : [],
+  "destroyState" : ["idle"],
+  "deathState" : [],
+  "byRace" : {
+    "n" : "n_treeSwamp1",
+    "human" : "hn_treeSwamp1",
+    "orc" : "on_treeSwamp1",
+    "elf" : "hn_treeSwamp1",
+    "undead" : "un_treeSwamp1"
+  },
+  "levels" : {
+    "1" : {}
+  }
+}

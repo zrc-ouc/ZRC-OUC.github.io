@@ -1,0 +1,23 @@
+{
+  "id" : "n_treeWinter2",
+  "cardType" : "decor",
+  "race" : "neutral",
+  "radius" : 30,
+  "height": 30,
+  "skin" : "TreeWinter02",
+  "baseState" : [{"skn" : "idle"}],
+  "buildState" : [],
+  "actionState" : [],
+  "destroyState" : ["idle"],
+  "deathState" : [],
+  "byRace" : {
+    "n" : "n_treeWinter2",
+    "human" : "hn_treeWinter2",
+    "orc" : "on_treeWinter2",
+    "elf" : "hn_treeWinter2",
+    "undead" : "un_treeWinter2"
+  },
+  "levels" : {
+    "1" : {}
+  }
+}

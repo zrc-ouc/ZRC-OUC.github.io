@@ -1,0 +1,23 @@
+{
+  "id" : "n_treeDesert2",
+  "cardType" : "decor",
+  "race" : "neutral",
+  "radius" : 30,
+  "height": 30,
+  "skin" : "TreeBarrens02",
+  "baseState" : [{"skn" : "idle"}],
+  "buildState" : [],
+  "actionState" : [],
+  "destroyState" : ["idle"],
+  "deathState" : [],
+  "byRace" : {
+    "n" : "n_treeDesert2",
+    "human" : "hn_treeDesert2",
+    "orc" : "on_treeDesert2",
+    "elf" : "hn_treeDesert2",
+    "undead" : "un_treeDesert2"
+  },
+  "levels" : {
+    "1" : {}
+  }
+}
