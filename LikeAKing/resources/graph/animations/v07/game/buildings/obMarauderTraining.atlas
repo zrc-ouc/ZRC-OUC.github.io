@@ -1,0 +1,34 @@
+
+obMarauderTraining.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+obMarauderTraining
+  rotate: false
+  xy: 2, 2
+  size: 89, 99
+  orig: 89, 99
+  offset: 0, 0
+  index: -1
+obMarauderTrainingLight1
+  rotate: false
+  xy: 275, 18
+  size: 87, 83
+  orig: 87, 83
+  offset: 0, 0
+  index: -1
+obMarauderTrainingR
+  rotate: false
+  xy: 93, 2
+  size: 89, 99
+  orig: 89, 99
+  offset: 0, 0
+  index: -1
+obMarauderTrainingV
+  rotate: false
+  xy: 184, 2
+  size: 89, 99
+  orig: 89, 99
+  offset: 0, 0
+  index: -1

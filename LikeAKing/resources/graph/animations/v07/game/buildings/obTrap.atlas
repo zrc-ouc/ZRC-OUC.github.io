@@ -1,0 +1,34 @@
+
+obTrap.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+obRevengeB
+  rotate: false
+  xy: 2, 2
+  size: 96, 111
+  orig: 96, 111
+  offset: 0, 0
+  index: -1
+obRevengeLights
+  rotate: false
+  xy: 296, 77
+  size: 85, 36
+  orig: 85, 36
+  offset: 0, 0
+  index: -1
+obRevengeR
+  rotate: false
+  xy: 100, 2
+  size: 96, 111
+  orig: 96, 111
+  offset: 0, 0
+  index: -1
+obRevengeV
+  rotate: false
+  xy: 198, 2
+  size: 96, 111
+  orig: 96, 111
+  offset: 0, 0
+  index: -1

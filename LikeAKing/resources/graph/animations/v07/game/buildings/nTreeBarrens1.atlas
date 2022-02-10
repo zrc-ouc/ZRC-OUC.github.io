@@ -1,0 +1,13 @@
+
+nTreeBarrens1.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+TreeBarrens01
+  rotate: false
+  xy: 2, 2
+  size: 95, 109
+  orig: 95, 109
+  offset: 0, 0
+  index: -1

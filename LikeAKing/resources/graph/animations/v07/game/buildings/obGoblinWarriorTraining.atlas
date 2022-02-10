@@ -1,0 +1,41 @@
+
+obGoblinWarriorTraining.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+obGoblinWarriorTraining
+  rotate: false
+  xy: 2, 2
+  size: 102, 106
+  orig: 102, 106
+  offset: 0, 0
+  index: -1
+obGoblinWarriorTrainingLights01
+  rotate: false
+  xy: 373, 70
+  size: 77, 38
+  orig: 77, 38
+  offset: 0, 0
+  index: -1
+obGoblinWarriorTrainingLights02
+  rotate: false
+  xy: 314, 37
+  size: 57, 71
+  orig: 57, 71
+  offset: 0, 0
+  index: -1
+obGoblinWarriorTrainingR
+  rotate: false
+  xy: 106, 2
+  size: 102, 106
+  orig: 102, 106
+  offset: 0, 0
+  index: -1
+obGoblinWarriorTrainingV
+  rotate: false
+  xy: 210, 2
+  size: 102, 106
+  orig: 102, 106
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,48 @@
+
+hbDwarfRiflemanTraining.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hbDwarfRiflemanTraining
+  rotate: false
+  xy: 2, 28
+  size: 89, 98
+  orig: 89, 98
+  offset: 0, 0
+  index: -1
+hbDwarfRiflemanTrainingLight1
+  rotate: false
+  xy: 275, 90
+  size: 30, 36
+  orig: 30, 36
+  offset: 0, 0
+  index: -1
+hbDwarfRiflemanTrainingLight2
+  rotate: false
+  xy: 275, 54
+  size: 25, 34
+  orig: 25, 34
+  offset: 0, 0
+  index: -1
+hbDwarfRiflemanTrainingLight3
+  rotate: false
+  xy: 2, 2
+  size: 20, 24
+  orig: 20, 24
+  offset: 0, 0
+  index: -1
+hbDwarfRiflemanTrainingR
+  rotate: false
+  xy: 93, 28
+  size: 89, 98
+  orig: 89, 98
+  offset: 0, 0
+  index: -1
+hbDwarfRiflemanTrainingV
+  rotate: false
+  xy: 184, 28
+  size: 89, 98
+  orig: 89, 98
+  offset: 0, 0
+  index: -1

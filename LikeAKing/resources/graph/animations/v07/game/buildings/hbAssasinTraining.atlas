@@ -1,0 +1,48 @@
+
+hbAssasinTraining.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hbAssasinTraining
+  rotate: false
+  xy: 2, 2
+  size: 92, 99
+  orig: 92, 99
+  offset: 0, 0
+  index: -1
+hbAssasinTrainingLight1
+  rotate: false
+  xy: 284, 51
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+hbAssasinTrainingLight2
+  rotate: false
+  xy: 336, 77
+  size: 31, 24
+  orig: 31, 24
+  offset: 0, 0
+  index: -1
+hbAssasinTrainingLight3
+  rotate: false
+  xy: 284, 16
+  size: 33, 33
+  orig: 33, 33
+  offset: 0, 0
+  index: -1
+hbAssasinTrainingR
+  rotate: false
+  xy: 96, 2
+  size: 92, 99
+  orig: 92, 99
+  offset: 0, 0
+  index: -1
+hbAssasinTrainingV
+  rotate: false
+  xy: 190, 2
+  size: 92, 99
+  orig: 92, 99
+  offset: 0, 0
+  index: -1

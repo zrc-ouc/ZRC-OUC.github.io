@@ -1,0 +1,216 @@
+
+hbTowerMage.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hMbeard1
+  rotate: false
+  xy: 465, 53
+  size: 39, 39
+  orig: 39, 39
+  offset: 0, 0
+  index: -1
+hMbody1
+  rotate: false
+  xy: 266, 2
+  size: 40, 29
+  orig: 40, 29
+  offset: 0, 0
+  index: -1
+hMbody1R
+  rotate: true
+  xy: 506, 53
+  size: 39, 30
+  orig: 39, 30
+  offset: 0, 0
+  index: -1
+hMbody1V
+  rotate: false
+  xy: 308, 2
+  size: 39, 29
+  orig: 39, 29
+  offset: 0, 0
+  index: -1
+hMhandBack1
+  rotate: false
+  xy: 618, 112
+  size: 20, 14
+  orig: 20, 14
+  offset: 0, 0
+  index: -1
+hMhandBack1R
+  rotate: false
+  xy: 2, 2
+  size: 20, 13
+  orig: 20, 13
+  offset: 0, 0
+  index: -1
+hMhandBack1V
+  rotate: false
+  xy: 24, 2
+  size: 20, 13
+  orig: 20, 13
+  offset: 0, 0
+  index: -1
+hMhandFront1
+  rotate: false
+  xy: 419, 2
+  size: 15, 16
+  orig: 15, 16
+  offset: 0, 0
+  index: -1
+hMhandFront1R
+  rotate: true
+  xy: 640, 111
+  size: 15, 17
+  orig: 15, 17
+  offset: 0, 0
+  index: -1
+hMhandFront1V
+  rotate: true
+  xy: 659, 111
+  size: 15, 17
+  orig: 15, 17
+  offset: 0, 0
+  index: -1
+hMhead1
+  rotate: false
+  xy: 399, 51
+  size: 64, 75
+  orig: 64, 75
+  offset: 0, 0
+  index: -1
+hMhead1R
+  rotate: false
+  xy: 266, 50
+  size: 65, 76
+  orig: 65, 76
+  offset: 0, 0
+  index: -1
+hMhead1V
+  rotate: false
+  xy: 333, 50
+  size: 64, 76
+  orig: 64, 76
+  offset: 0, 0
+  index: -1
+hMkilt1
+  rotate: true
+  xy: 373, 2
+  size: 46, 21
+  orig: 46, 21
+  offset: 0, 0
+  index: -1
+hMkilt1R
+  rotate: true
+  xy: 349, 2
+  size: 46, 22
+  orig: 46, 22
+  offset: 0, 0
+  index: -1
+hMkilt1V
+  rotate: true
+  xy: 396, 2
+  size: 46, 21
+  orig: 46, 21
+  offset: 0, 0
+  index: -1
+hMshadow
+  rotate: false
+  xy: 266, 33
+  size: 65, 15
+  orig: 65, 15
+  offset: 0, 0
+  index: -1
+hMshoulderBack1
+  rotate: false
+  xy: 333, 36
+  size: 11, 12
+  orig: 11, 12
+  offset: 0, 0
+  index: -1
+hMshoulderBack1R
+  rotate: false
+  xy: 46, 3
+  size: 11, 12
+  orig: 11, 12
+  offset: 0, 0
+  index: -1
+hMshoulderBack1V
+  rotate: false
+  xy: 436, 6
+  size: 11, 12
+  orig: 11, 12
+  offset: 0, 0
+  index: -1
+hMshoulderFront1
+  rotate: true
+  xy: 453, 37
+  size: 12, 10
+  orig: 12, 10
+  offset: 0, 0
+  index: -1
+hMshoulderFront1R
+  rotate: false
+  xy: 465, 41
+  size: 12, 10
+  orig: 12, 10
+  offset: 0, 0
+  index: -1
+hMshoulderFront1V
+  rotate: false
+  xy: 678, 116
+  size: 12, 10
+  orig: 12, 10
+  offset: 0, 0
+  index: -1
+hMstaff1
+  rotate: true
+  xy: 465, 94
+  size: 32, 78
+  orig: 32, 78
+  offset: 0, 0
+  index: -1
+hMstaffE1
+  rotate: false
+  xy: 589, 101
+  size: 27, 25
+  orig: 27, 25
+  offset: 0, 0
+  index: -1
+hMstaffF1
+  rotate: true
+  xy: 545, 98
+  size: 28, 42
+  orig: 28, 42
+  offset: 0, 0
+  index: -1
+hMstaffW1
+  rotate: false
+  xy: 419, 20
+  size: 32, 29
+  orig: 32, 29
+  offset: 0, 0
+  index: -1
+hbTowerMage
+  rotate: false
+  xy: 2, 17
+  size: 86, 109
+  orig: 86, 109
+  offset: 0, 0
+  index: -1
+hbTowerMageR
+  rotate: false
+  xy: 90, 17
+  size: 86, 109
+  orig: 86, 109
+  offset: 0, 0
+  index: -1
+hbTowerMageV
+  rotate: false
+  xy: 178, 17
+  size: 86, 109
+  orig: 86, 109
+  offset: 0, 0
+  index: -1

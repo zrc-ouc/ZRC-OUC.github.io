@@ -1,0 +1,48 @@
+
+obHunterTraining.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+obHunterTraining
+  rotate: false
+  xy: 2, 2
+  size: 99, 101
+  orig: 99, 101
+  offset: 0, 0
+  index: -1
+obHunterTrainingLight01
+  rotate: false
+  xy: 305, 67
+  size: 43, 36
+  orig: 43, 36
+  offset: 0, 0
+  index: -1
+obHunterTrainingLight02
+  rotate: false
+  xy: 350, 71
+  size: 38, 32
+  orig: 38, 32
+  offset: 0, 0
+  index: -1
+obHunterTrainingLight03
+  rotate: false
+  xy: 305, 31
+  size: 37, 34
+  orig: 37, 34
+  offset: 0, 0
+  index: -1
+obHunterTrainingR
+  rotate: false
+  xy: 103, 2
+  size: 99, 101
+  orig: 99, 101
+  offset: 0, 0
+  index: -1
+obHunterTrainingV
+  rotate: false
+  xy: 204, 2
+  size: 99, 101
+  orig: 99, 101
+  offset: 0, 0
+  index: -1

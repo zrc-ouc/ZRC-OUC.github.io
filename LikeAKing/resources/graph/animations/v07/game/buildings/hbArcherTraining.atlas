@@ -1,0 +1,41 @@
+
+hbArcherTraining.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hbArcherTraining
+  rotate: false
+  xy: 2, 2
+  size: 88, 98
+  orig: 88, 98
+  offset: 0, 0
+  index: -1
+hbArcherTrainingLight1
+  rotate: false
+  xy: 272, 48
+  size: 30, 52
+  orig: 30, 52
+  offset: 0, 0
+  index: -1
+hbArcherTrainingLight2
+  rotate: false
+  xy: 304, 64
+  size: 31, 36
+  orig: 31, 36
+  offset: 0, 0
+  index: -1
+hbArcherTrainingR
+  rotate: false
+  xy: 92, 2
+  size: 88, 98
+  orig: 88, 98
+  offset: 0, 0
+  index: -1
+hbArcherTrainingV
+  rotate: false
+  xy: 182, 2
+  size: 88, 98
+  orig: 88, 98
+  offset: 0, 0
+  index: -1

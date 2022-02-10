@@ -1,0 +1,27 @@
+
+hnRock4.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+rock04HumansBlue
+  rotate: false
+  xy: 2, 2
+  size: 78, 102
+  orig: 78, 102
+  offset: 0, 0
+  index: -1
+rock04HumansRed
+  rotate: false
+  xy: 82, 2
+  size: 78, 102
+  orig: 78, 102
+  offset: 0, 0
+  index: -1
+rock04HumansViolet
+  rotate: false
+  xy: 162, 2
+  size: 78, 102
+  orig: 78, 102
+  offset: 0, 0
+  index: -1

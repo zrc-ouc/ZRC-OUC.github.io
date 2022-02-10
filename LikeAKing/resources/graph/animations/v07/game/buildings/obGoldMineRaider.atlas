@@ -1,0 +1,76 @@
+
+obGoldMineRaider.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hbGoldmineLight1
+  rotate: false
+  xy: 341, 86
+  size: 10, 13
+  orig: 10, 13
+  offset: 0, 0
+  index: -1
+obGoldmine2
+  rotate: false
+  xy: 2, 27
+  size: 95, 88
+  orig: 95, 88
+  offset: 0, 0
+  index: -1
+obGoldmine2Lights01
+  rotate: false
+  xy: 293, 58
+  size: 46, 57
+  orig: 46, 57
+  offset: 0, 0
+  index: -1
+obGoldmine2Lights02
+  rotate: false
+  xy: 315, 42
+  size: 10, 14
+  orig: 10, 14
+  offset: 0, 0
+  index: -1
+obGoldmine2Lights03
+  rotate: false
+  xy: 341, 101
+  size: 15, 14
+  orig: 15, 14
+  offset: 0, 0
+  index: -1
+obGoldmine2Lights04
+  rotate: false
+  xy: 28, 11
+  size: 11, 14
+  orig: 11, 14
+  offset: 0, 0
+  index: -1
+obGoldmine2Lights05
+  rotate: false
+  xy: 293, 37
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+obGoldmine2Lights06
+  rotate: false
+  xy: 2, 2
+  size: 24, 23
+  orig: 24, 23
+  offset: 0, 0
+  index: -1
+obGoldmine2R
+  rotate: false
+  xy: 99, 27
+  size: 95, 88
+  orig: 95, 88
+  offset: 0, 0
+  index: -1
+obGoldmine2V
+  rotate: false
+  xy: 196, 27
+  size: 95, 88
+  orig: 95, 88
+  offset: 0, 0
+  index: -1

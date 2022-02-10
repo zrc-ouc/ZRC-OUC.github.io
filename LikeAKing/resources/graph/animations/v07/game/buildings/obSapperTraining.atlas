@@ -1,0 +1,48 @@
+
+obSapperTraining.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+obSapperTraining
+  rotate: false
+  xy: 2, 15
+  size: 88, 94
+  orig: 88, 94
+  offset: 0, 0
+  index: -1
+obSapperTrainingLight1
+  rotate: false
+  xy: 272, 34
+  size: 64, 75
+  orig: 64, 75
+  offset: 0, 0
+  index: -1
+obSapperTrainingLight2
+  rotate: false
+  xy: 272, 20
+  size: 16, 12
+  orig: 16, 12
+  offset: 0, 0
+  index: -1
+obSapperTrainingLight3
+  rotate: false
+  xy: 2, 2
+  size: 18, 11
+  orig: 18, 11
+  offset: 0, 0
+  index: -1
+obSapperTrainingR
+  rotate: false
+  xy: 92, 15
+  size: 88, 94
+  orig: 88, 94
+  offset: 0, 0
+  index: -1
+obSapperTrainingV
+  rotate: false
+  xy: 182, 15
+  size: 88, 94
+  orig: 88, 94
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,48 @@
+
+hbKnightTraining.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hbKnightTraining
+  rotate: false
+  xy: 2, 24
+  size: 106, 102
+  orig: 106, 102
+  offset: 0, 0
+  index: -1
+hbKnightTrainingLight1
+  rotate: false
+  xy: 326, 76
+  size: 40, 50
+  orig: 40, 50
+  offset: 0, 0
+  index: -1
+hbKnightTrainingLight2
+  rotate: false
+  xy: 326, 59
+  size: 28, 15
+  orig: 28, 15
+  offset: 0, 0
+  index: -1
+hbKnightTrainingLight3
+  rotate: false
+  xy: 2, 2
+  size: 28, 20
+  orig: 28, 20
+  offset: 0, 0
+  index: -1
+hbKnightTrainingR
+  rotate: false
+  xy: 110, 24
+  size: 106, 102
+  orig: 106, 102
+  offset: 0, 0
+  index: -1
+hbKnightTrainingV
+  rotate: false
+  xy: 218, 24
+  size: 106, 102
+  orig: 106, 102
+  offset: 0, 0
+  index: -1

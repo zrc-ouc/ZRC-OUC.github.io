@@ -1,0 +1,48 @@
+
+hbMageTraining.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hbMageTraining
+  rotate: false
+  xy: 2, 2
+  size: 77, 124
+  orig: 77, 124
+  offset: 0, 0
+  index: -1
+hbMageTrainingLight1
+  rotate: false
+  xy: 239, 63
+  size: 28, 32
+  orig: 28, 32
+  offset: 0, 0
+  index: -1
+hbMageTrainingLight2
+  rotate: true
+  xy: 273, 101
+  size: 25, 30
+  orig: 25, 30
+  offset: 0, 0
+  index: -1
+hbMageTrainingLight4
+  rotate: false
+  xy: 239, 97
+  size: 32, 29
+  orig: 32, 29
+  offset: 0, 0
+  index: -1
+hbMageTrainingR
+  rotate: false
+  xy: 81, 2
+  size: 77, 124
+  orig: 77, 124
+  offset: 0, 0
+  index: -1
+hbMageTrainingV
+  rotate: false
+  xy: 160, 2
+  size: 77, 124
+  orig: 77, 124
+  offset: 0, 0
+  index: -1
