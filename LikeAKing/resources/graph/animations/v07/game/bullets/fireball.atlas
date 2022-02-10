@@ -1,0 +1,62 @@
+
+fireball.png
+size: 512,256
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+projectilesAssets/ExplosionParts01
+  rotate: false
+  xy: 267, 179
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+projectilesAssets/ExplosionParts02
+  rotate: false
+  xy: 2, 2
+  size: 105, 105
+  orig: 105, 105
+  offset: 0, 0
+  index: -1
+projectilesAssets/ExplosionParts04
+  rotate: false
+  xy: 109, 51
+  size: 27, 56
+  orig: 27, 56
+  offset: 0, 0
+  index: -1
+projectilesAssets/ExplosionParts09
+  rotate: false
+  xy: 2, 109
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+projectilesAssets/darkSmoke
+  rotate: false
+  xy: 339, 179
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+projectilesAssets/hMstaffF1Y
+  rotate: false
+  xy: 411, 207
+  size: 28, 42
+  orig: 28, 42
+  offset: 0, 0
+  index: -1
+projectilesAssets/obFAfireballY
+  rotate: false
+  xy: 267, 142
+  size: 37, 35
+  orig: 37, 35
+  offset: 0, 0
+  index: -1
+projectilesAssets/splashRadial
+  rotate: false
+  xy: 144, 128
+  size: 121, 121
+  orig: 121, 121
+  offset: 0, 0
+  index: -1

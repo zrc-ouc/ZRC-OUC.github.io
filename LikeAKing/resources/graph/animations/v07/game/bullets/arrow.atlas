@@ -1,0 +1,90 @@
+
+arrow.png
+size: 256,64
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+projectilesAssets/hAarrow1
+  rotate: true
+  xy: 102, 35
+  size: 12, 58
+  orig: 12, 58
+  offset: 0, 0
+  index: -1
+projectilesAssets/hAarrow1Cut
+  rotate: false
+  xy: 198, 16
+  size: 12, 32
+  orig: 12, 32
+  offset: 0, 0
+  index: -1
+projectilesAssets/hAarrow1HitCircle
+  rotate: false
+  xy: 2, 14
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+projectilesAssets/hAarrow1HitRound
+  rotate: true
+  xy: 162, 15
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+projectilesAssets/hAarrow1HitSpark
+  rotate: true
+  xy: 2, 4
+  size: 8, 37
+  orig: 8, 37
+  offset: 0, 0
+  index: -1
+projectilesAssets/hAarrow1HitWave
+  rotate: false
+  xy: 52, 14
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+projectilesAssets/hAarrow1R
+  rotate: true
+  xy: 102, 49
+  size: 13, 58
+  orig: 13, 58
+  offset: 0, 0
+  index: -1
+projectilesAssets/hAarrow1RCut
+  rotate: true
+  xy: 222, 49
+  size: 13, 32
+  orig: 13, 32
+  offset: 0, 0
+  index: -1
+projectilesAssets/hAarrow1V
+  rotate: true
+  xy: 102, 21
+  size: 12, 58
+  orig: 12, 58
+  offset: 0, 0
+  index: -1
+projectilesAssets/hAarrow1VCut
+  rotate: true
+  xy: 102, 7
+  size: 12, 32
+  orig: 12, 32
+  offset: 0, 0
+  index: -1
+projectilesAssets/hAarrow1Y
+  rotate: true
+  xy: 162, 50
+  size: 12, 58
+  orig: 12, 58
+  offset: 0, 0
+  index: -1
+projectilesAssets/hAarrow1YCut
+  rotate: true
+  xy: 198, 2
+  size: 12, 32
+  orig: 12, 32
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,90 @@
+
+mortarShell.png
+size: 512,256
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+ExplosionParts01
+  rotate: false
+  xy: 390, 103
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+ExplosionParts02
+  rotate: false
+  xy: 2, 2
+  size: 105, 105
+  orig: 105, 105
+  offset: 0, 0
+  index: -1
+ExplosionParts04
+  rotate: false
+  xy: 469, 193
+  size: 27, 56
+  orig: 27, 56
+  offset: 0, 0
+  index: -1
+ExplosionParts09
+  rotate: false
+  xy: 2, 109
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
+ExplosionParts11
+  rotate: false
+  xy: 390, 175
+  size: 77, 74
+  orig: 77, 74
+  offset: 0, 0
+  index: -1
+MortarShell
+  rotate: false
+  xy: 173, 81
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+MortarShellR
+  rotate: false
+  xy: 220, 81
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+MortarShellV
+  rotate: false
+  xy: 267, 81
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+MortarShellY
+  rotate: false
+  xy: 314, 81
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+effectSmoke
+  rotate: true
+  xy: 109, 37
+  size: 70, 62
+  orig: 70, 62
+  offset: 0, 0
+  index: -1
+splashContour
+  rotate: false
+  xy: 144, 128
+  size: 121, 121
+  orig: 121, 121
+  offset: 0, 0
+  index: -1
+splashRadial
+  rotate: false
+  xy: 267, 128
+  size: 121, 121
+  orig: 121, 121
+  offset: 0, 0
+  index: -1

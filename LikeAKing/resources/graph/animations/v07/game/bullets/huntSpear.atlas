@@ -1,0 +1,62 @@
+
+huntSpear.png
+size: 512,64
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+projectilesAssets/hAarrow1HitRound
+  rotate: false
+  xy: 347, 15
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+projectilesAssets/hAarrow1HitWave
+  rotate: false
+  xy: 297, 14
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+projectilesAssets/oAaxe1Hit
+  rotate: false
+  xy: 232, 9
+  size: 63, 53
+  orig: 63, 53
+  offset: 0, 0
+  index: -1
+projectilesAssets/oSspear1
+  rotate: true
+  xy: 2, 33
+  size: 29, 113
+  orig: 29, 113
+  offset: 0, 0
+  index: -1
+projectilesAssets/oSspear1R
+  rotate: true
+  xy: 117, 2
+  size: 29, 113
+  orig: 29, 113
+  offset: 0, 0
+  index: -1
+projectilesAssets/oSspear1V
+  rotate: true
+  xy: 2, 2
+  size: 29, 113
+  orig: 29, 113
+  offset: 0, 0
+  index: -1
+projectilesAssets/oSspear1Y
+  rotate: true
+  xy: 117, 33
+  size: 29, 113
+  orig: 29, 113
+  offset: 0, 0
+  index: -1
+projectilesAssets/oSspearCut
+  rotate: true
+  xy: 347, 51
+  size: 11, 74
+  orig: 11, 74
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,48 @@
+
+shellMusket.png
+size: 256,64
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+projectilesAssets/hAarrow1HitCircle
+  rotate: false
+  xy: 67, 7
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+projectilesAssets/oAaxe1Hit
+  rotate: false
+  xy: 2, 2
+  size: 63, 53
+  orig: 63, 53
+  offset: 0, 0
+  index: -1
+projectilesAssets/shellMusket
+  rotate: false
+  xy: 117, 38
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+projectilesAssets/shellMusketR
+  rotate: false
+  xy: 136, 19
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+projectilesAssets/shellMusketV
+  rotate: false
+  xy: 136, 38
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+projectilesAssets/shellMusketY
+  rotate: false
+  xy: 117, 19
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
