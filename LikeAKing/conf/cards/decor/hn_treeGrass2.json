@@ -1,0 +1,27 @@
+{
+  "id" : "hn_treeGrass2",
+  "cardType" : "decor",
+  "race" : "human",
+  "destroyPrice" : 100,
+  "timeToBuild" : 2000,
+  "timeToDeath" : 0,
+  "radius" : 30,
+  "height": 30,
+  "skin" : "TreeHumans02",
+  "baseState" : [{"skn" : "idle"}],
+  "buildState" : [],
+  "actionState" : [],
+  "destroyState" : [{"skn" : "removing", "snd" : ["snd_treeDestroy"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_treeDeath"]}],
+  "byRace" : {
+    "n" : "n_treeGrass2",
+    "human" : "hn_treeGrass2",
+    "orc" : "on_treeGrass2",
+    "elf" : "hn_treeGrass2",
+    "undead" : "un_treeGrass2"
+  },
+  "actions" : ["destroy_tree"],
+  "levels" : {
+    "1" : {}
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id" : "hn_stoneDesert2",
+  "cardType" : "decor",
+  "race" : "human",
+  "destroyPrice" : 100,
+  "timeToBuild" : 2000,
+  "timeToDeath" : 0,
+  "radius" : 30,
+  "height": 30,
+  "skin" : "RockHumans4",
+  "baseState" : [{"skn" : "idle"}],
+  "buildState" : [],
+  "actionState" : [],
+  "destroyState" : [{"skn" : "removing", "snd" : ["snd_stoneDestroy"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_stoneDeath"]}],
+  "byRace" : {
+    "n" : "n_stoneDesert2",
+    "human" : "hn_stoneDesert2",
+    "orc" : "on_stoneDesert2",
+    "elf" : "hn_stoneDesert2",
+    "undead" : "un_stoneDesert2"
+  },
+  "actions" : ["destroy_stone"],
+  "levels" : {
+    "1" : {}
+  }
+}

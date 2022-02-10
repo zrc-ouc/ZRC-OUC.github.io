@@ -1,0 +1,23 @@
+{
+  "id" : "n_stone2",
+  "cardType" : "decor",
+  "race" : "neutral",
+  "radius" : 30,
+  "height": 30,
+  "skin" : "Rock2",
+  "baseState" : [{"skn" : "idle"}],
+  "buildState" : [],
+  "actionState" : [],
+  "destroyState" : ["idle"],
+  "deathState" : [],
+  "byRace" : {
+    "n" : "n_stone2",
+    "human" : "hn_stone2",
+    "orc" : "on_stone2",
+    "elf" : "hn_stone2",
+    "undead" : "un_stone2"
+  },
+  "levels" : {
+    "1" : {}
+  }
+}

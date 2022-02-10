@@ -1,0 +1,27 @@
+{
+  "id" : "hn_stone1",
+  "cardType" : "decor",
+  "race" : "human",
+  "destroyPrice" : 100,
+  "timeToBuild" : 2000,
+  "timeToDeath" : 0,
+  "radius" : 30,
+  "height": 30,
+  "skin" : "RockHumans1",
+  "baseState" : [{"skn" : "idle"}],
+  "buildState" : [],
+  "actionState" : [],
+  "destroyState" : [{"skn" : "removing", "snd" : ["snd_stoneDestroy"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_stoneDeath"]}],
+  "byRace" : {
+    "n" : "n_stone1",
+    "human" : "hn_stone1",
+    "orc" : "on_stone1",
+    "elf" : "hn_stone1",
+    "undead" : "un_stone1"
+  },
+  "actions" : ["destroy_stone"],
+  "levels" : {
+    "1" : {}
+  }
+}
