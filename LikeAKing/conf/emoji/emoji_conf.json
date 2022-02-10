@@ -1,0 +1,20 @@
+{
+  "human" : {
+    "instance" : "emojiHumans",
+    "items" : {
+      "1" : {"static" : "laughtIdle", "active" : "laught"},
+      "2" : {"static" : "respectIdle", "active" : "respect"},
+      "3" : {"static" : "cryIdle", "active" : "cry"},
+      "4" : {"static" : "angerIdle", "active" : "anger"}
+    }
+  },
+  "orc" : {
+    "instance" : "emojiOrcs",
+    "items" : {
+      "1" : {"static" : "laughtIdle", "active" : "laught"},
+      "2" : {"static" : "respectIdle", "active" : "respect"},
+      "3" : {"static" : "cryIdle", "active" : "cry"},
+      "4" : {"static" : "angerIdle", "active" : "anger"}
+    }
+  }
+}
