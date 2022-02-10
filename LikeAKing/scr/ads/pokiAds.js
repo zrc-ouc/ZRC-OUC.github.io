@@ -23,7 +23,7 @@ function showRewardedVideo(placement, callback) {
             }
             else {
                 // video not displayed, should probably not give reward
-                callback(REWARDED_AD_STATUS_FAILED);
+                callback(REWARDED_AD_STATUS_REWARDED);
             }
         }
     );
