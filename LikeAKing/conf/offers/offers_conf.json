@@ -1,0 +1,101 @@
+{
+  "list" : [
+    {
+      "id" : 101,
+      "analyticId" : "soft_res_1",
+      "name" : "PR_COINS_2",
+      "type" : 1,
+      "icon" : "coin02",
+      "pack" : 20,
+      "loot" : {
+        "resources" : {
+          "1" : [100, 100]
+        }
+      },
+      "free" : {
+        "time" : 900000
+      }
+    },
+    {
+      "id" : 102,
+      "analyticId" : "soft_res_2",
+      "name" : "PR_COINS_3",
+      "type" : 1,
+      "icon" : "coin03",
+      "pack" : 20,
+      "loot" : {
+        "resources" : {
+          "1" : [1000, 1000]
+        }
+      },
+      "free" : {
+        "time" : 43200000
+      }
+    },
+    {
+      "id" : 103,
+      "analyticId" : "soft_res_3",
+      "name" : "PR_COINS_4",
+      "type" : 1,
+      "icon" : "coin04",
+      "pack" : 20,
+      "loot" : {
+        "resources" : {
+          "1" : [10000, 10000]
+        }
+      },
+      "free" : {
+        "time" : 259200000
+      }
+    },
+    {
+      "id" : 201,
+      "analyticId" : "box_hellbery",
+      "name" : "OFFER_HELLBERRY",
+      "img" : "https://lak.eviteam.ru/app/resources/prices/ChestOnePiece01.png",
+      "type" : 1,
+      "pack" : 1,
+      "box" : "hellberry",
+      "free" : {
+        "time" : 900000
+      }
+    },
+    {
+      "id" : 301,
+      "analyticId" : "box_pig",
+      "name" : "OFFER_PIG",
+      "img" : "https://lak.eviteam.ru/app/resources/prices/ChestOnePiece02.png",
+      "type" : 1,
+      "pack" : 1,
+      "box" : "pig",
+      "free" : {
+        "time" : 43200000
+      }
+    },
+    {
+      "id" : 401,
+      "analyticId" : "box_pinyata",
+      "name" : "OFFER_PINYATA",
+      "img" : "https://lak.eviteam.ru/app/resources/prices/ChestOnePiece03.png",
+      "type" : 1,
+      "pack" : 1,
+      "box" : "pinyata",
+      "free" : {
+        "time" : 259200000
+      }
+    },
+    {
+      "id" : 501,
+      "analyticId" : "box_pinyata_x10",
+      "name" : "OFFER_PINYATA",
+      "img" : "https://lak.eviteam.ru/app/resources/prices/ChestOnePiece03.png",
+      "type" : 1,
+      "pack" : 1,
+      "box" : "pinyata10",
+      "free" : {
+        "time" : 2592000000
+      },
+      "display" : "pinyata_x10"
+    }
+  ]
+}
