@@ -1,0 +1,72 @@
+{
+  "id" : "h_mine",
+  "deck" : true,
+  "unlockLevel" : 1,
+  "category" : 2,
+  "cardType" : "mine",
+  "race" : "human",
+  "name" : "H_MINE",
+  "description" : "H_MINE_DESC",
+  "buildPrice" : 170,
+  "destroyPrice" : -85,
+  "radius" : 50,
+  "height": 30,
+  "areaDistance" : 2,
+  "mineTime" : 2000,
+  "timeToBuild" : 3000,
+  "timeToDeath" : 0,
+  "icon" : "icon_h_mine.png",
+  "skin" : "hGoldmine",
+  "baseState" : [{"skn" : "idle", "snd" : ["snd_mineReady"]}],
+  "actionState" : [{"skn" : "work"}],
+  "buildState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "destroyState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions" : ["build", "destroy"],
+  "levels" : {
+    "1" : {
+      "hp" : 150,
+      "mineCoins" : 10
+    },
+    "2" : {
+      "hp" : 180,
+      "mineCoins" : 11
+    },
+    "3" : {
+      "hp" : 216,
+      "mineCoins" : 13
+    },
+    "4" : {
+      "hp" : 259,
+      "mineCoins" : 14
+    },
+    "5" : {
+      "hp" : 285,
+      "mineCoins" : 15
+    },
+    "6" : {
+      "hp" : 314,
+      "mineCoins" : 16
+    },
+    "7" : {
+      "hp" : 345,
+      "mineCoins" : 17
+    },
+    "8" : {
+      "hp" : 380,
+      "mineCoins" : 18
+    },
+    "9" : {
+      "hp" : 399,
+      "mineCoins" : 19
+    },
+    "10" : {
+      "hp" : 419,
+      "mineCoins" : 20
+    },
+    "11" : {
+      "hp" : 440,
+      "mineCoins" : 21
+    }
+  }
+}

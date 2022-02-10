@@ -1,0 +1,78 @@
+{
+  "id" : "ht_mortar",
+  "deck" : true,
+  "unlockLevel" : 6,
+  "category" : 4,
+  "cardType" : "tower",
+  "race" : "human",
+  "name" : "H_T_MORTAR",
+  "description" : "H_T_MORTAR_DESC",
+  "buildPrice" : 280,
+  "destroyPrice" : -140,
+  "rMode" : 2,
+  "radius" : 50,
+  "height": 50,
+  "areaDistance" : 2,
+  "bulletFrom" : [{"x" : 0, "y" : -132}, {"x" : 0, "y" : -132}],
+  "attackSpeed" : 200,
+  "reloadAttackSpeed" : 1800,
+  "timeToBuild" : 6000,
+  "timeToDeath" : 0,
+  "attackType" : "range",
+  "bullet" : "bul_mortarShell",
+  "icon" : "icon_ht_mortar.png",
+  "skin" : "htMortar",
+  "baseState" : [{"skn" : "idle", "snd" : ["snd_towerReady"]}],
+  "attackState" : [{"skn" : "attack", "fr" : 0.35, "snd" : ["snd_mortar"]}],
+  "buildState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "destroyState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions" : ["build", "destroy"],
+  "levels" : {
+    "1" : {
+      "special" : [
+        {"t" : "splash", "dist" : 50}
+      ],
+      "hp" : 300,
+      "attackRange" : 214,
+      "damageToUnits" : [100, 200],
+      "damageToBuildings" : [90, 120]
+    },
+    "2" : {
+      "special" : [
+        {"t" : "splash", "dist" : 60}
+      ],
+      "hp" : 381,
+      "attackRange" : 218,
+      "damageToUnits" : [127, 254],
+      "damageToBuildings" : [114, 152]
+    },
+    "3" : {
+      "special" : [
+        {"t" : "splash", "dist" : 70}
+      ],
+      "hp" : 479,
+      "attackRange" : 222,
+      "damageToUnits" : [160, 319],
+      "damageToBuildings" : [143, 191]
+    },
+    "4" : {
+      "special" : [
+        {"t" : "splash", "dist" : 80}
+      ],
+      "hp" : 596,
+      "attackRange" : 226,
+      "damageToUnits" : [199, 397],
+      "damageToBuildings" : [178, 238]
+    },
+    "5" : {
+      "special" : [
+        {"t" : "splash", "dist" : 90}
+      ],
+      "hp" : 734,
+      "attackRange" : 231,
+      "damageToUnits" : [245, 489],
+      "damageToBuildings" : [219, 293]
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "id" : "h_castle",
+  "unlockLevel" : 1,
+  "category" : 1,
+  "cardType" : "castle",
+  "race" : "human",
+  "name": "H_CASTLE",
+  "radius" : 50,
+  "height": 38,
+  "mineTime": 3000,
+  "areaDistance": 2,
+  "timeToDeath" : 0,
+  "icon": "icon_h_castle.png",
+  "skin" : "hCastle",
+  "baseState" : [{"skn" : "idle"}],
+  "actionState" : [{"skn" : "work"}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions": ["leave"],
+  "levels" : {
+    "1" : {
+      "hp": 700,
+      "mineCoins": 8
+    },
+    "2" : {
+      "hp": 840,
+      "mineCoins": 9
+    },
+    "3" : {
+      "hp": 1008,
+      "mineCoins": 10
+    },
+    "4" : {
+      "hp": 1210,
+      "mineCoins": 11
+    },
+    "5" : {
+      "hp": 1452,
+      "mineCoins": 12
+    },
+    "6" : {
+      "hp": 1597,
+      "mineCoins": 13
+    },
+    "7" : {
+      "hp": 1757,
+      "mineCoins": 14
+    },
+    "8" : {
+      "hp": 1933,
+      "mineCoins": 15
+    },
+    "9" : {
+      "hp": 2126,
+      "mineCoins": 16
+    },
+    "10" : {
+      "hp": 2232,
+      "mineCoins": 17
+    },
+    "11" : {
+      "hp": 2344,
+      "mineCoins": 18
+    },
+    "12" : {
+      "hp": 2461,
+      "mineCoins": 19
+    },
+    "13" : {
+      "hp": 2584,
+      "mineCoins": 20
+    }
+  }
+}

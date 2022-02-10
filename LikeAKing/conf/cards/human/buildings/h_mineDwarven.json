@@ -1,0 +1,84 @@
+{
+  "id" : "h_mineDwarven",
+  "deck" : true,
+  "unlockLevel" : 4,
+  "category" : 3,
+  "cardType" : "mine",
+  "race" : "human",
+  "name" : "H_MINE_DWARVEN",
+  "description" : "H_MINE_DWARVEN_DESC",
+  "buildPrice" : 190,
+  "destroyPrice" : -95,
+  "radius" : 50,
+  "height": 30,
+  "areaDistance" : 2,
+  "mineTime" : 2000,
+  "timeToBuild" : 3000,
+  "timeToDeath" : 0,
+  "icon" : "icon_h_mine2.png",
+  "skin" : "hGoldmineDwarven",
+  "baseState" : [{"skn" : "idle", "snd" : ["snd_mineReady"]}],
+  "actionState" : [{"skn" : "work"}],
+  "buildState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "destroyState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions" : ["build", "destroy"],
+  "levels" : {
+    "1" : {
+      "special" : [
+        {"t" : "mine_decor", "val" : 3}
+      ],
+      "hp" : 300,
+      "mineCoins" : 15
+    },
+    "2" : {
+      "special" : [
+        {"t" : "mine_decor", "val" : 4}
+      ],
+      "hp" : 369,
+      "mineCoins" : 16
+    },
+    "3" : {
+      "special" : [
+        {"t" : "mine_decor", "val" : 5}
+      ],
+      "hp" : 452,
+      "mineCoins" : 17
+    },
+    "4" : {
+      "special" : [
+        {"t" : "mine_decor", "val" : 5}
+      ],
+      "hp" : 548,
+      "mineCoins" : 18
+    },
+    "5" : {
+      "special" : [
+        {"t" : "mine_decor", "val" : 5}
+      ],
+      "hp" : 657,
+      "mineCoins" : 19
+    },
+    "6" : {
+      "special" : [
+        {"t" : "mine_decor", "val" : 6}
+      ],
+      "hp" : 780,
+      "mineCoins" : 20
+    },
+    "7" : {
+      "special" : [
+        {"t" : "mine_decor", "val" : 6}
+      ],
+      "hp" : 917,
+      "mineCoins" : 21
+    },
+    "8" : {
+      "special" : [
+        {"t" : "mine_decor", "val" : 7}
+      ],
+      "hp" : 1067,
+      "mineCoins" : 22
+    }
+  }
+}

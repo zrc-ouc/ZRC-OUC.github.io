@@ -1,0 +1,110 @@
+{
+  "id" : "ht_archer",
+  "deck" : true,
+  "unlockLevel" : 1,
+  "category" : 1,
+  "cardType" : "tower",
+  "race" : "human",
+  "name" : "H_T_HEAVYARCHER",
+  "description" : "H_T_HEAVYARCHER_DESC",
+  "buildPrice" : 150,
+  "destroyPrice" : -75,
+  "rMode" : 2,
+  "radius" : 50,
+  "height": 50,
+  "areaDistance" : 2,
+  "attackSpeed" : 100,
+  "reloadAttackSpeed" : 1700,
+  "timeToBuild" : 5000,
+  "timeToDeath" : 0,
+  "bullet" : "bul_bolt",
+  "attackType" : "range",
+  "icon" : "icon_ht_heavyarcher.png",
+  "skin" : "htMarksman",
+  "baseState" : [{"skn" : "idle", "snd" : ["snd_towerReady"]}],
+  "attackState" : [{"skn" : "idle", "fr" : 0.5}],
+  "buildState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "destroyState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions" : ["build", "destroy"],
+  "levels" : {
+    "1" : {
+      "hp" : 170,
+      "attackRange" : 170,
+      "damageToUnits" : [24, 45],
+      "damageToBuildings" : [6, 16]
+    },
+    "2" : {
+      "hp" : 204,
+      "attackRange" : 173,
+      "damageToUnits" : [29, 54],
+      "damageToBuildings" : [7, 19]
+    },
+    "3" : {
+      "hp" : 241,
+      "attackRange" : 176,
+      "damageToUnits" : [34, 64],
+      "damageToBuildings" : [8, 22]
+    },
+    "4" : {
+      "hp" : 281,
+      "attackRange" : 180,
+      "damageToUnits" : [40, 75],
+      "damageToBuildings" : [9, 26]
+    },
+    "5" : {
+      "hp" : 323,
+      "attackRange" : 184,
+      "damageToUnits" : [46, 86],
+      "damageToBuildings" : [10, 30]
+    },
+    "6" : {
+      "hp" : 366,
+      "attackRange" : 187,
+      "damageToUnits" : [52, 98],
+      "damageToBuildings" : [11, 34]
+    },
+    "7" : {
+      "hp" : 409,
+      "attackRange" : 190,
+      "damageToUnits" : [58, 110],
+      "damageToBuildings" : [12, 38]
+    },
+    "8" : {
+      "hp" : 451,
+      "attackRange" : 193,
+      "damageToUnits" : [64, 121],
+      "damageToBuildings" : [13, 42]
+    },
+    "9" : {
+      "hp" : 490,
+      "attackRange" : 196,
+      "damageToUnits" : [70, 132],
+      "damageToBuildings" : [14, 46]
+    },
+    "10" : {
+      "hp" : 525,
+      "attackRange" : 198,
+      "damageToUnits" : [75, 142],
+      "damageToBuildings" : [15, 49]
+    },
+    "11" : {
+      "hp" : 555,
+      "attackRange" : 200,
+      "damageToUnits" : [79, 150],
+      "damageToBuildings" : [16, 52]
+    },
+    "12" : {
+      "hp" : 578,
+      "attackRange" : 202,
+      "damageToUnits" : [82, 156],
+      "damageToBuildings" : [17, 54]
+    },
+    "13" : {
+      "hp" : 594,
+      "attackRange" : 204,
+      "damageToUnits" : [84, 160],
+      "damageToBuildings" : [17, 55]
+    }
+  }
+}

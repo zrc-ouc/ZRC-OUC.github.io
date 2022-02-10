@@ -1,0 +1,107 @@
+{
+  "id" : "ht_mage",
+  "deck" : true,
+  "unlockLevel" : 5,
+  "category" : 3,
+  "cardType" : "tower",
+  "race" : "human",
+  "name" : "H_T_MAGE",
+  "description" : "H_T_MAGE_DESC",
+  "buildPrice" : 220,
+  "destroyPrice" : -110,
+  "rMode" : 1,
+  "radius" : 50,
+  "height": 50,
+  "areaDistance" : 2,
+  "bulletFrom" : [{"x" : -46, "y" : -136}, {"x" : 46, "y" : -136}],
+  "attackSpeed" : 500,
+  "reloadAttackSpeed" : 1500,
+  "timeToBuild" : 5000,
+  "timeToDeath" : 0,
+  "attackType" : "range",
+  "bullet" : "bul_fireball",
+  "icon" : "icon_ht_mage.png",
+  "skin" : "htMage",
+  "baseState" : [{"skn" : "idle", "snd" : ["snd_towerReady"]}],
+  "baseStateR" : [{"skn" : "idleReverse"}],
+  "attackState" : [{"skn" : "attack", "fr" : 0.6}, {"skn" : "attack2", "fr" : 0.66}, {"skn" : "attack3", "fr" : 0.66}],
+  "attackStateR" : [{"skn" : "attackReverse", "fr" : 0.6, "snd" : ["snd_aFrbl1"]}, {"skn" : "attack2Reverse", "fr" : 0.66, "snd" : ["snd_aFrbl1"]}, {"skn" : "attack3Reverse", "fr" : 0.66, "snd" : ["snd_aFrbl1"]}],
+  "buildState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "destroyState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions" : ["build", "destroy"],
+  "levels" : {
+    "1" : {
+      "special" : [
+        {"t" : "splash", "dist" : 40}
+      ],
+      "hp" : 250,
+      "attackRange" : 190,
+      "damageToUnits" : [46, 110],
+      "damageToBuildings" : [32, 46]
+    },
+    "2" : {
+      "special" : [
+        {"t" : "splash", "dist" : 45}
+      ],
+      "hp" : 308,
+      "attackRange" : 194,
+      "damageToUnits" : [57, 135],
+      "damageToBuildings" : [39, 57]
+    },
+    "3" : {
+      "special" : [
+        {"t" : "splash", "dist" : 50}
+      ],
+      "hp" : 377,
+      "attackRange" : 198,
+      "damageToUnits" : [70, 165],
+      "damageToBuildings" : [48, 70]
+    },
+    "4" : {
+      "special" : [
+        {"t" : "splash", "dist" : 55}
+      ],
+      "hp" : 457,
+      "attackRange" : 202,
+      "damageToUnits" : [85, 200],
+      "damageToBuildings" : [58, 85]
+    },
+    "5" : {
+      "special" : [
+        {"t" : "splash", "dist" : 60}
+      ],
+      "hp" : 548,
+      "attackRange" : 205,
+      "damageToUnits" : [102, 240],
+      "damageToBuildings" : [70, 102]
+    },
+    "6" : {
+      "special" : [
+        {"t" : "splash", "dist" : 65}
+      ],
+      "hp" : 651,
+      "attackRange" : 208,
+      "damageToUnits" : [121, 285],
+      "damageToBuildings" : [83, 121]
+    },
+    "7" : {
+      "special" : [
+        {"t" : "splash", "dist" : 70}
+      ],
+      "hp" : 765,
+      "attackRange" : 211,
+      "damageToUnits" : [142, 335],
+      "damageToBuildings" : [98, 142]
+    },
+    "8" : {
+      "special" : [
+        {"t" : "splash", "dist" : 75}
+      ],
+      "hp" : 890,
+      "attackRange" : 214,
+      "damageToUnits" : [165, 390],
+      "damageToBuildings" : [114, 165]
+    }
+  }
+}

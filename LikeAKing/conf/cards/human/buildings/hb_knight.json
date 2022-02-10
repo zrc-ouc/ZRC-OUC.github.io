@@ -1,0 +1,44 @@
+{
+  "id" : "hb_knight",
+  "deck" : true,
+  "unlockLevel" : 6,
+  "category" : 4,
+  "cardType" : "melee",
+  "race" : "human",
+  "name" : "H_B_KNIGHT",
+  "description" : "H_B_KNIGHT_DESC",
+  "buildPrice" : 270,
+  "destroyPrice" : -135,
+  "radius" : 50,
+  "height": 30,
+  "areaDistance" : 2,
+  "timeToRespawn" : [8000, 11000],
+  "timeToBuild" : 6000,
+  "timeToDeath" : 0,
+  "unit" : "hu_knight",
+  "icon" : "icon_hb_knight.png",
+  "skin" : "hbKnight",
+  "baseState" : [{"skn" : "idle", "snd" : ["snd_barrackReady"]}],
+  "actionState" : [{"skn" : "work"}],
+  "buildState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "destroyState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions" : ["build", "destroy", "remove_way"],
+  "levels" : {
+    "1" : {
+      "hp" : 360
+    },
+    "2" : {
+      "hp" : 457
+    },
+    "3" : {
+      "hp" : 575
+    },
+    "4" : {
+      "hp" : 716
+    },
+    "5" : {
+      "hp" : 882
+    }
+  }
+}

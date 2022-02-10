@@ -1,0 +1,68 @@
+{
+  "id" : "hb_archer",
+  "deck" : true,
+  "unlockLevel" : 1,
+  "category" : 1,
+  "cardType" : "range",
+  "race" : "human",
+  "name" : "H_B_ARCHER",
+  "description" : "H_B_ARCHER_DESC",
+  "buildPrice" : 210,
+  "destroyPrice" : -105,
+  "radius" : 50,
+  "height": 30,
+  "areaDistance" : 2,
+  "timeToRespawn" : [6000, 8000],
+  "timeToBuild" : 5500,
+  "timeToDeath" : 0,
+  "unit" : "hu_archer",
+  "icon" : "icon_hb_archer.png",
+  "skin" : "hbArcher",
+  "baseState" : [{"skn" : "idle", "snd" : ["snd_barrackReady"]}],
+  "actionState" : [{"skn" : "work"}],
+  "buildState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "destroyState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions" : ["build", "destroy", "remove_way"],
+  "levels" : {
+    "1" : {
+      "hp" : 160
+    },
+    "2" : {
+      "hp" : 192
+    },
+    "3" : {
+      "hp" : 227
+    },
+    "4" : {
+      "hp" : 265
+    },
+    "5" : {
+      "hp" : 305
+    },
+    "6" : {
+      "hp" : 346
+    },
+    "7" : {
+      "hp" : 387
+    },
+    "8" : {
+      "hp" : 427
+    },
+    "9" : {
+      "hp" : 464
+    },
+    "10" : {
+      "hp" : 497
+    },
+    "11" : {
+      "hp" : 525
+    },
+    "12" : {
+      "hp" : 547
+    },
+    "13" : {
+      "hp" : 562
+    }
+  }
+}

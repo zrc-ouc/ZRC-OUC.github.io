@@ -1,0 +1,68 @@
+{
+  "id" : "hb_peasant",
+  "deck" : true,
+  "unlockLevel" : 1,
+  "category" : 1,
+  "cardType" : "melee",
+  "race" : "human",
+  "name" : "H_B_PEASANT",
+  "description" : "H_B_PEASANT_DESC",
+  "buildPrice" : 200,
+  "destroyPrice" : -100,
+  "radius" : 50,
+  "height": 30,
+  "areaDistance" : 2,
+  "timeToRespawn" : [5000, 7000],
+  "timeToBuild" : 5000,
+  "timeToDeath" : 0,
+  "unit" : "hu_peasant",
+  "icon" : "icon_hb_peasant.png",
+  "skin" : "hbPeasant",
+  "baseState" : [{"skn" : "idle", "snd" : ["snd_barrackReady"]}],
+  "actionState" : [{"skn" : "work"}],
+  "buildState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "destroyState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions" : ["build", "destroy", "remove_way"],
+  "levels" : {
+    "1" : {
+      "hp" : 130
+    },
+    "2" : {
+      "hp" : 156
+    },
+    "3" : {
+      "hp" : 185
+    },
+    "4" : {
+      "hp" : 216
+    },
+    "5" : {
+      "hp" : 248
+    },
+    "6" : {
+      "hp" : 281
+    },
+    "7" : {
+      "hp" : 314
+    },
+    "8" : {
+      "hp" : 346
+    },
+    "9" : {
+      "hp" : 376
+    },
+    "10" : {
+      "hp" : 403
+    },
+    "11" : {
+      "hp" : 426
+    },
+    "12" : {
+      "hp" : 444
+    },
+    "13" : {
+      "hp" : 456
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "id" : "hb_assassin",
+  "deck" : true,
+  "unlockLevel" : 3,
+  "category" : 2,
+  "cardType" : "melee",
+  "race" : "human",
+  "name" : "H_B_ASSASSIN",
+  "description" : "H_B_ASSASSIN_DESC",
+  "buildPrice" : 220,
+  "destroyPrice" : -110,
+  "radius" : 50,
+  "height": 30,
+  "areaDistance" : 2,
+  "timeToRespawn" : [6000, 8000],
+  "timeToBuild" : 4000,
+  "timeToDeath" : 0,
+  "unit" : "hu_assassin",
+  "icon" : "icon_hb_assasin.png",
+  "skin" : "hbAssasin",
+  "baseState" : [{"skn" : "idle", "snd" : ["snd_barrackReady"]}],
+  "actionState" : [{"skn" : "work"}],
+  "buildState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "destroyState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions" : ["build", "destroy", "remove_way"],
+  "levels" : {
+    "1" : {
+      "hp" : 180
+    },
+    "2" : {
+      "hp" : 216
+    },
+    "3" : {
+      "hp" : 257
+    },
+    "4" : {
+      "hp" : 302
+    },
+    "5" : {
+      "hp" : 352
+    },
+    "6" : {
+      "hp" : 406
+    },
+    "7" : {
+      "hp" : 463
+    },
+    "8" : {
+      "hp" : 523
+    },
+    "9" : {
+      "hp" : 585
+    },
+    "10" : {
+      "hp" : 648
+    },
+    "11" : {
+      "hp" : 710
+    }
+  }
+}

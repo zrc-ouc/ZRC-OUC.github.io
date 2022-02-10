@@ -1,0 +1,62 @@
+{
+  "id" : "hb_rifleman",
+  "deck" : true,
+  "unlockLevel" : 3,
+  "category" : 2,
+  "cardType" : "range",
+  "race" : "human",
+  "name" : "H_B_RIFLEMAN",
+  "description" : "H_B_RIFLEMAN_DESC",
+  "buildPrice" : 230,
+  "destroyPrice" : -115,
+  "radius" : 50,
+  "height": 30,
+  "areaDistance" : 2,
+  "timeToRespawn" : [7000, 9000],
+  "timeToBuild" : 5000,
+  "timeToDeath" : 0,
+  "unit" : "hu_rifleman",
+  "icon" : "icon_hb_rifleman.png",
+  "skin" : "hbRifleman",
+  "baseState" : [{"skn" : "idle", "snd" : ["snd_barrackReady"]}],
+  "actionState" : [{"skn" : "work"}],
+  "buildState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "destroyState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions" : ["build", "destroy", "remove_way"],
+  "levels" : {
+    "1" : {
+      "hp" : 220
+    },
+    "2" : {
+      "hp" : 264
+    },
+    "3" : {
+      "hp" : 314
+    },
+    "4" : {
+      "hp" : 369
+    },
+    "5" : {
+      "hp" : 430
+    },
+    "6" : {
+      "hp" : 496
+    },
+    "7" : {
+      "hp" : 566
+    },
+    "8" : {
+      "hp" : 639
+    },
+    "9" : {
+      "hp" : 715
+    },
+    "10" : {
+      "hp" : 792
+    },
+    "11" : {
+      "hp" : 868
+    }
+  }
+}

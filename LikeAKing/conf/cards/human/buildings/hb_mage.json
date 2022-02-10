@@ -1,0 +1,53 @@
+{
+  "id" : "hb_mage",
+  "deck" : true,
+  "unlockLevel" : 5,
+  "category" : 3,
+  "cardType" : "range",
+  "race" : "human",
+  "name" : "H_B_MAGE",
+  "description" : "H_B_MAGE_DESC",
+  "buildPrice" : 250,
+  "destroyPrice" : -125,
+  "radius" : 50,
+  "height": 30,
+  "areaDistance" : 2,
+  "timeToRespawn" : [7000, 11000],
+  "timeToBuild" : 5000,
+  "timeToDeath" : 0,
+  "unit" : "hu_mage",
+  "icon" : "icon_hb_mage.png",
+  "skin" : "hbMage",
+  "baseState" : [{"skn" : "idle", "snd" : ["snd_barrackReady"]}],
+  "actionState" : [{"skn" : "work"}],
+  "buildState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "destroyState" : [{"skn" : "building", "snd" : ["snd_building"]}],
+  "deathState" : [{"skn" : "destroy", "snd" : ["snd_buildDeath1", "snd_buildDeath2", "snd_buildDeath3"]}],
+  "actions" : ["build", "destroy", "remove_way"],
+  "levels" : {
+    "1" : {
+      "hp" : 300
+    },
+    "2" : {
+      "hp" : 369
+    },
+    "3" : {
+      "hp" : 452
+    },
+    "4" : {
+      "hp" : 548
+    },
+    "5" : {
+      "hp" : 657
+    },
+    "6" : {
+      "hp" : 780
+    },
+    "7" : {
+      "hp" : 917
+    },
+    "8" : {
+      "hp" : 1067
+    }
+  }
+}
