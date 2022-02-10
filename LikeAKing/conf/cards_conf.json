@@ -1,0 +1,124 @@
+{
+  "reg" : {
+    "cards" : {
+      "h_mine": {
+        "exp": 0,
+        "lvl": 1
+      },
+      "ht_archer": {
+        "exp": 0,
+        "lvl": 1
+      },
+      "hb_archer": {
+        "exp": 0,
+        "lvl": 1
+      },
+      "hb_peasant": {
+        "exp": 0,
+        "lvl": 1
+      }
+    },
+    "decks" : {
+      "active" : "1",
+      "decks" : {
+        "1": {
+          "cards" : {
+            "mine": "h_mine",
+            "tower": "ht_archer",
+            "melee": "hb_peasant",
+            "range": "hb_archer"
+          }
+        },
+        "2": {
+          "cards" : {
+            "mine": "h_mine",
+            "tower": "ht_archer",
+            "melee": "hb_peasant",
+            "range": "hb_archer"
+          }
+        }
+      }
+    }
+  },
+  "config" : [
+    "cards/decor/hn_stone1.json",
+    "cards/decor/hn_stone2.json",
+    "cards/decor/hn_stoneDesert1.json",
+    "cards/decor/hn_stoneDesert2.json",
+    "cards/decor/hn_treeDesert1.json",
+    "cards/decor/hn_treeDesert2.json",
+    "cards/decor/hn_treeGrass1.json",
+    "cards/decor/hn_treeGrass2.json",
+    "cards/decor/hn_treeSwamp1.json",
+    "cards/decor/hn_treeSwamp2.json",
+    "cards/decor/hn_treeWinter1.json",
+    "cards/decor/hn_treeWinter2.json",
+    "cards/decor/n_stone1.json",
+    "cards/decor/n_stone2.json",
+    "cards/decor/n_stoneDesert1.json",
+    "cards/decor/n_stoneDesert2.json",
+    "cards/decor/n_treeDesert1.json",
+    "cards/decor/n_treeDesert2.json",
+    "cards/decor/n_treeGrass1.json",
+    "cards/decor/n_treeGrass2.json",
+    "cards/decor/n_treeSwamp1.json",
+    "cards/decor/n_treeSwamp2.json",
+    "cards/decor/n_treeWinter1.json",
+    "cards/decor/n_treeWinter2.json",
+    "cards/decor/on_stone1.json",
+    "cards/decor/on_stone2.json",
+    "cards/decor/on_stoneDesert1.json",
+    "cards/decor/on_stoneDesert2.json",
+    "cards/decor/on_treeDesert1.json",
+    "cards/decor/on_treeDesert2.json",
+    "cards/decor/on_treeGrass1.json",
+    "cards/decor/on_treeGrass2.json",
+    "cards/decor/on_treeSwamp1.json",
+    "cards/decor/on_treeSwamp2.json",
+    "cards/decor/on_treeWinter1.json",
+    "cards/decor/on_treeWinter2.json",
+
+    "cards/human/buildings/h_castle.json",
+    "cards/human/buildings/h_mine.json",
+    "cards/human/buildings/h_mineDwarven.json",
+    "cards/human/buildings/hb_archer.json",
+    "cards/human/buildings/hb_assassin.json",
+    "cards/human/buildings/hb_knight.json",
+    "cards/human/buildings/hb_mage.json",
+    "cards/human/buildings/hb_peasant.json",
+    "cards/human/buildings/hb_rifleman.json",
+    "cards/human/buildings/ht_archer.json",
+    "cards/human/buildings/ht_mage.json",
+    "cards/human/buildings/ht_mortar.json",
+
+    "cards/human/units/hu_archer.json",
+    "cards/human/units/hu_assassin.json",
+    "cards/human/units/hu_knight.json",
+    "cards/human/units/hu_mage.json",
+    "cards/human/units/hu_peasant.json",
+    "cards/human/units/hu_rifleman.json",
+
+    "cards/orc/buildings/o_castle.json",
+    "cards/orc/buildings/o_mineRaider.json",
+    "cards/orc/buildings/ob_marauder.json",
+    "cards/orc/buildings/ob_hunter.json",
+    "cards/orc/buildings/ob_sapper.json",
+    "cards/orc/buildings/ob_goblinWarrior.json",
+
+    "cards/orc/buildings/ot_trap.json",
+    "cards/orc/buildings/ot_archer.json",
+
+    "cards/orc/units/ou_marauder.json",
+    "cards/orc/units/ou_sapper.json",
+    "cards/orc/units/ou_hunter.json",
+    "cards/orc/units/ou_goblinWarrior.json",
+
+    "cards/bullets/arrow.json",
+    "cards/bullets/bolt.json",
+    "cards/bullets/bomb.json",
+    "cards/bullets/fireball.json",
+    "cards/bullets/huntSpear.json",
+    "cards/bullets/mortarShell.json",
+    "cards/bullets/shellMusket.json"
+  ]
+}

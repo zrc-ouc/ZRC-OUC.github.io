@@ -1,0 +1,1160 @@
+{
+  "reg" : {
+    "cells" : {
+      "1" : 0,
+      "2" : 0,
+      "3" : 0,
+      "4" : 0
+    }
+  },
+  "expressOpenPricePerHour": [
+    {
+      "id": 2,
+      "count": 3
+    }
+  ],
+  "findChances": {
+    "1" : 0.4,
+    "2" : 0.3,
+    "3" : 0.2,
+    "4" : 0.1
+  },
+  "adSpeedUpTime" : 1800000,
+  "boxes": {
+    "common_base": {
+      "name": "TYPICAL_BOX_NAME",
+      "pack": "chest1",
+      "img": "Chest01"
+    },
+    "conventional_base": {
+      "name": "CONVENTIONAL_BOX_NAME",
+      "pack": "chest1",
+      "img": "Chest02"
+    },
+    "epic_base": {
+      "name": "EPIC_BOX_NAME",
+      "pack": "chest1",
+      "img": "Chest03"
+    },
+    "legendary_base": {
+      "name": "LEGENDARY_BOX_NAME",
+      "pack": "chest1",
+      "img": "Chest10"
+    },
+    "huge_base": {
+      "name": "HUGE_BOX_NAME",
+      "pack": "chest1",
+      "img": "Chest11"
+    },
+    "gift": {
+      "name": "BOX_GIFT",
+      "pack": "chest2",
+      "from": {
+        "shop": 1
+      },
+      "img": "ChestOnePiece04",
+      "loot": {}
+    },
+    "hellberry": {
+      "name": "BOX_HELLBERRY",
+      "pack": "chest2",
+      "from": {
+        "shop": 1
+      },
+      "img": "ChestOnePiece01",
+      "loot" : {
+        "chance": [
+          {
+            "chance": 0.9,
+            "cards" : [
+              {"category" : 1, "count" : 20}
+            ]
+          },
+          {
+            "chance": 0.1,
+            "cards" : [
+              {"category" : 2, "count" : 5}
+            ]
+          }
+        ],
+        "open": [1, 2]
+      }
+    },
+    "pig": {
+      "name": "BOX_PIG",
+      "pack": "chest2",
+      "from": {
+        "shop": 1
+      },
+      "img": "ChestOnePiece02",
+      "loot" : {
+        "chance": [
+          {
+            "chance": 0.7,
+            "cards" : [
+              {"category" : 1, "count" : 100}
+            ]
+          },
+          {
+            "chance": 0.2,
+            "cards" : [
+              {"category" : 2, "count" : 30}
+            ]
+          },
+          {
+            "chance": 0.1,
+            "cards" : [
+              {"category" : 3, "count" : 7}
+            ]
+          }
+        ],
+        "open": [2, 3]
+      }
+    },
+    "pinyata": {
+      "name": "BOX_PINYATA",
+      "pack": "chest2",
+      "from": {
+        "shop": 1
+      },
+      "img": "ChestOnePiece03",
+      "loot" : {
+        "chance": [
+          {
+            "chance": 0.7,
+            "cards" : [
+              {"category" : 2, "count" : 80}
+            ]
+          },
+          {
+            "chance": 0.2,
+            "cards" : [
+              {"category" : 3, "count" : 20}
+            ]
+          },
+          {
+            "chance": 0.1,
+            "cards" : [
+              {"category" : 4, "count" : 5}
+            ]
+          }
+        ],
+        "open": [3, 4]
+      }
+    },
+    "pinyata10": {
+      "name": "OFFER_PINYATA",
+      "pack": "chest2",
+      "from": {
+        "shop": 1
+      },
+      "img": "ChestOnePiece03",
+      "loot" : {
+        "cards": [
+          {
+            "category": 2,
+            "count": 140
+          },
+          {
+            "category": 2,
+            "count": 140
+          },
+          {
+            "category": 2,
+            "count": 140
+          },
+          {
+            "category": 2,
+            "count": 140
+          },
+          {
+            "category": 3,
+            "count": 20
+          },
+          {
+            "category": 3,
+            "count": 20
+          },
+          {
+            "category": 4,
+            "count": 5
+          }
+        ]
+      }
+    },
+    "tutorDone": {
+      "name": "BOX_GIFT",
+      "pack": "chest2",
+      "img": "ChestOnePiece04",
+      "increasable" : 1,
+      "loot": {
+        "resources": {
+          "1": [100, 100]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 3
+          },
+          {
+            "category": 1,
+            "count": 3
+          },
+          {
+            "category": 2,
+            "count": 1
+          }
+        ]
+      }
+    },
+    "tutorLoot1": {
+      "name": "TYPICAL_BOX_NAME",
+      "type": 1,
+      "pack": "chest1",
+      "img": "Chest01",
+      "timeToOpen": 3,
+      "loot": {
+        "resources": {
+          "1": [20, 20]
+        },
+        "cards": [
+          {
+            "id": "hb_archer",
+            "count": 2
+          },
+          {
+            "id": "hb_peasant",
+            "count": 2
+          }
+        ]
+      }
+    },
+    "tutorLoot2": {
+      "name": "CONVENTIONAL_BOX_NAME",
+      "type": 2,
+      "pack": "chest1",
+      "img": "Chest02",
+      "timeToOpen": 3,
+      "loot": {
+        "resources": {
+          "1": [30, 30]
+        },
+        "cards": [
+          {
+            "id": "h_mine",
+            "count": 2
+          }
+        ]
+      }
+    },
+    "tutorLoot3": {
+      "name": "TYPICAL_BOX_NAME",
+      "type": 1,
+      "pack": "chest1",
+      "img": "Chest01",
+      "timeToOpen": 30,
+      "loot": {
+        "resources": {
+          "1": [42, 54]
+        },
+        "cards": [
+          {
+            "id": "ht_archer",
+            "count": 3
+          }
+        ]
+      }
+    },
+    "tutorLoot4": {
+      "name": "HUGE_BOX_NAME",
+      "pack": "chest1",
+      "img": "Chest11",
+      "timeToOpen": 60,
+      "loot": {
+        "resources": {
+          "1": [46, 64]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 2
+          },
+          {
+            "category": 1,
+            "count": 3
+          },
+          {
+            "category": 2,
+            "count": 1
+          }
+        ]
+      }
+    },
+    "5": {
+      "name": "TYPICAL_BOX_NAME",
+      "type": 1,
+      "pack": "chest1",
+      "img": "Chest01",
+      "league": 1,
+      "timeToOpen": 3600,
+      "loot": {
+        "resources": {
+          "1": [22, 24]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 3
+          }
+        ],
+        "open": [1]
+      }
+    },
+    "6": {
+      "name": "CONVENTIONAL_BOX_NAME",
+      "type": 2,
+      "pack": "chest1",
+      "img": "Chest02",
+      "league": 1,
+      "timeToOpen": 7200,
+      "increasable" : 1,
+      "loot": {
+        "resources": {
+          "1": [26, 32]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 3
+          },
+          {
+            "category": 2,
+            "count": 1
+          }
+        ],
+        "open": [1, 2]
+      }
+    },
+    "7": {
+      "name": "TYPICAL_BOX_NAME",
+      "type": 1,
+      "pack": "chest1",
+      "img": "Chest01",
+      "league": 2,
+      "timeToOpen": 3600,
+      "loot": {
+        "resources": {
+          "1": [24, 32]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 4
+          }
+        ],
+        "open": [1],
+        "chance": [
+          {
+            "chance": 0.1,
+            "cards": [
+              {"category": 2, "count": 1}
+            ]
+          }
+        ]
+      }
+    },
+    "8": {
+      "name": "CONVENTIONAL_BOX_NAME",
+      "type": 2,
+      "pack": "chest1",
+      "img": "Chest02",
+      "league": 2,
+      "timeToOpen": 7200,
+      "loot": {
+        "resources": {
+          "1": [28, 42]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 4
+          },
+          {
+            "category": 2,
+            "count": 1
+          }
+        ],
+        "open": [1, 2],
+        "chance": [{
+          "chance": 0.05,
+          "cards": [
+            {"category": 3, "count": 1}
+          ]
+        }]
+      }
+    },
+    "9": {
+      "name": "EPIC_BOX_NAME",
+      "type": 3,
+      "pack": "chest1",
+      "img": "Chest03",
+      "league": 2,
+      "timeToOpen": 43200,
+      "increasable" : 1,
+      "loot": {
+        "resources": {
+          "1": [56, 74]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 6
+          },
+          {
+            "category": 3,
+            "count": 1
+          }
+        ],
+        "open": [1, 2, 3],
+        "chance": [{
+          "chance": 0.03,
+          "cards": [
+            {"category": 4, "count": 1}
+          ]
+        }]
+      }
+    },
+    "10": {
+      "name": "TYPICAL_BOX_NAME",
+      "type": 1,
+      "pack": "chest1",
+      "img": "Chest01",
+      "league": 3,
+      "timeToOpen": 3600,
+      "loot": {
+        "resources": {
+          "1": [42, 56]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 6
+          }
+        ],
+        "open": [1],
+        "chance": [{
+          "chance": 0.1,
+          "cards": [
+            {"category": 2, "count": 1}
+          ]
+        }]
+      }
+    },
+    "11": {
+      "name": "CONVENTIONAL_BOX_NAME",
+      "type": 2,
+      "pack": "chest1",
+      "img": "Chest02",
+      "league": 3,
+      "timeToOpen": 7200,
+      "loot": {
+        "resources": {
+          "1": [56, 72]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 6
+          },
+          {
+            "category": 2,
+            "count": 2
+          }
+        ],
+        "open": [1, 2],
+        "chance": [{
+          "chance": 0.05,
+          "cards": [
+            {"category": 3, "count": 1}
+          ]
+        }]
+      }
+    },
+    "12": {
+      "name": "EPIC_BOX_NAME",
+      "type": 3,
+      "pack": "chest1",
+      "img": "Chest03",
+      "league": 3,
+      "timeToOpen": 43200,
+      "increasable" : 1,
+      "loot": {
+        "resources": {
+          "1": [76, 106]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 5
+          },
+          {
+            "category": 1,
+            "count": 5
+          },
+          {
+            "category": 3,
+            "count": 1
+          }
+        ],
+        "open": [2, 3],
+        "chance": [{
+          "chance": 0.03,
+          "cards": [
+            {"category": 4, "count": 1}
+          ]
+        }]
+      }
+    },
+    "13": {
+      "name": "LEGENDARY_BOX_NAME",
+      "type": 4,
+      "pack": "chest1",
+      "img": "Chest10",
+      "league": 3,
+      "timeToOpen": 86400,
+      "loot": {
+        "resources": {
+          "1": [102, 156]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 15
+          },
+          {
+            "category": 2,
+            "count": 2
+          },
+          {
+            "category": 4,
+            "count": 1
+          }
+        ],
+        "open": [3, 4]
+      }
+    },
+    "14": {
+      "name": "TYPICAL_BOX_NAME",
+      "type": 1,
+      "pack": "chest1",
+      "img": "Chest01",
+      "league": 4,
+      "timeToOpen": 3600,
+      "loot": {
+        "resources": {
+          "1": [64, 82]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 5
+          },
+          {
+            "category": 1,
+            "count": 5
+          }
+        ],
+        "open": [1],
+        "chance": [{
+          "chance": 0.1,
+          "cards": [
+            {"category": 2, "count": 1}
+          ]
+        }]
+      }
+    },
+    "15": {
+      "name": "CONVENTIONAL_BOX_NAME",
+      "type": 2,
+      "pack": "chest1",
+      "img": "Chest02",
+      "league": 4,
+      "timeToOpen": 7200,
+      "loot": {
+        "resources": {
+          "1": [74, 102]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 5
+          },
+          {
+            "category": 1,
+            "count": 5
+          },
+          {
+            "category": 2,
+            "count": 2
+          }
+        ],
+        "open": [1, 2],
+        "chance": [{
+          "chance": 0.05,
+          "cards": [
+            {"category": 3, "count": 1}
+          ]
+        }]
+      }
+    },
+    "16": {
+      "name": "EPIC_BOX_NAME",
+      "type": 3,
+      "pack": "chest1",
+      "img": "Chest03",
+      "league": 4,
+      "timeToOpen": 43200,
+      "increasable" : 1,
+      "loot": {
+        "resources": {
+          "1": [92, 126]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 10
+          },
+          {
+            "category": 1,
+            "count": 10
+          },
+          {
+            "category": 2,
+            "count": 2
+          },
+          {
+            "category": 3,
+            "count": 1
+          }
+        ],
+        "open": [2, 3],
+        "chance": [{
+          "chance": 0.03,
+          "cards": [
+            {"category": 4, "count": 1}
+          ]
+        }]
+      }
+    },
+    "17": {
+      "name": "LEGENDARY_BOX_NAME",
+      "type": 4,
+      "pack": "chest1",
+      "img": "Chest10",
+      "league": 4,
+      "timeToOpen": 86400,
+      "loot": {
+        "resources": {
+          "1": [167, 192]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 10
+          },
+          {
+            "category": 1,
+            "count": 10
+          },
+          {
+            "category": 2,
+            "count": 4
+          },
+          {
+            "category": 3,
+            "count": 1
+          },
+          {
+            "category": 4,
+            "count": 1
+          }
+        ],
+        "open": [3, 4]
+      }
+    },
+    "18": {
+      "name": "HUGE_BOX_NAME",
+      "pack": "chest1",
+      "img": "Chest11",
+      "league": 4,
+      "timeToOpen": 86400,
+      "loot": {
+        "resources": {
+          "1": [246, 322]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 20
+          },
+          {
+            "category": 1,
+            "count": 20
+          },
+          {
+            "category": 2,
+            "count": 10
+          }
+        ],
+        "open": [2]
+      }
+    },
+    "extra_1_1": {
+      "type": 10,
+      "name": "PR_COINS_2",
+      "desc": "PR_COINS_2_DESC",
+      "pack": "chest2",
+      "img": "ChestOnePiece06",
+      "loot": {
+        "resources": {
+          "1": [20, 24]
+        }
+      }
+    },
+    "extra_2_1": {
+      "type": 10,
+      "name": "PR_COINS_2",
+      "desc": "PR_COINS_2_DESC",
+      "pack": "chest2",
+      "img": "ChestOnePiece06",
+      "loot": {
+        "resources": {
+          "1": [24, 32]
+        }
+      }
+    },
+    "extra_3_1": {
+      "type": 10,
+      "name": "PR_COINS_2",
+      "desc": "PR_COINS_2_DESC",
+      "pack": "chest2",
+      "img": "ChestOnePiece06",
+      "loot": {
+        "resources": {
+          "1": [42, 56]
+        }
+      }
+    },
+    "extra_4_1": {
+      "type": 10,
+      "name": "PR_COINS_2",
+      "desc": "PR_COINS_2_DESC",
+      "pack": "chest2",
+      "img": "ChestOnePiece06",
+      "loot": {
+        "resources": {
+          "1": [64, 82]
+        }
+      }
+    },
+    "campaign_typical_1" : {
+      "name": "TYPICAL_BOX_NAME",
+      "type": 1,
+      "pack": "chest1",
+      "img": "Chest01",
+      "increasable" : 1,
+      "timeToOpen" : 3600,
+      "loot": {
+        "resources": {
+          "1": [24, 32]
+        },
+        "cards": [
+          {"category": 1, "count": 4}
+        ],
+        "open": [1]
+      }
+    },
+    "campaign_conventional_1" : {
+      "name": "CONVENTIONAL_BOX_NAME",
+      "type": 2,
+      "pack": "chest1",
+      "img": "Chest02",
+      "timeToOpen": 7200,
+      "increasable" : 1,
+      "loot": {
+        "resources": {
+          "1": [28, 42]
+        },
+        "cards": [
+          {
+            "category": 1,
+            "count": 4
+          },
+          {
+            "category": 2,
+            "count": 1
+          }
+        ],
+        "open": [1, 2]
+      }
+    },
+    "campaign_epic_1" : {
+      "name": "EPIC_BOX_NAME",
+      "type": 3,
+      "pack": "chest1",
+      "img": "Chest03",
+      "league": 2,
+      "timeToOpen": 43200,
+      "increasable" : 1,
+      "loot": {
+        "resources": {
+          "1": [56, 74]
+        },
+        "cards": [
+          {
+            "category": 2,
+            "count": 10
+          },
+          {
+            "category": 3,
+            "count": 1
+          }
+        ],
+        "open": [2, 3]
+      }
+    },
+    "campaign_legendary_1" : {
+      "name": "LEGENDARY_BOX_NAME",
+      "type": 4,
+      "pack": "chest1",
+      "img": "Chest10",
+      "league": 3,
+      "timeToOpen": 86400,
+      "loot": {
+        "resources": {
+          "1": [102, 156]
+        },
+        "cards": [
+          {
+            "category": 2,
+            "count": 15
+          },
+          {
+            "category": 3,
+            "count": 3
+          },
+          {
+            "category": 4,
+            "count": 1
+          }
+        ],
+        "open": [3, 4]
+      }
+    },
+    "campaign_ob_hunter" : {
+      "loot": {
+        "card" : {"id": "ob_hunter", "count": 15}
+      }
+    },
+    "campaign_o_mineRaider" : {
+      "loot": {
+        "card" : {"id": "o_mineRaider", "count": 3}
+      }
+    },
+    "campaign_ot_archer" : {
+      "loot": {
+        "card" : {"id": "ot_archer", "count": 15}
+      }
+    },
+    "campaign_hb_assassin" : {
+      "name": "TYPICAL_BOX_NAME",
+      "loot": {
+        "card" : {"id": "hb_assassin", "count": 10}
+      }
+    },
+    "campaign_hb_rifleman" : {
+      "name": "TYPICAL_BOX_NAME",
+      "loot": {
+        "card" : {"id": "hb_rifleman", "count": 10}
+      }
+    },
+    "campaign_ob_goblinWarrior" : {
+      "name": "TYPICAL_BOX_NAME",
+      "loot": {
+        "card" : {"id": "ob_goblinWarrior", "count": 15}
+      }
+    },
+    "campaign_ht_mage" : {
+      "name": "TYPICAL_BOX_NAME",
+      "loot": {
+        "card" : {"id": "ht_mage", "count": 3}
+      }
+    },
+    "campaign_ob_marauder" : {
+      "name": "TYPICAL_BOX_NAME",
+      "loot": {
+        "card" : {"id": "ob_marauder", "count": 2}
+      }
+    },
+    "campaign_h_mineDwarven" : {
+      "name": "TYPICAL_BOX_NAME",
+      "loot": {
+        "card" : {"id": "h_mineDwarven", "count": 3}
+      }
+    },
+    "campaign_hb_mage" : {
+      "name": "TYPICAL_BOX_NAME",
+      "loot": {
+        "card" : {"id": "hb_mage", "count": 10}
+      }
+    },
+    "campaign_ob_sapper" : {
+      "name": "TYPICAL_BOX_NAME",
+      "loot": {
+        "card" : {"id": "ob_sapper", "count": 10}
+      }
+    },
+    "campaign_hb_knight" : {
+      "name": "TYPICAL_BOX_NAME",
+      "loot": {
+        "card" : {"id": "hb_knight", "count": 3}
+      }
+    },
+    "campaign_ht_mortar" : {
+      "name": "TYPICAL_BOX_NAME",
+      "loot": {
+        "card" : {"id": "ht_mortar", "count": 3}
+      }
+    },
+    "campaign_gold": {
+      "name": "PR_COINS_2",
+      "desc": "PR_COINS_2_DESC",
+      "pack": "chest2",
+      "img": "ChestOnePiece06",
+      "loot": {
+        "resources": {
+          "1": [198, 246]
+        }
+      }
+    },
+    "seasonLoot_base_1_1": {
+      "name": "TYPICAL_BOX_NAME",
+      "pack": "chest1",
+      "img": "Chest01",
+      "loot": {
+        "cards": [
+          {
+            "category": 1,
+            "count": 10
+          }
+        ],
+        "open": [1, 2]
+      }
+    },
+    "seasonLoot_base_1_2": {
+      "name": "PR_COINS_2",
+      "desc": "PR_COINS_2_DESC",
+      "pack": "chest2",
+      "img": "ChestOnePiece06",
+      "loot": {
+        "resources": {
+          "1": [100, 150]
+        }
+      }
+    },
+    "seasonLoot_base_1_3": {
+      "name": "EPIC_BOX_NAME",
+      "pack": "chest1",
+      "img": "Chest03",
+      "loot": {
+        "cards": [
+          {
+            "category": 1,
+            "count": 20
+          },
+          {
+            "category": 2,
+            "count": 5
+          },
+          {
+            "category": 3,
+            "count": 1
+          }
+        ],
+        "open": [2, 3]
+      }
+    },
+    "seasonLoot_base_1_4": {
+      "name": "CONVENTIONAL_BOX_NAME",
+      "pack": "chest1",
+      "img": "Chest02",
+      "loot": {
+        "cards": [
+          {
+            "category": 1,
+            "count": 10
+          },
+          {
+            "category": 2,
+            "count": 1
+          }
+        ],
+        "open": [2]
+      }
+    },
+    "seasonLoot_pass_1_1": {
+      "name": "CONVENTIONAL_BOX_NAME",
+      "pack": "chest1",
+      "img": "Chest02",
+      "loot": {
+        "cards": [
+          {
+            "category": 1,
+            "count": 10
+          },
+          {
+            "category": 2,
+            "count": 1
+          }
+        ],
+        "open": [1, 2]
+      }
+    },
+    "seasonLoot_pass_1_2": {
+      "name": "BOX_GIFT",
+      "pack": "chest1",
+      "img": "Chest18",
+      "loot": {
+        "cards": [
+          {"category": 1, "count": 10},
+          {"category": 1, "count": 10},
+          {"category": 2, "count": 10}
+        ]
+      }
+    },
+    "seasonLoot_pass_1_3": {
+      "name": "PR_COINS_2",
+      "desc": "PR_COINS_2_DESC",
+      "pack": "chest2",
+      "img": "ChestOnePiece06",
+      "loot": {
+        "resources": {
+          "1": [100, 150]
+        }
+      }
+    },
+    "seasonLoot_pass_1_5": {
+      "name": "EPIC_BOX_NAME",
+      "pack": "chest1",
+      "img": "Chest03",
+      "loot": {
+        "cards": [
+          {
+            "category": 1,
+            "count": 20
+          },
+          {
+            "category": 2,
+            "count": 8
+          },
+          {
+            "category": 3,
+            "count": 1
+          }
+        ],
+        "open": [2, 3]
+      }
+    },
+    "seasonLoot_pass_1_6": {
+      "name": "LEGENDARY_BOX_NAME",
+      "pack": "chest1",
+      "img": "Chest10",
+      "loot": {
+        "cards": [
+          {
+            "category": 3,
+            "count": 2
+          },
+          {
+            "category": 4,
+            "count": 1
+          }
+        ],
+        "open": [3, 4]
+      }
+    },
+    "lootPass_l1": {
+      "name": "BOX_GIFT",
+      "pack": "chest1",
+      "img": "Chest18",
+      "timeToOpen": 14400,
+      "loot": {
+        "resources": {
+          "1": [40, 50]
+        },
+        "cards": [
+          {"category": 1, "count": 5},
+          {"category": 1, "count": 5},
+          {"category": 1, "count": 3}
+        ],
+        "open": [1, 2, 3, 4]
+      }
+    },
+    "lootPass_l2": {
+      "name": "BOX_GIFT",
+      "pack": "chest1",
+      "img": "Chest18",
+      "timeToOpen": 14400,
+      "loot": {
+        "resources": {
+          "1": [70, 100]
+        },
+        "cards": [
+          {"category": 1, "count": 10},
+          {"category": 1, "count": 10},
+          {"category": 2, "count": 5},
+          {"category": 3, "count": 2}
+        ],
+        "open": [1, 2, 3, 4]
+      }
+    },
+    "lootPass_l3": {
+      "name": "BOX_GIFT",
+      "pack": "chest1",
+      "img": "Chest18",
+      "timeToOpen": 14400,
+      "loot": {
+        "resources": {
+          "1": [120, 200]
+        },
+        "cards": [
+          {"category": 1, "count": 50},
+          {"category": 1, "count": 50},
+          {"category": 2, "count": 10},
+          {"category": 3, "count": 2}
+        ],
+        "open": [1, 2, 3, 4]
+      }
+    },
+    "lootPass_l4": {
+      "name": "BOX_GIFT",
+      "pack": "chest1",
+      "img": "Chest18",
+      "timeToOpen": 14400,
+      "loot": {
+        "resources": {
+          "1": [150, 300]
+        },
+        "cards": [
+          {"category": 1, "count": 60},
+          {"category": 1, "count": 60},
+          {"category": 2, "count": 5},
+          {"category": 2, "count": 10},
+          {"category": 3, "count": 8},
+          {"category": 3, "count": 4}
+        ],
+        "open": [1, 2, 3, 4]
+      }
+    }
+  }
+}

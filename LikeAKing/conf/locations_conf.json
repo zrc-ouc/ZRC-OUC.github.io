@@ -1,0 +1,346 @@
+{
+  "modes" : {
+    "1" : ["grass_1", "grass_2", "grass_3", "swamp_1", "swamp_2", "swamp_3", "winter_1", "winter_2", "winter_3", "desert_1", "desert_2", "desert_3"],
+    "2" : ["grass_1", "grass_2", "grass_3", "swamp_1", "swamp_2", "swamp_3", "winter_1", "winter_2", "winter_3", "desert_1", "desert_2", "desert_3"],
+    "3" : ["grass_1", "grass_2", "grass_3", "swamp_1", "swamp_2", "swamp_3", "winter_1", "winter_2", "winter_3", "desert_1", "desert_2", "desert_3"],
+    "training" : ["grass_1", "grass_2", "grass_3", "swamp_1", "swamp_2", "swamp_3", "winter_1", "winter_2", "winter_3", "desert_1", "desert_2", "desert_3"]
+  },
+  "list" : [
+    {
+      "id" : "grass_1",
+      "time" : 300000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location1_0", "location1_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 4}],
+        "2" : [{"x" : 11, "y" : 4}]
+      },
+      "decorations" : ["n_stone1", "n_stone2", "n_treeGrass1", "n_treeGrass2"],
+      "decorationsDensity" : 2
+    },
+    {
+      "id" : "grass_2",
+      "time" : 300000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location1_0", "location1_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 2}],
+        "2" : [{"x" : 11, "y" : 6}]
+      },
+      "decorations" : ["n_stone1", "n_stone2", "n_treeGrass1", "n_treeGrass2"],
+      "decorationsDensity" : 2
+    },
+    {
+      "id" : "grass_3",
+      "time" : 300000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location1_0", "location1_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 6}],
+        "2" : [{"x" : 11, "y" : 2}]
+      },
+      "decorations" : ["n_stone1", "n_stone2", "n_treeGrass1", "n_treeGrass2"],
+      "decorationsDensity" : 2
+    },
+    {
+      "id" : "grass_4",
+      "time" : 500000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location1_0", "location1_1"],
+      "playersCount" : 3,
+      "playerPoints" : {
+        "1" : [{"x" : 2, "y" : 4}],
+        "2" : [{"x" : 12, "y" : 2}, {"x" : 12, "y" : 6}]
+      },
+      "decorations" : ["n_stone1", "n_stone2", "n_treeGrass1", "n_treeGrass2"],
+      "decorationsDensity" : 2,
+      "fixedTeams" : 1
+    },
+    {
+      "id" : "swamp_1",
+      "time" : 300000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location2_0", "location2_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 4}],
+        "2" : [{"x" : 11, "y" : 4}]
+      },
+      "decorations" : ["n_stone1", "n_stone2", "n_treeSwamp1", "n_treeSwamp2"],
+      "decorationsDensity" : 2
+    },
+    {
+      "id" : "swamp_2",
+      "time" : 300000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location2_0", "location2_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 2}],
+        "2" : [{"x" : 11, "y" : 6}]
+      },
+      "decorations" : ["n_stone1", "n_stone2", "n_treeSwamp1", "n_treeSwamp2"],
+      "decorationsDensity" : 2
+    },
+    {
+      "id" : "swamp_3",
+      "time" : 300000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location2_0", "location2_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 6}],
+        "2" : [{"x" : 11, "y" : 2}]
+      },
+      "decorations" : ["n_stone1", "n_stone2", "n_treeSwamp1", "n_treeSwamp2"],
+      "decorationsDensity" : 2
+    },
+    {
+      "id" : "swamp_4",
+      "time" : 500000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location2_0", "location2_1"],
+      "playersCount" : 3,
+      "playerPoints" : {
+        "1" : [{"x" : 2, "y" : 4}],
+        "2" : [{"x" : 12, "y" : 2}, {"x" : 12, "y" : 6}]
+      },
+      "decorations" : ["n_stone1", "n_stone2", "n_treeSwamp1", "n_treeSwamp2"],
+      "decorationsDensity" : 2,
+      "fixedTeams" : 1
+    },
+    {
+      "id" : "winter_1",
+      "time" : 300000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location3_0", "location3_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 4}],
+        "2" : [{"x" : 11, "y" : 4}]
+      },
+      "decorations" : ["n_stone1", "n_stone2", "n_treeWinter1", "n_treeWinter2"],
+      "decorationsDensity" : 2
+    },
+    {
+      "id" : "winter_2",
+      "time" : 300000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location3_0", "location3_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 2}],
+        "2" : [{"x" : 11, "y" : 6}]
+      },
+      "decorations" : ["n_stone1", "n_stone2", "n_treeWinter1", "n_treeWinter2"],
+      "decorationsDensity" : 2
+    },
+    {
+      "id" : "winter_3",
+      "time" : 300000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location3_0", "location3_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 6}],
+        "2" : [{"x" : 11, "y" : 2}]
+      },
+      "decorations" : ["n_stone1", "n_stone2", "n_treeWinter1", "n_treeWinter2"],
+      "decorationsDensity" : 2
+    },
+    {
+      "id" : "winter_4",
+      "time" : 500000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location3_0", "location3_1"],
+      "playersCount" : 3,
+      "playerPoints" : {
+        "1" : [{"x" : 2, "y" : 4}],
+        "2" : [{"x" : 12, "y" : 2}, {"x" : 12, "y" : 6}]
+      },
+      "decorations" : ["n_stone1", "n_stone2", "n_treeWinter1", "n_treeWinter2"],
+      "decorationsDensity" : 2,
+      "fixedTeams" : 1
+    },
+    {
+      "id" : "desert_1",
+      "time" : 300000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location4_0", "location4_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 4}],
+        "2" : [{"x" : 11, "y" : 4}]
+      },
+      "decorations" : ["n_stoneDesert1", "n_stoneDesert2", "n_treeDesert1", "n_treeDesert2"],
+      "decorationsDensity" : 2
+    },
+    {
+      "id" : "desert_2",
+      "time" : 300000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location4_0", "location4_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 2}],
+        "2" : [{"x" : 11, "y" : 6}]
+      },
+      "decorations" : ["n_stoneDesert1", "n_stoneDesert2", "n_treeDesert1", "n_treeDesert2"],
+      "decorationsDensity" : 2
+    },
+    {
+      "id" : "desert_3",
+      "time" : 300000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location4_0", "location4_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 6}],
+        "2" : [{"x" : 11, "y" : 2}]
+      },
+      "decorations" : ["n_stoneDesert1", "n_stoneDesert2", "n_treeDesert1", "n_treeDesert2"],
+      "decorationsDensity" : 2
+    },
+    {
+      "id" : "desert_4",
+      "time" : 500000,
+      "delay" : 5000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location4_0", "location4_1"],
+      "playersCount" : 3,
+      "playerPoints" : {
+        "1" : [{"x" : 2, "y" : 4}],
+        "2" : [{"x" : 12, "y" : 2}, {"x" : 12, "y" : 6}]
+      },
+      "decorations" : ["n_stoneDesert1", "n_stoneDesert2", "n_treeDesert1", "n_treeDesert2"],
+      "decorationsDensity" : 2,
+      "fixedTeams" : 1
+    },
+
+
+    {
+      "id" : "tutorial_1",
+      "time" : 600000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location1_0", "location1_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 4}],
+        "2" : [{"x" : 11, "y" : 4}]
+      },
+      "decorations" : ["n_stone1", "n_stone2", "n_treeGrass1", "n_treeGrass2"],
+      "decorationsDensity" : 2,
+      "scene" : [
+        {"id" : "n_treeGrass1", "x" : 0, "y" : 0},
+        {"id" : "n_treeGrass1", "x" : 1, "y" : 0},
+        {"id" : "n_stone2", "x" : 0, "y" : 1},
+        {"id" : "n_treeGrass1", "x" : 14, "y" : 0},
+        {"id" : "n_stone1", "x" : 13, "y" : 0},
+        {"id" : "n_treeGrass2", "x" : 14, "y" : 1},
+        {"id" : "n_treeGrass1", "x" : 0, "y" : 8},
+        {"id" : "n_stone2", "x" : 1, "y" : 8},
+        {"id" : "n_treeGrass1", "x" : 0, "y" : 7},
+        {"id" : "n_stone1", "x" : 14, "y" : 8},
+        {"id" : "n_treeGrass2", "x" : 14, "y" : 7},
+        {"id" : "n_treeGrass1", "x" : 13, "y" : 8}
+      ],
+      "fixedTeams" : 1
+    },
+    {
+      "id" : "tutorial_2",
+      "time" : 600000,
+      "resources" : 600,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location4_0", "location4_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 4}],
+        "2" : [{"x" : 11, "y" : 4}]
+      },
+      "decorations" : ["n_stoneDesert1", "n_stoneDesert2", "n_treeDesert1", "n_treeDesert2"],
+      "decorationsDensity" : 2,
+      "scene" : [
+        {"id" : "n_treeDesert1", "x" : 0, "y" : 0},
+        {"id" : "n_treeDesert1", "x" : 1, "y" : 0},
+        {"id" : "n_stoneDesert2", "x" : 0, "y" : 1},
+        {"id" : "n_treeDesert1", "x" : 14, "y" : 0},
+        {"id" : "n_stoneDesert1", "x" : 13, "y" : 0},
+        {"id" : "n_treeDesert2", "x" : 14, "y" : 1},
+        {"id" : "n_treeDesert1", "x" : 0, "y" : 8},
+        {"id" : "n_stoneDesert2", "x" : 1, "y" : 8},
+        {"id" : "n_treeDesert1", "x" : 0, "y" : 7},
+        {"id" : "n_stoneDesert1", "x" : 14, "y" : 8},
+        {"id" : "n_treeDesert2", "x" : 14, "y" : 7},
+        {"id" : "n_treeDesert1", "x" : 13, "y" : 8}
+      ],
+      "fixedTeams" : 1
+    },
+    {
+      "id" : "tutorial_3",
+      "time" : 600000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location2_0", "location2_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 4}],
+        "2" : [{"x" : 11, "y" : 4}]
+      },
+      "loot" : "tutorLoot3",
+      "decorations" : ["n_stone1", "n_stone2", "n_treeSwamp1", "n_treeSwamp2"],
+      "decorationsDensity" : 2,
+      "fixedTeams" : 1
+    },
+    {
+      "id" : "tutorial_4",
+      "time" : 600000,
+      "resources" : 450,
+      "dimension" : {"x" : 15, "y" : 9},
+      "skins" : ["location3_0", "location3_1"],
+      "playersCount" : 2,
+      "playerPoints" : {
+        "1" : [{"x" : 3, "y" : 4}],
+        "2" : [{"x" : 11, "y" : 4}]
+      },
+      "loot" : "tutorLoot4",
+      "decorations" : ["n_stone1", "n_stone2", "n_treeWinter1", "n_treeWinter2"],
+      "decorationsDensity" : 2,
+      "fixedTeams" : 1
+    }
+  ]
+}

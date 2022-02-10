@@ -1,0 +1,21 @@
+{
+  "default" : "en",
+  "languages" : {
+    "en" : {
+      "name": "English",
+      "code" : "en",
+      "icon" : "langUK.png"
+    },
+    "ru" : {
+      "name": "Русский",
+      "code" : "ru",
+      "icon" : "langRussia.png"
+    },
+    "fr" : {
+      "name": "Français",
+      "code" : "fr",
+      "icon" : "langFrance.png"
+    }
+  },
+  "filter" : []
+}

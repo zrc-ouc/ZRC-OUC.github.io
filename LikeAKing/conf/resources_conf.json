@@ -1,0 +1,20 @@
+{
+  "reg" : {
+    "1": {"id" : 1, "count" : 100}
+  },
+  "list" : {
+    "1": {
+      "icon": "resourceIcon1.png",
+      "icon_big": "resourceIcon1_big.png",
+      "recoveryTime" : 0,
+      "maxValue" : 0,
+      "names": [
+        "RESOURCE_1_NAME",
+        "COIN_1",
+        "COIN_2",
+        "COIN_3"
+      ],
+      "initial" : 100
+    }
+  }
+}
