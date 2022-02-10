@@ -1,0 +1,112 @@
+{
+  "id" : "ou_sapper",
+  "cardType" : "unit",
+  "race" : "orc",
+  "name" : "O_U_SAPPER",
+  "radius" : 45,
+  "height": 35,
+  "icon" : "orcSapper",
+  "skin" : "orcSapper",
+  "attackRange" : 140,
+  "moveSpeed" : 1.3,
+  "attackSpeed" : 500,
+  "reloadAttackSpeed" : 600,
+  "timeToDeath" : 0,
+  "attackType" : "range",
+  "bullet" : "bul_bomb",
+  "bulletFrom" : [{"x" : 0, "y" : -60}, {"x" : 0, "y" : -60}],
+  "baseState" : [{"skn" : "idle"}, {"skn" : "idle2"}],
+  "moveState" : [{"skn" : "run"}],
+  "attackState" : [{"skn" : "attack", "fr" : 0.6}, {"skn" : "attack2", "fr" : 0.6}],
+  "deathState" : [{"skn" : "death", "snd" : ["snd_trollDeath1", "snd_trollDeath2", "snd_trollDeath3"]}],
+  "levels" : {
+    "1" : {
+      "special" : [
+        {"t" : "splash", "dist" : 35}
+      ],
+      "hp" : 120,
+      "damageToUnits" : [40, 70],
+      "damageToBuildings" : [25, 55]
+    },
+    "2" : {
+      "special" : [
+        {"t" : "splash", "dist" : 37}
+      ],
+      "hp" : 144,
+      "damageToUnits" : [48, 84],
+      "damageToBuildings" : [30, 66]
+    },
+    "3" : {
+      "special" : [
+        {"t" : "splash", "dist" : 40}
+      ],
+      "hp" : 171,
+      "damageToUnits" : [57, 100],
+      "damageToBuildings" : [36, 78]
+    },
+    "4" : {
+      "special" : [
+        {"t" : "splash", "dist" : 44}
+      ],
+      "hp" : 201,
+      "damageToUnits" : [67, 118],
+      "damageToBuildings" : [62, 92]
+    },
+    "5" : {
+      "special" : [
+        {"t" : "splash", "dist" : 47}
+      ],
+      "hp" : 234,
+      "damageToUnits" : [78, 137],
+      "damageToBuildings" : [49, 107]
+    },
+    "6" : {
+      "special" : [
+        {"t" : "splash", "dist" : 52}
+      ],
+      "hp" : 270,
+      "damageToUnits" : [90, 158],
+      "damageToBuildings" : [56, 123]
+    },
+    "7" : {
+      "special" : [
+        {"t" : "splash", "dist" : 55}
+      ],
+      "hp" : 308,
+      "damageToUnits" : [103, 180],
+      "damageToBuildings" : [64, 140]
+    },
+    "8" : {
+      "special" : [
+        {"t" : "splash", "dist" : 60}
+      ],
+      "hp" : 348,
+      "damageToUnits" : [116, 203],
+      "damageToBuildings" : [72, 158]
+    },
+    "9" : {
+      "special" : [
+        {"t" : "splash", "dist" : 65}
+      ],
+      "hp" : 389,
+      "damageToUnits" : [130, 227],
+      "damageToBuildings" : [81, 177]
+    },
+    "10" : {
+      "special" : [
+        {"t" : "splash", "dist" : 70}
+      ],
+      "hp" : 431,
+      "damageToUnits" : [144, 251],
+      "damageToBuildings" : [90, 196]
+    },
+    "11" : {
+      "special" : [
+        {"t" : "splash", "dist" : 75}
+      ],
+      "hp" : 472,
+      "damageToUnits" : [158, 275],
+      "damageToBuildings" : [99, 215]
+    }
+  }
+}

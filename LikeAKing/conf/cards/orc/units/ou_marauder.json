@@ -1,0 +1,62 @@
+{
+  "id" : "ou_marauder",
+  "cardType" : "unit",
+  "race" : "orc",
+  "name" : "O_U_MARAUDER",
+  "radius" : 60,
+  "height": 50,
+  "icon" : "orcMarauder",
+  "skin" : "orcMarauder",
+  "attackRange" : 30,
+  "moveSpeed" : 1.8,
+  "attackSpeed" : 500,
+  "reloadAttackSpeed" : 1600,
+  "timeToDeath" : 0,
+  "attackType" : "melee",
+  "baseState" : [{"skn" : "idle"}],
+  "moveState" : [{"skn" : "run"}],
+  "attackState" : [{"skn" : "attack1", "fr" : 0.5, "snd" : ["snd_gruntAttack1"]}, {"skn" : "attack2", "fr" : 0.5, "snd" : ["snd_gruntAttack2"]}],
+  "deathState" : [{"skn" : "death", "snd" : ["snd_marauderDeath1", "snd_marauderDeath2"]}],
+  "levels" : {
+    "1" : {
+      "special" : [
+        {"t" : "marauder", "val" : 3}
+      ],
+      "hp" : 180,
+      "damageToUnits" : [50, 70],
+      "damageToBuildings" : [40, 50]
+    },
+    "2" : {
+      "special" : [
+        {"t" : "marauder", "val" : 4}
+      ],
+      "hp" : 229,
+      "damageToUnits" : [64, 89],
+      "damageToBuildings" : [51, 64]
+    },
+    "3" : {
+      "special" : [
+        {"t" : "marauder", "val" : 5}
+      ],
+      "hp" : 288,
+      "damageToUnits" : [80, 112],
+      "damageToBuildings" : [64, 80]
+    },
+    "4" : {
+      "special" : [
+        {"t" : "marauder", "val" : 6}
+      ],
+      "hp" : 358,
+      "damageToUnits" : [100, 139],
+      "damageToBuildings" : [80, 100]
+    },
+    "5" : {
+      "special" : [
+        {"t" : "marauder", "val" : 7}
+      ],
+      "hp" : 441,
+      "damageToUnits" : [123, 171],
+      "damageToBuildings" : [99, 123]
+    }
+  }
+}

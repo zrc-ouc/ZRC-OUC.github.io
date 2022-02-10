@@ -1,0 +1,89 @@
+{
+  "id" : "ou_hunter",
+  "cardType" : "unit",
+  "race" : "orc",
+  "name" : "O_U_HUNTER",
+  "radius" : 40,
+  "height": 40,
+  "icon" : "orcHunter",
+  "skin" : "orcHunter",
+  "moveSpeed" : 1.7,
+  "attackRange" : 130,
+  "attackSpeed" : 500,
+  "reloadAttackSpeed" : 1300,
+  "bulletFrom" : [{"x" : -56, "y" : -121}, {"x" : 56, "y" : -121}],
+  "timeToDeath" : 0,
+  "attackType" : "range",
+  "bullet" : "bul_huntSpear",
+  "baseState" : [{"skn" : "idle"}],
+  "moveState" : [{"skn" : "run"}],
+  "attackState" : [{"skn" : "attack1", "fr" : 0.4}, {"skn" : "attack2", "fr" : 0.45}],
+  "deathState" : [{"skn" : "death", "snd" : ["snd_hunterDeath1"]}],
+  "levels" : {
+    "1" : {
+      "hp" : 70,
+      "damageToUnits" : [28, 45],
+      "damageToBuildings" : [10, 16]
+    },
+    "2" : {
+      "hp" : 84,
+      "damageToUnits" : [34, 54],
+      "damageToBuildings" : [12, 19]
+    },
+    "3" : {
+      "hp" : 99,
+      "damageToUnits" : [40, 64],
+      "damageToBuildings" : [14, 22]
+    },
+    "4" : {
+      "hp" : 115,
+      "damageToUnits" : [47, 75],
+      "damageToBuildings" : [16, 26]
+    },
+    "5" : {
+      "hp" : 132,
+      "damageToUnits" : [54, 86],
+      "damageToBuildings" : [18, 30]
+    },
+    "6" : {
+      "hp" : 150,
+      "damageToUnits" : [61, 98],
+      "damageToBuildings" : [20, 34]
+    },
+    "7" : {
+      "hp" : 168,
+      "damageToUnits" : [68, 110],
+      "damageToBuildings" : [22, 38]
+    },
+    "8" : {
+      "hp" : 185,
+      "damageToUnits" : [75, 121],
+      "damageToBuildings" : [24, 42]
+    },
+    "9" : {
+      "hp" : 201,
+      "damageToUnits" : [82, 132],
+      "damageToBuildings" : [26, 46]
+    },
+    "10" : {
+      "hp" : 215,
+      "damageToUnits" : [88, 142],
+      "damageToBuildings" : [28, 49]
+    },
+    "11" : {
+      "hp" : 227,
+      "damageToUnits" : [93, 150],
+      "damageToBuildings" : [30, 52]
+    },
+    "12" : {
+      "hp" : 237,
+      "damageToUnits" : [97, 156],
+      "damageToBuildings" : [31, 54]
+    },
+    "13" : {
+      "hp" : 244,
+      "damageToUnits" : [100, 160],
+      "damageToBuildings" : [32, 55]
+    }
+  }
+}

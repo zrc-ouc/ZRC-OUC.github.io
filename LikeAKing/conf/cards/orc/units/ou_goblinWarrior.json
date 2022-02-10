@@ -1,0 +1,87 @@
+{
+  "id" : "ou_goblinWarrior",
+  "cardType" : "unit",
+  "race" : "orc",
+  "name" : "O_U_GOBLIN_WARRIOR",
+  "radius" : 35,
+  "height": 30,
+  "icon" : "orcGoblinWarrior",
+  "skin" : "orcGoblinWarrior",
+  "attackRange" : 20,
+  "moveSpeed" : 2,
+  "attackSpeed" : 400,
+  "reloadAttackSpeed" : 1000,
+  "timeToDeath" : 0,
+  "attackType" : "melee",
+  "baseState" : [{"skn" : "idle"}],
+  "moveState" : [{"skn" : "run"}],
+  "attackState" : [{"skn" : "attack", "fr" : 0.6, "snd" : ["snd_goblinWarriorAttack1"]}, {"skn" : "attack2", "fr" : 0.6, "snd" : ["snd_goblinWarriorAttack1"]}],
+  "deathState" : [{"skn" : "death", "snd" : ["snd_trollDeath1", "snd_trollDeath2", "snd_trollDeath3"]}],
+  "levels" : {
+    "1" : {
+      "hp" : 65,
+      "damageToUnits" : [12, 30],
+      "damageToBuildings" : [14, 18]
+    },
+    "2" : {
+      "hp" : 78,
+      "damageToUnits" : [14, 36],
+      "damageToBuildings" : [17, 22]
+    },
+    "3" : {
+      "hp" : 94,
+      "damageToUnits" : [17, 43],
+      "damageToBuildings" : [20, 26]
+    },
+    "4" : {
+      "hp" : 111,
+      "damageToUnits" : [20, 51],
+      "damageToBuildings" : [24, 31]
+    },
+    "5" : {
+      "hp" : 129,
+      "damageToUnits" : [23, 59],
+      "damageToBuildings" : [28, 36]
+    },
+    "6" : {
+      "hp" : 148,
+      "damageToUnits" : [26, 68],
+      "damageToBuildings" : [32, 41]
+    },
+    "7" : {
+      "hp" : 168,
+      "damageToUnits" : [29, 77],
+      "damageToBuildings" : [36, 47]
+    },
+    "8" : {
+      "hp" : 188,
+      "damageToUnits" : [32, 86],
+      "damageToBuildings" : [40, 53]
+    },
+    "9" : {
+      "hp" : 207,
+      "damageToUnits" : [35, 95],
+      "damageToBuildings" : [44, 58]
+    },
+    "10" : {
+      "hp" : 225,
+      "damageToUnits" : [38, 103],
+      "damageToBuildings" : [48, 63]
+    },
+    "11" : {
+      "hp" : 241,
+      "damageToUnits" : [41, 110],
+      "damageToBuildings" : [51, 68]
+    },
+    "12" : {
+      "hp" : 255,
+      "damageToUnits" : [43, 116],
+      "damageToBuildings" : [54, 72]
+    },
+    "13" : {
+      "hp" : 266,
+      "damageToUnits" : [45, 121],
+      "damageToBuildings" : [56, 75]
+    }
+  }
+}
