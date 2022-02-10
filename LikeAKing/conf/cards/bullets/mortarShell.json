@@ -1,0 +1,18 @@
+{
+  "id" : "bul_mortarShell",
+  "cardType" : "bullet",
+  "name" : "BUL_MORTAR_SHELL",
+  "radius" : 0,
+  "skin" : "bul_mortarShell",
+  "baseState" : [{"skn" : "idle"}],
+  "moveState" : [{"skn" : "idle"}],
+  "hitState" : [{"skn" : "hit", "snd" : ["snd_dynamiteHit1"]}],
+  "missState" : [{"skn" : "miss"}],
+  "rotFix" : 1,
+  "levels" : {
+    "1" : {
+      "moveSpeed" : 6,
+      "mass" : 35
+    }
+  }
+}

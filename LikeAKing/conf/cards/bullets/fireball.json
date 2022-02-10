@@ -1,0 +1,17 @@
+{
+  "id" : "bul_fireball",
+  "cardType" : "bullet",
+  "name" : "BUL_FIREBALL",
+  "radius" : 0,
+  "skin" : "bul_fireball",
+  "baseState" : [{"skn" : "idle"}],
+  "moveState" : [{"skn" : "idle", "snd" : ["snd_firebalAttack1"]}],
+  "hitState" : [{"skn" : "hit", "snd" : ["snd_firebalHit1"]}],
+  "missState" : [{"skn" : "miss"}],
+  "levels" : {
+    "1" : {
+      "moveSpeed" : 6,
+      "mass" : 25
+    }
+  }
+}

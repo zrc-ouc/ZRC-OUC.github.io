@@ -1,0 +1,17 @@
+{
+  "id" : "bul_bomb",
+  "cardType" : "bullet",
+  "name" : "BUL_BOMB",
+  "radius" : 0,
+  "skin" : "bul_bomb",
+  "baseState" : [{"skn" : "idle"}],
+  "moveState" : [{"skn" : "idle", "snd" : ["snd_dynamiteAttack1"]}],
+  "hitState" : [{"skn" : "hit", "snd" : ["snd_dynamiteHit1"]}],
+  "missState" : [{"skn" : "miss"}],
+  "levels" : {
+    "1" : {
+      "moveSpeed" : 6,
+      "mass" : 25
+    }
+  }
+}

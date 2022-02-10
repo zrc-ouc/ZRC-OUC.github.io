@@ -1,0 +1,17 @@
+{
+  "id" : "bul_arrow",
+  "cardType" : "bullet",
+  "name" : "BUL_ARROW",
+  "radius" : 0,
+  "skin" : "bul_arrow",
+  "baseState" : [{"skn" : "idle"}],
+  "moveState" : [{"skn" : "idle", "snd" : ["snd_archerAttack1", "snd_archerAttack2", "snd_archerAttack3"]}],
+  "hitState" : [{"skn" : "hit", "snd" : ["snd_arrowHit1", "snd_arrowHit2", "snd_arrowHit3"]}],
+  "missState" : [{"skn" : "miss"}],
+  "levels" : {
+    "1" : {
+      "moveSpeed" : 10,
+      "mass" : 10
+    }
+  }
+}

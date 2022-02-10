@@ -1,0 +1,17 @@
+{
+  "id" : "bul_bolt",
+  "cardType" : "bullet",
+  "name" : "BUL_BOLT",
+  "radius" : 0,
+  "skin" : "bul_bolt",
+  "baseState" : [{"skn" : "idle"}],
+  "moveState" : [{"skn" : "idle", "snd" : ["snd_crossbowAttack1", "snd_crossbowAttack2"]}],
+  "hitState" : [{"skn" : "hit", "snd" : ["snd_arrowHit1", "snd_arrowHit2", "snd_arrowHit3"]}],
+  "missState" : [{"skn" : "miss"}],
+  "levels" : {
+    "1" : {
+      "moveSpeed" : 14,
+      "mass" : 18
+    }
+  }
+}

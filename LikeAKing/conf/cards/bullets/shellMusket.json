@@ -1,0 +1,18 @@
+{
+  "id" : "bul_shellMusket",
+  "cardType" : "bullet",
+  "name" : "BUL_SHELL_MUSKET",
+  "radius" : 0,
+  "skin" : "bul_shellMusket",
+  "baseState" : [{"skn" : "idle"}],
+  "moveState" : [{"skn" : "idle"}],
+  "hitState" : [{"skn" : "hit"}],
+  "missState" : [{"skn" : "miss"}],
+  "rotFix" : 1,
+  "levels" : {
+    "1" : {
+      "moveSpeed" : 14,
+      "mass" : 12
+    }
+  }
+}
