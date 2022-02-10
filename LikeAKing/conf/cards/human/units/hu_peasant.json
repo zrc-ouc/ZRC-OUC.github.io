@@ -1,0 +1,87 @@
+{
+  "id" : "hu_peasant",
+  "cardType" : "unit",
+  "race" : "human",
+  "name" : "H_U_PEASANT",
+  "radius" : 40,
+  "height": 30,
+  "icon" : "humanPeasant",
+  "skin" : "humanPeasant",
+  "attackRange" : 10,
+  "moveSpeed" : 1.6,
+  "attackSpeed" : 500,
+  "reloadAttackSpeed" : 1000,
+  "timeToDeath" : 0,
+  "attackType" : "melee",
+  "baseState" : [{"skn" : "idle"}],
+  "moveState" : [{"skn" : "run"}],
+  "attackState" : [{"skn" : "attack1", "fr" : 0.55, "snd" : ["snd_peasantAttack1"]}, {"skn" : "attack2", "fr" : 0.5, "snd" : ["snd_peasantAttack2"]}],
+  "deathState" : [{"skn" : "death", "snd" : ["snd_humanDeath1", "snd_humanDeath2"]}],
+  "levels" : {
+    "1" : {
+      "hp" : 80,
+      "damageToUnits" : [12, 20],
+      "damageToBuildings" : [12, 18]
+    },
+    "2" : {
+      "hp" : 96,
+      "damageToUnits" : [14, 24],
+      "damageToBuildings" : [14, 22]
+    },
+    "3" : {
+      "hp" : 114,
+      "damageToUnits" : [17, 28],
+      "damageToBuildings" : [17, 26]
+    },
+    "4" : {
+      "hp" : 133,
+      "damageToUnits" : [20, 33],
+      "damageToBuildings" : [20, 30]
+    },
+    "5" : {
+      "hp" : 153,
+      "damageToUnits" : [23, 38],
+      "damageToBuildings" : [23, 35]
+    },
+    "6" : {
+      "hp" : 174,
+      "damageToUnits" : [26, 43],
+      "damageToBuildings" : [26, 40]
+    },
+    "7" : {
+      "hp" : 195,
+      "damageToUnits" : [29, 48],
+      "damageToBuildings" : [29, 45]
+    },
+    "8" : {
+      "hp" : 215,
+      "damageToUnits" : [32, 53],
+      "damageToBuildings" : [32, 50]
+    },
+    "9" : {
+      "hp" : 234,
+      "damageToUnits" : [35, 58],
+      "damageToBuildings" : [35, 54]
+    },
+    "10" : {
+      "hp" : 251,
+      "damageToUnits" : [38, 62],
+      "damageToBuildings" : [38, 58]
+    },
+    "11" : {
+      "hp" : 265,
+      "damageToUnits" : [40, 66],
+      "damageToBuildings" : [40, 61]
+    },
+    "12" : {
+      "hp" : 276,
+      "damageToUnits" : [42, 69],
+      "damageToBuildings" : [42, 64]
+    },
+    "13" : {
+      "hp" : 284,
+      "damageToUnits" : [43, 71],
+      "damageToBuildings" : [43, 66]
+    }
+  }
+}

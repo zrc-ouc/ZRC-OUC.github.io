@@ -1,0 +1,88 @@
+{
+  "id" : "hu_mage",
+  "cardType" : "unit",
+  "race" : "human",
+  "name" : "H_U_MAGE",
+  "radius" : 35,
+  "height": 35,
+  "icon" : "humanMage",
+  "skin" : "humanMage",
+  "moveSpeed" : 1.2,
+  "attackRange" : 150,
+  "attackSpeed" : 300,
+  "reloadAttackSpeed" : 1400,
+  "bulletFrom" : [{"x" : -95, "y" : -129}, {"x" : 95, "y" : -129}],
+  "timeToDeath" : 0,
+  "attackType" : "range",
+  "bullet" : "bul_fireball",
+  "baseState" : [{"skn" : "idle"}],
+  "moveState" : [{"skn" : "run"}],
+  "attackState" : [{"skn" : "attack1", "fr" : 0.63}, {"skn" : "attack2", "fr" : 0.66}, {"skn" : "attack3", "fr" : 0.7}],
+  "deathState" : [{"skn" : "death", "snd" : ["snd_humanDeath1", "snd_humanDeath2"]}],
+  "levels" : {
+    "1" : {
+      "special" : [
+        {"t" : "splash", "dist" : 35}
+      ],
+      "hp" : 120,
+      "damageToUnits" : [38, 100],
+      "damageToBuildings" : [18, 42]
+    },
+    "2" : {
+      "special" : [
+        {"t" : "splash", "dist" : 40}
+      ],
+      "hp" : 148,
+      "damageToUnits" : [47, 123],
+      "damageToBuildings" : [22, 52]
+    },
+    "3" : {
+      "special" : [
+        {"t" : "splash", "dist" : 45}
+      ],
+      "hp" : 181,
+      "damageToUnits" : [58, 151],
+      "damageToBuildings" : [27, 64]
+    },
+    "4" : {
+      "special" : [
+        {"t" : "splash", "dist" : 50}
+      ],
+      "hp" : 219,
+      "damageToUnits" : [70, 183],
+      "damageToBuildings" : [33, 78]
+    },
+    "5" : {
+      "special" : [
+        {"t" : "splash", "dist" : 55}
+      ],
+      "hp" : 263,
+      "damageToUnits" : [84, 220],
+      "damageToBuildings" : [40, 94]
+    },
+    "6" : {
+      "special" : [
+        {"t" : "splash", "dist" : 60}
+      ],
+      "hp" : 312,
+      "damageToUnits" : [100, 261],
+      "damageToBuildings" : [48, 112]
+    },
+    "7" : {
+      "special" : [
+        {"t" : "splash", "dist" : 65}
+      ],
+      "hp" : 367,
+      "damageToUnits" : [118, 307],
+      "damageToBuildings" : [56, 132]
+    },
+    "8" : {
+      "special" : [
+        {"t" : "splash", "dist" : 70}
+      ],
+      "hp" : 427,
+      "damageToUnits" : [137, 357],
+      "damageToBuildings" : [65, 154]
+    }
+  }
+}

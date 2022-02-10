@@ -1,0 +1,89 @@
+{
+  "id" : "hu_archer",
+  "cardType" : "unit",
+  "race" : "human",
+  "name" : "H_U_ARCHER",
+  "radius" : 35,
+  "height": 30,
+  "icon" : "humanArcher",
+  "skin" : "humanArcher",
+  "moveSpeed" : 1.7,
+  "attackRange" : 140,
+  "attackSpeed" : 400,
+  "reloadAttackSpeed" : 1000,
+  "bulletFrom" : [{"x" : -59, "y" : -77}, {"x" : 59, "y" : -77}],
+  "timeToDeath" : 0,
+  "attackType" : "range",
+  "bullet" : "bul_arrow",
+  "baseState" : [{"skn" : "idle"}],
+  "moveState" : [{"skn" : "run"}],
+  "attackState" : [{"skn" : "attack1", "fr" : 0.59}],
+  "deathState" : [{"skn" : "death", "snd" : ["snd_humanDeath1", "snd_humanDeath2"]}],
+  "levels" : {
+    "1" : {
+      "hp" : 50,
+      "damageToUnits" : [20, 32],
+      "damageToBuildings" : [4, 10]
+    },
+    "2" : {
+      "hp" : 60,
+      "damageToUnits" : [24, 38],
+      "damageToBuildings" : [5, 12]
+    },
+    "3" : {
+      "hp" : 71,
+      "damageToUnits" : [28, 45],
+      "damageToBuildings" : [6, 14]
+    },
+    "4" : {
+      "hp" : 83,
+      "damageToUnits" : [33, 52],
+      "damageToBuildings" : [7, 16]
+    },
+    "5" : {
+      "hp" : 95,
+      "damageToUnits" : [38, 60],
+      "damageToBuildings" : [8, 18]
+    },
+    "6" : {
+      "hp" : 108,
+      "damageToUnits" : [43, 68],
+      "damageToBuildings" : [9, 20]
+    },
+    "7" : {
+      "hp" : 121,
+      "damageToUnits" : [48, 76],
+      "damageToBuildings" : [10, 22]
+    },
+    "8" : {
+      "hp" : 133,
+      "damageToUnits" : [53, 84],
+      "damageToBuildings" : [11, 24]
+    },
+    "9" : {
+      "hp" : 145,
+      "damageToUnits" : [58, 91],
+      "damageToBuildings" : [12, 26]
+    },
+    "10" : {
+      "hp" : 155,
+      "damageToUnits" : [62, 98],
+      "damageToBuildings" : [13, 28]
+    },
+    "11" : {
+      "hp" : 164,
+      "damageToUnits" : [66, 104],
+      "damageToBuildings" : [14, 30]
+    },
+    "12" : {
+      "hp" : 171,
+      "damageToUnits" : [69, 108],
+      "damageToBuildings" : [15, 31]
+    },
+    "13" : {
+      "hp" : 176,
+      "damageToUnits" : [71, 111],
+      "damageToBuildings" : [15, 32]
+    }
+  }
+}

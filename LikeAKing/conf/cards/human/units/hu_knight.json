@@ -1,0 +1,62 @@
+{
+  "id" : "hu_knight",
+  "cardType" : "unit",
+  "race" : "human",
+  "name" : "H_U_KNIGHT",
+  "radius" : 50,
+  "height": 50,
+  "icon" : "humanKnight",
+  "skin" : "humanKnight",
+  "attackRange" : 30,
+  "moveSpeed" : 2.1,
+  "attackSpeed" : 500,
+  "reloadAttackSpeed" : 1600,
+  "timeToDeath" : 0,
+  "attackType" : "melee",
+  "baseState" : [{"skn" : "idle"}],
+  "moveState" : [{"skn" : "run"}],
+  "attackState" : [{"skn" : "attack1", "fr" : 0.46, "snd" : ["snd_swordAttack1"]}, {"skn" : "attack2", "fr" : 0.42, "snd" : ["snd_swordAttack2"]}],
+  "deathState" : [{"skn" : "death", "snd" : ["snd_knightDeath1"]}],
+  "levels" : {
+    "1" : {
+      "special" : [
+        {"t" : "enemydef", "val" : 0.30}
+      ],
+      "hp" : 200,
+      "damageToUnits" : [70, 110],
+      "damageToBuildings" : [70, 110]
+    },
+    "2" : {
+      "special" : [
+        {"t" : "enemydef", "val" : 0.34}
+      ],
+      "hp" : 254,
+      "damageToUnits" : [89, 140],
+      "damageToBuildings" : [89, 140]
+    },
+    "3" : {
+      "special" : [
+        {"t" : "enemydef", "val" : 0.39}
+      ],
+      "hp" : 319,
+      "damageToUnits" : [112, 176],
+      "damageToBuildings" : [112, 176]
+    },
+    "4" : {
+      "special" : [
+        {"t" : "enemydef", "val" : 0.44}
+      ],
+      "hp" : 397,
+      "damageToUnits" : [139, 219],
+      "damageToBuildings" : [139, 219]
+    },
+    "5" : {
+      "special" : [
+        {"t" : "enemydef", "val" : 0.50}
+      ],
+      "hp" : 489,
+      "damageToUnits" : [171, 270],
+      "damageToBuildings" : [171, 270]
+    }
+  }
+}

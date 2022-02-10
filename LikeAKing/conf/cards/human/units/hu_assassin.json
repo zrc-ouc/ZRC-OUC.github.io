@@ -1,0 +1,110 @@
+{
+  "id" : "hu_assassin",
+  "cardType" : "unit",
+  "race" : "human",
+  "name" : "H_U_ASSASSIN",
+  "radius" : 30,
+  "height": 30,
+  "icon" : "humanAssassin",
+  "skin" : "humanAssassin",
+  "attackRange" : 10,
+  "moveSpeed" : 1.75,
+  "attackSpeed" : 400,
+  "reloadAttackSpeed" : 1000,
+  "timeToDeath" : 0,
+  "attackType" : "melee",
+  "baseState" : [{"skn" : "idle"}],
+  "moveState" : [{"skn" : "run"}],
+  "attackState" : [{"skn" : "attack1", "fr" : 0.5, "snd" : ["snd_assassinAttack1"]}, {"skn" : "attack2", "fr" : 0.5, "snd" : ["snd_assassinAttack2"]}, {"skn" : "attack3", "fr" : 0.5, "snd" : ["snd_assassinAttack3"]}],
+  "deathState" : [{"skn" : "death", "snd" : ["snd_humanDeath1", "snd_humanDeath2"]}],
+  "levels" : {
+    "1" : {
+      "special" : [
+        {"t" : "miss", "ch" : 0.10}
+      ],
+      "hp" : 140,
+      "damageToUnits" : [14, 40],
+      "damageToBuildings" : [16, 28]
+    },
+    "2" : {
+      "special" : [
+        {"t" : "miss", "ch" : 0.12}
+      ],
+      "hp" : 168,
+      "damageToUnits" : [17, 48],
+      "damageToBuildings" : [19, 34]
+    },
+    "3" : {
+      "special" : [
+        {"t" : "miss", "ch" : 0.14}
+      ],
+      "hp" : 200,
+      "damageToUnits" : [20, 57],
+      "damageToBuildings" : [23, 40]
+    },
+    "4" : {
+      "special" : [
+        {"t" : "miss", "ch" : 0.16}
+      ],
+      "hp" : 235,
+      "damageToUnits" : [24, 67],
+      "damageToBuildings" : [27, 47]
+    },
+    "5" : {
+      "special" : [
+        {"t" : "miss", "ch" : 0.18}
+      ],
+      "hp" : 274,
+      "damageToUnits" : [28, 78],
+      "damageToBuildings" : [31, 55]
+    },
+    "6" : {
+      "special" : [
+        {"t" : "miss", "ch" : 0.20}
+      ],
+      "hp" : 316,
+      "damageToUnits" : [32, 90],
+      "damageToBuildings" : [36, 63]
+    },
+    "7" : {
+      "special" : [
+        {"t" : "miss", "ch" : 0.23}
+      ],
+      "hp" : 361,
+      "damageToUnits" : [37, 103],
+      "damageToBuildings" : [41, 72]
+    },
+    "8" : {
+      "special" : [
+        {"t" : "miss", "ch" : 0.25}
+      ],
+      "hp" : 408,
+      "damageToUnits" : [42, 116],
+      "damageToBuildings" : [46, 81]
+    },
+    "9" : {
+      "special" : [
+        {"t" : "miss", "ch" : 0.27}
+      ],
+      "hp" : 456,
+      "damageToUnits" : [47, 130],
+      "damageToBuildings" : [51, 91]
+    },
+    "10" : {
+      "special" : [
+        {"t" : "miss", "ch" : 0.29}
+      ],
+      "hp" : 505,
+      "damageToUnits" : [52, 144],
+      "damageToBuildings" : [56, 101]
+    },
+    "11" : {
+      "special" : [
+        {"t" : "miss", "ch" : 0.32}
+      ],
+      "hp" : 554,
+      "damageToUnits" : [57, 158],
+      "damageToBuildings" : [61, 111]
+    }
+  }
+}

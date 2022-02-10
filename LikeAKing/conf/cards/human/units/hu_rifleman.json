@@ -1,0 +1,112 @@
+{
+  "id" : "hu_rifleman",
+  "cardType" : "unit",
+  "race" : "human",
+  "name" : "H_U_RIFLEMAN",
+  "radius" : 35,
+  "height": 30,
+  "icon" : "humanRifleman",
+  "skin" : "humanRifleman",
+  "moveSpeed" : 1.65,
+  "attackRange" : 160,
+  "attackSpeed" : 400,
+  "reloadAttackSpeed" : 1700,
+  "bulletFrom" : [{"x" : -71, "y" : -53}, {"x" : 71, "y" : -53}],
+  "timeToDeath" : 0,
+  "attackType" : "range",
+  "bullet" : "bul_shellMusket",
+  "baseState" : [{"skn" : "idle"}],
+  "moveState" : [{"skn" : "run"}],
+  "attackState" : [{"skn" : "attack1", "fr" : 0.52, "snd" : ["snd_riflemanAttack1"]}],
+  "deathState" : [{"skn" : "death", "snd" : ["snd_humanDeath1", "snd_humanDeath2"]}],
+  "levels" : {
+    "1" : {
+      "special" : [
+        {"t" : "critical", "ch" : 0.15, "val" : 1.5}
+      ],
+      "hp" : 80,
+      "damageToUnits" : [46, 70],
+      "damageToBuildings" : [10, 20]
+    },
+    "2" : {
+      "special" : [
+        {"t" : "critical", "ch" : 0.18, "val" : 1.5}
+      ],
+      "hp" : 96,
+      "damageToUnits" : [55, 84],
+      "damageToBuildings" : [12, 24]
+    },
+    "3" : {
+      "special" : [
+        {"t" : "critical", "ch" : 0.21, "val" : 1.5}
+      ],
+      "hp" : 114,
+      "damageToUnits" : [65, 100],
+      "damageToBuildings" : [14, 29]
+    },
+    "4" : {
+      "special" : [
+        {"t" : "critical", "ch" : 0.24, "val" : 1.5}
+      ],
+      "hp" : 134,
+      "damageToUnits" : [76, 118],
+      "damageToBuildings" : [16, 34]
+    },
+    "5" : {
+      "special" : [
+        {"t" : "critical", "ch" : 0.27, "val" : 1.5}
+      ],
+      "hp" : 156,
+      "damageToUnits" : [88, 137],
+      "damageToBuildings" : [19, 40]
+    },
+    "6" : {
+      "special" : [
+        {"t" : "critical", "ch" : 0.31, "val" : 1.5}
+      ],
+      "hp" : 180,
+      "damageToUnits" : [101, 158],
+      "damageToBuildings" : [22, 46]
+    },
+    "7" : {
+      "special" : [
+        {"t" : "critical", "ch" : 0.35, "val" : 1.5}
+      ],
+      "hp" : 205,
+      "damageToUnits" : [115, 180],
+      "damageToBuildings" : [25, 52]
+    },
+    "8" : {
+      "special" : [
+        {"t" : "critical", "ch" : 0.38, "val" : 1.5}
+      ],
+      "hp" : 232,
+      "damageToUnits" : [130, 203],
+      "damageToBuildings" : [28, 59]
+    },
+    "9" : {
+      "special" : [
+        {"t" : "critical", "ch" : 0.41, "val" : 1.5}
+      ],
+      "hp" : 259,
+      "damageToUnits" : [145, 227],
+      "damageToBuildings" : [31, 66]
+    },
+    "10" : {
+      "special" : [
+        {"t" : "critical", "ch" : 0.45, "val" : 1.5}
+      ],
+      "hp" : 287,
+      "damageToUnits" : [161, 251],
+      "damageToBuildings" : [34, 73]
+    },
+    "11" : {
+      "special" : [
+        {"t" : "critical", "ch" : 0.49, "val" : 1.5}
+      ],
+      "hp" : 315,
+      "damageToUnits" : [176, 275],
+      "damageToBuildings" : [37, 80]
+    }
+  }
+}
