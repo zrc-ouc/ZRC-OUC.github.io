@@ -1,0 +1,40 @@
+{
+  "reg" : {
+    "active" : "h_king_1",
+    "list" : {
+      "h_king_1": {}
+    }
+  },
+  "list" : [
+    {
+      "id" : "h_king_1",
+      "race" : "human",
+      "skin" : "Human",
+      "name" : "HUMAN_KING_NAME",
+      "desc" : "HUMAN_KING_DESC",
+      "phrases" : ["KING_HUMAN_P_BASE_1", "KING_HUMAN_P_BASE_2", "KING_HUMAN_P_BASE_3", "KING_HUMAN_P_BASE_4", "KING_HUMAN_P_BASE_5"],
+      "danceState" : ["victoryHuman"],
+      "defeatState" : ["defeat"],
+      "idleState" : ["stand", "stand2", "stand3", "stand4"],
+      "menuState" : ["idle", "idle", "idle", "idle", "idle", "idle", "idle2", "idle2", "idle2", "idle2", "idle2", "idle3", "idle4", "idle5"],
+      "throneBack" : ["throneBackHuman1", "throneBackHuman2"],
+      "borders" : "background_humanMenuBorders.png",
+      "vipPosition" : {"x" :  140, "y" :  140}
+    },
+    {
+      "id" : "o_king_1",
+      "race" : "orc",
+      "skin" : "Orc",
+      "name" : "ORC_KING_NAME",
+      "desc" : "ORC_KING_DESC",
+      "phrases" : ["KING_ORC_P_BASE_1", "KING_ORC_P_BASE_2", "KING_ORC_P_BASE_3", "KING_ORC_P_BASE_4", "KING_ORC_P_BASE_5"],
+      "danceState" : ["victoryOrc"],
+      "defeatState" : ["defeat"],
+      "idleState" : ["stand", "stand2", "stand3", "stand4"],
+      "menuState" : ["idle", "idle", "idle", "idle", "idle", "idle", "idle2", "idle2", "idle2", "idle2", "idle2", "idle3", "idle4", "idle5"],
+      "throneBack" : ["throneBackOrc1", "throneBackOrc2"],
+      "borders" : "background_orcMenuBorders.png",
+      "vipPosition" : {"x" :  140, "y" :  140}
+    }
+  ]
+}
