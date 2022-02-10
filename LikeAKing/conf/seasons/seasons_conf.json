@@ -1,0 +1,112 @@
+{
+  "pic" : "season2_pic.jpg",
+  "time" : 864000000,
+  "name" : "SEASON_NAME_3",
+  "loot" : [
+    {
+      "points" : 5,
+      "baseLoot" : "seasonLoot_base_1_2",
+      "adLoot" : "seasonLoot_pass_1_2"
+    },
+    {
+      "points" : 10,
+      "baseLoot" : "seasonLoot_base_1_1",
+      "adLoot" : "seasonLoot_pass_1_1"
+    },
+    {
+      "points" : 15,
+      "baseLoot" : "seasonLoot_base_1_4",
+      "adLoot" : "seasonLoot_pass_1_1"
+    },
+    {
+      "points" : 20,
+      "baseLoot" : "seasonLoot_base_1_1",
+      "adLoot" : "seasonLoot_pass_1_3"
+    },
+    {
+      "points" : 25,
+      "baseLoot" : "seasonLoot_base_1_1",
+      "adLoot" : "seasonLoot_pass_1_1"
+    },
+    {
+      "points" : 30,
+      "baseLoot" : "seasonLoot_base_1_1",
+      "adLoot" : "seasonLoot_pass_1_1"
+    },
+    {
+      "points" : 35,
+      "baseLoot" : "seasonLoot_base_1_1",
+      "adLoot" : "seasonLoot_pass_1_2"
+    },
+    {
+      "points" : 40,
+      "baseLoot" : "seasonLoot_base_1_2",
+      "adLoot" : "seasonLoot_pass_1_1"
+    },
+    {
+      "points" : 45,
+      "baseLoot" : "seasonLoot_base_1_1",
+      "adLoot" : "seasonLoot_pass_1_5"
+    },
+    {
+      "points" : 50,
+      "baseLoot" : "seasonLoot_base_1_4",
+      "adLoot" : "seasonLoot_pass_1_1"
+    },
+    {
+      "points" : 55,
+      "baseLoot" : "seasonLoot_base_1_1",
+      "adLoot" : "seasonLoot_pass_1_3"
+    },
+    {
+      "points" : 60,
+      "baseLoot" : "seasonLoot_base_1_1",
+      "adLoot" : "seasonLoot_pass_1_5"
+    },
+    {
+      "points" : 65,
+      "baseLoot" : "seasonLoot_base_1_1",
+      "adLoot" : "seasonLoot_pass_1_1"
+    },
+    {
+      "points" : 70,
+      "baseLoot" : "seasonLoot_base_1_1",
+      "adLoot" : "seasonLoot_pass_1_2"
+    },
+    {
+      "points" : 75,
+      "baseLoot" : "seasonLoot_base_1_1",
+      "adLoot" : "seasonLoot_pass_1_1"
+    },
+    {
+      "points" : 80,
+      "baseLoot" : "seasonLoot_base_1_1",
+      "adLoot" : "seasonLoot_pass_1_5"
+    },
+    {
+      "points" : 85,
+      "baseLoot" : "seasonLoot_base_1_1",
+      "adLoot" : "seasonLoot_pass_1_3"
+    },
+    {
+      "points" : 90,
+      "baseLoot" : "seasonLoot_base_1_1",
+      "adLoot" : "seasonLoot_pass_1_1"
+    },
+    {
+      "points" : 95,
+      "baseLoot" : "seasonLoot_base_1_1",
+      "adLoot" : "seasonLoot_pass_1_3"
+    },
+    {
+      "points" : 100,
+      "baseLoot" : "seasonLoot_base_1_4",
+      "adLoot" : "seasonLoot_pass_1_2"
+    }
+  ],
+  "bank" : {
+    "totalCoins" : 10000,
+    "partCoins" : 100,
+    "partCrown" : 10
+  }
+}
