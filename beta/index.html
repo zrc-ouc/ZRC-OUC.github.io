@@ -1,240 +1,366 @@
+
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>KEOD</title>       
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-<head>
-<title>KEMS - Kuroshio Extension Mooring System</title>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?9d41c9aa18cca32ecaeeaed6d65ff64e";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes">
-<style type="text/css">
-	a:link,a:visited{
-		display:block;
-		weight:500px;
-		font-weight:bold;
-		color:#FFFFFF;
-		background-color:#bebebe;
-		text-align:center;
-		padding:4px;
-		text-decoration:none;
-		text-transform:uppercase;
-	}
-	a:hover,a:active{	
-		background-color:#cc0000;
-	}
-</style>
-<style>
-.center
-{
-margin:auto;
-width:90%;
-}
-#header {
-    background-color:#00C3FF;
-    margin:0 auto;
-    width:1410px;
-    heigth:100px;
-    float:center;
-    color:white;
-    text-align:center;
-    padding:5px;
-}
-#nav{
-    line-height:30px;
-    margin:0 auto;
-    width:1400px;
-    heigth:60px;
-    background-color:#eeeeee;
-    float:center;
-    text-align:center;
-    padding:10px;
-}
-#section {
-    float:center;
-    text-align:center;	
-    margin:0 auto;
-    width:1400px; 
-}
-#footer {
-    background-color:#00C3FF;
-    color:white;
-    text-align:right;
-    padding:5px;
-    margin:0 auto;
-    width:1410px;
-}
-ul{
-	list-style-type:none;
-	margin:0 auto;
-	padding:0;
-	overflow:hidden;
-}
-li{
-	float:left;
-	width:233px;
-    	heigth:55px;
-
-}
-</style>
-</head>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/fontAwesome.css">
+        <link rel="stylesheet" href="css/light-box.css">
+        <link rel="stylesheet" href="css/owl-carousel.css">
+        <link rel="stylesheet" href="css/templatemo-style.css">
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
 
 <body>
 
-<div id="header">
-<h1>Kuroshio Extension Mooring System (KEMS)</h1>
-</div>
+        <header class="nav-down responsive-nav hidden-lg hidden-md">
+            <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--/.navbar-header-->
+            <div id="main-nav" class="collapse navbar-collapse">
+                <nav>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#top">Home</a></li>
+                        <li><a href="#featured">Featured</a></li>
+                        <li><a href="#video">Presentation</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
-<div id="nav">
-<ul>
-<li><a href="#Sec1">Introduction</a></li>
-<li><a href="#Sec2">SLA/SST/CHL</a></li>
-<li><a href="#Sec3">Surface Buoy</a></li>
-<li><a href="#Sec4">Subsurface Mooring</a></li>
-<li><a href="#Sec5">Windy TV</a></li>
-<li><a href="#Sec6">Team</a></li>
-</ul>
-</div>
+        <div class="sidebar-navigation hidde-sm hidden-xs">
+            <div class="logo">
+                <a href="#">KEOD</a>
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#top">
+                            <span class="rect"></span>
+                            <span class="circle"></span>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#video">
+                            <span class="rect"></span>
+                            <span class="circle"></span>
+                            Introduction
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#featured">
+                            <span class="rect"></span>
+                            <span class="circle"></span>
+                            Data Access
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact">
+                            <span class="rect"></span>
+                            <span class="circle"></span>
+                            Registration
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
 
-<div id="section">
-<h2 style="text-align:left;"><a name="Sec1" style="background-color:white">Introduction</a></h2>
-<p style="text-align:left;font-size: 20px">
-The Kuroshio Extension (KE) in the Northwest Pacific Ocean is one of the most dynamically-complex regions in the global ocean, but is one of the regions with the least long-term continuous observations. Since 2014, Ocean University of China has started the construction of Kuroshio Extension observation system and carried out a series of far-reaching scientific-research-oriented in-situ observational experiments. In 2020, the phase I of the Kuroshio Extension Mooring System (KEMS) has been successfully constructed, providing real-time hydrological and meteorological data. In the next phase (2021-2025), this system will focus more on ocean multidisciplinary observations, to study the ocean carbon cycle, multi-scale coupling of physical/biological processes, ocean energy cascade and climate effect.
-</p>
-<p>
-	<img src="https://gitee.com/kems2020/kems2020/raw/master/Introduction.jpg" width="430" height="420"/>
-	<img src="https://gitee.com/kems2020/kems2020/raw/master/CKEO.jpg" width="710" height="400"/>
-</p>
-<h2 style="text-align:left;">Buoy/Subsurface Mooring Configuration</h2>
-<pre style="font-size:20px; text-align: left;">                  CKEO                                 CKEO-A                              M1-M4                           M5</pre>	
-<p style="text-align: center;">
-	<img src="https://gitee.com/kems2020/kems2020/raw/master/Config4.jpg" width="381" height="600"/>
-	<img src="https://gitee.com/kems2020/kems2020/raw/master/Config3.jpg" width="381" height="600"/>
-	<img src="https://gitee.com/kems2020/kems2020/raw/master/Config1.jpg" width="300" height="600"/>                                                                 
-	<img src="https://gitee.com/kems2020/kems2020/raw/master/Config2.jpg" width="300" height="600"/>
-</p>
-</div>
+        <div class="slider"> # 主页
+            <div class="Modern-Slider content-section" id="top">
+                <!-- Item -->
+                <div class="item item-1">
+                    <div class="img-fill">
+                    <div class="image"></div>
+                    <div class="info">
+                        <div>
+                          <h1>Kuroshio Extension Observational Data</h1>
+                          <p>Long-term multi-platform observation system</p>
+                          <div class="white-button button">
+                              <a href="#featured">See More</a>
+                          </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- // Item -->
+                <!-- Item -->
+                <div class="item item-2">
+                    <div class="img-fill">
+                        <div class="image"></div>
+                        <div class="info">
+                        <div>
+                          <h1>Surface Buoy</h1>
+                          <p>CKEO</p>
+                          
+                          <div class="white-button button">
+                              <a href="#featured">See More</a>
+                          </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- // Item -->
+                <!-- Item -->
+                <div class="item item-3">
+                    <div class="img-fill">
+                        <div class="image"></div>
+                        <div class="info">
+                        <div>
+                          <h1>DrIB</h1>
+                          <p>Drifting Air-Sea Interface Buoy</p>  
+                          <div class="white-button button">
+                              <a href="#featured">See More</a>
+                          </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- // Item -->
+            </div>
+        </div>
 
-<div id="nav"></div>
 
-<div id="section">
-    <h2 style="text-align:left;"><a name="Sec2" style="background-color:white">Near Real-time Absolute Dynamic Topography (AVISO)</a></h2>
-    <p style="text-align: center">
-		<img src="https://gitee.com/kems2020/kems2020/raw/master/ADT.png" width="1000" height="635"/>
-    </p>
-    <h2 style="text-align:left;"><a name="Sec2" style="background-color:white">Near Real-time Sea Level Anomalies (AVISO)</a></h2>
-    <p style="text-align: center">
-		<img src="https://gitee.com/kems2020/kems2020/raw/master/SLA.png" width="1000" height="635"/>
-    </p>
-    <h2 style="text-align:left;"><a name="Sec2" style="background-color:white">Near Real-time Sea Surface Temperature (OSTIA)</a></h2>
-    <p style="text-align: center">
-        <img src="https://gitee.com/kems2020/kems2020/raw/master/SST.png" width="1000" height="635" />
-    </p>
-    <h2 style="text-align:left;"><a name="Sec2" style="background-color:white">Near Real-time Mass Concentration of Chlorophyll-a (GlobColour)</a></h2>
-    <p style="text-align: center">
-        <img src="https://gitee.com/kems2020/kems2020/raw/master/CHL.png" width="1000" height="635" />
-    </p>
-</div>
+        <div class="page-content">
+        		
+            <section id="video" class="content-section">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-heading">
+                            <h1>Kuroshio Extension Observational Data</h1>
+                            <p>The Kuroshio Extension (KE) in the Northwest Pacific Ocean is one of the most dynamically-complex regions in the global ocean, but is one of the regions with the least long-term continuous observations. Since 2014, Ocean University of China has started the construction of Kuroshio Extension observation system and carried out a series of far-reaching scientific-research-oriented in-situ observational experiments. In 2020, the phase I of the Kuroshio Extension Mooring System (KEMS) has been successfully constructed, providing real-time hydrological and meteorological data. In the next phase (2021-2025), this system will focus more on ocean multidisciplinary observations, to study the ocean carbon cycle, multi-scale coupling of physical/biological processes, ocean energy cascade and climate effect.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                            <img src="img/intro.jpg" alt="" width="40%">
+                    </div>
+                </div>
+            </section>
+            
+            <section id="featured" class="content-section">
+                <div class="section-heading">
+                    <h1>Data store</h1>
+                </div>
+                <div class="section-content">
+                    <div class="owl-carousel owl-theme">
+                        <div class="item">
+                            <div class="image">
+                                <img src="img/featured_1.jpg" alt="">
+                                <div class="featured-button button">
+                                    <a href="#contact">Access</a>
+                                </div>
+                            </div>
+                            <div class="text-content">
+                                <h4>Surface Buoy</h4>
+                                <span>since 2019</span>
+                                <p>Wind speed, wind direction, short wave radiation, long wave radiation, air pressure, temperature, relative humidity...</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="image">
+                                <img src="img/intro.jpg" alt="">
+                                <div class="featured-button button">
+                                    <a href="#contact">Access</a>
+                                </div>
+                            </div>
+                            <div class="text-content">
+                                <h4>Subsurface mooring</h4>
+                                <span>since 2014</span>
+                                <p>Temperature, salinity, current...</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="image">
+                                <img src="img/featured_3.jpg" alt="">
+                                <div class="featured-button button">
+                                    <a href="#contact">Access</a>
+                                </div>
+                            </div>
+                            <div class="text-content">
+                                <h4>Shipboard survey</h4>
+                                <p>Coming soon...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-carousel owl-theme">
+                        <div class="item">
+                            <div class="image">
+                                <img src="img/featured_4.jpg" alt="">
+                                <div class="featured-button button">
+                                    <a href="#contact">Access</a>
+                                </div>
+                            </div>
+                            <div class="text-content">
+                                <h4>Deep Argo</h4>
+                                <span>since 2020</span>
+                                <p>Coming soon...</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="image">
+                                <img src="img/featured_5.jpg" alt="">
+                                <div class="featured-button button">
+                                    <a href="#contact">Access</a>
+                                </div>
+                            </div>
+                            <div class="text-content">
+                                <h4>Drifting Air-Sea Interface Buoy</h4>
+                                <span>since 2015</span>
+                                <p>Coming soon...</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="image">
+                                <img src="img/featured_6.jpg" alt="">
+                                <div class="featured-button button">
+                                    <a href="#contact">Access</a>
+                                </div>
+                            </div>
+                            <div class="text-content">
+                                <h4>Drifting Wave Buoy</h4>
+                                <span>Since 2019</span>
+                                <p>Coming soon...</p>
+                            </div>
+                        </div>
+                    </div>      </div>
+            </section>
+            
+            <section id="contact" class="content-section">
+                <div id="contact-content">
+                    <div class="section-heading">
+                        <h1>Regiatration</h1>
+                        <p>Please login in or sign up.</p>
+                        
+                    </div>
+                    <div class="section-content">
+                        <form id="contact" action="#" method="post">
+                            <div class="row">
+                                <div class="col-md-4">
+                                  <fieldset>
+                                    <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-4">
+                                  <fieldset>
+                                    <input name="email" type="email" class="form-control" id="email" placeholder="Your email..." required="">
+                                  </fieldset>
+                                </div>
+                                 <div class="col-md-4">
+                                  <fieldset>
+                                    <input name="subject" type="text" class="form-control" id="subject" placeholder="Usage..." required="">
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                  <fieldset>
+                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                  <fieldset>
+                                    <button type="submit" id="form-submit" class="btn">Send Message Now</button>
+                                  </fieldset>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <section class="footer">
+                <p>Copyright &copy; 2023  
+                
+            </p>
+            </section>
+        </div>
 
-<div id="nav"></div>
 
-<div id="section">
-<h2 style="text-align:left;"><a name="Sec3" style="background-color:white">Real-time Data of Surface Buoys</a></h2>
-		<p style="text-align: center;">
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/CKEO_Fig_0.png" width="600" height="77"/>
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/CKEO_A_Fig_0.png" width="600" height="77"/>
-		</p>
-		<p style="text-align: center;">
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/CKEO_Fig_1.png" width="600" height="777"/>
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/CKEO_A_Fig_1.png" width="600" height="777"/>
-		</p>
-		<p style="text-align: center;">
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/CKEO_Fig_2.png" width="600" height="465"/>
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/CKEO_A_Fig_2.png" width="600" height="465"/>
-		</p>
-		<p style="text-align: center;">
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/CKEO_Fig_3.png" width="600" height="315"/>
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/CKEO_A_Fig_3.png" width="600" height="315"/>
-		</p>
-		<p style="text-align: center;">
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/CKEO_Fig_4.png" width="600" height="225"/>
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/blank.png" width="600" height="225"/>
-		</p>
-		<p style="text-align: center;">
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/CKEO_Fig_5.png" width="600" height="481"/>
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/blank.png" width="600" height="481"/>
-		</p>
-		<p style="text-align: center;">
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/CKEO_Fig_6.png" width="600" height="481"/>
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/blank.png" width="600" height="481"/>
-		</p>
-</div>
 
-<div id="nav"></div>
 
-<div id="section">
-<h2 style="text-align:left;"><a name="Sec4" style="background-color:white">Subsurface Moorings</a></h2>	
-		<pre style="font-size:20px">M1</pre>
-		<p style="text-align: center;">
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/M1.jpg" width="1200" height="563"/>
-		</p>
-		<pre style="font-size:20px">M2</pre>
-		<p style="text-align: center;">
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/M2.jpg" width="1200" height="563"/>
-		</p>
-		<pre style="font-size:20px">M3</pre>	 
-		<p style="text-align: center;">
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/M3.jpg" width="1200" height="563"/>
-		</p>
-		<pre style="font-size:20px">M4</pre>	 
-		<p style="text-align: center;">
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/M4.jpg" width="1200" height="563"/>
-		</p>
-		<p style="text-align:left">*All figures are generated using non-QC data.
-		</p>
-		</p>
-		<p style="text-align:left">*Please send e-mail to <u>chenzhaohui@ouc.edu.cn</u> for scientific use of data.
-		</p>
-</div>
 
-<div id="nav"></div>
 
-<div id="section">
-<h2 style="text-align:left;"><a name="Sec5" style="background-color:white">Windy TV</a></h2>
-<p>
-<iframe width="463" height="381" src="https://embed.windy.com/embed2.html?lat=35.120&lon=148.359&detailLat=32.713&detailLon=163.125&width=600&height=493&zoom=5&level=surface&overlay=currents&product=sea&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
-<iframe width="463" height="381" src="https://embed.windy.com/embed2.html?lat=35.120&lon=148.359&detailLat=32.713&detailLon=163.125&width=600&height=493&zoom=5&level=surface&overlay=sst&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
-<iframe width="463" height="381" src="https://embed.windy.com/embed2.html?lat=35.120&lon=148.359&detailLat=32.713&detailLon=163.125&width=600&height=493&zoom=5&level=surface&overlay=waves&product=ecmwfWaves&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
-		</p>
-		<p>
-<iframe width="463" height="381" src="https://embed.windy.com/embed2.html?lat=35.120&lon=148.359&detailLat=32.713&detailLon=163.125&width=600&height=493&zoom=5&level=surface&overlay=wind&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
-<iframe width="463" height="381" src="https://embed.windy.com/embed2.html?lat=35.120&lon=148.359&detailLat=32.713&detailLon=163.125&width=600&height=493&zoom=5&level=surface&overlay=temp&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
-<iframe width="463" height="381" src="https://embed.windy.com/embed2.html?lat=35.120&lon=148.359&detailLat=32.713&detailLon=163.125&width=600&height=493&zoom=5&level=surface&overlay=rh&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
-		</p>
-</div>
 
-<div id="nav"></div>
 
-<div id="section">
-<h2 style="text-align:left;"><a name="Sec6" style="background-color:white">Team KEMS</a></h2>
-<p style="text-align: center">
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/PI1.png" hspace="2%" width="189" height="280"/>
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/PI2.png" hspace="2%" width="189" height="280"/>
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/PI3.png" hspace="2%" width="189" height="280"/>
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/PI4.png" hspace="2%" width="189" height="280"/>
-			<img src="https://gitee.com/kems2020/kems2020/raw/master/PI5.png" hspace="2%" width="189" height="280"/>
-</p>
-</div>
-                     
-<div id="footer">
-2021
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="js/vendor/bootstrap.min.js"></script>
+    
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // Hide Header on on scroll down
+        var didScroll;
+        var lastScrollTop = 0;
+        var delta = 5;
+        var navbarHeight = $('header').outerHeight();
+
+        $(window).scroll(function(event){
+            didScroll = true;
+        });
+
+        setInterval(function() {
+            if (didScroll) {
+                hasScrolled();
+                didScroll = false;
+            }
+        }, 250);
+
+        function hasScrolled() {
+            var st = $(this).scrollTop();
+            
+            // Make sure they scroll more than delta
+            if(Math.abs(lastScrollTop - st) <= delta)
+                return;
+            
+            // If they scrolled down and are past the navbar, add class .nav-up.
+            // This is necessary so you never see what is "behind" the navbar.
+            if (st > lastScrollTop && st > navbarHeight){
+                // Scroll Down
+                $('header').removeClass('nav-down').addClass('nav-up');
+            } else {
+                // Scroll Up
+                if(st + $(window).height() < $(document).height()) {
+                    $('header').removeClass('nav-up').addClass('nav-down');
+                }
+            }
+            
+            lastScrollTop = st;
+        }
+    </script>
+
 
 </body>
 </html>
