@@ -1,0 +1,1188 @@
+{
+  "stringresources": {
+    "strings": {
+      "string": [
+        {
+          "id": "1",
+          "en": "en",
+          "de": "de",
+          "es": "es",
+          "fr": "fr",
+          "it": "it",
+          "pt": "pt",
+          "ru": "ru"
+        },
+        {
+          "id": "enter_name",
+          "en": "ENTER NAME FOR X:",
+          "de": "GIB EINEN NAMEN FÜR X EIN:",
+          "es": "INTRODUCE EL NOMBRE DEL X:",
+          "fr": "ENTRER LE NOM DU X:",
+          "it": "INSERISCI IL NOME PER IL X:",
+          "pt": "DIGITE O NOME PARA O X:",
+          "ru": "ВВЕДИТЕ ИМЯ ДЛЯ Х:"
+        },
+        {
+          "id": "next_reward",
+          "en": "NEXT REWARD",
+          "de": "NÄCHSTE BELOHNUNG",
+          "es": "SIGUIENTE RECOMPENSA",
+          "fr": "PROCHAINE RÉCOMPENSE",
+          "it": "PROSSIMA RICOMPENSA",
+          "pt": "PRÓXIMA RECOMPENSA",
+          "ru": "СЛЕДУЮЩЕЕ ВОЗНАГРАЖДЕНИЕ"
+        },
+        {
+          "id": "claim_reward",
+          "en": "CLAIM REWARD",
+          "de": "BELOHNUNG EINSAMMELN",
+          "es": "SOLICITAR RECOMPENSA",
+          "fr": "RÉCUPÉRER RÉCOMPENSE",
+          "it": "RISCUOTI RICOMPENSA",
+          "pt": "PEÇA A RECOMPENSA",
+          "ru": "ПРЕТЕНДОВАТЬ НА ВОЗНАГРАЖДЕНИЕ"
+        },
+        {
+          "id": "arena",
+          "en": "ARENA",
+          "de": "ARENA",
+          "es": "ARENA",
+          "fr": "ARÈNE",
+          "it": "ARENA",
+          "pt": "ARENA",
+          "ru": "АРЕНА"
+        },
+        {
+          "id": "play",
+          "en": "PLAY",
+          "de": "SPIELEN",
+          "es": "JUGAR",
+          "fr": "JOUER",
+          "it": "GIOCA",
+          "pt": "REPRODUZIR",
+          "ru": "ИГРАТЬ"
+        },
+        {
+          "id": "get",
+          "en": "GET X",
+          "de": "ERREICHE X",
+          "es": "CONSIGUE X",
+          "fr": "OBTENEZ X",
+          "it": "OTTIENI X",
+          "pt": "OBTER X",
+          "ru": "ПОЛУЧИТЕ X"
+        },
+        {
+          "id": "to_unlock",
+          "en": "TO UNLOCK",
+          "de": "ZUM FREISCHALTEN",
+          "es": "PARA DESBLOQUEAR",
+          "fr": "POUR DÉVERROUILLER",
+          "it": "PER SBLOCCARE",
+          "pt": "PARA DESBLOQUEAR",
+          "ru": "ЧТОБЫ РАЗБЛОКИРОВАТЬ"
+        },
+        {
+          "id": "player",
+          "en": "PLAYER",
+          "de": "SPIELER",
+          "es": "JUGADOR",
+          "fr": "JOUEUR",
+          "it": "GIOCATORE",
+          "pt": "JOGADOR",
+          "ru": "ИГРОК"
+        },
+        {
+          "id": "settings",
+          "en": "SETTINGS",
+          "de": "EINSTELLUNGEN",
+          "es": "AJUSTES",
+          "fr": "PARAMÈTRES",
+          "it": "IMPOSTAZIONI",
+          "pt": "DEFINIÇÕES",
+          "ru": "НАСТРОЙКИ"
+        },
+        {
+          "id": "instructions",
+          "en": "INSTRUCTIONS",
+          "de": "ANLEITUNG",
+          "es": "INSTRUCCIONES",
+          "fr": "INSTRUCTIONS",
+          "it": "ISTRUZIONI",
+          "pt": "INSTRUÇÕES",
+          "ru": "ИНСТРУКЦИИ"
+        },
+        {
+          "id": "give_up",
+          "en": "GIVE UP",
+          "de": "AUFGEBEN",
+          "es": "RENDIRSE",
+          "fr": "ABANDONNER",
+          "it": "RINUNCIA",
+          "pt": "DESISTIR",
+          "ru": "СДАТЬСЯ"
+        },
+        {
+          "id": "card_of_the_day",
+          "en": "CARD DEALS",
+          "de": "KARTENANGEBOTE",
+          "es": "OFERTAS DE CARTAS",
+          "fr": "OFFRES CARTES",
+          "it": "OFFERTE DI CARTE",
+          "pt": "OFERTAS DE CARTAS",
+          "ru": "КАРТОЧНЫЕ СДЕЛКИ"
+        },
+        {
+          "id": "claim",
+          "en": "CLAIM",
+          "de": "ABHOLEN",
+          "es": "CANJEAR",
+          "fr": "RÉCLAMER",
+          "it": "RISCUOTI",
+          "pt": "REIVINDICAR",
+          "ru": "ПОЛУЧИТЬ"
+        },
+        {
+          "id": "next_in",
+          "en": "NEW DEALS IN:",
+          "de": "NEUE ANGEBOTE IN:",
+          "es": "NUEVAS OFERTAS EN:",
+          "fr": "NOUVELLES OFFRES DANS:",
+          "it": "NUOVE OFFERTE TRA:",
+          "pt": "NOVAS OFERTAS EM:",
+          "ru": "НОВЫЕ ПРЕДЛОЖЕНИЯ:"
+        },
+        {
+          "id": "card_packages",
+          "en": "CARD PACKS",
+          "de": "KARTENPÄCKCHEN",
+          "es": "PAQUETES DE CARTAS",
+          "fr": "PAQUETS DE CARTES",
+          "it": "PACCHETTI DI CARTE",
+          "pt": "PACOTES DE CARTAS",
+          "ru": "НАБОРЫ КАРТ"
+        },
+        {
+          "id": "first_pack",
+          "en": "SILVER PACK",
+          "de": "SILBERPÄCKCHEN",
+          "es": "PAQUETE PLATEADO",
+          "fr": "PAQUET ARGENT",
+          "it": "PACCHETTO ARGENTO",
+          "pt": "PACOTE PRATA",
+          "ru": "СЕРЕБРЯНЫЙ НАБОР"
+        },
+        {
+          "id": "second_pack",
+          "en": "GOLDEN PACK",
+          "de": "GOLDPÄCKCHEN",
+          "es": "PAQUETE DORADO",
+          "fr": "PAQUET OR",
+          "it": "PACCHETTO ORO",
+          "pt": "PACOTE DOURADO",
+          "ru": "ЗОЛОТОЙ НАБОР"
+        },
+        {
+          "id": "third_pack",
+          "en": "DIAMOND PACK",
+          "de": "DIAMANTPÄCKCHEN",
+          "es": "PAQUETE DE DIAMANTE",
+          "fr": "PAQUET DIAMANT",
+          "it": "PACCHETTO DIAMANTE",
+          "pt": "PACOTE DIAMANTE",
+          "ru": "БРИЛЛИАНТОВЫЙ НАБОР"
+        },
+        {
+          "id": "deck",
+          "en": "DECK",
+          "de": "DECK",
+          "es": "BARAJA",
+          "fr": "PAQUET",
+          "it": "MAZZO",
+          "pt": "BARALHO",
+          "ru": "КОЛОДА"
+        },
+        {						
+          "id": "sell_cards",
+          "en": "SELL CARDS",
+          "de": "KARTEN VERKAUFEN",
+          "es": "VENDER CARTAS",
+          "fr": "VENDRE CARTES",
+          "it": "VENDI CARTE",
+          "pt": "VENDER CARTAS",
+          "ru": "ПРОДАТЬ КАРТЫ"
+        },
+        {
+          "id": "back",
+          "en": "BACK",
+          "de": "ZURÜCK",
+          "es": "ATRÁS",
+          "fr": "RETOUR",
+          "it": "INDIETRO",
+          "pt": "VOLTAR",
+          "ru": "НАЗАД"
+        },
+        {
+          "id": "upgrade",
+          "en": "UPGRADE",
+          "de": "AUFRÜSTEN",
+          "es": "MEJORA",
+          "fr": "AMÉLIORATION",
+          "it": "POTENZIA",
+          "pt": "MELHORE",
+          "ru": "ОБНОВИТЬ"
+        },
+        {
+          "id": "save",
+          "en": "SAVE",
+          "de": "SPEICHERN",
+          "es": "GUARDAR",
+          "fr": "SAUVEGARDER",
+          "it": "SALVA",
+          "pt": "SALVAR",
+          "ru": "СОХРАНИТЬ"
+        },
+        {						
+          "id": "merge",
+          "en": "MERGE",
+          "de": "VERSCHMELZEN",
+          "es": "COMBINAR",
+          "fr": "FUSIONNER",
+          "it": "UNISCI",
+          "pt": "MESCLAR",
+          "ru": "ОБЪЕДИНИТЬ"
+        },
+        {						
+          "id": "sell",
+          "en": "SELL",
+          "de": "VERKAUFEN",
+          "es": "VENDER",
+          "fr": "VENDRE",
+          "it": "VENDI",
+          "pt": "VENDER",
+          "ru": "ПРОДАТЬ"
+        },
+        {						
+          "id": "anvil",
+          "en": "ANVIL",
+          "de": "AMBOSS",
+          "es": "FORJA",
+          "fr": "ENCLUME",
+          "it": "INCUDINE",
+          "pt": "BIGORNA",
+          "ru": "НАКОВАЛЬНЯ"
+        },
+        {
+          "id": "win_ribbon_txt",
+          "en": "YOU WIN!",
+          "de": "GEWONNEN!",
+          "es": "¡GANAS!",
+          "fr": "VOUS AVEZ GAGNÉ!",
+          "it": "HAI VINTO!",
+          "pt": "VOCÊ VENCE",
+          "ru": "ТЫ ПОБЕДИЛ!"
+        },
+        {
+          "id": "lose_ribbon_txt",
+          "en": "YOU LOSE",
+          "de": "VERLOREN",
+          "es": "PIERDES",
+          "fr": "VOUS AVEZ PERDU",
+          "it": "HAI PERSO",
+          "pt": "VOCÊ PERDE",
+          "ru": "ТЫ ПРОИГРАЛ"
+        },
+        {
+          "id": "ok_txt",
+          "en": "OK",
+          "de": "OK",
+          "es": "ACEPTAR",
+          "fr": "OK",
+          "it": "OK",
+          "pt": "OK",
+          "ru": "ОК"
+        },
+        {
+          "id": "your_reward_txt",
+          "en": "YOUR REWARD",
+          "de": "DEINE BELOHNUNG",
+          "es": "TU RECOMPENSA",
+          "fr": "VOTRE RÉCOMPENSE",
+          "it": "LA TUA RICOMPENSA",
+          "pt": "SUA RECOMPENSA",
+          "ru": "ТВОЯ НАГРАДА"
+        },
+        {						
+          "id": "opponent_turn_txt",
+          "en": "OPPONENT'S TURN!",
+          "de": "ZUG DES GEGNERS!",
+          "es": "¡TURNO DEL ADVERSARIO!",
+          "fr": "TOUR DE L'ADVERSAIRE !",
+          "it": "TOCCA ALL'AVVERSARIO!",
+          "pt": "VEZ DO OPONENTE!",
+          "ru": "ХОД ПРОТИВНИКА!"
+        },
+        {						
+          "id": "player_turn_txt",
+          "en": "YOUR TURN!",
+          "de": "DEIN ZUG!",
+          "es": "¡TU TURNO!",
+          "fr": "VOTRE TOUR !",
+          "it": "TOCCA A TE!",
+          "pt": "SUA VEZ!",
+          "ru": "ВАШ ХОД!"
+        },
+        {
+          "id": "yes",
+          "en": "YES",
+          "de": "JA",
+          "es": "SÍ",
+          "fr": "OUI",
+          "it": "SÌ",
+          "pt": "SIM",
+          "ru": "ДА"
+        },
+        {
+          "id": "no",
+          "en": "NO",
+          "de": "NEIN",
+          "es": "NO",
+          "fr": "NON",
+          "it": "NO",
+          "pt": "NÃO",
+          "ru": "НЕТ"
+        },
+        {
+          "id": "rnd_cmmn_crd",
+          "en": "RANDOM COMMON CARD",
+          "de": "ZUFÄLLIGE GEWÖHNLICHE KARTE",
+          "es": "CARTA COMÚN ALEATORIA",
+          "fr": "CARTE COMMUNE ALÉATOIRE",
+          "it": "CARTA COMUNE CASUALE",
+          "pt": "CARTA COMUM ALEATÓRIA",
+          "ru": "СЛУЧАЙНАЯ ОБЫЧНАЯ КАРТА"
+        },
+        {
+          "id": "silver_pck",
+          "en": "SILVER PACK",
+          "de": "SILBERPÄCKCHEN",
+          "es": "PAQUETE PLATEADO",
+          "fr": "PAQUET ARGENT",
+          "it": "PACCHETTO ARGENTO",
+          "pt": "PACOTE PRATA",
+          "ru": "СЕРЕБРЯНЫЙ НАБОР"
+        },
+        {
+          "id": "rnd_rare_cdr",
+          "en": "RANDOM RARE CARD",
+          "de": "ZUFÄLLIGE SELTENE KARTE",
+          "es": "CARTA ESPECIAL ALEATORIA",
+          "fr": "CARTE RARE ALÉATOIRE",
+          "it": "CARTA RARA CASUALE",
+          "pt": "CARTA RARA ALEATÓRIA",
+          "ru": "СЛУЧАЙНАЯ РЕДКАЯ КАРТА"
+        },
+        {
+          "id": "gold_pck",
+          "en": "GOLDEN PACK",
+          "de": "GOLDPÄCKCHEN",
+          "es": "PAQUETE DORADO",
+          "fr": "PAQUET OR",
+          "it": "PACCHETTO ORO",
+          "pt": "PACOTE DOURADO",
+          "ru": "ЗОЛОТОЙ НАБОР"
+        },
+        {
+          "id": "rnd_epic_crd",
+          "en": "RANDOM EPIC CARD",
+          "de": "ZUFÄLLIGE EPISCHE KARTE",
+          "es": "CARTA ÉPICA ALEATORIA",
+          "fr": "CARTE ÉPIQUE ALÉATOIRE",
+          "it": "CARTA EPICA CASUALE",
+          "pt": "CARTA ÉPICA ALEATÓRIA",
+          "ru": "СЛУЧАЙНАЯ ЭПИЧЕСКАЯ КАРТА"
+        },
+        {
+          "id": "dmnd_pck",
+          "en": "DIAMOND PACK",
+          "de": "DIAMANTPÄCKCHEN",
+          "es": "PAQUETE DE DIAMANTE",
+          "fr": "PAQUET DIAMANT",
+          "it": "PACCHETTO DIAMANTE",
+          "pt": "PACOTE DIAMANTE",
+          "ru": "БРИЛЛИАНТОВЫЙ НАБОР"
+        },
+        {						
+          "id": "rnd_leg_pck",
+          "en": "RANDOM LEGENDARY CARD",
+          "de": "ZUFÄLLIGE LEGENDÄRE KARTE",
+          "es": "CARTA LEGENDARIA ALEATORIA",
+          "fr": "CARTE LÉGENDAIRE ALÉATOIRE",
+          "it": "CARTA LEGGENDARIA CASUALE",
+          "pt": "CARTA LENDÁRIA ALEATÓRIA",
+          "ru": "СЛУЧАЙНАЯ ЛЕГЕНДАРНАЯ КАРТА"
+        },
+        {						
+          "id": "pack_content",
+          "en": "PACK CONTENT:",
+          "de": "INHALT DES PAKETS:",
+          "es": "CONTENIDO DEL PAQUETE:",
+          "fr": "CONTENU DU PAQUET :",
+          "it": "CONTENUTO DEL PACCHETTO:",
+          "pt": "CONTEÚDO DO PACOTE:",
+          "ru": "СОДЕРЖИМОЕ НАБОРА:"
+        },
+        {
+          "id": "choose_card",
+          "en": "CHOOSE CARD TO SWAP",
+          "de": "KARTE ZUM TAUSCHEN AUSWÄHLEN",
+          "es": "ELIJA LA TARJETA A INTERCAMBIAR",
+          "fr": "CHOISISSEZ LA CARTE À ÉCHANGER",
+          "it": "SCEGLIERE LA CARTA DA SCAMBIARE",
+          "pt": "ESCOLHA O CARTÃO A SER TROCADO",
+          "ru": "ВЫБЕРИТЕ КАРТУ ДЛЯ ОБМЕНА"
+        },
+        {
+          "id": "sell_title",
+          "en": "CHOOSE ANY SPARE CARDS TO TRADE FOR COINS.",
+          "de": "WÄHLE EINE ÜBERSCHÜSSIGE KARTE, UM SIE GEGEN MÜNZEN EINZUTAUSCHEN",
+          "es": "ELIGE LAS CARTAS SOBRANTES QUE NO QUIERAS PARA INTERCAMBIARLAS POR MONEDAS.",
+          "fr": "CHOISISSEZ DES CARTES INUTILISÉES À ÉCHANGER CONTRE DES PIÈCES.",
+          "it": "SCEGLI QUALSIASI CARTA DI RISERVA DA SCAMBIARE CON MONETE.",
+          "pt": "ESCOLHA CARTAS SOBRESSALENTES PARA TROCAR POR MOEDAS.",
+          "ru": "ВЫБЕРИТЕ ЛЮБЫЕ ЗАПАСНЫЕ КАРТЫ ДЛЯ ОБМЕНА НА МОНЕТЫ."
+        },
+        {
+          "id": "anvil_title",
+          "en": "SELECT 3 IDENTICAL SPARE CARDS TO MERGE THEM",
+          "de": "WÄHLE 3 IDENTISCHE ÜBERSCHÜSSIGE KARTEN, UM SIE ZU VERSCHMELZEN",
+          "es": "SELECCIONA 3 CARTAS SOBRANTES IDÉNTICAS PARA COMBINARLAS.",
+          "fr": "SÉLECTIONNEZ 3 CARTES INUTILISÉES IDENTIQUES POUR LES FUSIONNER",
+          "it": "SELEZIONA 3 CARTE DI RISERVA IDENTICHE PER UNIRLE",
+          "pt": "SELECIONE 3 CARTAS SOBRESSALENTES IDÊNTICAS PARA MESCLÁ-LAS",
+          "ru": "ВЫБЕРИТЕ 3 ОДИНАКОВЫЕ ЗАПАСНЫЕ КАРТЫ, ЧТОБЫ ОБЪЕДИНИТЬ ИХ."
+        },
+        {						
+          "id": "warning",
+          "en": "WARNING",
+          "de": "ACHTUNG",
+          "es": "ADVERTENCIA",
+          "fr": "ATTENTION",
+          "it": "ATTENZIONE",
+          "pt": "AVISO",
+          "ru": "ПРЕДУПРЕЖДЕНИЕ"
+        },
+        {
+          "id": "lost_cards",
+          "en": "YOU WILL LOSE SOLD CARDS FOR COINS. ARE YOU SURE?",
+          "de": "DU VERLIERST DIE KARTEN, DIE DU FÜR MÜNZEN VERKAUFST. BIST DU SICHER?",
+          "es": "PERDERÁS LAS CARTAS QUE VENDAS A CAMBIO DE MONEDAS. ¿DESEAS CONTINUAR?",
+          "fr": "VOUS PERDREZ LES CARTES VENDUES CONTRE DES PIÈCES. CONFIRMER ?",
+          "it": "PERDERAI LE CARTE VENDUTE IN CAMBIO DI MONETE. VUOI PROCEDERE?",
+          "pt": "VOCÊ PERDERÁ CARTAS VENDIDAS POR MOEDAS. TEM CERTEZA?",
+          "ru": "ВЫ ПРОИГРАЕТЕ ПРОДАННЫЕ КАРТЫ ЗА МОНЕТЫ. ВЫ УВЕРЕНЫ?"
+        },
+        {
+          "id": "sort_by",
+          "en": "SORT BY:",
+          "de": "SORTIEREN NACH:",
+          "es": "ORDENAR POR:",
+          "fr": "TRIER PAR:",
+          "it": "ORDINA PER:",
+          "pt": "ORDENAR POR:",
+          "ru": "СОРТИРОВАТЬ ПО:"
+        },
+        {
+          "id": "sort_0",
+          "en": "HIGH LEVEL",
+          "de": "HOHE STUFE",
+          "es": "NIVEL SUPERIOR",
+          "fr": "NIVEAU ÉLEVÉ",
+          "it": "LIVELLO PIÙ ALTO",
+          "pt": "NÍVEL ALTO",
+          "ru": "ВЫСОКИЙ УРОВЕНЬ"
+        },
+        {
+          "id": "sort_1",
+          "en": "HIGH HEALTH",
+          "de": "HOHE GESUNDHEIT",
+          "es": "SALUD SUPERIOR",
+          "fr": "SANTÉ ÉLEVÉE",
+          "it": "SALUTE PIÙ ALTA",
+          "pt": "SAÚDE ALTA",
+          "ru": "ВЫСОКОЕ ЗДОРОВЬЕ"
+        },
+        {
+          "id": "sort_2",
+          "en": "HIGH DAMAGE",
+          "de": "HOHER SCHADEN",
+          "es": "DAÑO SUPERIOR",
+          "fr": "DÉGÂTS ÉLEVÉS",
+          "it": "DANNO PIÙ ALTO",
+          "pt": "DANO ALTO",
+          "ru": "ВЫСОКИЙ УРОН"
+        },
+        {
+          "id": "sort_3",
+          "en": "HEALING",
+          "de": "HEILUNG",
+          "es": "CURA",
+          "fr": "SOIN",
+          "it": "GUARIGIONE",
+          "pt": "CURAR",
+          "ru": "ИСЦЕЛЕНИЕ"
+        },
+        {
+          "id": "sort_4",
+          "en": "SPECIAL",
+          "de": "BESONDERES",
+          "es": "ESPECIAL",
+          "fr": "SPÉCIAL",
+          "it": "SPECIALE",
+          "pt": "ESPECIAL",
+          "ru": "СПЕЦИАЛЬНЫЙ"
+        },
+        {
+          "id": "sort_5",
+          "en": "LOW LEVEL",
+          "de": "NIEDRIGE STUFE",
+          "es": "NIVEL INFERIOR",
+          "fr": "NIVEAU FAIBLE",
+          "it": "LIVELLO PIÙ BASSO",
+          "pt": "NÍVEL BAIXO",
+          "ru": "НИЗКИЙ УРОВЕНЬ"
+        },
+        {
+          "id": "sort_6",
+          "en": "KNIGHT",
+          "de": "RITTER",
+          "es": "CABALLERO",
+          "fr": "CHEVALIER",
+          "it": "CAVALIERE",
+          "pt": "CAVALEIRO",
+          "ru": "РЫЦАРЬ"
+        },
+        {
+          "id": "sort_7",
+          "en": "FOLK",
+          "de": "VOLK",
+          "es": "CIUDADANO",
+          "fr": "VILLAGEOIS",
+          "it": "ABITANTE",
+          "pt": "HABITANTE",
+          "ru": "НАРОДНЫЙ"
+        },
+        {
+          "id": "sort_8",
+          "en": "ROGUE",
+          "de": "SCHURKE",
+          "es": "BANDIDO",
+          "fr": "CANAILLE",
+          "it": "BANDITO",
+          "pt": "BANDIDO",
+          "ru": "БРОДЯГА"
+        },
+        {
+          "id": "sort_9",
+          "en": "WIZARD",
+          "de": "ZAUBERER",
+          "es": "HECHICERO",
+          "fr": "SORCIER",
+          "it": "MAGO",
+          "pt": "MAGO",
+          "ru": "ВОЛШЕБНИК"
+        },
+        {
+          "id": "sort_10",
+          "en": "GOBLIN",
+          "de": "GOBLIN",
+          "es": "DUENDE",
+          "fr": "GOBELIN",
+          "it": "GOBLIN",
+          "pt": "DUENDE",
+          "ru": "ГОБЛИН"
+        },
+        {
+          "id": "sort_11",
+          "en": "UNDEAD",
+          "de": "UNTOTER",
+          "es": "NO MUERTO",
+          "fr": "MORT-VIVANT",
+          "it": "NON-MORTO",
+          "pt": "MORTO-VIVO",
+          "ru": "НЕЖИТЬ"
+        },
+        {
+          "id": "sort_12",
+          "en": "MOST CARDS",
+          "de": "DIE MEISTEN KARTEN",
+          "es": "LA MAYORÍA DE LAS TARJETAS",
+          "fr": "LA PLUPART DES CARTES",
+          "it": "LA MAGGIOR PARTE DELLE CARTE",
+          "pt": "A MAIORIA DOS CARTÕES",
+          "ru": "БОЛЬШИНСТВО КАРТ"
+        },
+        {
+          "id": "card_collection",
+          "en": "SPARE CARDS",
+          "de": "ÜBERSCHÜSSIGE KARTEN",
+          "es": "CARTAS SOBRANTES",
+          "fr": "CARTES INUTILISÉES",
+          "it": "CARTE DI RISERVA",
+          "pt": "CARTAS SOBRESSALENTES",
+          "ru": "ЗАПАСНЫЕ КАРТЫ"
+        },
+        {												
+          "id": "info_1",
+          "en": "BUILD A DECK OF 12 CARDS TO PLAY AGAINST OPPONENTS IN THE ARENA. COLLECT WINNING STARS, GOLD COINS AND NEW CARDS, MERGE THEM INTO STRONGER ONES AND UPGRADE YOUR DECK. DECKS WITH CARDS ONLY OF THE SAME FACTION GET A BONUS EFFECT. YOU CAN ALSO SELL UNWANTED SPARE CARDS FOR COINS.",
+          "de": "BAUE EIN DECK AUS 12 KARTEN UND SPIELE ES IN DER ARENA. SAMMLE GEWINNSTERNE, GOLDMÜNZEN UND NEUE KARTEN, VERSCHMILZ SIE ZU STÄRKEREN UND VERBESSERE DEIN DECK. DECKS, DIE NUR KARTEN EINER EINZIGEN FRAKTION ENTHALTEN, ERHALTEN EINEN BONUS. DU KANNST NICHT BENÖTIGTE KARTEN AUCH FÜR MÜNZEN VERKAUFEN.",
+          "es": "CREA UNA BARAJA DE 12 CARTAS PARA JUGAR CONTRA ADVERSARIOS EN LA ARENA. CONSIGUE ESTRELLAS, MONEDAS DE ORO Y NUEVAS CARTAS, QUE PUEDES COMBINAR PARA CREAR CARTAS MÁS PODEROSAS Y MEJORAR LA BARAJA. LAS BARAJAS COMPUESTAS ÚNICAMENTE POR CARTAS DE LA MISMA FACCIÓN TIENEN UN EFECTO POTENCIADOR. PUEDES VENDER LAS CARTAS QUE NO QUIERAS POR MONEDAS.",
+          "fr": "COMPOSEZ UN PAQUET DE 12 CARTES POUR AFFRONTER DES ADVERSAIRES DANS L'ARÈNE. RÉCUPÉREZ DES ÉTOILES GAGNANTES, DES PIÈCES D'OR ET DE NOUVELLES CARTES, FUSIONNEZ-LES POUR EN OBTENIR DE PLUS FORTES ET AMÉLIOREZ VOTRE PAQUET. LES PAQUETS CONTENANT UNIQUEMENT DES CARTES DE MÊME TYPE OBTIENNENT UN EFFET BONUS. VOUS POUVEZ ÉGALEMENT VENDRE DES CARTES INUTILISÉES NON SOUHAITÉES CONTRE DES PIÈCES.",
+          "it": "FORMA UN MAZZO DI 12 CARTE DA GIOCARE CONTRO GLI AVVERSARI NELL'ARENA. OTTIENI STELLE VINCENTI, MONETE D'ORO E NUOVE CARTE, UNISCILE A CARTE PIÙ FORTI E POTENZIA IL TUO MAZZO. I MAZZI COMPOSTI SOLO DA CARTE DELLA STESSA FAZIONE OTTENGONO UN EFFETTO BONUS. PUOI ANCHE VENDERE LE CARTE DI RISERVA INDESIDERATE IN CAMBIO DI MONETE.",
+          "pt": "CONSTRUA UM BARALHO DE 12 CARTAS PARA JOGAR CONTRA ADVERSÁRIOS NA ARENA. RECOLHA ESTRELAS VENCEDORAS, MOEDAS DE OURO E NOVAS CARTAS, MESCLE-AS EM OUTRAS MAIS FORTES E ATUALIZE SEU BARALHO. BARALHOS COM APENAS CARTAS DA MESMA FACÇÃO RECEBEM UM EFEITO DE BÔNUS. VOCÊ TAMBÉM PODE VENDER CARTÕES SOBRESSALENTES INDESEJADOS POR MOEDAS.",
+          "ru": "СОБЕРИТЕ КОЛОДУ ИЗ 12 КАРТ, ЧТОБЫ ИГРАТЬ ПРОТИВ СОПЕРНИКОВ НА АРЕНЕ. СОБИРАЙТЕ ПОБЕДНЫЕ ЗВЕЗДЫ, ЗОЛОТЫЕ МОНЕТЫ И НОВЫЕ КАРТЫ, ОБЪЕДИНЯЙТЕ ИХ В БОЛЕЕ СИЛЬНЫЕ И УЛУЧШАЙТЕ СВОЮ КОЛОДУ."
+        },
+        {
+          "id": "info_2",
+          "en": "OPPONENT'S CARDS HAVE RED SYMBOLS:",
+          "de": "KARTEN DES GEGNERS HABEN ROTE SYMBOLE:",
+          "es": "LAS CARTAS DEL ADVERSARIO CONTIENEN SÍMBOLOS ROJOS:",
+          "fr": "LES CARTES DE L'ADVERSAIRE ONT DES SYMBOLES ROUGES:",
+          "it": "LE CARTE DELL'AVVERSARIO HANNO SIMBOLI ROSSI:",
+          "pt": "AS CARTAS DO OPONENTE TÊM SÍMBOLOS VERMELHOS:",
+          "ru": "КАРТЫ ПРОТИВНИКА ИМЕЮТ КРАСНЫЕ СИМВОЛЫ:"
+        },
+        {
+          "id": "info_3",
+          "en": "BUILD A DECK OF 12 CARDS WITH THESE RESTRICTIONS:",
+          "de": "BAUE EIN DECK AUS 12 KARTEN MIT DIESEN EINSCHRÄNKUNGEN:",
+          "es": "CREA UNA BARAJA DE 12 CARTAS CON ESTAS RESTRICCIONES:",
+          "fr": "COMPOSEZ UN PAQUET DE 12 CARTES AVEC CES RESTRICTIONS :",
+          "it": "FORMA UN MAZZO DI 12 CARTE CON QUESTE LIMITAZIONI:",
+          "pt": "CONSTRUA UM BARALHO DE 12 CARTAS COM ESTAS RESTRIÇÕES:",
+          "ru": "СОБЕРИТЕ КОЛОДУ ИЗ 12 КАРТ С УКАЗАННЫМИ ОГРАНИЧЕНИЯМИ:"
+        },
+        {
+          "id": "info_4",
+          "en": "IF YOUR DECK CONSISTS ONLY OF CARDS OF THE SAME FACTION, YOU RECEIVE A BONUS.",
+          "de": "WENN DEIN DECK NUR AUS KARTEN EINER FRAKTION BESTEHT, ERHÄLTST DU EINEN BONUS.",
+          "es": "SI TU BARAJA SOLO CONTIENE CARTAS DE LA MISMA FACCIÓN, OBTENDRÁS UNA BONIFICACIÓN.",
+          "fr": "SI VOTRE PAQUET EST COMPOSÉ UNIQUEMENT DE CARTES DE MÊME TYPE, VOUS RECEVEZ UN BONUS.",
+          "it": "SE IL TUO MAZZO È COMPOSTO SOLO DA CARTE DELLA STESSA FAZIONE, RICEVI UN BONUS.",
+          "pt": "SE O SEU BARALHO TIVER APENAS EM CARTAS DA MESMA FACÇÃO, VOCÊ RECEBERÁ UM BÔNUS.",
+          "ru": "ЕСЛИ ВАША КОЛОДА СОСТОИТ ТОЛЬКО ИЗ КАРТ ОДНОЙ ФРАКЦИИ, ВЫ ПОЛУЧАЕТЕ БОНУС."
+        },
+        {
+          "id": "faction_bonus",
+          "en": "FACTION BONUSES:",
+          "de": "FRAKTIONSBONI:",
+          "es": "BONIFICACIONES DE FACCIÓN:",
+          "fr": "BONUS DE TYPE :",
+          "it": "BONUS DELLA FAZIONE:",
+          "pt": "BÔNUS DE FACÇÃO:",
+          "ru": "ФРАКЦИОННЫЕ БОНУСЫ:"
+        },
+        {
+          "id": "bonus_1",
+          "en": "MAY HAVE 2 BUILDINGS IN DECK BUILDINGS CAN RESTORE HP",
+          "de": "KANN 2 GEBÄUDE IM DECK HABEN GEBÄUDE KÖNNEN TP REGENERIEREN",
+          "es": "PUEDES TENER 2 EDIFICIOS EN LA BARAJA. LOS EDIFICIOS PUEDEN RECUPERAR PS.",
+          "fr": "PEUT AVOIR 2 BÂTIMENTS DANS LE PAQUET LES BÂTIMENTS PEUVENT RESTAURER LES PV",
+          "it": "PUÒ AVERE 2 EDIFICI NEL MAZZO GLI EDIFICI POSSONO RIPRISTINARE PV",
+          "pt": "PODE TER 2 PILHAS NO BARALHO PILHAS PODEM RESTAURAR PS",
+          "ru": "МОЖЕТ ИМЕТЬ 2 ЗДАНИЯ В КОЛОДЕ ЗДАНИЯ МОГУТ ВОССТАНАВЛИВАТЬ HP"
+        },
+        {
+          "id": "bonus_2",
+          "en": "ALL HEROES GET DAMAGE +1, BUT HURT ALSO ALLIES",
+          "de": "ALLE HELDEN ERHALTEN SCHADEN +1, FÜGEN ABER AUCH VERBÜNDETEN SCHADEN ZU",
+          "es": "TODOS LOS HÉROES OBTIENEN +1 DE DAÑO, PERO TAMBIÉN INFLIGEN DAÑO A LOS ALIADOS",
+          "fr": "TOUS LES HÉROS OBTIENNENT DÉGÂTS +1, MAIS BLESSENT ÉGALEMENT LES ALLIÉS",
+          "it": "TUTTI GLI EROI RICEVONO +1 AL DANNO, MA FERISCONO ANCHE GLI ALLEATI",
+          "pt": "TODOS OS HERÓIS RECEBEM DANO +1, MAS TAMBÉM FEREM ALIADOS",
+          "ru": "ВСЕ ГЕРОИ ПОЛУЧАЮТ УРОН +1, НО НАНОСЯТ УРОН И СОЮЗНИКАМ"
+        },
+        {
+          "id": "bonus_3",
+          "en": "HEROES CAN BE HEALED BY ENEMY HEROES HEROES' HP CAN GO OVER MAX",
+          "de": "HELDEN KÖNNEN VON GEGNERISCHEN HELDEN GEHEILT WERDEN TP VON HELDEN KANN MAX. ÜBERSCHREITEN",
+          "es": "LOS HÉROES PUEDEN SER CURADOS POR LOS HÉROES DEL ADVERSARIO. LOS PS DE LOS HÉROES PUEDEN SUPERAR EL MÁXIMO.",
+          "fr": "LES HÉROS PEUVENT ÊTRE SOIGNÉS PAR LES HÉROS ENNEMIS LES PV DES HÉROS PEUVENT DÉPASSER LE MAXIMUM",
+          "it": "GLI EROI POSSONO ESSERE CURATI DAGLI EROI NEMICI I PV DEGLI EROI POSSONO SUPERARE IL LIMITE MASSIMO",
+          "pt": "HERÓIS PODEM SER CURADOS POR HERÓIS INIMIGOS O HP DOS HERÓIS PODE ULTRAPASSAR O MÁXIMO",
+          "ru": "ГЕРОИ МОГУТ БЫТЬ ИСЦЕЛЕНЫ ВРАЖЕСКИМИ ГЕРОЯМИ HP ГЕРОЕВ МОЖЕТ ПРЕВЫШАТЬ МАКСИМУМ"
+        },
+        {
+          "id": "bonus_4",
+          "en": "MAY HAVE 3 SPELLS IN DECK SPELLS DAMAGE ONLY OPPONENT'S CARDS",
+          "de": "KANN 3 ZAUBER IM DECK HABEN ZAUBER FÜGEN NUR GEGNERISCHEN KARTEN SCHADEN ZU",
+          "es": "PUEDES TENER 3 CONJUROS EN LA BARAJA. LOS CONJUROS SOLO AFECTAN A LAS CARTAS DEL ADVERSARIO",
+          "fr": "PEUT AVOIR 3 SORTS DANS LE PAQUET LES SORTS N'INFLIGENT DES DÉGÂTS QU'AUX CARTES DE L'ADVERSAIRE",
+          "it": "PUÒ AVERE 3 MAGIE NEL MAZZO LE MAGIE DANNEGGIANO SOLO LE CARTE DELL'AVVERSARIO",
+          "pt": "PODE TER 3 FEITIÇOS NO BARALHO FEITIÇOS DANIFICAM APENAS AS CARTAS DO OPONENTE",
+          "ru": "В КОЛОДЕ МОЖЕТ БЫТЬ 3 ЗАКЛИНАНИЯ ЗАКЛИНАНИЯ ПОВРЕЖДАЮТ ТОЛЬКО КАРТЫ ПРОТИВНИКА"
+        },
+        {
+          "id": "bonus_5",
+          "en": "HEROES REGENERATE 1 HEALTH EACH TURN",
+          "de": "HELDEN REGENERIEREN JEDE RUNDE 1 GESUNDHEIT",
+          "es": "LOS HÉROES REGENERAN 1 SALUD CADA TURNO",
+          "fr": "LES HÉROS RÉGÉNÈRENT 1 SANTÉ À CHAQUE TOUR",
+          "it": "GLI EROI RIGENERANO 1 SALUTE OGNI TURNO",
+          "pt": "OS HERÓIS REGENERAM 1 SAÚDE A CADA VOLTA",
+          "ru": "ГЕРОИ ВОССТАНАВЛИВАЮТ 1 ЗДОРОВЬЕ КАЖДЫЙ ХОД"
+        },
+        {
+          "id": "bonus_6",
+          "en": "ALL HEROES HAVE MAX HP +1",
+          "de": "ALLE HELDEN HABEN MAX-TP +1",
+          "es": "TODOS LOS HÉROES RECIBEN +1 A SUS PS MÁXIMOS.",
+          "fr": "TOUS LES HÉROS ONT PV MAX +1",
+          "it": "TUTTI GLI EROI HANNO PV MAX +1",
+          "pt": "TODOS OS HERÓIS RECEBEM PS MÁX +1",
+          "ru": "ВСЕ ГЕРОИ ИМЕЮТ МАКСИМАЛЬНЫЙ HP +1"
+        },
+        {
+          "id": "symbols",
+          "en": "SYMBOLS ON YOUR CARDS:",
+          "de": "SYMBOLE AUF DEINEN KARTEN:",
+          "es": "SÍMBOLOS DE LAS CARTAS:",
+          "fr": "SYMBOLES SUR VOS CARTES :",
+          "it": "SIMBOLI SULLE TUE CARTE:",
+          "pt": "SÍMBOLOS EM SUAS CARTAS:",
+          "ru": "СИМВОЛЫ НА ВАШИХ КАРТАХ:"
+        },
+        {
+          "id": "symbol_1",
+          "en": "ATTACK OPPONENT",
+          "de": "GEGNER ANGREIFEN",
+          "es": "ATACA AL ADVERSARIO",
+          "fr": "ATTAQUER ADVERSAIRE",
+          "it": "ATTACCA L'AVVERSARIO",
+          "pt": "ATACAR OPONENTE",
+          "ru": "АТАКОВАТЬ ПРОТИВНИКА"
+        },
+        {
+          "id": "symbol_2",
+          "en": "ATTACK ANY CARD",
+          "de": "BELIEBIGE KARTE ANGREIFEN",
+          "es": "ATACA A CUALQUIER CARTA",
+          "fr": "ATTAQUER N'IMPORTE QUELLE CARTE",
+          "it": "ATTACCA UNA CARTA",
+          "pt": "ATACAR QUALQUER CARTA",
+          "ru": "АТАКОВАТЬ ЛЮБУЮ КАРТУ"
+        },
+        {
+          "id": "symbol_3",
+          "en": "HEAL ANY HERO",
+          "de": "BELIEBIGEN HELDEN HEILEN",
+          "es": "CURA A CUALQUIER HÉROE",
+          "fr": "SOIGNER N'IMPORTE QUEL HÉROS",
+          "it": "GUARISCI UN EROE",
+          "pt": "CURAR QUALQUER HERÓI",
+          "ru": "ИСЦЕЛИТЬ ЛЮБОГО ГЕРОЯ"
+        },
+        {
+          "id": "symbol_4",
+          "en": "HEAL YOUR HERO (BLUE)",
+          "de": "DEINEN HELDEN HEILEN (BLAU)",
+          "es": "CURA A TU HÉROE (AZUL)",
+          "fr": "SOIGNER VOTRE HÉROS (BLEU)",
+          "it": "CURA IL TUO EROE (BLU)",
+          "pt": "CURAR SEU HERÓI (AZUL)",
+          "ru": "ИСЦЕЛИТЬ СВОЕГО ГЕРОЯ (СИНИЙ)"
+        },
+        {
+          "id": "symbol_5",
+          "en": "BLUE HERO HEALTH",
+          "de": "GESUNDHEIT DES BLAUEN HELDEN",
+          "es": "SALUD DEL HÉROE AZUL",
+          "fr": "SANTÉ HÉROS BLEU",
+          "it": "SALUTE DELL'EROE BLU",
+          "pt": "SAÚDE DE HERÓI AZUL",
+          "ru": "ЗДОРОВЬЕ СИНЕГО ГЕРОЯ"
+        },
+        {
+          "id": "symbol_6",
+          "en": "BLUE BUILDING HEALTH",
+          "de": "GESUNDHEIT DES BLAUEN GEBÄUDES",
+          "es": "SALUD DEL EDIFICIO AZUL",
+          "fr": "SANTÉ BÂTIMENT BLEU",
+          "it": "SALUTE DELL'EDIFICIO BLU",
+          "pt": "SAÚDE DA PILHA AZUL",
+          "ru": "ЗДОРОВЬЕ СИНЕГО ЗДАНИЯ"
+        },
+        {
+          "id": "symbol_7",
+          "en": "BLUE SPELL",
+          "de": "BLAUER ZAUBER",
+          "es": "CONJURO AZUL",
+          "fr": "SORT BLEU",
+          "it": "MAGIA BLU",
+          "pt": "FEITIÇO AZUL",
+          "ru": "СИНЕЕ ЗАКЛИНАНИЕ"
+        },
+        {
+          "id": "cond_1",
+          "en": "MAX 3 IDENTICAL CARDS ALLOWED",
+          "de": "MAX. 3 IDENTISCHE KARTEN ERLAUBT",
+          "es": "MÁXIMO 3 CARTAS IDÉNTICAS",
+          "fr": "MAXIMUM 3 CARTES IDENTIQUES AUTORISÉES",
+          "it": "MASSIMO 3 CARTE IDENTICHE CONSENTITE",
+          "pt": "MÁXIMO DE 3 CARTAS IDÊNTICAS PERMITIDAS",
+          "ru": "РАЗРЕШЕНО НЕ БОЛЕЕ 3 ОДИНАКОВЫХ КАРТ"
+        },
+        {
+          "id": "cond_2",
+          "en": "MAX 2 SPELLS ALLOWED",
+          "de": "MAX. 2 ZAUBER ERLAUBT",
+          "es": "MÁXIMO 2 CONJUROS",
+          "fr": "MAXIMUM 2 SORTS AUTORISÉS",
+          "it": "MASSIMO 2 MAGIE CONSENTITE",
+          "pt": "MÁXIMO DE 2 FEITIÇOS PERMITIDOS",
+          "ru": "РАЗРЕШЕНО НЕ БОЛЕЕ 2 ЗАКЛИНАНИЙ"
+        },
+        {
+          "id": "cond_3",
+          "en": "MAX 3 SPELLS ALLOWED FOR THIS FACTION",
+          "de": "MAX. 3 ZAUBER ERLAUBT FÜR DIESE FRAKTION",
+          "es": "MÁXIMO 3 CONJUROS PARA ESTA FACCIÓN",
+          "fr": "MAXIMUM 3 SORTS AUTORISÉS POUR CE TYPE",
+          "it": "MASSIMO 3 MAGIE CONSENTITE PER QUESTA FAZIONE",
+          "pt": "MÁXIMO DE 3 FEITIÇOS PERMITIDOS PARA ESTA FACÇÃO",
+          "ru": "РАЗРЕШЕНО НЕ БОЛЕЕ 3 ЗАКЛИНАНИЙ ДЛЯ ДАННОЙ ФРАКЦИИ"
+        },
+        {
+          "id": "cond_4",
+          "en": "MAX 1 BUILDING ALLOWED",
+          "de": "MAX. 1 GEBÄUDE ERLAUBT",
+          "es": "MÁXIMO 1 EDIFICIO",
+          "fr": "MAXIMUM 1 BÂTIMENT AUTORISÉ",
+          "it": "MASSIMO 1 EDIFICIO CONSENTITO",
+          "pt": "MÁXIMO DE 1 PILHA PERMITIDA",
+          "ru": "РАЗРЕШЕНО НЕ БОЛЕЕ 1 ЗДАНИЯ"
+        },
+        {
+          "id": "cond_5",
+          "en": "MAX 2 BUILDINGS ALLOWED FOR THIS FACTION",
+          "de": "MAX. 2 GEBÄUDE ERLAUBT FÜR DIESE FRAKTION",
+          "es": "MÁXIMO 2 EDIFICIOS PARA ESTA FACCIÓN",
+          "fr": "MAXIMUM 2 BÂTIMENTS AUTORISÉS POUR CE TYPE",
+          "it": "MASSIMO 2 EDIFICI CONSENTITI PER QUESTA FAZIONE",
+          "pt": "MÁXIMO DE 2 PILHAS PERMITIDAS PARA ESTA FACÇÃO",
+          "ru": "МАКСИМУМ 2 ЗДАНИЯ, РАЗРЕШЕННЫЕ ДЛЯ ЭТОЙ ФРАКЦИИ"
+        },
+        {
+          "id": "cond_6",
+          "en": "YOUR DECK NEEDS TO HAVE 12 CARDS",
+          "de": "DEIN DECK MUSS AUS 12 KARTEN BESTEHEN.",
+          "es": "LA BARAJA DEBE TENER 12 CARTAS.",
+          "fr": "VOTRE PAQUET DOIT AVOIR 12 CARTES",
+          "it": "IL TUO MAZZO DEVE ESSERE COMPOSTO DA 12 CARTE",
+          "pt": "SEU BARALHO PRECISA TER 12 CARTAS",
+          "ru": "В ВАШЕЙ КОЛОДЕ ДОЛЖНО БЫТЬ 12 КАРТ"
+        },
+        {
+          "id": "hero_info",
+          "en": "USE: ATTACK ONLY OPPONENT'S CARDS, HEAL FRIENDLY HEROES",
+          "de": "VERWENDEN: GREIFE NUR KARTEN DEINES GEGNERS AN, HEILE BEFREUNDETE HELDEN",
+          "es": "USO: SOLO ATACA A LAS CARTAS DEL ADVERSARIO Y CURA A LOS HÉROES ALIADOS.",
+          "fr": "UTILISATION : N'ATTAQUE QUE LES CARTES DE L'ADVERSAIRE, SOIGNE LES HÉROS AMIS",
+          "it": "USO: ATTACCA SOLO LE CARTE DELL'AVVERSARIO, CURA GLI EROI ALLEATI",
+          "pt": "USE: ATAQUE APENAS AS CARTAS DO OPONENTE, CURE HERÓIS AMIGÁVEIS",
+          "ru": "ИСПОЛЬЗОВАНИЕ: АТАКУЕТ ТОЛЬКО КАРТЫ ПРОТИВНИКА, ЛЕЧИТ ДРУЖЕСТВЕННЫХ ГЕРОЕВ"
+        },
+        {
+          "id": "max",
+          "en": "MAX",
+          "de": "MAX.",
+          "es": "MÁX.",
+          "fr": "MAX",
+          "it": "MAX",
+          "pt": "MÁX",
+          "ru": "МАКС."
+        },
+        {
+          "id": "special",
+          "en": "SPECIAL",
+          "de": "BESONDERES",
+          "es": "ESPECIAL",
+          "fr": "SPÉCIAL",
+          "it": "SPECIALE",
+          "pt": "ESPECIAL",
+          "ru": "СПЕЦИАЛЬНЫЙ"
+        },
+        {
+          "id": "heroes",
+          "en": "HEROES",
+          "de": "HELDEN",
+          "es": "HÉROES",
+          "fr": "HÉROS",
+          "it": "EROI",
+          "pt": "HERÓIS",
+          "ru": "ГЕРОИ"
+        },
+        {
+          "id": "spells",
+          "en": "SPELLS",
+          "de": "ZAUBER",
+          "es": "CONJUROS",
+          "fr": "SORTS",
+          "it": "MAGIE",
+          "pt": "FEITIÇOS",
+          "ru": "ЗАКЛИНАНИЯ"
+        },
+        {
+          "id": "buildings",
+          "en": "BUILDINGS",
+          "de": "GEBÄUDE",
+          "es": "EDIFICIOS",
+          "fr": "BÂTIMENTS",
+          "it": "EDIFICI",
+          "pt": "PILHAS",
+          "ru": "ЗДАНИЯ"
+        },
+        {
+          "id": "buildings_info",
+          "en": "MORE HP, BUT CANNOT BE HEALED",
+          "de": "MEHR TP, ABER KANN NICHT GEHEILT WERDEN",
+          "es": "MÁS PS, PERO NO SE PUEDEN CURAR.",
+          "fr": "PLUS DE PV, MAIS NE PEUT PAS ÊTRE SOIGNÉ",
+          "it": "PIÙ PV, MA NON POSSONO ESSERE CURATI",
+          "pt": "MAIS PS, MAS NÃO PODE SER CURADA",
+          "ru": "БОЛЬШЕ HP, НО НЕ МОГУТ БЫТЬ ИСЦЕЛЕНЫ"
+        },
+        {
+          "id": "spells_info",
+          "en": "STRONG, BUT AFFECT BOTH PLAYERS",
+          "de": "STARK, GILT ABER FÜR BEIDE SPIELER",
+          "es": "POTENTES, PERO AFECTAN A AMBOS JUGADORES.",
+          "fr": "PUISSANT, MAIS AFFECTE LES DEUX JOUEURS",
+          "it": "POTENTI, MA COLPISCONO ENTRAMBI I GIOCATORI",
+          "pt": "FORTE, MAS AFETA AMBOS OS JOGADORES",
+          "ru": "СИЛЬНЫЕ, НО ДЕЙСТВУЮТ НА ОБОИХ ИГРОКОВ"
+        },
+        {
+          "id": "win",
+          "en": "WIN",
+          "de": "GEWINNT",
+          "es": "GANAR",
+          "fr": "GAGNER",
+          "it": "VINCERE",
+          "pt": "GANHE",
+          "ru": "ПОБЕДА"
+        },
+        {
+          "id": "ID",
+          "en": "",
+          "de": "",
+          "es": "",
+          "fr": "",
+          "it": "",
+          "pt": "",
+          "ru": ""
+        },
+        {
+          "id": "tut_0",
+          "en": "WELCOME, WARRIOR!\nTAP PLAY FOR YOUR TUTORIAL BATTLE.",
+          "de": "WILLKOMMEN, KRIEGER!\nTIPPE AUF SPIELEN, UM DEINEN TUTORIAL-KAMPF ZU SPIELEN.",
+          "es": "¡BIENVENIDO, GUERRERO!\nTOCA JUGAR PARA INICIAR EL TUTORIAL DE BATALLA.",
+          "fr": "BIENVENUE, GUERRIER!\nTOUCHEZ JOUER POUR COMMENCER VOTRE BATAILLE TUTORIEL.",
+          "it": "BENVENUTO, GUERRIERO!\nTOCCA GIOCA PER INIZIARE IL TUTORIAL.",
+          "pt": "BEM-VINDO, GUERREIRO!\nTOQUE EM JOGAR PARA INICIAR O TUTORIAL DE BATALHA.",
+          "ru": "ДОБРО ПОЖАЛОВАТЬ, ВОИН!\nНАЖМИТЕ ИГРАТЬ, ЧТОБЫ НАЧАТЬ УЧЕБНУЮ БИТВУ."
+        },
+        {
+          "id": "tut_1",
+          "en": "YOUR OPPONENT STARTED BY PLACING A HERO CARD ON THE FIELD. DRAG YOUR HERO CARD TO THE FIELD TO DEAL DAMAGE.",
+          "de": "DEIN GEGNER HAT ANGEFANGEN, INDEM ER EINE HELDENKARTE AUF DAS SPIELFELD GELEGT HAT. ZIEHE DEINE HELDENKARTE AUF DAS SPIELFELD, UM SCHADEN ZUZUFÜGEN.",
+          "es": "TU ADVERSARIO HA COMENZADO COLOCANDO UNA CARTA DE HÉROE EN EL TABLERO. COLOCA TU CARTA DE HÉROE EN EL TABLERO PARA INFLIGIRLE DAÑO.",
+          "fr": "VOTRE ADVERSAIRE A COMMENCÉ PAR PLACER UNE CARTE HÉROS SUR LE PLATEAU. FAITES GLISSER VOTRE CARTE HÉROS SUR LE PLATEAU POUR INFLIGER DES DÉGÂTS.",
+          "it": "IL TUO AVVERSARIO HA INIZIATO METTENDO SUL CAMPO UNA CARTA EROE. TRASCINA LA TUA CARTA EROE SUL CAMPO PER INFLIGGERE DANNI.",
+          "pt": "SEU OPONENTE COMEÇOU COLOCANDO UMA CARTA DE HERÓI NO CAMPO. ARRASTE SUA CARTA DE HERÓI PARA O CAMPO PARA CAUSAR DANO.",
+          "ru": "ВАШ ПРОТИВНИК НАЧАЛ С ТОГО, ЧТО ВЫЛОЖИЛ НА ПОЛЕ КАРТУ ГЕРОЯ. ПЕРЕТАЩИТЕ СВОЮ КАРТУ ГЕРОЯ НА ПОЛЕ, ЧТОБЫ НАНЕСТИ УРОН."
+        },
+        {
+          "id": "tut_2",
+          "en": "TAKE TURNS AND WIN BY FILLING MOST OF THE FIELD WITH YOUR OWN CARDS. TRY TO REMOVE OPPONENT'S CARDS.",
+          "de": "SPIELE ZÜGE UND GEWINNE, INDEM DU DEN GROßTEIL DES SPIELFELDS MIT DEINEN KARTEN FÜLLST. VERSUCHE, GEGNERISCHE KARTEN ZU ENTFERNEN.",
+          "es": "JUEGA POR TURNOS Y GANA LLENANDO LA MAYORÍA DEL TABLERO CON TUS CARTAS. INTENTA ELIMINAR LAS CARTAS DE TU ADVERSARIO.",
+          "fr": "JOUEZ À TOUR DE RÔLE ET GAGNEZ EN REMPLISSANT LA MAJEURE PARTIE DU PLATEAU AVEC VOS PROPRES CARTES. ESSAYEZ DE RETIRER LES CARTES DE L'ADVERSAIRE.",
+          "it": "PROSEGUITE A TURNO E VINCI RIEMPIENDO LA MAGGIOR PARTE DEL CAMPO CON LE TUE CARTE. PROVA A RIMUOVERE LE CARTE DELL'AVVERSARIO.",
+          "pt": "ALTERNE E VENÇA PREENCHENDO A MAIOR PARTE DO CAMPO COM SUAS PRÓPRIAS CARTAS. TENTE REMOVER AS CARTAS DO OPONENTE.",
+          "ru": "ХОДИТЕ ПО ОЧЕРЕДИ И ПОБЕЖДАЙТЕ, ЗАПОЛНЯЯ БОЛЬШУЮ ЧАСТЬ ПОЛЯ СВОИМИ КАРТАМИ. СТАРАЙТЕСЬ УБИРАТЬ КАРТЫ ПРОТИВНИКА."
+        },
+        {
+          "id": "tut_3",
+          "en": "SOME CARDS HAVE A HEALING EFFECT. BUT SPELL CARDS AFFECT BOTH PLAYERS.",
+          "de": "MANCHE KARTEN HABEN EINEN HEILEFFEKT. ABER ZAUBERKARTEN HABEN EINFLUSS AUF BEIDE SPIELER.",
+          "es": "ALGUNAS CARTAS TIENEN UN EFECTO CURATIVO. PERO LOS CONJUROS AFECTAN A AMBOS JUGADORES.",
+          "fr": "CERTAINES CARTES ONT UN EFFET DE SOIN. MAIS LES CARTES DE SORT AFFECTENT LES DEUX JOUEURS.",
+          "it": "ALCUNE CARTE HANNO UN EFFETTO CURATIVO. MA LE CARTE MAGIA HANNO EFFETTO SU ENTRAMBI I GIOCATORI.",
+          "pt": "ALGUMAS CARTAS TÊM UM EFEITO DE CURA. MAS CARTAS DE FEITIÇO AFETAM AMBOS OS JOGADORES.",
+          "ru": "НЕКОТОРЫЕ КАРТЫ ИМЕЮТ ЛЕЧЕБНЫЙ ЭФФЕКТ. НО КАРТЫ ЗАКЛИНАНИЙ ВЛИЯЮТ НА ОБОИХ ИГРОКОВ."
+        },
+        {
+          "id": "tut_4",
+          "en": "BY COLLECTING STARS YOU REACH REWARDS! CLAIM YOUR FIRST REWARD.",
+          "de": "DU ERHÄLTST BELOHNUNGEN, INDEM DU STERNE SAMMELST! HOLE DEINE ERSTE BELOHNUNG AB.",
+          "es": "AL RECOGER ESTRELLAS, PUEDES CONSEGUIR RECOMPENSAS. SOLICITA TU PRIMERA RECOMPENSA.",
+          "fr": "EN RÉCUPÉRANT DES ÉTOILES, VOUS OBTENEZ DES RÉCOMPENSES ! RÉCLAMEZ VOTRE PREMIÈRE RÉCOMPENSE.",
+          "it": "OTTENENDO STELLE, RICEVERAI DELLE RICOMPENSE! RISCUOTI LA TUA PRIMA RICOMPENSA.",
+          "pt": "AO COLETAR ESTRELAS, VOCÊ ALCANÇA RECOMPENSAS! RESGATE SUA PRIMEIRA RECOMPENSA.",
+          "ru": "СОБИРАЯ ЗВЕЗДЫ, ВЫ ПОЛУЧАЕТЕ НАГРАДЫ! ПОЛУЧИТЕ СВОЮ ПЕРВУЮ НАГРАДУ."
+        },
+        {
+          "id": "tut_5",
+          "en": "TAP HERE TO EDIT YOUR DECK.",
+          "de": "TIPPE HIER, UM DEIN DECK ZU BEARBEITEN.",
+          "es": "TOCA AQUÍ PARA EDITAR TU BARAJA.",
+          "fr": "TOUCHEZ ICI POUR MODIFIER VOTRE PAQUET.",
+          "it": "TOCCA QUI PER MODIFICARE IL TUO MAZZO.",
+          "pt": "TOQUE AQUI PARA EDITAR SEU BARALHO.",
+          "ru": "НАЖМИТЕ ЗДЕСЬ, ЧТОБЫ ОТРЕДАКТИРОВАТЬ СВОЮ КОЛОДУ."
+        },
+        {
+          "id": "tut_6",
+          "en": "YOU HAVE SOME USEFUL SPARE CARDS. FIRST, LET'S MERGE SOME ON THE ANVIL, TO UPGRADE THEM.",
+          "de": "DU HAST EIN PAAR NÜTZLICHE KARTEN ÜBRIG. VERSCHMILZ SIE ALS ERSTES AUF DEM AMBOSS, UM SIE ZU VERBESSERN.",
+          "es": "TIENES CARTAS SOBRANTES QUE SON ÚTILES. COMBÍNALAS EN LA FORJA PARA MEJORARLAS.",
+          "fr": "VOUS AVEZ DES CARTES INUTILISÉES QUI PEUVENT VOUS SERVIR. TOUT D'ABORD, FUSIONNONS-EN QUELQUES-UNES SUR L'ENCLUME, POUR LES AMÉLIORER.",
+          "it": "HAI DELLE UTILI CARTE DI RISERVA. PER PRIMA COSA, UNIAMONE ALCUNE SULL'INCUDINE PER POTENZIARLE.",
+          "pt": "VOCÊ TEM ALGUNS CARTÕES SOBRESSALENTES ÚTEIS. PRIMEIRO, VAMOS MESCLAR ALGUNS NA BIGORNA PARA ATUALIZAR.",
+          "ru": "У ВАС ЕСТЬ НЕСКОЛЬКО ПОЛЕЗНЫХ ЗАПАСНЫХ КАРТ. СНАЧАЛА ДАВАЙТЕ ОБЪЕДИНИМ НЕСКОЛЬКО НА НАКОВАЛЬНЕ, ЧТОБЫ УЛУЧШИТЬ ИХ."
+        },
+        {
+          "id": "tut_7",
+          "en": "PICK 3 IDENTICAL SPARE CARDS.",
+          "de": "WÄHLE 3 IDENTISCHE ÜBERSCHÜSSIGE KARTEN.",
+          "es": "ELIGE 3 CARTAS SOBRANTES IDÉNTICAS.",
+          "fr": "CHOISISSEZ 3 CARTES INUTILISÉES IDENTIQUES.",
+          "it": "SCEGLI 3 CARTE DI RISERVA IDENTICHE.",
+          "pt": "ESCOLHA 3 CARTÕES SOBRESSALENTES IDÊNTICOS.",
+          "ru": "ВЫБЕРИТЕ 3 ОДИНАКОВЫЕ ЗАПАСНЫЕ КАРТЫ."
+        },
+        {
+          "id": "tut_8",
+          "en": "TAP MERGE.",
+          "de": "TIPPE AUF VERSCHMELZEN.",
+          "es": "TOCA COMBINAR.",
+          "fr": "TOUCHEZ FUSIONNER.",
+          "it": "TOCCA UNISCI.",
+          "pt": "TOQUE EM MESCLAR.",
+          "ru": "НАЖМИТЕ ОБЪЕДИНИТЬ."
+        },
+        {
+          "id": "tut_9",
+          "en": "TAP HERE TO SEE THE SHOP.",
+          "de": "TIPPE HIER, UM DIR DEN SHOP ANZUSEHEN.",
+          "es": "TOCA AQUÍ PARA VER LA TIENDA.",
+          "fr": "TOUCHEZ ICI POUR VOIR LA BOUTIQUE.",
+          "it": "TOCCA QUI PER VISITARE IL NEGOZIO.",
+          "pt": "TOQUE AQUI PARA VER A LOJA.",
+          "ru": "НАЖМИТЕ ЗДЕСЬ, ЧТОБЫ УВИДЕТЬ МАГАЗИН."
+        },
+        {
+          "id": "tut_10",
+          "en": "WELCOME TO THE SHOP, WHERE YOU CAN GET NEW CARDS.",
+          "de": "WILLKOMMEN IM SHOP, WO DU NEUE KARTEN KAUFEN KANNST.",
+          "es": "BIENVENIDO A LA TIENDA. AQUÍ PUEDES CONSEGUIR CARTAS NUEVAS.",
+          "fr": "BIENVENUE DANS LA BOUTIQUE, OÙ VOUS POUVEZ OBTENIR DE NOUVELLES CARTES.",
+          "it": "TI DO IL BENVENUTO AL NEGOZIO, DOVE PUOI OTTENERE NUOVE CARTE.",
+          "pt": "BEM-VINDO À LOJA, AQUI VOCE ENCONTRA NOVOS CARTÕES.",
+          "ru": "ДОБРО ПОЖАЛОВАТЬ В МАГАЗИН, ГДЕ ВЫ МОЖЕТЕ ПОЛУЧИТЬ НОВЫЕ КАРТЫ."
+        },
+        {
+          "id": "tut_11",
+          "en": "CLAIM YOUR FREE DAILY CARD. NEW DEALS APPEAR EVERY FEW HOURS.",
+          "de": "HOL DIR DEINE TÄGLICHE KOSTENLOSE KARTE. ALLE PAAR STUNDEN ERSCHEINEN NEUE ANGEBOTE.",
+          "es": "SOLICITA TU CARTA DIARIA GRATUITA. APARECEN NUEVAS OFERTAS CADA VARIAS HORAS.",
+          "fr": "RÉCLAMEZ VOTRE CARTE QUOTIDIENNE GRATUITE. DE NOUVELLES OFFRES APPARAISSENT TOUTES LES QUELQUES HEURES.",
+          "it": "RISCUOTI LA TUA CARTA GIORNALIERA GRATUITA. NUOVE OFFERTE COMPAIONO OGNI POCHE ORE.",
+          "pt": "RESGATE SUA CARTA DIÁRIA GRATUITA. ESPERE ALGUMAS HORAS PARA VER NOVAS OFERTAS.",
+          "ru": "ВОЗЬМИТЕ БЕСПЛАТНУЮ ЕЖЕДНЕВНУЮ КАРТУ. НОВЫЕ ПРЕДЛОЖЕНИЯ ПОЯВЛЯЮТСЯ КАЖДЫЕ НЕСКОЛЬКО ЧАСОВ."
+        },
+        {
+          "id": "tut_12",
+          "en": "CARD PACKS CONTAIN RANDOM CARDS. TRY BUYING ONE.",
+          "de": "KARTENPÄCKCHEN ENTHALTEN ZUFÄLLIGE KARTEN. VERSUCHE, EINS ZU KAUFEN.",
+          "es": "LOS PAQUETES DE CARTAS CONTIENEN CARTAS ALEATORIAS. INTENTA COMPRAR UNO.",
+          "fr": "LES PAQUETS DE CARTES CONTIENNENT DES CARTES ALÉATOIRES. ESSAYEZ D'EN ACHETER UN.",
+          "it": "I PACCHETTI DI CARTE CONTENGONO CARTE CASUALI. PROVA A COMPRARNE UNO.",
+          "pt": "OS PACOTES DE CARTAS CONTÊM CARTAS ALEATÓRIAS. EXPERIMENTE COMPRAR UM.",
+          "ru": "НАБОРЫ КАРТ СОДЕРЖАТ СЛУЧАЙНЫЕ КАРТЫ. ПОПРОБУЙТЕ КУПИТЬ ОДНУ ИЗ НИХ."
+        },
+        {
+          "id": "coins",
+          "en": "COINS",
+          "de": "MÜNZEN",
+          "es": "MONEDAS",
+          "fr": "PIÈCES",
+          "it": "MONETE",
+          "pt": "MOEDAS",
+          "ru": "МОНЕТЫ"
+        },
+        {
+          "id": "reward_merge_title",
+          "en": "MERGE FOR FREE?",
+          "de": "KOSTENLOS VERSCHMELZEN?",
+          "es": "¿COMBINAR GRATIS?",
+          "fr": "FUSIONNER GRATUITEMENT ?",
+          "it": "UNISCI GRATIS?",
+          "pt": "MESCLAR DE GRAÇA?",
+          "ru": "ОБЪЕДИНИТЬ БЕСПЛАТНО?"
+        },
+        {
+          "id": "reward_no_thx",
+          "en": "NO, THANKS",
+          "de": "NEIN, DANKE",
+          "es": "NO, GRACIAS",
+          "fr": "NON, MERCI",
+          "it": "NO, GRAZIE",
+          "pt": "NÃO, OBRIGADO",
+          "ru": "НЕТ, СПАСИБО"
+        },
+        {
+          "id": "reward_watch_ad",
+          "en": "WATCH",
+          "de": "ANZEIGE",
+          "es": "VER",
+          "fr": "REGARDER",
+          "it": "GUARDA",
+          "pt": "VER",
+          "ru": "СМОТРЕТЬ"
+        },
+        {
+          "id": "reward_free",
+          "en": "FREE",
+          "de": "KOSTENLOS",
+          "es": "GRATIS",
+          "fr": "GRATUIT",
+          "it": "GRATIS",
+          "pt": "GRÁTIS",
+          "ru": "БЕСПЛАТНО"
+        },
+        {
+          "id": "reward_package_title",
+          "en": "UPGRADE 1 RANDOM CARD FOR FREE?",
+          "de": "EINE ZUFÄLLIGE KARTE KOSTENLOS AUFWERTEN?",
+          "es": "¿ACTUALIZAR 1 CARTA AL AZAR DE FORMA GRATUITA?",
+          "fr": "AMÉLIORER UNE CARTE ALÉATOIRE GRATUITEMENT ?",
+          "it": "AGGIORNARE GRATUITAMENTE 1 CARTA CASUALE?",
+          "pt": "ATUALIZE 1 CARTÃO ALEATÓRIO DE GRAÇA?",
+          "ru": "УЛУЧШИТЬ 1 СЛУЧАЙНУЮ КАРТУ БЕСПЛАТНО?"
+        },
+        {
+          "id": "ID",
+          "en": "",
+          "de": "",
+          "es": "",
+          "fr": "",
+          "it": "",
+          "pt": "",
+          "ru": ""
+        }
+      ]
+    }
+  }
+}
