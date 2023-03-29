@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description" content="" />
+<meta name="viewport" content="user-scalable=no">
+<style type="text/css">
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+
+            -webkit-touch-callout: none !important;                /* prevent callout to copy image, etc when tap to hold */
+            -webkit-text-size-adjust: none !important;             /* prevent webkit from resizing text to fit */
+            -webkit-user-select: none !important;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+        }
+
+        #bg-image {
+            background-image: url("assets/img_480/background_clash2.jpg");
+            background-position: center center;            
+            background-repeat: no-repeat;            
+            background-color: #102b07;
+            /* background-size: 50%; */
+            filter: blur(2px);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        @font-face {
+            font-family: "gameFont";
+            font-style: normal;
+            font-weight: 400;
+            src: url("assets/fnt/Kartooni.ttf");
+        }
+    </style>
+<title>Clash Of Warriors</title>
+<link rel="stylesheet" href="css/normalize.css" />
+<link rel="stylesheet" href="css/game.css" />
+<link rel="icon" type="image/png" href="assets/favicon/icon-152x152.png" sizes="152x152">
+<link rel="icon" type="image/png" href="assets/favicon/icon-512x512.png" sizes="512x512">
+<link rel="apple-touch-icon" type="image/png" href="assets/favicon/icon-152x152.png" sizes="152x152">
+<link rel="apple-touch-icon" type="image/png" href="assets/favicon/icon-512x512.png" sizes="512x512">
+<script type="text/javascript" src="../../../api/rev-share/lagged.js"></script>
+<script type="text/javascript" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+</head>
+<body style="background-color: #000000">
+<div id="wrongRotation">
+<img src="assets/img_480/rotate_screen.png" alt="" />
+</div>
+<div id="bg-image"></div>
+<div id="game">
+<script src="js/game.js"></script>
+<script>
+        document.addEventListener(
+            "deviceready",
+            function () {
+                document.addEventListener(
+                    "backbutton",
+                    function () {
+                        // //  about
+                        // if (aboutShowed) {
+                        //     SceneAbout.instance.cancelAbout();
+                        // }
+                        // //  quit
+                        // else if (grpSceneSelectMode.visible && !quitAppActive) {
+                        //     SceneGame.instance.executeAction(ACTIONS.QUIT_APP);
+                        // }
+                        // //  exit back
+                        // else if (quitAppActive) {
+                        //     SceneInfoDialog.instance.OnPressedNo();
+                        // }
+                        // //  instructions
+                        // else if (infoShowed) {
+                        //     SceneInfo.instance.cancelInstruction();
+                        // }
+                        // //  game
+                        // else if (grpSceneGame.visible && !grpScenePause.visible) {
+                        //     if (!dealingCards) {
+                        //         SceneGame.instance.executeAction(ACTIONS.PAUSE);
+                        //     }
+                        // }
+                        // //  pause
+                        // else if (grpSceneGame.visible && grpScenePause.visible) {
+                        //     SceneGame.instance.executeAction(ACTIONS.UNPAUSE);
+                        // }
+                    },
+                    false
+                );
+            },
+            false
+        );
+    </script>
+</div>
+<div class="font_preload" style="opacity: 0">
+<span style="font-family: 'gameFont', Arial, normal"></span>
+</div>
+<div id="ads"></div>
+</body>
+</html>
