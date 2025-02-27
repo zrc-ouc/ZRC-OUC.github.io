@@ -1,0 +1,1099 @@
+// 修改为以拖拽的形式更换英雄位置
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tower Defense Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .game-container {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        canvas {
+            border: 2px solid #333;
+            background-color: #fff;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .stats {
+            font-size: 16px;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            pointer-events: none;
+            z-index: 100;
+            font-size: 14px;
+        }
+        
+        .info-panel {
+            width: 250px;
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-panel h3 {
+            margin-top: 0;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 8px;
+            color: #333;
+        }
+        
+        .info-panel ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        
+        .info-panel li {
+            padding: 4px 0;
+        }
+        
+        .info-panel .empty-message {
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .hero-type {
+            font-weight: bold;
+            text-transform: capitalize;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tower Defense Game</h1>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="700" height="500"></canvas>
+        <div class="info-panel" id="infoPanel">
+            <h3>Information</h3>
+            <div id="infoPanelContent">
+                <p class="empty-message">Select a hero or enemy to see details</p>
+            </div>
+        </div>
+    </div>
+    <div class="controls">
+        <button id="startBtn">Start Game</button>
+        <button id="summonBtn">Summon Hero (2 Gold)</button>
+    </div>
+    <div class="stats" id="gameStats">
+        Wave: 1 | Enemies: 0 | Gold: 10
+    </div>
+
+    <script>
+        // Game constants
+        const GRID_COLS = 7;
+        const GRID_ROWS = 5;
+        const CELL_SIZE = 100;
+        const GRID_OFFSET_X = 0;
+        const GRID_OFFSET_Y = 0;
+        
+        // Movement path waypoints (clockwise around the grid in white squares)
+        const PATH_WAYPOINTS = [
+            { x: 0, y: 4 },    // Spawn point
+            { x: 1, y: 4 },    // Bottom row right
+            { x: 2, y: 4 },
+            { x: 3, y: 4 },
+            { x: 4, y: 4 },
+            { x: 5, y: 4 },
+            { x: 6, y: 4 },
+            { x: 6, y: 3 },    // Right column up
+            { x: 6, y: 2 },
+            { x: 6, y: 1 },
+            { x: 6, y: 0 },
+            { x: 5, y: 0 },    // Top row left
+            { x: 4, y: 0 },
+            { x: 3, y: 0 },
+            { x: 2, y: 0 },
+            { x: 1, y: 0 },
+            { x: 0, y: 0 },
+            { x: 0, y: 1 },    // Left column down
+            { x: 0, y: 2 },
+            { x: 0, y: 3 },
+            { x: 0, y: 4 }     // Back to spawn (for looping)
+        ];
+        
+        // Hero types
+        const HERO_TYPES = [
+            { type: 'warrior', color: 'yellow', attackPower: 30, attackRate: 0.5, radius: 2 },
+            { type: 'archer', color: 'red', attackPower: 20, attackRate: 2, radius: 3 },
+            { type: 'mage', color: 'purple', attackPower: 10, attackRate: 1, radius: 3 }
+        ];
+        
+        // Game state
+        const gameState = {
+            grid: [],
+            heroes: [],
+            enemies: [],
+            gold: 10,
+            wave: 1,
+            enemiesSpawned: 0,
+            waveSize: 20,
+            gameStarted: false,
+            waveTimeout: null,
+            enemySpawnInterval: null,
+            selectedHero: null,
+            selectedEnemy: null,
+            gameOver: false,
+            // New drag and drop variables
+            draggingHero: null,
+            dragStartX: 0,
+            dragStartY: 0,
+            dragOffsetX: 0,
+            dragOffsetY: 0
+        };
+        
+        // Initialize canvas and context
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // UI elements
+        const startBtn = document.getElementById('startBtn');
+        const summonBtn = document.getElementById('summonBtn');
+        const gameStats = document.getElementById('gameStats');
+        const infoPanelContent = document.getElementById('infoPanelContent');
+        
+        // Initialize the game grid
+        function initGrid() {
+            for (let y = 0; y < GRID_ROWS; y++) {
+                gameState.grid[y] = [];
+                for (let x = 0; x < GRID_COLS; x++) {
+                    // Determine cell type
+                    let type = 'path'; // White squares for enemy movement
+                    
+                    // Green hero placement area (inner 5x3 grid)
+                    if (x >= 1 && x <= 5 && y >= 1 && y <= 3) {
+                        type = 'placement';
+                    }
+                    
+                    // Brown spawn point at bottom-left
+                    if (x === 0 && y === 4) {
+                        type = 'spawn';
+                    }
+                    
+                    gameState.grid[y][x] = {
+                        type: type,
+                        occupied: false,
+                        hero: null
+                    };
+                }
+            }
+        }
+        
+        // Draw the game grid
+        function drawGrid() {
+            for (let y = 0; y < GRID_ROWS; y++) {
+                for (let x = 0; x < GRID_COLS; x++) {
+                    const cell = gameState.grid[y][x];
+                    const cellX = GRID_OFFSET_X + x * CELL_SIZE;
+                    const cellY = GRID_OFFSET_Y + y * CELL_SIZE;
+                    
+                    // Fill cell based on type
+                    if (cell.type === 'placement') {
+                        ctx.fillStyle = '#a5d6a7'; // Green
+                    } else if (cell.type === 'spawn') {
+                        ctx.fillStyle = '#8d6e63'; // Brown
+                    } else {
+                        ctx.fillStyle = '#ffffff'; // White
+                    }
+                    
+                    ctx.fillRect(cellX, cellY, CELL_SIZE, CELL_SIZE);
+                    
+                    // Draw grid lines
+                    ctx.strokeStyle = '#000000';
+                    ctx.lineWidth = 1;
+                    ctx.strokeRect(cellX, cellY, CELL_SIZE, CELL_SIZE);
+                }
+            }
+            
+            // Draw path arrows
+            drawPathArrows();
+        }
+        
+        // Draw arrows indicating the enemy movement path
+        function drawPathArrows() {
+            // Top arrow (right)
+            drawArrow(CELL_SIZE * 3, CELL_SIZE * 0.5, 0);
+            
+            // Right arrow (down)
+            drawArrow(CELL_SIZE * 6.5, CELL_SIZE * 2, Math.PI / 2);
+            
+            // Bottom arrow (left)
+            drawArrow(CELL_SIZE * 3, CELL_SIZE * 4.5, Math.PI);
+            
+            // Left arrow (up)
+            drawArrow(CELL_SIZE * 0.5, CELL_SIZE * 2, -Math.PI / 2);
+        }
+        
+        // Helper function to draw arrows
+        function drawArrow(x, y, angle) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(angle);
+            
+            // Draw arrow
+            ctx.beginPath();
+            ctx.moveTo(-15, 0);
+            ctx.lineTo(15, 0);
+            ctx.lineTo(5, -10);
+            ctx.moveTo(15, 0);
+            ctx.lineTo(5, 10);
+            ctx.strokeStyle = "#000";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            ctx.restore();
+        }
+        
+        // Create a new enemy
+        function createEnemy() {
+            if (gameState.enemiesSpawned >= gameState.waveSize) {
+                clearInterval(gameState.enemySpawnInterval);
+                return;
+            }
+            
+            if (gameState.enemies.length >= 100) {
+                endGame(false);
+                return;
+            }
+            
+            const health = 100 + (gameState.wave - 1) * 50;
+            
+            // Place at spawn point (bottom-left corner)
+            const enemy = {
+                // Position at the center of the spawn cell
+                x: GRID_OFFSET_X + PATH_WAYPOINTS[0].x * CELL_SIZE + CELL_SIZE / 2,
+                y: GRID_OFFSET_Y + PATH_WAYPOINTS[0].y * CELL_SIZE + CELL_SIZE / 2,
+                size: CELL_SIZE * 0.6,
+                health: health,
+                maxHealth: health,
+                waypointIndex: 1, // Start at the first waypoint after spawn
+                speed: 1, // Base movement speed
+                currentSpeed: 1,
+                slowEffect: 0 // Timer for slow effect
+            };
+            
+            gameState.enemies.push(enemy);
+            gameState.enemiesSpawned++;
+            
+            updateStats();
+        }
+        
+        // Move enemies along the path
+        function moveEnemies() {
+            for (let i = gameState.enemies.length - 1; i >= 0; i--) {
+                const enemy = gameState.enemies[i];
+                
+                // Check if enemy is dead
+                if (enemy.health <= 0) {
+                    // Clear any hero references to this enemy
+                    for (const hero of gameState.heroes) {
+                        if (hero.targetEnemy === enemy) {
+                            hero.targetEnemy = null;
+                        }
+                    }
+                    
+                    // Clear selected enemy if it's this one
+                    if (gameState.selectedEnemy === enemy) {
+                        gameState.selectedEnemy = null;
+                        updateInfoPanel(null);
+                    }
+                    
+                    gameState.enemies.splice(i, 1);
+                    gameState.gold += 2; // Reward for killing enemy
+                    updateStats();
+                    continue;
+                }
+                
+                // Get current target waypoint
+                const targetWaypoint = PATH_WAYPOINTS[enemy.waypointIndex];
+                
+                // Calculate target position (center of waypoint cell)
+                const targetX = GRID_OFFSET_X + targetWaypoint.x * CELL_SIZE + CELL_SIZE / 2;
+                const targetY = GRID_OFFSET_Y + targetWaypoint.y * CELL_SIZE + CELL_SIZE / 2;
+                
+                // Calculate distance to waypoint
+                const dx = targetX - enemy.x;
+                const dy = targetY - enemy.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // If reached waypoint or very close to it, move to next waypoint
+                if (distance < 2) {
+                    enemy.waypointIndex++;
+                    
+                    // If completed the path, reset to beginning of path (after spawn)
+                    if (enemy.waypointIndex >= PATH_WAYPOINTS.length) {
+                        enemy.waypointIndex = 1; // Start after spawn point
+                        
+                        // Optional: You could make enemies do damage to player here
+                        // or implement other logic when they complete a loop
+                    }
+                } else {
+                    // Update slowdown effect
+                    if (enemy.slowEffect > 0) {
+                        enemy.slowEffect -= 1/60; // Decrement by frame time
+                        enemy.currentSpeed = enemy.speed * 0.5; // 50% slower
+                    } else {
+                        enemy.currentSpeed = enemy.speed;
+                    }
+                    
+                    // Move towards the waypoint
+                    const moveSpeed = enemy.currentSpeed * 1.5;
+                    const moveRatio = moveSpeed / distance;
+                    enemy.x += dx * moveRatio;
+                    enemy.y += dy * moveRatio;
+                }
+            }
+        }
+        
+        // Draw enemies on the canvas
+        function drawEnemies() {
+            for (const enemy of gameState.enemies) {
+                // Draw enemy body
+                ctx.fillStyle = '#ff5722'; // Orange enemy
+                ctx.beginPath();
+                ctx.arc(enemy.x, enemy.y, enemy.size / 2, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.strokeStyle = '#000000';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                
+                // Draw health bar background
+                const healthBarWidth = enemy.size;
+                const healthBarHeight = 8;
+                const healthBarX = enemy.x - healthBarWidth / 2;
+                const healthBarY = enemy.y - enemy.size / 2 - 15;
+                
+                ctx.fillStyle = '#e0e0e0';
+                ctx.fillRect(healthBarX, healthBarY, healthBarWidth, healthBarHeight);
+                
+                // Draw health bar
+                const healthRatio = Math.max(0, enemy.health / enemy.maxHealth);
+                ctx.fillStyle = '#f44336'; // Red
+                ctx.fillRect(healthBarX, healthBarY, healthBarWidth * healthRatio, healthBarHeight);
+                
+                // Draw border around health bar
+                ctx.strokeStyle = '#000000';
+                ctx.lineWidth = 1;
+                ctx.strokeRect(healthBarX, healthBarY, healthBarWidth, healthBarHeight);
+                
+                // Visual indicator for slowed enemies
+                if (enemy.slowEffect > 0) {
+                    ctx.fillStyle = 'rgba(0, 0, 255, 0.3)';
+                    ctx.beginPath();
+                    ctx.arc(enemy.x, enemy.y, enemy.size / 2 + 5, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                
+                // Highlight selected enemy
+                if (gameState.selectedEnemy === enemy) {
+                    ctx.strokeStyle = 'yellow';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.arc(enemy.x, enemy.y, enemy.size / 2 + 8, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        // Create a new hero at a random placement grid cell
+        function createHero() {
+            if (gameState.gold < 2) return;
+            
+            // Find all empty placement cells
+            const emptyCells = [];
+            for (let y = 0; y < GRID_ROWS; y++) {
+                for (let x = 0; x < GRID_COLS; x++) {
+                    const cell = gameState.grid[y][x];
+                    if (cell.type === 'placement' && !cell.occupied) {
+                        emptyCells.push({x, y});
+                    }
+                }
+            }
+            
+            if (emptyCells.length === 0) return;
+            
+            // Choose a random empty cell
+            const cell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            
+            // Choose a random hero type
+            const heroTypeIndex = Math.floor(Math.random() * HERO_TYPES.length);
+            const heroType = HERO_TYPES[heroTypeIndex];
+            
+            // Create the hero
+            const hero = {
+                x: cell.x,
+                y: cell.y,
+                size: CELL_SIZE * 0.8,
+                type: heroType.type,
+                color: heroType.color,
+                attackPower: heroType.attackPower,
+                attackRate: heroType.attackRate,
+                attackRadius: heroType.radius,
+                attackTimer: 0,
+                targetEnemy: null,
+                shakeAmount: 0, // For attack animation
+                shakePhase: 0   // For controlling shake direction
+            };
+            
+            // Add hero and update cell
+            gameState.heroes.push(hero);
+            gameState.grid[cell.y][cell.x].occupied = true;
+            gameState.grid[cell.y][cell.x].hero = hero;
+            
+            // Deduct gold
+            gameState.gold -= 2;
+            updateStats();
+        }
+        
+        // Handle hero attacks
+        function processHeroAttacks() {
+            for (const hero of gameState.heroes) {
+                hero.attackTimer += 1/60; // Add frame time
+                
+                // Update shake animation
+                if (hero.shakeAmount > 0) {
+                    hero.shakeAmount -= 0.3;
+                    if (hero.shakeAmount < 0) {
+                        hero.shakeAmount = 0;
+                    }
+                }
+                
+                if (hero.attackTimer >= 1 / hero.attackRate) {
+                    // Reset timer
+                    hero.attackTimer = 0;
+                    
+                    // Find closest enemy in radius
+                    let closestEnemy = null;
+                    let closestDistance = hero.attackRadius * CELL_SIZE;
+                    
+                    const heroX = GRID_OFFSET_X + (hero.x + 0.5) * CELL_SIZE;
+                    const heroY = GRID_OFFSET_Y + (hero.y + 0.5) * CELL_SIZE;
+                    
+                    for (const enemy of gameState.enemies) {
+                        const dx = enemy.x - heroX;
+                        const dy = enemy.y - heroY;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance <= closestDistance) {
+                            closestDistance = distance;
+                            closestEnemy = enemy;
+                        }
+                    }
+                    
+                    if (closestEnemy) {
+                        // Attack the enemy
+                        closestEnemy.health -= hero.attackPower;
+                        
+                        // Store target for drawing attack line
+                        hero.targetEnemy = closestEnemy;
+                        
+                        // Add attack animation
+                        hero.shakeAmount = 5;
+                        hero.shakePhase = Math.random() * Math.PI * 2; // Random starting phase
+                        
+                        // Mage slow effect
+                        if (hero.type === 'mage') {
+                            closestEnemy.slowEffect = 2; // 2 seconds of slow
+                        }
+                    } else {
+                        // Clear target if no enemy in range
+                        hero.targetEnemy = null;
+                    }
+                }
+            }
+        }
+        
+        // Draw heroes on the grid
+        function drawHeroes() {
+            for (const hero of gameState.heroes) {
+                // Skip drawing the hero being dragged, we'll draw it separately
+                if (hero === gameState.draggingHero) continue;
+                
+                // Apply shake animation if present
+                let offsetX = 0;
+                if (hero.shakeAmount > 0) {
+                    offsetX = Math.sin(hero.shakePhase + Date.now() / 50) * hero.shakeAmount;
+                }
+                
+                const heroX = GRID_OFFSET_X + hero.x * CELL_SIZE;
+                const heroY = GRID_OFFSET_Y + hero.y * CELL_SIZE;
+                
+                // Draw hero
+                ctx.fillStyle = hero.color;
+                ctx.fillRect(heroX + (CELL_SIZE - hero.size) / 2 + offsetX, 
+                             heroY + (CELL_SIZE - hero.size) / 2, 
+                             hero.size, hero.size);
+                
+                // Draw hero border
+                ctx.strokeStyle = '#000000';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(heroX + (CELL_SIZE - hero.size) / 2 + offsetX, 
+                              heroY + (CELL_SIZE - hero.size) / 2, 
+                              hero.size, hero.size);
+                
+                // Draw hero type icon/symbol
+                ctx.fillStyle = '#000000';
+                ctx.font = 'bold 14px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                let symbol = '';
+                if (hero.type === 'warrior') symbol = 'W';
+                else if (hero.type === 'archer') symbol = 'A';
+                else if (hero.type === 'mage') symbol = 'M';
+                
+                ctx.fillText(symbol, heroX + CELL_SIZE / 2 + offsetX, heroY + CELL_SIZE / 2);
+                
+                // Show attack radius when selected
+                if (gameState.selectedHero === hero) {
+                    ctx.beginPath();
+                    ctx.arc(heroX + CELL_SIZE / 2, heroY + CELL_SIZE / 2, 
+                            hero.attackRadius * CELL_SIZE, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+                    ctx.fill();
+                    ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+                    ctx.stroke();
+                    
+                    // Draw highlight
+                    ctx.strokeStyle = 'yellow';
+                    ctx.lineWidth = 3;
+                    ctx.strokeRect(heroX + (CELL_SIZE - hero.size) / 2 + offsetX - 5, 
+                                  heroY + (CELL_SIZE - hero.size) / 2 - 5, 
+                                  hero.size + 10, hero.size + 10);
+                    
+                    // Draw sell button
+                    drawSellButton(hero);
+                }
+            }
+            
+            // Draw the hero being dragged
+            if (gameState.draggingHero) {
+                const hero = gameState.draggingHero;
+                
+                // Draw the dragged hero at the current mouse position with offset
+                ctx.fillStyle = hero.color;
+                ctx.fillRect(gameState.dragStartX + gameState.dragOffsetX - hero.size / 2, 
+                           gameState.dragStartY + gameState.dragOffsetY - hero.size / 2, 
+                           hero.size, hero.size);
+                
+                ctx.strokeStyle = '#000000';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(gameState.dragStartX + gameState.dragOffsetX - hero.size / 2, 
+                             gameState.dragStartY + gameState.dragOffsetY - hero.size / 2, 
+                             hero.size, hero.size);
+                
+                // Draw hero type symbol
+                ctx.fillStyle = '#000000';
+                ctx.font = 'bold 14px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                let symbol = '';
+                if (hero.type === 'warrior') symbol = 'W';
+                else if (hero.type === 'archer') symbol = 'A';
+                else if (hero.type === 'mage') symbol = 'M';
+                
+                ctx.fillText(symbol, gameState.dragStartX + gameState.dragOffsetX, 
+                           gameState.dragStartY + gameState.dragOffsetY);
+            }
+        }
+        
+        // Draw sell button for a selected hero
+        function drawSellButton(hero) {
+            const heroX = GRID_OFFSET_X + hero.x * CELL_SIZE;
+            const heroY = GRID_OFFSET_Y + hero.y * CELL_SIZE;
+            
+            const sellBtnX = heroX + CELL_SIZE / 2 - 30;
+            const sellBtnY = heroY - 30;
+            
+            // Store the button position for later hit detection
+            hero.sellButton = {
+                x: sellBtnX,
+                y: sellBtnY,
+                width: 60,
+                height: 25
+            };
+            
+            // Draw button background
+            ctx.fillStyle = 'rgba(255, 0, 0, 0.7)';
+            ctx.fillRect(sellBtnX, sellBtnY, 60, 25);
+            
+            // Draw button border
+            ctx.strokeStyle = '#000000';
+            ctx.strokeRect(sellBtnX, sellBtnY, 60, 25);
+            
+            // Draw button text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '12px Arial';
+            ctx.fillText('Sell Hero', heroX + CELL_SIZE / 2, sellBtnY + 12);
+        }
+        
+        // Draw attack lines from heroes to enemies
+        function drawAttackLines() {
+            for (const hero of gameState.heroes) {
+                // Only draw if the hero has recently attacked
+                if (hero.attackTimer < 0.1 && hero.targetEnemy) {
+                    const heroX = GRID_OFFSET_X + (hero.x + 0.5) * CELL_SIZE;
+                    const heroY = GRID_OFFSET_Y + (hero.y + 0.5) * CELL_SIZE;
+                    
+                    // Draw attack line
+                    ctx.beginPath();
+                    ctx.moveTo(heroX, heroY);
+                    
+                    if (hero.type === 'warrior') {
+                        ctx.strokeStyle = 'rgba(255, 215, 0, 0.6)';
+                        ctx.lineWidth = 3;
+                        ctx.lineTo(hero.targetEnemy.x, hero.targetEnemy.y);
+                    } else if (hero.type === 'archer') {
+                        ctx.strokeStyle = 'rgba(255, 0, 0, 0.6)';
+                        ctx.lineWidth = 1;
+                        ctx.lineTo(hero.targetEnemy.x, hero.targetEnemy.y);
+                    } else if (hero.type === 'mage') {
+                        ctx.strokeStyle = 'rgba(128, 0, 128, 0.6)';
+                        ctx.lineWidth = 2;
+                        
+                        // Draw wavy line for mage
+                        const curve = Math.sin(Date.now() / 100) * 10;
+                        ctx.quadraticCurveTo(
+                            (heroX + hero.targetEnemy.x) / 2 + curve,
+                            (heroY + hero.targetEnemy.y) / 2 + curve,
+                            hero.targetEnemy.x, hero.targetEnemy.y
+                        );
+                    }
+                    
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        // Update the info panel
+        function updateInfoPanel(entity) {
+            if (!entity) {
+                // Clear the panel
+                infoPanelContent.innerHTML = '<p class="empty-message">Select a hero or enemy to see details</p>';
+                return;
+            }
+            
+            let html = '';
+            
+            // Check if it's a hero
+            if (entity.type) { // Heroes have a type property
+                const specialEffect = entity.type === 'mage' ? '<li>Special: Slows enemies</li>' : '';
+                
+                html = `
+                    <div class="hero-type">${entity.type}</div>
+                    <ul>
+                        <li>Attack Power: ${entity.attackPower}</li>
+                        <li>Attack Speed: ${entity.attackRate}/sec</li>
+                        <li>Attack Range: ${entity.attackRadius} cells</li>
+                        ${specialEffect}
+                    </ul>
+                `;
+            } else {
+                // It's an enemy
+                const healthPercent = Math.round((entity.health / entity.maxHealth) * 100);
+                const speedStatus = entity.slowEffect > 0 ? 'Slowed (50%)' : 'Normal';
+                
+                html = `
+                    <div class="hero-type">Enemy</div>
+                    <ul>
+                        <li>Health: ${Math.round(entity.health)}/${entity.maxHealth} (${healthPercent}%)</li>
+                        <li>Speed: ${speedStatus}</li>
+                        <li>From Wave: ${gameState.wave}</li>
+                    </ul>
+                `;
+            }
+            
+            infoPanelContent.innerHTML = html;
+        }
+        
+        // Update game stats display
+        function updateStats() {
+            gameStats.textContent = `Wave: ${gameState.wave} | Enemies: ${gameState.enemies.length} | Gold: ${gameState.gold}`;
+            
+            // Update summon button state
+            summonBtn.disabled = gameState.gold < 2;
+        }
+        
+        // Start a new enemy wave
+        function startWave() {
+            gameState.enemiesSpawned = 0;
+            
+            // Start spawning enemies
+            gameState.enemySpawnInterval = setInterval(createEnemy, 1000);
+            
+            // Schedule next wave
+            gameState.waveTimeout = setTimeout(() => {
+                gameState.wave++;
+                startWave();
+            }, 30000);
+        }
+        
+        // Start the game
+        function startGame() {
+            if (gameState.gameStarted) return;
+            
+            gameState.gameStarted = true;
+            startBtn.disabled = true;
+            startWave();
+        }
+        
+        // End the game
+        function endGame(victory) {
+            gameState.gameOver = true;
+            clearTimeout(gameState.waveTimeout);
+            clearInterval(gameState.enemySpawnInterval);
+            
+            // Display game over message
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.font = 'bold 48px Arial';
+            ctx.fillStyle = '#ffffff';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2 - 30);
+            
+            ctx.font = '24px Arial';
+            if (victory) {
+                ctx.fillText('Victory!', canvas.width / 2, canvas.height / 2 + 20);
+            } else {
+                ctx.fillText('Too many enemies on the board!', canvas.width / 2, canvas.height / 2 + 20);
+            }
+            
+            // Display restart info
+            ctx.font = '18px Arial';
+            ctx.fillText('Refresh the page to play again', canvas.width / 2, canvas.height / 2 + 60);
+        }
+        
+        // Check if a point is inside a rectangle
+        function isPointInRect(px, py, rx, ry, rw, rh) {
+            return px >= rx && px <= rx + rw && py >= ry && py <= ry + rh;
+        }
+        
+        // Sell a hero
+        function sellHero(hero) {
+            // Give back some gold
+            gameState.gold += 1; // Get half the cost back
+            
+            // Remove from grid
+            gameState.grid[hero.y][hero.x].occupied = false;
+            gameState.grid[hero.y][hero.x].hero = null;
+            
+            // Remove from heroes array
+            const index = gameState.heroes.indexOf(hero);
+            if (index !== -1) {
+                gameState.heroes.splice(index, 1);
+            }
+            
+            // Deselect
+            gameState.selectedHero = null;
+            
+            // Update info panel
+            updateInfoPanel(null);
+            
+            // Update stats
+            updateStats();
+        }
+        
+        // Check if click is on an enemy
+        function checkEnemyClick(mouseX, mouseY) {
+            for (const enemy of gameState.enemies) {
+                const dx = mouseX - enemy.x;
+                const dy = mouseY - enemy.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance <= enemy.size / 2) {
+                    return enemy;
+                }
+            }
+            return null;
+        }
+        
+        // Check if a hero is being clicked
+        function getHeroAtPosition(gridX, gridY) {
+            if (gridX >= 0 && gridX < GRID_COLS && gridY >= 0 && gridY < GRID_ROWS) {
+                const cell = gameState.grid[gridY][gridX];
+		const index = gameState.heroes.indexOf(cell.hero);
+                if (index !== -1) {
+                     gameState.heroes.splice(index, 1);
+                     gameState.heroes.push(cell.hero);
+                }
+                if (cell.occupied && cell.hero) {
+                    return cell.hero;
+                }
+            }
+            return null;
+        }
+        
+        // Convert mouse coordinates to grid coordinates
+        function mouseToGrid(mouseX, mouseY) {
+            const gridX = Math.floor((mouseX - GRID_OFFSET_X) / CELL_SIZE);
+            const gridY = Math.floor((mouseY - GRID_OFFSET_Y) / CELL_SIZE);
+            return { gridX, gridY };
+        }
+        
+        // Swap heroes between two cells
+        function swapHeroes(hero1, gridX, gridY) {
+            // Get the hero at the target cell (if any)
+            const targetCell = gameState.grid[gridY][gridX];
+            
+            if (targetCell.occupied && targetCell.hero) {
+                // There's another hero, swap them
+                const hero2 = targetCell.hero;
+                
+                // Update grid references
+                gameState.grid[hero1.y][hero1.x].hero = hero2;
+                gameState.grid[gridY][gridX].hero = hero1;
+                
+                // Update hero positions
+                const tempX = hero1.x;
+                const tempY = hero1.y;
+                
+                hero1.x = gridX;
+                hero1.y = gridY;
+                
+                hero2.x = tempX;
+                hero2.y = tempY;
+            } else {
+                // Move to empty cell
+                // Update old cell
+                gameState.grid[hero1.y][hero1.x].occupied = false;
+                gameState.grid[hero1.y][hero1.x].hero = null;
+                
+                // Update hero position
+                hero1.x = gridX;
+                hero1.y = gridY;
+                
+                // Update new cell
+                gameState.grid[gridY][gridX].occupied = true;
+                gameState.grid[gridY][gridX].hero = hero1;
+            }
+        }
+        
+        // Handle mouse down event
+        function handleMouseDown(e) {
+            if (gameState.gameOver) return;
+            
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+            
+            // Check if clicking on sell button of selected hero
+            if (gameState.selectedHero && gameState.selectedHero.sellButton) {
+                const sellBtn = gameState.selectedHero.sellButton;
+                
+                if (isPointInRect(mouseX, mouseY, sellBtn.x, sellBtn.y, sellBtn.width, sellBtn.height)) {
+                    // Sell the hero
+                    sellHero(gameState.selectedHero);
+                    return;
+                }
+            }
+            
+            // Check if clicking on an enemy
+            const clickedEnemy = checkEnemyClick(mouseX, mouseY);
+            if (clickedEnemy) {
+                // Deselect hero if one is selected
+                gameState.selectedHero = null;
+                
+                // Select this enemy
+                if (gameState.selectedEnemy === clickedEnemy) {
+                    gameState.selectedEnemy = null;
+                    updateInfoPanel(null);
+                } else {
+                    gameState.selectedEnemy = clickedEnemy;
+                    updateInfoPanel(clickedEnemy);
+                }
+                return;
+            } else {
+                // Clear enemy selection
+                gameState.selectedEnemy = null;
+            }
+            
+            // Convert to grid coordinates
+            const { gridX, gridY } = mouseToGrid(mouseX, mouseY);
+            
+            // Check if we're clicking on a valid grid cell with a hero
+            const clickedHero = getHeroAtPosition(gridX, gridY);
+            
+            if (clickedHero) {
+                // Start dragging this hero
+                gameState.draggingHero = clickedHero;
+                gameState.selectedHero = clickedHero;
+                updateInfoPanel(clickedHero);
+                
+                // Calculate the center of the hero's cell
+                const cellCenterX = GRID_OFFSET_X + (clickedHero.x + 0.5) * CELL_SIZE;
+                const cellCenterY = GRID_OFFSET_Y + (clickedHero.y + 0.5) * CELL_SIZE;
+                
+                // Save drag start position and offset
+                gameState.dragStartX = cellCenterX;
+                gameState.dragStartY = cellCenterY;
+                gameState.dragOffsetX = mouseX - cellCenterX;
+                gameState.dragOffsetY = mouseY - cellCenterY;
+            } else {
+                // Deselect hero when clicking elsewhere
+                gameState.selectedHero = null;
+                updateInfoPanel(null);
+            }
+        }
+        
+        // Handle mouse move event
+        function handleMouseMove(e) {
+            if (!gameState.draggingHero) return;
+            
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+            
+            // Update drag offset
+            gameState.dragOffsetX = mouseX - gameState.dragStartX;
+            gameState.dragOffsetY = mouseY - gameState.dragStartY;
+        }
+        
+        // Handle mouse up event
+        function handleMouseUp(e) {
+            if (!gameState.draggingHero) return;
+            
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+            
+            // Convert drop location to grid coordinates
+            const { gridX, gridY } = mouseToGrid(mouseX, mouseY);
+            
+            // Only allow dropping in placement cells
+            if (gridX >= 0 && gridX < GRID_COLS && gridY >= 0 && gridY < GRID_ROWS) {
+                const targetCell = gameState.grid[gridY][gridX];
+                
+                if (targetCell.type === 'placement') {
+                    // Move or swap heroes
+                    swapHeroes(gameState.draggingHero, gridX, gridY);
+                }
+            }
+            
+            // Clear dragging state
+            gameState.draggingHero = null;
+        }
+        
+        // Game initialization
+        function init() {
+            initGrid();
+            
+            // Set up event listeners
+            startBtn.addEventListener('click', startGame);
+            summonBtn.addEventListener('click', createHero);
+            
+            // Replace click event with mousedown/move/up for drag and drop
+            canvas.addEventListener('mousedown', handleMouseDown);
+            canvas.addEventListener('mousemove', handleMouseMove);
+            canvas.addEventListener('mouseup', handleMouseUp);
+            
+            // Handle cases where mouse leaves canvas during drag
+            document.addEventListener('mouseup', () => {
+                gameState.draggingHero = null;
+            });
+            
+            // Start the game loop
+            gameLoop();
+        }
+        
+        // Main game loop
+        function gameLoop() {
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw grid
+            drawGrid();
+            
+            if (gameState.gameStarted) {
+                // Move enemies
+                moveEnemies();
+                
+                // Process hero attacks
+                processHeroAttacks();
+                
+                // Draw attack lines
+                drawAttackLines();
+                
+                // Draw enemies
+                drawEnemies();
+            }
+            
+            // Draw heroes
+            drawHeroes();
+            
+            // Check for game over condition
+            if (gameState.enemies.length >= 100) {
+                endGame(false);
+            }
+            
+            // Request next frame
+            if (!gameState.gameOver) {
+                requestAnimationFrame(gameLoop);
+            }
+        }
+        
+        // Start the game
+        window.onload = init;
+    </script>
+</body>
+</html>
