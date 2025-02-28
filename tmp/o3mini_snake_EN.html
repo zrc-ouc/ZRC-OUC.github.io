@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snake Game</title>
+  <style>
+    /* Reset and basic styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html,
+    body {
+      height: 100%;
+      background-color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+    
+    h1 {
+      margin-bottom: 20px;
+    }
+    
+    /* Game container */
+    #game-container {
+      position: relative;
+      width: 90vmin;
+      height: 90vmin;
+      background-color: #000;
+      border: 2px solid #fff;
+    }
+    
+    /* Canvas styling */
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    
+    /* Mobile directional controls - hidden by default */
+    #controls {
+      display: none;
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 200px;
+    }
+    
+    #controls button {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.7);
+      border: none;
+      border-radius: 8px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    
+    /* Position of the directional buttons */
+    #btn-up {
+      top: 0;
+      left: 70px;
+    }
+    
+    #btn-left {
+      top: 70px;
+      left: 0;
+    }
+    
+    #btn-right {
+      top: 70px;
+      right: 0;
+    }
+    
+    #btn-down {
+      bottom: 0;
+      left: 70px;
+    }
+    
+    /* Display controls on mobile/viewports that are 768px or below */
+    @media (max-width: 768px) {
+      #controls {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Snake Game</h1>
+  <div id="game-container">
+    <canvas id="gameCanvas"></canvas>
+    <div id="controls">
+      <button id="btn-up">&#8593;</button>
+      <button id="btn-left">&#8592;</button>
+      <button id="btn-right">&#8594;</button>
+      <button id="btn-down">&#8595;</button>
+    </div>
+  </div>
+  <script>
+    // Get canvas and set dimensions based on container size
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    const container = document.getElementById("game-container");
+    
+    function resizeCanvas() {
+      canvas.width = container.clientWidth;
+      canvas.height = container.clientHeight;
+      cellSize = canvas.width / gridSize; // Update cell size on resize
+    }
+    
+    // Game settings
+    const gridSize = 20; // Grid cells per row/column
+    let cellSize = 0; // Calculated dynamically based on canvas size
+    let snake = [{ x: 10, y: 10 }];
+    let snakeDir = { x: 0, y: 0 };
+    let food = { x: 0, y: 0 };
+    let gameOver = false;
+    let score = 0;
+    const gameSpeed = 100; // Game update interval in ms
+    
+    // Place the food at a random grid position
+    function placeFood() {
+      food.x = Math.floor(Math.random() * gridSize);
+      food.y = Math.floor(Math.random() * gridSize);
+    }
+    
+    // Draw the game: snake, food, and score
+    function draw() {
+      // Clear the canvas
+      ctx.fillStyle = "#000";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw food
+      ctx.fillStyle = "red";
+      ctx.fillRect(food.x * cellSize, food.y * cellSize, cellSize, cellSize);
+      
+      // Draw snake
+      ctx.fillStyle = "lime";
+      snake.forEach(segment => {
+        ctx.fillRect(segment.x * cellSize, segment.y * cellSize, cellSize, cellSize);
+      });
+      
+      // Draw score
+      ctx.fillStyle = "#fff";
+      ctx.font = "20px Arial";
+      ctx.fillText("Score: " + score, 10, 25);
+    }
+    
+    // Update snake position and game state
+    function update() {
+      if (snakeDir.x === 0 && snakeDir.y === 0) return; // Don't move until direction is set
+      
+      // Calculate new head position
+      const newHead = {
+        x: snake[0].x + snakeDir.x,
+        y: snake[0].y + snakeDir.y
+      };
+      
+      // Check collisions with walls
+      if (newHead.x < 0 || newHead.x >= gridSize || newHead.y < 0 || newHead.y >= gridSize) {
+        gameOver = true;
+        return;
+      }
+      
+      // Check collisions with self
+      for (let segment of snake) {
+        if (segment.x === newHead.x && segment.y === newHead.y) {
+          gameOver = true;
+          return;
+        }
+      }
+      
+      // Add new head to the snake
+      snake.unshift(newHead);
+      
+      // Check if the snake has eaten the food
+      if (newHead.x === food.x && newHead.y === food.y) {
+        score++;
+        placeFood();
+      } else {
+        // Remove the tail segment if no food is eaten
+        snake.pop();
+      }
+    }
+    
+    // Main game loop
+    function gameLoop() {
+      if (gameOver) {
+        alert("Game Over! Score: " + score);
+        resetGame();
+        return;
+      }
+      update();
+      draw();
+    }
+    
+    // Reset the game state
+    function resetGame() {
+      snake = [{ x: 10, y: 10 }];
+      snakeDir = { x: 0, y: 0 };
+      score = 0;
+      gameOver = false;
+      placeFood();
+    }
+    
+    // Keyboard controls (for desktop)
+    document.addEventListener("keydown", function(e) {
+      switch (e.code) {
+        case "ArrowUp":
+          if (snakeDir.y === 1) break; // Prevent reverse
+          snakeDir = { x: 0, y: -1 };
+          break;
+        case "ArrowDown":
+          if (snakeDir.y === -1) break;
+          snakeDir = { x: 0, y: 1 };
+          break;
+        case "ArrowLeft":
+          if (snakeDir.x === 1) break;
+          snakeDir = { x: -1, y: 0 };
+          break;
+        case "ArrowRight":
+          if (snakeDir.x === -1) break;
+          snakeDir = { x: 1, y: 0 };
+          break;
+      }
+    });
+    
+    // Mobile controls: Handle touch and click events for directional buttons.
+    function setDirection(newDir) {
+      // Prevent reversing direction
+      if ((newDir.x === -snakeDir.x && snakeDir.x !== 0) ||
+          (newDir.y === -snakeDir.y && snakeDir.y !== 0)) {
+        return;
+      }
+      snakeDir = newDir;
+    }
+    
+    document.getElementById("btn-up").addEventListener("touchstart", function(e) {
+      e.preventDefault();
+      setDirection({ x: 0, y: -1 });
+    });
+    document.getElementById("btn-down").addEventListener("touchstart", function(e) {
+      e.preventDefault();
+      setDirection({ x: 0, y: 1 });
+    });
+    document.getElementById("btn-left").addEventListener("touchstart", function(e) {
+      e.preventDefault();
+      setDirection({ x: -1, y: 0 });
+    });
+    document.getElementById("btn-right").addEventListener("touchstart", function(e) {
+      e.preventDefault();
+      setDirection({ x: 1, y: 0 });
+    });
+    
+    // Also enable click events for both desktop and mobile users
+    document.getElementById("btn-up").addEventListener("click", function(e) {
+      setDirection({ x: 0, y: -1 });
+    });
+    document.getElementById("btn-down").addEventListener("click", function(e) {
+      setDirection({ x: 0, y: 1 });
+    });
+    document.getElementById("btn-left").addEventListener("click", function(e) {
+      setDirection({ x: -1, y: 0 });
+    });
+    document.getElementById("btn-right").addEventListener("click", function(e) {
+      setDirection({ x: 1, y: 0 });
+    });
+    
+    // Initialize game
+    resizeCanvas();
+    resetGame();
+    placeFood();
+    setInterval(gameLoop, gameSpeed);
+    
+    // Adjust canvas size when browser window is resized
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+    });
+  </script>
+</body>
+</html>

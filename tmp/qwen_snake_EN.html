@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a1a;
+        }
+
+        #gameCanvas {
+            background: #000;
+        }
+
+        .mobile-controls {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .control-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-controls {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    
+    <div class="mobile-controls">
+        <button class="control-btn" onclick="changeDirection('ArrowUp')">↑</button>
+        <div>
+            <button class="control-btn" onclick="changeDirection('ArrowLeft')">←</button>
+            <button class="control-btn" onclick="changeDirection('ArrowDown')">↓</button>
+            <button class="control-btn" onclick="changeDirection('ArrowRight')">→</button>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Game variables
+        let snake = [{x: 10, y: 10}];
+        let direction = 'right';
+        let food = {x: 5, y: 5};
+        let score = 0;
+        let tileCount = 20;
+        let tileSize = 20;
+        let gameOver = false;
+        let lastTime = 0;
+        let speed = 7;
+
+        function resizeCanvas() {
+            tileCount = Math.floor(Math.min(window.innerWidth, window.innerHeight) / tileSize);
+            canvas.width = tileCount * tileSize;
+            canvas.height = tileCount * tileSize;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Controls
+        window.addEventListener('keydown', e => {
+            const newDirection = e.key.replace('Arrow', '');
+            if ((newDirection === 'Up' && direction !== 'down') ||
+                (newDirection === 'Down' && direction !== 'up') ||
+                (newDirection === 'Left' && direction !== 'right') ||
+                (newDirection === 'Right' && direction !== 'left')) {
+                direction = newDirection.toLowerCase();
+            }
+        });
+
+        window.changeDirection = function(newDirection) {
+            const arrowDirection = newDirection.replace('Arrow', '');
+            if ((arrowDirection === 'Up' && direction !== 'down') ||
+                (arrowDirection === 'Down' && direction !== 'up') ||
+                (arrowDirection === 'Left' && direction !== 'right') ||
+                (arrowDirection === 'Right' && direction !== 'left')) {
+                direction = arrowDirection.toLowerCase();
+            }
+        };
+
+        // Game loop
+        function gameLoop(timestamp) {
+            const deltaTime = timestamp - lastTime;
+            if (deltaTime > 1000 / speed && !gameOver) {
+                update();
+                lastTime = timestamp;
+            }
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        function update() {
+            // Move snake
+            const head = {x: snake[0].x, y: snake[0].y};
+            switch(direction) {
+                case 'up': head.y--; break;
+                case 'down': head.y++; break;
+                case 'left': head.x--; break;
+                case 'right': head.x++; break;
+            }
+
+            // Check collision
+            if (head.x < 0 || head.x >= tileCount || 
+                head.y < 0 || head.y >= tileCount ||
+                snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+                gameOver = true;
+                return;
+            }
+
+            snake.unshift(head);
+
+            // Check food
+            if (head.x === food.x && head.y === food.y) {
+                score++;
+                speed += 0.5;
+                placeFood();
+            } else {
+                snake.pop();
+            }
+        }
+
+        function draw() {
+            // Clear canvas
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw snake
+            ctx.fillStyle = '#0f0';
+            snake.forEach(segment => 
+                ctx.fillRect(segment.x * tileSize, segment.y * tileSize, tileSize, tileSize)
+            );
+
+            // Draw food
+            ctx.fillStyle = '#f00';
+            ctx.fillRect(food.x * tileSize, food.y * tileSize, tileSize, tileSize);
+
+            // Draw score
+            ctx.fillStyle = '#fff';
+            ctx.font = '20px Arial';
+            ctx.fillText('Score: ' + score, 10, 30);
+
+            // Game over screen
+            if (gameOver) {
+                ctx.fillStyle = 'rgba(0,0,0,0.7)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#fff';
+                ctx.font = '30px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('Game Over!', canvas.width / 2, canvas.height / 2);
+                ctx.font = '20px Arial';
+                ctx.fillText('Score: ' + score, canvas.width / 2, canvas.height / 2 + 40);
+                ctx.fillText('Press R to restart', canvas.width / 2, canvas.height / 2 + 80);
+            }
+        }
+
+        function placeFood() {
+            food.x = Math.floor(Math.random() * tileCount);
+            food.y = Math.floor(Math.random() * tileCount);
+            
+            // Ensure food doesn't spawn on snake
+            if (snake.some(segment => segment.x === food.x && segment.y === food.y)) {
+                placeFood();
+            }
+        }
+
+        // Restart game
+        window.addEventListener('keydown', e => {
+            if (e.key === 'r' && gameOver) {
+                snake = [{x: 10, y: 10}];
+                direction = 'right';
+                score = 0;
+                speed = 7;
+                gameOver = false;
+                placeFood();
+            }
+        });
+
+        // Start game
+        placeFood();
+        requestAnimationFrame(gameLoop);
+    </script>
+</body>
+</html>
