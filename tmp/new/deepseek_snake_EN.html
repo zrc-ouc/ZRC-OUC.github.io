@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake with Bouncing Balls</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #2c3e50;
+            font-family: Arial, sans-serif;
+            touch-action: none;
+        }
+
+        #gameCanvas {
+            border: 2px solid #ecf0f1;
+            margin: 10px;
+            background-color: #34495e;
+        }
+
+        #score {
+            color: #ecf0f1;
+            font-size: 24px;
+            margin: 10px;
+        }
+
+        #mobileControls {
+            display: none;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 10px;
+        }
+
+        .control-btn {
+            width: 60px;
+            height: 60px;
+            background-color: #7f8c8d;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            touch-action: none;
+        }
+
+        @media (max-width: 768px) {
+            #mobileControls {
+                display: grid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="score">Score: 0</div>
+    <canvas id="gameCanvas"></canvas>
+    <div id="mobileControls">
+        <div></div>
+        <button class="control-btn" id="upBtn">↑</button>
+        <div></div>
+        <button class="control-btn" id="leftBtn">←</button>
+        <button class="control-btn" id="downBtn">↓</button>
+        <button class="control-btn" id="rightBtn">→</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreElement = document.getElementById('score');
+        
+        // Set canvas size based on viewport
+        function resizeCanvas() {
+            const size = Math.min(window.innerWidth - 20, window.innerHeight - 200);
+            canvas.width = size;
+            canvas.height = size;
+            gridSize = Math.floor(size / 20);
+        }
+        
+        let gridSize;
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        let snake = [];
+        let food = {};
+        let direction = 'right';
+        let nextDirection = 'right';
+        let score = 0;
+        let gameLoop;
+        let balls = [];
+        let lastBallTime = 0;
+        const ballSpeed = 3;
+
+        function initGame() {
+            snake = [{x: 5, y: 5}];
+            direction = 'right';
+            nextDirection = 'right';
+            score = 0;
+            balls = [];
+            lastBallTime = 0;
+            scoreElement.textContent = `Score: ${score}`;
+            spawnFood();
+        }
+
+        function spawnFood() {
+            food = {
+                x: Math.floor(Math.random() * (canvas.width / gridSize)),
+                y: Math.floor(Math.random() * (canvas.height / gridSize))
+            };
+        }
+
+        function spawnBall() {
+            const edge = Math.floor(Math.random() * 4);
+            let x, y, dx, dy;
+            
+            switch(edge) {
+                case 0: // top
+                    x = Math.random() * canvas.width;
+                    y = 0;
+                    dx = (Math.random() - 0.5) * ballSpeed;
+                    dy = ballSpeed;
+                    break;
+                case 1: // right
+                    x = canvas.width;
+                    y = Math.random() * canvas.height;
+                    dx = -ballSpeed;
+                    dy = (Math.random() - 0.5) * ballSpeed;
+                    break;
+                case 2: // bottom
+                    x = Math.random() * canvas.width;
+                    y = canvas.height;
+                    dx = (Math.random() - 0.5) * ballSpeed;
+                    dy = -ballSpeed;
+                    break;
+                case 3: // left
+                    x = 0;
+                    y = Math.random() * canvas.height;
+                    dx = ballSpeed;
+                    dy = (Math.random() - 0.5) * ballSpeed;
+                    break;
+            }
+            
+            balls.push({x, y, dx, dy});
+        }
+
+        function update() {
+            const now = Date.now();
+            if (now - lastBallTime > 5000) {
+                spawnBall();
+                lastBallTime = now;
+            }
+
+            // Update balls
+            balls.forEach(ball => {
+                ball.x += ball.dx;
+                ball.y += ball.dy;
+
+                // Bounce off walls
+                if (ball.x < 0 || ball.x > canvas.width) ball.dx *= -1;
+                if (ball.y < 0 || ball.y > canvas.height) ball.dy *= -1;
+            });
+
+            // Update snake direction
+            direction = nextDirection;
+            const head = {...snake[0]};
+
+            switch(direction) {
+                case 'up': head.y--; break;
+                case 'down': head.y++; break;
+                case 'left': head.x--; break;
+                case 'right': head.x++; break;
+            }
+
+            // Check collisions
+            if (head.x < 0 || head.x >= canvas.width / gridSize ||
+                head.y < 0 || head.y >= canvas.height / gridSize ||
+                snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+                gameOver();
+                return;
+            }
+
+            // Check ball collisions
+            const headX = head.x * gridSize + gridSize/2;
+            const headY = head.y * gridSize + gridSize/2;
+            if (balls.some(ball => {
+                const dx = ball.x - headX;
+                const dy = ball.y - headY;
+                return Math.sqrt(dx*dx + dy*dy) < gridSize;
+            })) {
+                gameOver();
+                return;
+            }
+
+            snake.unshift(head);
+
+            // Check food collision
+            if (head.x === food.x && head.y === food.y) {
+                score += 10;
+                scoreElement.textContent = `Score: ${score}`;
+                spawnFood();
+            } else {
+                snake.pop();
+            }
+        }
+
+        function draw() {
+            // Clear canvas
+            ctx.fillStyle = '#34495e';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw snake
+            ctx.fillStyle = '#2ecc71';
+            snake.forEach(segment => {
+                ctx.fillRect(
+                    segment.x * gridSize,
+                    segment.y * gridSize,
+                    gridSize - 2,
+                    gridSize - 2
+                );
+            });
+
+            // Draw food
+            ctx.fillStyle = '#e74c3c';
+            ctx.fillRect(
+                food.x * gridSize,
+                food.y * gridSize,
+                gridSize - 2,
+                gridSize - 2
+            );
+
+            // Draw balls
+            ctx.fillStyle = '#f1c40f';
+            balls.forEach(ball => {
+                ctx.beginPath();
+                ctx.arc(ball.x, ball.y, gridSize/2, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+        function gameOver() {
+            cancelAnimationFrame(gameLoop);
+            alert(`Game Over! Score: ${score}`);
+            initGame();
+            gameLoop = requestAnimationFrame(main);
+        }
+
+        function main() {
+            update();
+            draw();
+            gameLoop = requestAnimationFrame(main);
+        }
+
+        // Controls
+        const validKeys = {
+            ArrowUp: 'up',
+            ArrowDown: 'down',
+            ArrowLeft: 'left',
+            ArrowRight: 'right'
+        };
+
+        function handleKeydown(e) {
+            const newDir = validKeys[e.key];
+            if (newDir && !isOpposite(direction, newDir)) {
+                nextDirection = newDir;
+            }
+        }
+
+        function isOpposite(current, newDir) {
+            return (
+                (current === 'up' && newDir === 'down') ||
+                (current === 'down' && newDir === 'up') ||
+                (current === 'left' && newDir === 'right') ||
+                (current === 'right' && newDir === 'left')
+            );
+        }
+
+        // Mobile controls
+        const controlBtns = {
+            upBtn: 'up',
+            downBtn: 'down',
+            leftBtn: 'left',
+            rightBtn: 'right'
+        };
+
+        Object.entries(controlBtns).forEach(([id, dir]) => {
+            document.getElementById(id).addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                if (!isOpposite(direction, dir)) {
+                    nextDirection = dir;
+                }
+            });
+        });
+
+        // Event listeners
+        document.addEventListener('keydown', handleKeydown);
+        document.addEventListener('touchstart', (e) => e.preventDefault());
+
+        // Start game
+        initGame();
+        gameLoop = requestAnimationFrame(main);
+    </script>
+</body>
+</html>

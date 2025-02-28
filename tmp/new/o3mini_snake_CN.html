@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>贪吃蛇 - 弹球增添挑战</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+      font-family: sans-serif;
+    }
+    canvas {
+      background: #eee;
+      border: 2px solid #555;
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    #game-over {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px 30px;
+      border-radius: 8px;
+      text-align: center;
+      display: none;
+    }
+    #game-over button {
+      margin-top: 10px;
+      padding: 5px 10px;
+      border: none;
+      background: #ff5555;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1em;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas"></canvas>
+  <div id="game-over">
+    <h1>游戏结束</h1>
+    <button onclick="restartGame()">重新开始</button>
+  </div>
+
+  <script>
+    // ----- 游戏设置 -----
+    const canvas = document.getElementById("gameCanvas");
+    const context = canvas.getContext("2d");
+
+    // 根据设备屏幕自适应画布大小（同时适应PC和移动端）
+    const canvasWidth = Math.min(window.innerWidth, 600);
+    const canvasHeight = Math.min(window.innerWidth, 600);  // 正方形区域
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+    // 网格设置（和贝塞尔贪吃蛇常见实现类似）
+    const cellSize = 20;
+    const cols = Math.floor(canvasWidth / cellSize);
+    const rows = Math.floor(canvasHeight / cellSize);
+
+    // 游戏变量
+    let snake;
+    let food;
+    let direction;      // 当前方向
+    let nextDirection;  // 缓存下一个方向（避免一次连续按下导致蛇反向）
+    let gameLoopInterval;
+    let ballInterval;
+    let balls;    // 弹球数组
+    let gameOver = false;
+
+    // 记录触摸操作起始点（手机端使用）
+    let touchStartX = null;
+    let touchStartY = null;
+
+    // ----- 初始化函数 -----
+    function initGame() {
+      snake = [
+        { x: Math.floor(cols/2), y: Math.floor(rows/2) }
+      ];
+      direction = { x: 1, y: 0 };
+      nextDirection = { x: 1, y: 0 };
+      placeFood();
+      balls = [];
+      gameOver = false;
+      document.getElementById("game-over").style.display = "none";
+
+      // 清除之前的定时器(如果有)
+      if (gameLoopInterval) clearInterval(gameLoopInterval);
+      if (ballInterval) clearInterval(ballInterval);
+
+      // 游戏主循环，每100毫秒更新一次
+      gameLoopInterval = setInterval(gameLoop, 100);
+
+      // 每隔5秒添加一个弹球
+      ballInterval = setInterval(() => {
+        balls.push(createBall());
+      }, 5000);
+    }
+
+    // ----- 游戏循环 -----
+    function gameLoop() {
+      update();
+      draw();
+    }
+
+    // 更新游戏状态
+    function update() {
+      // 更新当前方向（防止在一次 tick 内连续改变方向导致“掉头”）
+      if ((nextDirection.x + direction.x !== 0) || (nextDirection.y + direction.y !== 0)) {
+        direction = nextDirection;
+      }
+
+      // 计算蛇的下一位置
+      const head = snake[0];
+      const newHead = {
+        x: head.x + direction.x,
+        y: head.y + direction.y
+      };
+
+      // 判断撞墙（如果超出绘图区则游戏结束）
+      if (newHead.x < 0 || newHead.x >= cols || newHead.y < 0 || newHead.y >= rows) {
+        endGame();
+        return;
+      }
+
+      // 判断自撞
+      for (let i = 0; i < snake.length; i++) {
+        if (snake[i].x === newHead.x && snake[i].y === newHead.y) {
+          endGame();
+          return;
+        }
+      }
+
+      // 插入新头部
+      snake.unshift(newHead);
+
+      // 判断是否吃到食物（吃到食物则不删除蛇尾）
+      if (newHead.x === food.x && newHead.y === food.y) {
+        placeFood();
+      } else {
+        snake.pop();
+      }
+
+      // 更新弹球位置
+      updateBalls();
+
+      // 检查弹球与蛇头碰撞（将蛇头视为圆心，半径采用 cellSize/2 近似）
+      const snakeHeadPx = newHead.x * cellSize + cellSize/2;
+      const snakeHeadPy = newHead.y * cellSize + cellSize/2;
+      for (const ball of balls) {
+        const dx = ball.x - snakeHeadPx;
+        const dy = ball.y - snakeHeadPy;
+        // 简单基于圆心距离判定碰撞，这里将蛇头近似为一个半径为 cellSize/2 的圆
+        if (Math.sqrt(dx * dx + dy * dy) < ball.radius + cellSize/2 * 0.8) {
+          endGame();
+          return;
+        }
+      }
+    }
+
+    // 画出画面
+    function draw() {
+      // 清空画布
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      // 画蛇
+      context.fillStyle = "#4CAF50";
+      snake.forEach((segment, index) => {
+        context.fillRect(segment.x * cellSize, segment.y * cellSize, cellSize, cellSize);
+      });
+
+      // 画食物
+      context.fillStyle = "#FF5722";
+      context.fillRect(food.x * cellSize, food.y * cellSize, cellSize, cellSize);
+
+      // 画弹球（以圆的形式画出）
+      for (const ball of balls) {
+        context.beginPath();
+        context.fillStyle = "#2196F3";
+        context.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+        context.fill();
+      }
+    }
+
+    // ----- 食物生成 -----
+    function placeFood() {
+      let valid = false;
+      let x, y;
+      while (!valid) {
+        x = Math.floor(Math.random() * cols);
+        y = Math.floor(Math.random() * rows);
+        valid = true;
+        // 确保食物不会生成在蛇身上
+        for (const segment of snake) {
+          if (segment.x === x && segment.y === y) {
+            valid = false;
+            break;
+          }
+        }
+      }
+      food = { x, y };
+    }
+
+    // ----- 弹球生成和更新 -----
+    function createBall() {
+      // 从边界随机选择一个边发射，并随机在该边对应的位置上生成
+      let side = Math.floor(Math.random() * 4);  // 0: top, 1: right, 2: bottom, 3: left
+      let x, y, vx, vy;
+      const speed = 3;  // 弹球每 tick 移动的像素数
+      switch (side) {
+        case 0: // top
+          x = Math.random() * canvas.width;
+          y = 0;
+          vx = (Math.random() - 0.5) * speed; //可以稍微偏左右
+          vy = speed;
+          break;
+        case 1: // right
+          x = canvas.width;
+          y = Math.random() * canvas.height;
+          vx = -speed;
+          vy = (Math.random() - 0.5) * speed;
+          break;
+        case 2: // bottom
+          x = Math.random() * canvas.width;
+          y = canvas.height;
+          vx = (Math.random() - 0.5) * speed;
+          vy = -speed;
+          break;
+        case 3: // left
+          x = 0;
+          y = Math.random() * canvas.height;
+          vx = speed;
+          vy = (Math.random() - 0.5) * speed;
+          break;
+      }
+      return { x, y, vx, vy, radius: 8 };
+    }
+
+    // 更新每个弹球的位置及反弹
+    function updateBalls() {
+      for (const ball of balls) {
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+        // 碰到左右边界，反转水平速度
+        if (ball.x - ball.radius <= 0 && ball.vx < 0) {
+          ball.vx = -ball.vx;
+          ball.x = ball.radius;
+        }
+        if (ball.x + ball.radius >= canvas.width && ball.vx > 0) {
+          ball.vx = -ball.vx;
+          ball.x = canvas.width - ball.radius;
+        }
+        // 碰到上下边界，反转垂直速度
+        if (ball.y - ball.radius <= 0 && ball.vy < 0) {
+          ball.vy = -ball.vy;
+          ball.y = ball.radius;
+        }
+        if (ball.y + ball.radius >= canvas.height && ball.vy > 0) {
+          ball.vy = -ball.vy;
+          ball.y = canvas.height - ball.radius;
+        }
+      }
+    }
+
+    // ----- 游戏结束 -----
+    function endGame() {
+      clearInterval(gameLoopInterval);
+      clearInterval(ballInterval);
+      gameOver = true;
+      document.getElementById("game-over").style.display = "block";
+    }
+
+    function restartGame() {
+      initGame();
+    }
+
+    // ----- 控制操作 -----  
+    // PC端键盘控制
+    window.addEventListener("keydown", function (e) {
+      if (gameOver) return;
+      switch (e.key) {
+        case "ArrowUp":
+        case "w":
+        case "W":
+          if (direction.y === 0) nextDirection = { x: 0, y: -1 };
+          break;
+        case "ArrowDown":
+        case "s":
+        case "S":
+          if (direction.y === 0) nextDirection = { x: 0, y: 1 };
+          break;
+        case "ArrowLeft":
+        case "a":
+        case "A":
+          if (direction.x === 0) nextDirection = { x: -1, y: 0 };
+          break;
+        case "ArrowRight":
+        case "d":
+        case "D":
+          if (direction.x === 0) nextDirection = { x: 1, y: 0 };
+          break;
+      }
+    });
+
+    // 移动端触摸滑动控制
+    canvas.addEventListener("touchstart", function (e) {
+      const touch = e.touches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+    });
+    canvas.addEventListener("touchend", function (e) {
+      if (gameOver) return;
+      if (touchStartX === null || touchStartY === null) return;
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+      const dx = touchEndX - touchStartX;
+      const dy = touchEndY - touchStartY;
+      if (Math.abs(dx) > Math.abs(dy)) {
+        // 水平方向较大
+        if (dx > 0 && direction.x === 0) {
+          nextDirection = { x: 1, y: 0 };
+        } else if (dx < 0 && direction.x === 0) {
+          nextDirection = { x: -1, y: 0 };
+        }
+      } else {
+        // 垂直方向较大
+        if (dy > 0 && direction.y === 0) {
+          nextDirection = { x: 0, y: 1 };
+        } else if (dy < 0 && direction.y === 0) {
+          nextDirection = { x: 0, y: -1 };
+        }
+      }
+      touchStartX = null;
+      touchStartY = null;
+    });
+
+    // 根据窗口大小自适应canvas（可以根据需要开启）
+    window.addEventListener("resize", function () {
+      const newSize = Math.min(window.innerWidth, 600);
+      canvas.width = newSize;
+      canvas.height = newSize;
+    });
+
+    // ----- 启动游戏 -----
+    initGame();
+  </script>
+</body>
+</html>

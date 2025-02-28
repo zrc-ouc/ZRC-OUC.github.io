@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <title>Responsive Snake Game with Bouncing Balls</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: #222;
+        font-family: sans-serif;
+      }
+      canvas {
+        display: block;
+        background: #000;
+      }
+      /* Mobile controls at the bottom of the screen */
+      #controls {
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-wrap: wrap;
+        width: 150px;
+        justify-content: center;
+      }
+      #controls button {
+        width: 45px;
+        height: 45px;
+        margin: 5px;
+        font-size: 18px;
+        border-radius: 5px;
+        border: none;
+        background: #555;
+        color: white;
+      }
+      #gameOverOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        font-size: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        z-index: 10;
+      }
+      #gameOverOverlay button {
+        padding: 10px 20px;
+        font-size: 22px;
+        margin-top: 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Mobile on-screen controls -->
+    <div id="controls">
+      <button id="upBtn">↑</button>
+      <div style="display: flex; width: 100%; justify-content: space-between;">
+        <button id="leftBtn">←</button>
+        <button id="rightBtn">→</button>
+      </div>
+      <button id="downBtn">↓</button>
+    </div>
+
+    <!-- Game over overlay -->
+    <div id="gameOverOverlay" style="display: none;">
+      <div id="gameOverText">Game Over!</div>
+      <button id="restartBtn">Restart</button>
+    </div>
+
+    <script>
+      // Get canvas and context
+      const canvas = document.getElementById("gameCanvas");
+      const ctx = canvas.getContext("2d");
+
+      // Responsive canvas: adjust size to window size
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+
+      // Game settings and state variables
+      const cellSize = 20;
+      let snake = [];
+      let direction = { x: 1, y: 0 }; // initial direction: moving right
+      let food = null;
+      let balls = []; // bouncing balls
+      let gameInterval;
+      let ballInterval;
+      let gameOver = false;
+      let lastMoveTime = 0;
+      const snakeSpeed = 100; // snake update interval (ms)
+      const ballRadius = 10;
+      const ballSpeed = 3; // pixels per frame for balls
+
+      // For mobile swipe detection
+      let touchStartX = null;
+      let touchStartY = null;
+
+      // Initialize game state and start game loop
+      function initGame() {
+        snake = [];
+        // Start with snake length of 5 cells in the middle of the canvas
+        const startX = Math.floor(canvas.width / (2 * cellSize));
+        const startY = Math.floor(canvas.height / (2 * cellSize));
+        for (let i = 4; i >= 0; i--) {
+          snake.push({ x: startX - i, y: startY });
+        }
+        direction = { x: 1, y: 0 };
+        food = spawnFood();
+        balls = [];
+        gameOver = false;
+
+        // Clear any old intervals if restarting
+        if (gameInterval) clearInterval(gameInterval);
+        if (ballInterval) clearInterval(ballInterval);
+
+        // Snake movement update
+        gameInterval = setInterval(updateGame, snakeSpeed);
+        // Spawn a new bouncing ball every 5 seconds
+        ballInterval = setInterval(spawnBall, 5000);
+
+        // Hide game over overlay if visible
+        document.getElementById("gameOverOverlay").style.display = "none";
+      }
+
+      // Spawn food at a random grid position (avoid snake cells)
+      function spawnFood() {
+        let newFood;
+        while (true) {
+          newFood = {
+            x: Math.floor(Math.random() * (canvas.width / cellSize)),
+            y: Math.floor(Math.random() * (canvas.height / cellSize)),
+          };
+          const conflict = snake.some(
+            (cell) => cell.x === newFood.x && cell.y === newFood.y
+          );
+          if (!conflict) break;
+        }
+        return newFood;
+      }
+
+      // Spawn a bouncing ball from a random boundary with an appropriate direction
+      function spawnBall() {
+        // Randomly choose a boundary: 0: left, 1: right, 2: top, 3: bottom
+        const boundary = Math.floor(Math.random() * 4);
+        let x, y, vx, vy;
+        switch (boundary) {
+          case 0: // left
+            x = ballRadius;
+            y = Math.random() * (canvas.height - 2 * ballRadius) + ballRadius;
+            vx = ballSpeed;
+            vy = (Math.random() - 0.5) * ballSpeed * 2;
+            break;
+          case 1: // right
+            x = canvas.width - ballRadius;
+            y = Math.random() * (canvas.height - 2 * ballRadius) + ballRadius;
+            vx = -ballSpeed;
+            vy = (Math.random() - 0.5) * ballSpeed * 2;
+            break;
+          case 2: // top
+            x = Math.random() * (canvas.width - 2 * ballRadius) + ballRadius;
+            y = ballRadius;
+            vy = ballSpeed;
+            vx = (Math.random() - 0.5) * ballSpeed * 2;
+            break;
+          case 3: // bottom
+            x = Math.random() * (canvas.width - 2 * ballRadius) + ballRadius;
+            y = canvas.height - ballRadius;
+            vy = -ballSpeed;
+            vx = (Math.random() - 0.5) * ballSpeed * 2;
+            break;
+        }
+        balls.push({ x, y, vx, vy });
+      }
+
+      // Update game state: move snake, check collisions, update balls, etc.
+      function updateGame() {
+        if (gameOver) return;
+
+        // Calculate new head position (snake moves by one grid cell)
+        const newHead = {
+          x: snake[snake.length - 1].x + direction.x,
+          y: snake[snake.length - 1].y + direction.y,
+        };
+
+        // Check wall collision (walls are boundaries of the canvas grid)
+        const maxX = Math.floor(canvas.width / cellSize);
+        const maxY = Math.floor(canvas.height / cellSize);
+        if (
+          newHead.x < 0 ||
+          newHead.y < 0 ||
+          newHead.x >= maxX ||
+          newHead.y >= maxY
+        ) {
+          endGame();
+          return;
+        }
+
+        // Check self-collision
+        if (
+          snake.some(
+            (cell) => cell.x === newHead.x && cell.y === newHead.y
+          )
+        ) {
+          endGame();
+          return;
+        }
+
+        // Add the new head position
+        snake.push(newHead);
+
+        // Check if food is eaten
+        if (newHead.x === food.x && newHead.y === food.y) {
+          food = spawnFood();
+        } else {
+          // Remove tail cell if not eating
+          snake.shift();
+        }
+
+        // Update bouncing balls
+        updateBalls();
+
+        // Check collision between snake head and any ball (circle collision check)
+        for (let ball of balls) {
+          // Calculate snake head center in pixels
+          const headPixelX = newHead.x * cellSize + cellSize / 2;
+          const headPixelY = newHead.y * cellSize + cellSize / 2;
+          const dx = ball.x - headPixelX;
+          const dy = ball.y - headPixelY;
+          const distance = Math.hypot(dx, dy);
+          // Assume snake cell approximated as a circle with radius = cellSize/2
+          if (distance < ballRadius + cellSize / 2) {
+            endGame();
+            return;
+          }
+        }
+
+        drawGame();
+      }
+
+      // Update positions of all bouncing balls. Bounce off boundaries.
+      function updateBalls() {
+        balls.forEach((ball) => {
+          ball.x += ball.vx;
+          ball.y += ball.vy;
+          // Bounce off left or right walls
+          if (ball.x <= ballRadius) {
+            ball.x = ballRadius;
+            ball.vx = -ball.vx;
+          } else if (ball.x >= canvas.width - ballRadius) {
+            ball.x = canvas.width - ballRadius;
+            ball.vx = -ball.vx;
+          }
+          // Bounce off top or bottom walls
+          if (ball.y <= ballRadius) {
+            ball.y = ballRadius;
+            ball.vy = -ball.vy;
+          } else if (ball.y >= canvas.height - ballRadius) {
+            ball.y = canvas.height - ballRadius;
+            ball.vy = -ball.vy;
+          }
+        });
+      }
+
+      // Draw everything on the canvas
+      function drawGame() {
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw food (as a red square)
+        ctx.fillStyle = "red";
+        ctx.fillRect(
+          food.x * cellSize,
+          food.y * cellSize,
+          cellSize,
+          cellSize
+        );
+
+        // Draw snake (as a green grid of cells)
+        ctx.fillStyle = "lime";
+        snake.forEach((cell) => {
+          ctx.fillRect(
+            cell.x * cellSize,
+            cell.y * cellSize,
+            cellSize,
+            cellSize
+          );
+        });
+
+        // Draw bouncing balls (as blue circles)
+        ctx.fillStyle = "deepskyblue";
+        balls.forEach((ball) => {
+          ctx.beginPath();
+          ctx.arc(ball.x, ball.y, ballRadius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+
+      // End the game and show the game over overlay
+      function endGame() {
+        gameOver = true;
+        clearInterval(gameInterval);
+        clearInterval(ballInterval);
+        document.getElementById("gameOverOverlay").style.display = "flex";
+      }
+
+      // Change snake direction ensuring it cannot reverse directly
+      function changeDirection(newDir) {
+        // Prevent reverse movement (if snake length > 1)
+        if (snake.length > 1) {
+          const currentDir = direction;
+          if (
+            newDir.x === -currentDir.x &&
+            newDir.y === -currentDir.y
+          ) {
+            return;
+          }
+        }
+        direction = newDir;
+      }
+
+      // Keyboard controls for desktop
+      window.addEventListener("keydown", (e) => {
+        switch (e.key) {
+          case "ArrowUp":
+          case "w":
+          case "W":
+            changeDirection({ x: 0, y: -1 });
+            break;
+          case "ArrowDown":
+          case "s":
+          case "S":
+            changeDirection({ x: 0, y: 1 });
+            break;
+          case "ArrowLeft":
+          case "a":
+          case "A":
+            changeDirection({ x: -1, y: 0 });
+            break;
+          case "ArrowRight":
+          case "d":
+          case "D":
+            changeDirection({ x: 1, y: 0 });
+            break;
+        }
+      });
+
+      // Mobile on-screen button controls
+      document.getElementById("upBtn").addEventListener("click", function () {
+        changeDirection({ x: 0, y: -1 });
+      });
+      document
+        .getElementById("downBtn")
+        .addEventListener("click", function () {
+          changeDirection({ x: 0, y: 1 });
+        });
+      document
+        .getElementById("leftBtn")
+        .addEventListener("click", function () {
+          changeDirection({ x: -1, y: 0 });
+        });
+      document
+        .getElementById("rightBtn")
+        .addEventListener("click", function () {
+          changeDirection({ x: 1, y: 0 });
+        });
+
+      // Swipe detection for mobile
+      canvas.addEventListener("touchstart", (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      });
+
+      canvas.addEventListener("touchend", (e) => {
+        if (touchStartX === null || touchStartY === null) return;
+        let touchEndX = e.changedTouches[0].clientX;
+        let touchEndY = e.changedTouches[0].clientY;
+        let dx = touchEndX - touchStartX;
+        let dy = touchEndY - touchStartY;
+        if (Math.abs(dx) > Math.abs(dy)) {
+          // Horizontal swipe
+          if (dx > 0) {
+            changeDirection({ x: 1, y: 0 });
+          } else {
+            changeDirection({ x: -1, y: 0 });
+          }
+        } else {
+          // Vertical swipe
+          if (dy > 0) {
+            changeDirection({ x: 0, y: 1 });
+          } else {
+            changeDirection({ x: 0, y: -1 });
+          }
+        }
+        touchStartX = null;
+        touchStartY = null;
+      });
+
+      // Restart button event
+      document
+        .getElementById("restartBtn")
+        .addEventListener("click", function () {
+          initGame();
+        });
+
+      // Start the game for the first time
+      initGame();
+    </script>
+  </body>
+</html>

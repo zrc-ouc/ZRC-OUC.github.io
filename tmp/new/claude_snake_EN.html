@@ -1,0 +1,782 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game with Bouncing Balls</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            touch-action: none;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        #game-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            aspect-ratio: 1 / 1;
+            margin: 0 auto;
+        }
+        canvas {
+            border: 2px solid #333;
+            background-color: #222;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        #score {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-size: 20px;
+            z-index: 10;
+        }
+        #game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: red;
+            font-size: 32px;
+            font-weight: bold;
+            display: none;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 20;
+        }
+        #mobile-controls {
+            display: none;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 150px;
+            z-index: 10;
+        }
+        .control-btn {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            user-select: none;
+            touch-action: manipulation;
+        }
+        #up-btn {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #down-btn {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #left-btn {
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        #right-btn {
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        #restart-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #start-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 30;
+        }
+        #start-screen h1 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        #start-btn {
+            padding: 10px 25px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="score">Score: 0</div>
+        <div id="game-over">
+            Game Over!
+            <br>
+            <span id="final-score">Score: 0</span>
+            <br>
+            <button id="restart-btn">Restart</button>
+        </div>
+        <div id="mobile-controls">
+            <div class="control-btn" id="up-btn">↑</div>
+            <div class="control-btn" id="down-btn">↓</div>
+            <div class="control-btn" id="left-btn">←</div>
+            <div class="control-btn" id="right-btn">→</div>
+        </div>
+        <div id="start-screen">
+            <h1>Snake Game</h1>
+            <p style="color: white; text-align: center; margin-bottom: 20px;">
+                Use arrow keys (desktop) or swipe/buttons (mobile) to control the snake.<br>
+                Avoid hitting walls, your tail, and the bouncing balls!
+            </p>
+            <button id="start-btn">Start Game</button>
+        </div>
+    </div>
+    
+    <script>
+        // Game settings and variables
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreElement = document.getElementById('score');
+        const gameOverElement = document.getElementById('game-over');
+        const finalScoreElement = document.getElementById('final-score');
+        const restartBtn = document.getElementById('restart-btn');
+        const mobileControls = document.getElementById('mobile-controls');
+        const startScreen = document.getElementById('start-screen');
+        const startBtn = document.getElementById('start-btn');
+        
+        let canvasWidth, canvasHeight, gridSize, gridWidth, gridHeight;
+        let snake, food, direction, nextDirection, score, gameRunning;
+        let bouncingBalls = [];
+        let ballTimer;
+        let isMobile = false;
+        let gameSpeed = 150; // ms per step
+        
+        // Initialize game
+        function init() {
+            // Set canvas size based on container
+            const container = document.getElementById('game-container');
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+            
+            canvasWidth = canvas.width;
+            canvasHeight = canvas.height;
+            
+            // Determine grid size based on screen size
+            gridSize = Math.floor(Math.min(canvasWidth, canvasHeight) / 20);
+            gridWidth = Math.floor(canvasWidth / gridSize);
+            gridHeight = Math.floor(canvasHeight / gridSize);
+            
+            // Initialize game state
+            snake = [
+                {x: Math.floor(gridWidth / 2), y: Math.floor(gridHeight / 2)}
+            ];
+            generateFood();
+            direction = 'right';
+            nextDirection = 'right';
+            score = 0;
+            gameRunning = true;
+            bouncingBalls = [];
+            
+            // Update score display
+            scoreElement.textContent = `Score: ${score}`;
+            
+            // Hide game over message
+            gameOverElement.style.display = 'none';
+            
+            // Check if mobile device
+            isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+                      || window.innerWidth <= 768;
+            
+            // Show/hide mobile controls
+            if (isMobile) {
+                mobileControls.style.display = 'block';
+            } else {
+                mobileControls.style.display = 'none';
+            }
+            
+            // Start game loop
+            if (window.gameLoop) clearInterval(window.gameLoop);
+            window.gameLoop = setInterval(gameStep, gameSpeed);
+            
+            // Start ball spawning
+            if (ballTimer) clearInterval(ballTimer);
+            ballTimer = setInterval(addBouncingBall, 5000);
+            
+            // Initial draw
+            draw();
+        }
+        
+        // Generate food at random position
+        function generateFood() {
+            let foodX, foodY;
+            let validPosition = false;
+            
+            while (!validPosition) {
+                foodX = Math.floor(Math.random() * gridWidth);
+                foodY = Math.floor(Math.random() * gridHeight);
+                
+                validPosition = true;
+                
+                // Check if food overlaps with snake
+                for (let segment of snake) {
+                    if (segment.x === foodX && segment.y === foodY) {
+                        validPosition = false;
+                        break;
+                    }
+                }
+                
+                // Check if food overlaps with bouncing balls
+                for (let ball of bouncingBalls) {
+                    const ballGridX = Math.floor(ball.x / gridSize);
+                    const ballGridY = Math.floor(ball.y / gridSize);
+                    if (ballGridX === foodX && ballGridY === foodY) {
+                        validPosition = false;
+                        break;
+                    }
+                }
+            }
+            
+            food = {x: foodX, y: foodY};
+        }
+        
+        // Add a new bouncing ball at a random boundary position
+        function addBouncingBall() {
+            if (!gameRunning) return;
+            
+            // Ball properties
+            const ballRadius = gridSize / 2;
+            let x, y, dx, dy;
+            
+            // Random side of the canvas (0: top, 1: right, 2: bottom, 3: left)
+            const side = Math.floor(Math.random() * 4);
+            
+            switch(side) {
+                case 0: // Top
+                    x = Math.random() * canvasWidth;
+                    y = ballRadius;
+                    dx = Math.random() * 4 - 2; // Random horizontal velocity
+                    dy = Math.random() * 2 + 1; // Positive vertical velocity
+                    break;
+                case 1: // Right
+                    x = canvasWidth - ballRadius;
+                    y = Math.random() * canvasHeight;
+                    dx = -(Math.random() * 2 + 1); // Negative horizontal velocity
+                    dy = Math.random() * 4 - 2; // Random vertical velocity
+                    break;
+                case 2: // Bottom
+                    x = Math.random() * canvasWidth;
+                    y = canvasHeight - ballRadius;
+                    dx = Math.random() * 4 - 2; // Random horizontal velocity
+                    dy = -(Math.random() * 2 + 1); // Negative vertical velocity
+                    break;
+                case 3: // Left
+                    x = ballRadius;
+                    y = Math.random() * canvasHeight;
+                    dx = Math.random() * 2 + 1; // Positive horizontal velocity
+                    dy = Math.random() * 4 - 2; // Random vertical velocity
+                    break;
+            }
+            
+            bouncingBalls.push({
+                x, y, dx, dy, radius: ballRadius,
+                color: `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`
+            });
+        }
+        
+        // Update bouncing balls positions
+        function updateBalls() {
+            for (let ball of bouncingBalls) {
+                // Move the ball
+                ball.x += ball.dx;
+                ball.y += ball.dy;
+                
+                // Bounce off walls
+                if (ball.x - ball.radius < 0 || ball.x + ball.radius > canvasWidth) {
+                    ball.dx = -ball.dx;
+                    // Adjust position to avoid sticking to the walls
+                    if (ball.x - ball.radius < 0) {
+                        ball.x = ball.radius;
+                    } else {
+                        ball.x = canvasWidth - ball.radius;
+                    }
+                }
+                
+                if (ball.y - ball.radius < 0 || ball.y + ball.radius > canvasHeight) {
+                    ball.dy = -ball.dy;
+                    // Adjust position to avoid sticking to the walls
+                    if (ball.y - ball.radius < 0) {
+                        ball.y = ball.radius;
+                    } else {
+                        ball.y = canvasHeight - ball.radius;
+                    }
+                }
+            }
+        }
+        
+        // Check for collision between snake head and bouncing balls
+        function checkBallCollision() {
+            const head = snake[0];
+            const headX = head.x * gridSize + gridSize / 2;
+            const headY = head.y * gridSize + gridSize / 2;
+            
+            for (let ball of bouncingBalls) {
+                // Calculate distance between ball center and snake head center
+                const distance = Math.sqrt(
+                    Math.pow(ball.x - headX, 2) + Math.pow(ball.y - headY, 2)
+                );
+                
+                // Check if distance is less than sum of radii
+                // (snake head is treated as a circle with radius = gridSize/2)
+                if (distance < (ball.radius + gridSize / 2) * 0.8) { // 0.8 factor for more forgiving collision
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+        
+        // Draw snake
+        function drawSnake() {
+            for (let i = 0; i < snake.length; i++) {
+                const segment = snake[i];
+                
+                // Head of the snake
+                if (i === 0) {
+                    ctx.fillStyle = '#4CAF50';
+                } else {
+                    // Gradient color from green to dark green
+                    const colorValue = Math.max(50, 255 - (i * 10));
+                    ctx.fillStyle = `rgb(0, ${colorValue}, 0)`;
+                }
+                
+                ctx.fillRect(
+                    segment.x * gridSize,
+                    segment.y * gridSize,
+                    gridSize - 1,
+                    gridSize - 1
+                );
+                
+                // Draw eyes for the head
+                if (i === 0) {
+                    ctx.fillStyle = 'white';
+                    let eyeX1, eyeY1, eyeX2, eyeY2;
+                    
+                    switch(direction) {
+                        case 'up':
+                            eyeX1 = segment.x * gridSize + gridSize * 0.25;
+                            eyeY1 = segment.y * gridSize + gridSize * 0.25;
+                            eyeX2 = segment.x * gridSize + gridSize * 0.75;
+                            eyeY2 = segment.y * gridSize + gridSize * 0.25;
+                            break;
+                        case 'down':
+                            eyeX1 = segment.x * gridSize + gridSize * 0.25;
+                            eyeY1 = segment.y * gridSize + gridSize * 0.75;
+                            eyeX2 = segment.x * gridSize + gridSize * 0.75;
+                            eyeY2 = segment.y * gridSize + gridSize * 0.75;
+                            break;
+                        case 'left':
+                            eyeX1 = segment.x * gridSize + gridSize * 0.25;
+                            eyeY1 = segment.y * gridSize + gridSize * 0.25;
+                            eyeX2 = segment.x * gridSize + gridSize * 0.25;
+                            eyeY2 = segment.y * gridSize + gridSize * 0.75;
+                            break;
+                        case 'right':
+                            eyeX1 = segment.x * gridSize + gridSize * 0.75;
+                            eyeY1 = segment.y * gridSize + gridSize * 0.25;
+                            eyeX2 = segment.x * gridSize + gridSize * 0.75;
+                            eyeY2 = segment.y * gridSize + gridSize * 0.75;
+                            break;
+                    }
+                    
+                    ctx.beginPath();
+                    ctx.arc(eyeX1, eyeY1, gridSize * 0.1, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(eyeX2, eyeY2, gridSize * 0.1, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+        
+        // Draw food
+        function drawFood() {
+            ctx.fillStyle = '#FF5722';
+            ctx.beginPath();
+            ctx.arc(
+                food.x * gridSize + gridSize / 2,
+                food.y * gridSize + gridSize / 2,
+                gridSize / 2 - 2,
+                0,
+                Math.PI * 2
+            );
+            ctx.fill();
+            
+            // Add a shine effect
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.beginPath();
+            ctx.arc(
+                food.x * gridSize + gridSize * 0.3,
+                food.y * gridSize + gridSize * 0.3,
+                gridSize * 0.1,
+                0,
+                Math.PI * 2
+            );
+            ctx.fill();
+        }
+        
+        // Draw bouncing balls
+        function drawBalls() {
+            for (let ball of bouncingBalls) {
+                ctx.fillStyle = ball.color;
+                ctx.beginPath();
+                ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.strokeStyle = '#FFF';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // Add shine effect
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.beginPath();
+                ctx.arc(ball.x - ball.radius * 0.3, ball.y - ball.radius * 0.3, ball.radius * 0.3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        // Game step (one frame)
+        function gameStep() {
+            if (!gameRunning) return;
+            
+            // Update direction based on next direction
+            direction = nextDirection;
+            
+            // Move snake
+            const head = {x: snake[0].x, y: snake[0].y};
+            
+            switch(direction) {
+                case 'up':
+                    head.y--;
+                    break;
+                case 'down':
+                    head.y++;
+                    break;
+                case 'left':
+                    head.x--;
+                    break;
+                case 'right':
+                    head.x++;
+                    break;
+            }
+            
+            // Check for boundary collision
+            if (head.x < 0 || head.x >= gridWidth || head.y < 0 || head.y >= gridHeight) {
+                gameOver();
+                return;
+            }
+            
+            // Check for self collision
+            for (let i = 0; i < snake.length; i++) {
+                if (head.x === snake[i].x && head.y === snake[i].y) {
+                    gameOver();
+                    return;
+                }
+            }
+            
+            // Check if snake eats food
+            if (head.x === food.x && head.y === food.y) {
+                // Increase score
+                score++;
+                scoreElement.textContent = `Score: ${score}`;
+                
+                // Generate new food
+                generateFood();
+                
+                // Increase game speed slightly (make it more challenging)
+                if (gameSpeed > 70 && score % 5 === 0) {
+                    gameSpeed -= 5;
+                    clearInterval(window.gameLoop);
+                    window.gameLoop = setInterval(gameStep, gameSpeed);
+                }
+            } else {
+                // Remove tail segment
+                snake.pop();
+            }
+            
+            // Add new head segment
+            snake.unshift(head);
+            
+            // Update balls
+            updateBalls();
+            
+            // Check for ball collision
+            if (checkBallCollision()) {
+                gameOver();
+                return;
+            }
+            
+            // Draw everything
+            draw();
+        }
+        
+        // Draw game
+        function draw() {
+            // Clear canvas
+            ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+            
+            // Draw grid lines (optional)
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+            ctx.lineWidth = 1;
+            
+            // Vertical lines
+            for (let x = 0; x <= gridWidth; x++) {
+                ctx.beginPath();
+                ctx.moveTo(x * gridSize, 0);
+                ctx.lineTo(x * gridSize, canvasHeight);
+                ctx.stroke();
+            }
+            
+            // Horizontal lines
+            for (let y = 0; y <= gridHeight; y++) {
+                ctx.beginPath();
+                ctx.moveTo(0, y * gridSize);
+                ctx.lineTo(canvasWidth, y * gridSize);
+                ctx.stroke();
+            }
+            
+            // Draw game elements
+            drawSnake();
+            drawFood();
+            drawBalls();
+        }
+        
+        // Game over
+        function gameOver() {
+            gameRunning = false;
+            clearInterval(window.gameLoop);
+            clearInterval(ballTimer);
+            
+            // Show game over screen
+            finalScoreElement.textContent = `Score: ${score}`;
+            gameOverElement.style.display = 'block';
+        }
+        
+        // Event listeners
+        document.addEventListener('keydown', function(e) {
+            // Prevent default arrow key scrolling
+            if ([37, 38, 39, 40].includes(e.keyCode)) {
+                e.preventDefault();
+            }
+            
+            // Update direction based on key press
+            switch(e.keyCode) {
+                case 38: // Up arrow
+                    if (direction !== 'down') nextDirection = 'up';
+                    break;
+                case 40: // Down arrow
+                    if (direction !== 'up') nextDirection = 'down';
+                    break;
+                case 37: // Left arrow
+                    if (direction !== 'right') nextDirection = 'left';
+                    break;
+                case 39: // Right arrow
+                    if (direction !== 'left') nextDirection = 'right';
+                    break;
+            }
+        });
+        
+        // Mobile controls
+        document.getElementById('up-btn').addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            if (direction !== 'down') nextDirection = 'up';
+        });
+        
+        document.getElementById('down-btn').addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            if (direction !== 'up') nextDirection = 'down';
+        });
+        
+        document.getElementById('left-btn').addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            if (direction !== 'right') nextDirection = 'left';
+        });
+        
+        document.getElementById('right-btn').addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            if (direction !== 'left') nextDirection = 'right';
+        });
+        
+        // Swipe controls for mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+        
+        canvas.addEventListener('touchstart', function(e) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, false);
+        
+        canvas.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+        
+        canvas.addEventListener('touchend', function(e) {
+            if (!gameRunning) return;
+            
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            
+            const diffX = touchEndX - touchStartX;
+            const diffY = touchEndY - touchStartY;
+            
+            // Only register as swipe if movement is significant
+            if (Math.abs(diffX) < 10 && Math.abs(diffY) < 10) return;
+            
+            // Check if horizontal or vertical swipe is longer
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                // Horizontal swipe
+                if (diffX > 0 && direction !== 'left') {
+                    nextDirection = 'right';
+                } else if (diffX < 0 && direction !== 'right') {
+                    nextDirection = 'left';
+                }
+            } else {
+                // Vertical swipe
+                if (diffY > 0 && direction !== 'up') {
+                    nextDirection = 'down';
+                } else if (diffY < 0 && direction !== 'down') {
+                    nextDirection = 'up';
+                }
+            }
+        }, false);
+        
+        // Restart button
+        restartBtn.addEventListener('click', function() {
+            init();
+        });
+        
+        // Start button
+        startBtn.addEventListener('click', function() {
+            startScreen.style.display = 'none';
+            init();
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (gameRunning) {
+                // Pause game during resize
+                clearInterval(window.gameLoop);
+                clearInterval(ballTimer);
+                
+                // Save current game state
+                const currentSnake = [...snake];
+                const currentFood = {...food};
+                const currentDirection = direction;
+                const currentNextDirection = nextDirection;
+                const currentScore = score;
+                const currentBalls = [...bouncingBalls];
+                
+                // Update canvas size
+                const container = document.getElementById('game-container');
+                canvas.width = container.clientWidth;
+                canvas.height = container.clientHeight;
+                
+                canvasWidth = canvas.width;
+                canvasHeight = canvas.height;
+                
+                // Determine new grid size
+                const newGridSize = Math.floor(Math.min(canvasWidth, canvasHeight) / 20);
+                const scaleRatio = newGridSize / gridSize;
+                
+                // Update grid dimensions
+                gridSize = newGridSize;
+                gridWidth = Math.floor(canvasWidth / gridSize);
+                gridHeight = Math.floor(canvasHeight / gridSize);
+                
+                // Scale snake and food positions to new grid
+                for (let segment of snake) {
+                    segment.x = Math.min(Math.floor(segment.x * scaleRatio), gridWidth - 1);
+                    segment.y = Math.min(Math.floor(segment.y * scaleRatio), gridHeight - 1);
+                }
+                
+                food.x = Math.min(Math.floor(food.x * scaleRatio), gridWidth - 1);
+                food.y = Math.min(Math.floor(food.y * scaleRatio), gridHeight - 1);
+                
+                // Scale ball positions and sizes
+                for (let ball of bouncingBalls) {
+                    ball.x = (ball.x / canvas.width) * canvasWidth;
+                    ball.y = (ball.y / canvas.height) * canvasHeight;
+                    ball.radius = gridSize / 2;
+                }
+                
+                // Check if now on mobile
+                isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+                          || window.innerWidth <= 768;
+                
+                // Show/hide mobile controls
+                if (isMobile) {
+                    mobileControls.style.display = 'block';
+                } else {
+                    mobileControls.style.display = 'none';
+                }
+                
+                // Restart game loop
+                window.gameLoop = setInterval(gameStep, gameSpeed);
+                ballTimer = setInterval(addBouncingBall, 5000);
+                
+                // Redraw game
+                draw();
+            }
+        });
+        
+        // Initial setup (but don't start the game yet)
+        window.onload = function() {
+            const container = document.getElementById('game-container');
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+            
+            canvasWidth = canvas.width;
+            canvasHeight = canvas.height;
+            
+            gridSize = Math.floor(Math.min(canvasWidth, canvasHeight) / 20);
+            gridWidth = Math.floor(canvasWidth / gridSize);
+            gridHeight = Math.floor(canvasHeight / gridSize);
+            
+            // Check if mobile device for initial display
+            isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+                      || window.innerWidth <= 768;
+            
+            if (isMobile) {
+                mobileControls.style.display = 'block';
+            }
+        };
+    </script>
+
+
+</body></html>
