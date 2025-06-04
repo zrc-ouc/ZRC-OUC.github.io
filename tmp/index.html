@@ -1,0 +1,4133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dungeon Rescue</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Top bar with player resources -->
+        <div id="top-bar">
+            <!-- 无限地牢模式下显示的资源 -->
+            <div class="dungeon-resources">
+                <div id="oxygen-display">氧气: 100</div>
+                <div id="shell-display">贝壳: 0</div>
+                <div id="team-count">队伍: 0/6</div>
+            </div>
+            <!-- 主界面显示的资源 -->
+            <div class="main-resources">
+                <div class="resource">
+                    <div id="level-display">Lv.1</div>
+                    <div id="exp-bar"><div id="exp-fill"></div></div>
+                </div>
+                <div class="resource">
+                    <div class="resource-icon gold-icon"></div>
+                    <div id="gold-display">100</div>
+                </div>
+                <div class="resource">
+                    <div class="resource-icon summon-stones-icon"></div>
+                    <div id="summon-stones-display">5</div>
+                </div>
+                <div class="resource">
+                    <div class="resource-icon tickets-icon"></div>
+                    <div id="tickets-display">2</div>
+                </div>
+            </div>
+            <!-- 暂停按钮 -->
+            <div id="pause-button">⏸️</div>
+        </div>
+        
+        <!-- 暂停菜单弹出层 -->
+        <div id="pause-menu" class="hidden">
+            <div class="pause-overlay"></div>
+            <div class="pause-content">
+                <button id="team-button" class="pause-menu-button">队伍</button>
+                <button id="stats-button" class="pause-menu-button">统计</button>
+                <button id="save-button" class="pause-menu-button">保存游戏</button>
+                <button id="load-button" class="pause-menu-button">加载游戏</button>
+                <button id="retreat-button" class="pause-menu-button">撤退</button>
+                <button id="resume-button" class="pause-menu-button">继续</button>
+            </div>
+        </div>
+        
+        <!-- Main content area -->
+        <div id="main-content">
+            <!-- Home screen with battle modes -->
+            <div id="battle-modes">
+                <!-- 清空存档按钮 -->
+                <div id="reset-save-container">
+                    <button id="reset-save-button">清空存档</button>
+                </div>
+                <div class="battle-mode" id="daily-challenge">Daily Challenge</div>
+                <div class="battle-mode" id="endless-dungeon">Endless Dungeon</div>
+                <div class="battle-mode" id="story-mode">Story Mode</div>
+            </div>
+            
+            <!-- 酒馆系统界面 -->
+            <div id="tavern-screen">
+                <div class="tavern-container">
+                    <!-- 金币抽取区域 -->
+                    <div class="summon-section gold-summon">
+                        <h3 class="section-title">金币抽取</h3>
+                        <div class="summon-buttons">
+                            <button class="summon-btn" id="gold-single-summon">单抽 (100金币)</button>
+                            <button class="summon-btn" id="gold-multi-summon">10连抽 (900金币)</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 召唤石抽取区域 -->
+                    <div class="summon-section stone-summon">
+                        <h3 class="section-title">召唤石抽取</h3>
+                        <div class="summon-buttons">
+                            <button class="summon-btn" id="stone-single-summon">单抽 (1召唤石)</button>
+                            <button class="summon-btn" id="stone-multi-summon">10连抽 (9召唤石)</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 抽奖结果弹窗 -->
+                <div id="summon-result-overlay" class="hidden">
+                    <div class="summon-result-container">
+                        <div class="summon-result-header">
+                            <h2>抽奖结果</h2>
+                            <button class="close-btn" id="close-summon-result">&times;</button>
+                        </div>
+                        <div id="summon-result-content"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 伙伴系统界面 -->
+            <div id="partners-screen">
+                <div class="partners-grid" id="partners-grid">
+                    <!-- 伙伴卡片将通过JavaScript动态生成 -->
+                </div>
+            </div>
+            
+            <!-- 伙伴详情弹窗 -->
+            <div id="partner-details-overlay"></div>
+            <div id="partner-details">
+                <button class="close-details">&times;</button>
+                <div class="partner-details-header">
+                    <div class="partner-details-icon"></div>
+                    <div class="partner-details-info">
+                        <div class="partner-details-name"></div>
+                        <div class="partner-details-stats">
+                            <div class="partner-details-stat hp"></div>
+                            <div class="partner-details-stat attack"></div>
+                            <div class="partner-details-stat speed"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="partner-details-skills">
+                    <!-- 技能信息将通过JavaScript动态生成 -->
+                </div>
+            </div>
+            
+            <!-- Unit selection screen -->
+            <div id="unit-selection">
+                <div id="available-units"></div>
+                <div id="reserve-area">
+                    <div class="reserve-slot" data-index="0"></div>
+                    <div class="reserve-slot" data-index="1"></div>
+                    <div class="reserve-slot" data-index="2"></div>
+                    <div class="reserve-slot" data-index="3"></div>
+                    <div class="reserve-slot" data-index="4"></div>
+                    <div class="reserve-slot" data-index="5"></div>
+                </div>
+                <button id="enter-dungeon">Enter Dungeon</button>
+            </div>
+            
+            <!-- Dungeon map screen -->
+            <div id="dungeon-map">
+                <div id="map-container"></div>
+                <div id="oxygen-display">Oxygen: 100</div>
+                <div id="shell-display">Shells: 0</div>
+            </div>
+            
+            <!-- Battle screen -->
+            <div id="battle-screen">
+                <div id="cage-container"></div>
+                <div id="battle-grid"></div>
+                <button id="heal-button">单位回复</button>
+                <button id="escape-button">逃跑</button>
+                <button id="battle-button">开始战斗</button>
+                <div id="battle-reserve-area"></div>
+            </div>
+            
+            <!-- Dungeon Shop screen -->
+            <div id="dungeon-shop">
+                <div id="shop-units-container"></div>
+                <div id="shop-battle-grid"></div>
+                <div id="trap-container">
+                    <!-- 机关按钮将通过JavaScript动态生成 -->
+                </div>
+                <button id="next-dungeon-button">前往下一层地牢</button>
+                <div id="shop-reserve-area"></div>
+            </div>
+        </div>
+        
+        <!-- Bottom navigation bar -->
+        <div id="bottom-bar">
+            <div class="nav-button active" id="nav-battle">Battle</div>
+            <div class="nav-button" id="nav-partners">Partners</div>
+            <div class="nav-button" id="nav-shop">Shop</div>
+            <div class="nav-button" id="nav-inventory">Inventory</div>
+            <div class="nav-button" id="nav-research">Research</div>
+        </div>
+    </div>
+    
+    <script src="js/unitTypes.js"></script>
+    <script src="js/gameState.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/dungeonMap.js"></script>
+    <script src="js/findTarget.js"></script>
+    <script src="js/synergies.js"></script>
+    <script src="js/electricDodge.js"></script>
+    <script src="js/saveLoad.js"></script>
+    <script src="js/partners.js"></script>
+    <script src="js/tavern.js"></script>
+    <script>        
+        // Generate random units for selection
+        function generateRandomUnits() {
+            availableUnitsContainer.innerHTML = '';
+            gameState.units.available = [];
+            
+            // 只选择inPool值为1的单位类型
+            // 并且只选择已解锁的伙伴
+            const types = Object.keys(unitTypes).filter(type => {
+                // 检查是否在可用池中
+                const inPool = unitTypes[type].inPool === 1;
+                // 检查是否已解锁
+                const isUnlocked = gameState.unlockedPartners[type] === true;
+                
+                return inPool && isUnlocked;
+            });
+            
+            // 如果没有可用单位（全部未解锁），显示提示
+            if (types.length === 0) {
+                const noUnitsMessage = document.createElement('div');
+                noUnitsMessage.className = 'no-units-message';
+                noUnitsMessage.textContent = '没有可用的伙伴！请先在酒馆解锁伙伴。';
+                noUnitsMessage.style.color = '#fff';
+                noUnitsMessage.style.padding = '20px';
+                noUnitsMessage.style.textAlign = 'center';
+                availableUnitsContainer.appendChild(noUnitsMessage);
+                return;
+            }
+            
+            // Generate 6 random units
+            for (let i = 0; i < 6; i++) {
+                const type = types[Math.floor(Math.random() * types.length)];
+                const unit = createUnit(type, 1);
+                gameState.units.available.push(unit);
+                
+                const unitElement = createUnitElement(unit, i);
+                availableUnitsContainer.appendChild(unitElement);
+            }
+            
+            // Reset reserve area
+            gameState.units.reserve = [null, null, null, null, null, null];
+            updateReserveArea();
+        }
+        
+        // Create a unit object
+        function createUnit(type, level) {
+            const baseStats = unitTypes[type];
+            const levelMultiplier = level === 1 ? 1 : level === 2 ? 2 : 4;
+            
+            const unit = {
+                element: baseStats.element,
+                type: type,
+                level: level,
+                maxHP: baseStats.hp * levelMultiplier,
+                currentHP: baseStats.hp * levelMultiplier,
+                attack: baseStats.attack * levelMultiplier,
+                speed: baseStats.speed,
+                manaRegen: baseStats.manaRegen,
+                mana: 0, // 初始蓝量为0
+                job: baseStats.job, // 职业
+                statusEffects: {},
+                passiveSkills: {}
+            };
+            
+            // 初始化被动技能
+            if (type === 'fire' && baseStats.passiveSkills) {
+                // 初始化反击技能
+                if (level >= baseStats.passiveSkills.counterAttack.unlockLevel) {
+                    unit.passiveSkills.counterAttack = {
+                        isCountering: false
+                    };
+                }
+                
+                // 初始化血怒技能
+                if (level >= baseStats.passiveSkills.bloodRage.unlockLevel) {
+                    unit.passiveSkills.bloodRage = {};
+                }
+            }
+            
+            // 初始化暗夜女王蝙蝠数量
+            if (type === 'darkQueen' && baseStats.batCount) {
+                unit.batCount = baseStats.batCount;
+                unit.attachedBats = {};
+            }
+            
+            return unit;
+        }
+        
+        // Create a visual element for a unit
+        function createUnitElement(unit, index) {
+            const unitElement = document.createElement('div');
+            unitElement.className = `unit unit-${unit.type}`;
+            unitElement.dataset.index = index;
+            
+            // 清除可能存在的旧元素
+            const oldHp = unitElement.querySelector('.unit-hp');
+            const oldAttack = unitElement.querySelector('.unit-attack');
+            const oldLevel = unitElement.querySelector('.unit-level');
+            if (oldHp) unitElement.removeChild(oldHp);
+            if (oldAttack) unitElement.removeChild(oldAttack);
+            if (oldLevel) unitElement.removeChild(oldLevel);
+            
+            const hpElement = document.createElement('div');
+            hpElement.className = 'unit-hp';
+            hpElement.innerHTML = `❤️${unit.currentHP}`;
+            unitElement.appendChild(hpElement);
+            
+            const attackElement = document.createElement('div');
+            attackElement.className = 'unit-attack';
+            attackElement.innerHTML = `${unitTypes[unit.type].icon}${unit.attack}`;
+            unitElement.appendChild(attackElement);
+            
+            const levelElement = document.createElement('div');
+            levelElement.className = 'unit-level';
+            levelElement.textContent = `Lv${unit.level}`;
+            unitElement.appendChild(levelElement);
+            
+            // Make unit draggable
+            unitElement.draggable = true;
+            unitElement.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', index);
+            });
+            
+            // Add click handler to move unit to first empty reserve slot
+            unitElement.addEventListener('click', () => {
+                const emptySlotIndex = gameState.units.reserve.findIndex(slot => slot === null);
+                if (emptySlotIndex !== -1) {
+                    gameState.units.reserve[emptySlotIndex] = gameState.units.available[index];
+                    gameState.units.available[index] = null;
+                    updateReserveArea();
+                    unitElement.style.visibility = 'hidden';
+                    
+                    // 更新队伍数量显示
+                    if (typeof updateTeamCount === 'function') {
+                        updateTeamCount();
+                    }
+                }
+            });
+            
+            return unitElement;
+        }
+        
+        // Update the reserve area display
+        function updateReserveArea() {
+            const slots = reserveArea.querySelectorAll('.reserve-slot');
+            
+            slots.forEach((slot, index) => {
+                // Clear the slot
+                slot.innerHTML = '';
+                
+                // If there's a unit in this slot, display it
+                if (gameState.units.reserve[index] !== null) {
+                    const unit = gameState.units.reserve[index];
+                    slot.style.backgroundColor = unitTypes[unit.type].color;
+                    
+                    // 清除可能存在的旧元素
+                    const oldHp = slot.querySelector('.unit-hp');
+                    const oldAttack = slot.querySelector('.unit-attack');
+                    const oldLevel = slot.querySelector('.unit-level');
+                    if (oldHp) slot.removeChild(oldHp);
+                    if (oldAttack) slot.removeChild(oldAttack);
+                    if (oldLevel) slot.removeChild(oldLevel);
+                    
+                    const hpElement = document.createElement('div');
+                    hpElement.className = 'unit-hp';
+                    hpElement.innerHTML = `❤️${Math.round(unit.currentHP)}`;
+                    slot.appendChild(hpElement);
+                    
+                    const attackElement = document.createElement('div');
+                    attackElement.className = 'unit-attack';
+                    attackElement.innerHTML = `${unitTypes[unit.type].icon}${unit.attack}`;
+                    slot.appendChild(attackElement);
+                    
+                    const levelElement = document.createElement('div');
+                    levelElement.className = 'unit-level';
+                    levelElement.textContent = `Lv${unit.level}`;
+                    slot.appendChild(levelElement);
+                    
+                    // Add click handler to remove unit from reserve
+                    slot.addEventListener('click', () => {
+                        // Find the original unit in available units
+                        const availableIndex = gameState.units.available.findIndex(u => u === null);
+                        if (availableIndex !== -1) {
+                            gameState.units.available[availableIndex] = gameState.units.reserve[index];
+                            
+                            // Update available unit display
+                            const availableUnits = availableUnitsContainer.querySelectorAll('.unit');
+                            if (availableUnits[availableIndex]) {
+                                availableUnits[availableIndex].style.visibility = 'visible';
+                            }
+                        }
+                        
+                        // Remove from reserve
+                        gameState.units.reserve[index] = null;
+                        updateReserveArea();
+                        
+                        // 更新队伍数量显示
+                        updateTeamCount();
+                    });
+                } else {
+                    slot.style.backgroundColor = '#666';
+                }
+            });
+            
+            // 检查是否有单位在备战区，显示或隐藏进入地牢按钮
+            const hasUnits = gameState.units.reserve.some(unit => unit !== null);
+            enterDungeonButton.style.display = hasUnits ? 'block' : 'none';
+            
+            // 更新队伍数量显示
+            updateTeamCount();
+        }
+        
+        // Set up drag and drop for units
+        availableUnitsContainer.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+        
+        reserveArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+        
+        reserveArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            let unitData, sourceType, sourceIndex;
+            
+            try {
+                // 尝试解析为JSON数据
+                unitData = JSON.parse(e.dataTransfer.getData('application/json'));
+                sourceType = unitData.sourceType;
+                sourceIndex = unitData.sourceIndex;
+            } catch (error) {
+                // 如果JSON解析失败，尝试使用text/plain格式
+                const textData = e.dataTransfer.getData('text/plain');
+                if (textData) {
+                    // 如果是纯文本数据，假定是从初始单位列表拖过来的
+                    sourceType = 'available';
+                    sourceIndex = parseInt(textData);
+                } else {
+                    // 如果没有任何有效数据，则退出
+                    console.error('无法解析拖拽数据');
+                    return;
+                }
+            }
+            
+            const targetIndex = parseInt(cell.dataset.index);
+            
+            // Find the first empty slot
+            const emptySlotIndex = gameState.units.reserve.findIndex(slot => slot === null);
+            
+            if (emptySlotIndex !== -1) {
+                gameState.units.reserve[emptySlotIndex] = unit;
+                gameState.units.available[unitIndex] = null;
+                
+                // Remove the unit from the available units display
+                const unitElement = availableUnitsContainer.querySelector(`[data-index="${unitIndex}"]`);
+                if (unitElement) {
+                    unitElement.style.visibility = 'hidden';
+                }
+                
+                updateReserveArea();
+            }
+        });
+        
+        // DOM elements for battle screen
+        const battleScreen = document.getElementById('battle-screen');
+        const battleGrid = document.getElementById('battle-grid');
+        const battleButton = document.getElementById('battle-button');
+        const battleReserveArea = document.getElementById('battle-reserve-area');
+        const cageContainer = document.getElementById('cage-container');
+        
+        // 单位回复功能
+        function healUnits() {
+            let continueHealing = true;
+            
+            while (continueHealing) {
+                if (gameState.player.oxygen < 1) {
+                    alert('氧气不足，无法回复单位！');
+                    break;
+                }
+                
+                const injuredUnits = [];
+                for (let i = 24; i < 48; i++) {
+                    const unit = gameState.units.battleField[i];
+                    if (unit && unit.currentHP < unit.maxHP) {
+                        injuredUnits.push({
+                            unit: unit,
+                            index: i
+                        });
+                    }
+                }
+                
+                const injuredCount = injuredUnits.length;
+                if (injuredCount === 0) {
+                    alert('所有单位已满血！');
+                    break;
+                }
+                
+                const oxygenAvailable = gameState.player.oxygen;
+                let oxygenUsed = 0;
+                
+                if (oxygenAvailable < injuredCount) {
+                    for (let i = 0; i < oxygenAvailable; i++) {
+                        injuredUnits[i].unit.currentHP += 1;
+                        oxygenUsed += 1;
+                    }
+                } else {
+                    for (let i = 0; i < injuredCount; i++) {
+                        injuredUnits[i].unit.currentHP += 1;
+                    }
+                    oxygenUsed = injuredCount;
+                }
+                
+                // 扣除氧气值
+                gameState.player.oxygen -= oxygenUsed;
+                oxygenDisplay.textContent = `氧气: ${gameState.player.oxygen}`;
+                
+                // 更新单位显示
+                updateBattlefieldDisplay();
+            }
+        }
+        
+        // Initialize battle grid
+        function initBattleGrid() {
+            battleGrid.innerHTML = '';
+            
+            // Create 8x6 grid
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 6; col++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'grid-cell';
+                    cell.dataset.index = row * 6 + col;
+                    
+                    // Mark enemy and player areas
+                    if (row < 4) {
+                        cell.classList.add('enemy-area');
+                    } else {
+                        cell.classList.add('player-area');
+                    }
+                    
+                    // Set up drag and drop for all cells
+                    cell.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                    });
+                    
+                    cell.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        let unitData, sourceType, sourceIndex;
+                        
+                        try {
+                            // 尝试解析为JSON数据
+                            unitData = JSON.parse(e.dataTransfer.getData('application/json'));
+                            sourceType = unitData.sourceType;
+                            sourceIndex = unitData.sourceIndex;
+                        } catch (error) {
+                            // 如果JSON解析失败，尝试使用text/plain格式
+                            const textData = e.dataTransfer.getData('text/plain');
+                            if (textData) {
+                                // 如果是纯文本数据，假定是从初始单位列表拖过来的
+                                sourceType = 'available';
+                                sourceIndex = parseInt(textData);
+                            } else {
+                                // 如果没有任何有效数据，则退出
+                                console.error('无法解析拖拽数据');
+                                return;
+                            }
+                        }
+                        
+                        const targetIndex = parseInt(cell.dataset.index);
+                        
+                        // 检查是否拖回原位置
+                        if (sourceType === 'battlefield' && sourceIndex === targetIndex) {
+                            // 拖回原位置，不做任何操作
+                            return;
+                        }
+                        
+                        // 获取源单位
+                        let sourceUnit;
+                        if (sourceType === 'cage') {
+                            sourceUnit = gameState.units.cage;
+                        } else if (sourceType === 'battlefield') {
+                            sourceUnit = gameState.units.battleField[sourceIndex];
+                        } else if (sourceType === 'reserve') {
+                            sourceUnit = gameState.units.reserve[sourceIndex];
+                        } else if (sourceType === 'available') {
+                            sourceUnit = gameState.units.available[sourceIndex];
+                        }
+                        
+                        if (!sourceUnit) return; // 如果源单位不存在，直接返回
+                        
+                        // 检查是否为敌方区域 (索引小于24)
+                        if (targetIndex < 24) {
+                            // 敌方区域只允许放置火药桶
+                            if (sourceUnit.type === 'barrel' && sourceUnit.isTrap) {
+                                // 检查目标位置是否为空
+                                if (!gameState.units.battleField[targetIndex]) {
+                                    // 移动火药桶到敌方区域
+                                    moveUnitToBattlefield(sourceType, sourceIndex, targetIndex);
+                                } else {
+                                    alert('目标位置已有单位！');
+                                }
+                            } else {
+                                // 不允许放置非火药桶单位到敌方区域
+                                alert('只有火药桶可以放置到敌方区域！');
+                            }
+                            return;
+                        }
+                        
+                        // 处理玩家区域
+                        const targetUnit = gameState.units.battleField[targetIndex];
+                        
+                        // 检查是否可以融合成高级单位
+                        if (targetUnit && sourceUnit && targetUnit.level === 3 && sourceUnit.level === 3) {
+                            // 检查是否满足融合条件
+                            let canFuse = false;
+                            let fusionType = null;
+                            
+                            // 遍历所有单位类型，查找可融合的单位
+                            for (const type in unitTypes) {
+                                const unitType = unitTypes[type];
+                                if (unitType.isFusionUnit && unitType.fusionRequirements) {
+                                    const req = unitType.fusionRequirements;
+                                    // 检查是否满足融合要求
+                                    if (req.level === 3) {
+                                        // 检查两个单位的元素属性是否匹配融合要求
+                                        const requiredTypes = req.units;
+                                        
+                                        // 特殊处理生命之母的融合条件：需要莲花仙女和冰霜术士
+                                        if (type === 'motherOfLife' && 
+                                            ((targetUnit.type === 'lotusNymph' && sourceUnit.type === 'frostMage') || 
+                                             (targetUnit.type === 'frostMage' && sourceUnit.type === 'lotusNymph'))) {
+                                            canFuse = true;
+                                            fusionType = type;
+                                            break;
+                                        }
+
+                                        // 特殊处理圣战士的融合条件：需要红缨枪和熔岩战士
+                                        if (type === 'holyWarrior' && 
+                                            ((targetUnit.type === 'fireSpear' && sourceUnit.type === 'lavaGuardian') || 
+                                             (targetUnit.type === 'lavaGuardian' && sourceUnit.type === 'fireSpear'))) {
+                                            canFuse = true;
+                                            fusionType = type;
+                                            break;
+                                        }
+
+                                        // 特殊处理暗夜女王的融合条件：需要圣战士和雷霆射手
+                                        if (type === 'darkQueen' && 
+                                            ((targetUnit.type === 'holyWarrior' && sourceUnit.type === 'thunderArcher') || 
+                                             (targetUnit.type === 'thunderArcher' && sourceUnit.type === 'holyWarrior'))) {
+                                            canFuse = true;
+                                            fusionType = type;
+                                            break;
+                                        }
+
+                                        // 常规元素融合条件
+                                        else if (requiredTypes && requiredTypes.includes(targetUnit.element) && 
+                                                requiredTypes.includes(sourceUnit.element) && 
+                                                targetUnit.element !== sourceUnit.element) {
+                                            canFuse = true;
+                                            fusionType = type;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            if (canFuse && fusionType) {
+                                // 创建融合单位
+                                const fusionUnit = createUnit(fusionType, 3);
+                                gameState.units.battleField[targetIndex] = fusionUnit;
+                                
+                                // 移除源单位
+                                if (sourceType === 'battlefield') {
+                                    gameState.units.battleField[sourceIndex] = null;
+                                } else if (sourceType === 'reserve') {
+                                    gameState.units.reserve[sourceIndex] = null;
+                                } else if (sourceType === 'available') {
+                                    gameState.units.available[sourceIndex] = null;
+                                }
+                                
+                                // 显示融合效果
+                                const targetCell = document.querySelector(`.grid-cell[data-index="${targetIndex}"]`);
+                                if (targetCell) {
+                                    const fusionEffect = document.createElement('div');
+                                    fusionEffect.className = 'damage-number';
+                                    fusionEffect.style.color = '#FFD700'; // 金色
+                                    fusionEffect.style.fontSize = '16px';
+                                    fusionEffect.textContent = '融合!';
+                                    targetCell.appendChild(fusionEffect);
+                                    
+                                    setTimeout(() => {
+                                        if (targetCell.contains(fusionEffect)) {
+                                            targetCell.removeChild(fusionEffect);
+                                        }
+                                    }, 1500);
+                                }
+                            }
+                        }
+                        // 常规合并升级
+                        else if (targetUnit && sourceUnit && targetUnit.type === sourceUnit.type && 
+                            ((targetUnit.level === sourceUnit.level && targetUnit.level < 3) || 
+                             (targetUnit.level + sourceUnit.level === 3))) {
+                            // 使用合并单位辅助函数进行升级
+                            mergeUnits(targetUnit, sourceUnit);
+                            
+                            if (sourceType === 'battlefield') {
+                                gameState.units.battleField[sourceIndex] = null;
+                            } else {
+                                gameState.units.reserve[sourceIndex] = null;
+                            }
+                        }
+                        // 暗夜女王献祭互动
+                        else if (targetUnit && sourceUnit && targetUnit.type === 'darkQueen' && !isBattleStarted) {
+                            // 检查蝙蝠数量是否已达上限
+                            if (targetUnit.batCount >= 5) {
+                                alert('暗夜女王的蝙蝠数量已达上限，无法再献祭更多单位！');
+                            } else {
+                                // 询问玩家是否献祭单位
+                                if (confirm(`是否将${unitTypes[sourceUnit.type].name || sourceUnit.type}献祭给暗夜女王？暗夜女王将增加该单位当前攻击力和血量，并获得1只蝙蝠。`)) {
+                                    // 执行献祭逻辑
+                                    // 增加暗夜女王的属性
+                                    targetUnit.currentHP += sourceUnit.currentHP;
+                                    targetUnit.maxHP += sourceUnit.maxHP / 2; // 增加一半的最大生命值
+                                    targetUnit.attack += sourceUnit.attack;
+                                    
+                                    // 增加蝙蝠数量
+                                    targetUnit.batCount += 1;
+                                    
+                                    // 显示献祭效果
+                                    const targetCell = document.querySelector(`.grid-cell[data-index="${targetIndex}"]`);
+                                    if (targetCell) {
+                                        const sacrificeEffect = document.createElement('div');
+                                        sacrificeEffect.className = 'damage-number';
+                                        sacrificeEffect.style.color = '#ff0000'; // 红色
+                                        sacrificeEffect.style.fontSize = '16px';
+                                        sacrificeEffect.textContent = '献祭!';
+                                        targetCell.appendChild(sacrificeEffect);
+                                        
+                                        setTimeout(() => {
+                                            if (targetCell.contains(sacrificeEffect)) {
+                                                targetCell.removeChild(sacrificeEffect);
+                                            }
+                                        }, 1500);
+                                        
+                                        // 更新暗夜女王的蝙蝠数量显示
+                                        if (unitTypes.darkQueen.updateOwnBatDisplay) {
+                                            unitTypes.darkQueen.updateOwnBatDisplay(targetIndex);
+                                        }
+                                    }
+                                    
+                                    // 移除被献祭的单位
+                                    if (sourceType === 'battlefield') {
+                                        gameState.units.battleField[sourceIndex] = null;
+                                    } else if (sourceType === 'reserve') {
+                                        gameState.units.reserve[sourceIndex] = null;
+                                    } else if (sourceType === 'available') {
+                                        gameState.units.available[sourceIndex] = null;
+                                    }
+                                }
+                            }
+                        }
+                        else if (!targetUnit) {
+                            // 移动到空格子
+                            moveUnitToBattlefield(sourceType, sourceIndex, targetIndex);
+                        }
+                        
+                        // 更新显示
+                        updateBattlefieldDisplay();
+                        initBattleReserveArea();
+                    });
+
+                    // Make units in battlefield draggable
+                    cell.addEventListener('dragstart', (e) => {
+                        const index = parseInt(cell.dataset.index);
+                        const unit = gameState.units.battleField[index];
+                        
+                        // 只有玩家区域的单位或火药桶可以拖拽
+                        if (unit && (index >= 24 || (unit.type === 'barrel' && unit.isTrap))) {
+                            const data = {
+                                sourceType: 'battlefield',
+                                sourceIndex: index
+                            };
+                            e.dataTransfer.setData('application/json', JSON.stringify(data));
+                        }
+                    });
+                    
+                    cell.draggable = true;
+                    
+                    battleGrid.appendChild(cell);
+                }
+            }
+            
+            // 初始化逃跑按钮
+            const escapeButton = document.getElementById('escape-button');
+            escapeButton.disabled = false;
+            escapeButton.style.backgroundColor = '#FF5252';
+            escapeButton.onclick = attemptEscape;
+        }
+        
+        // 尝试逃跑
+        function attemptEscape() {
+            const cageType = gameState.battle.cageType;
+            const escapeChance = cageType === 'normal' ? 0.99 : 0.3; // 普通牢笼50%，精英牢笼30%
+            
+            if (Math.random() < escapeChance) {
+                // 逃跑成功
+                alert('逃跑成功！');
+                
+                // 保存存钱罐的击杀计数
+                for (let i = 0; i < gameState.units.battleField.length; i++) {
+                    const unit = gameState.units.battleField[i];
+                    if (unit && unit.type === 'piggyBank') {
+                        // 保存击杀计数到gameState
+                        gameState.traps.piggyBank.savedKillCount = unit.killCount || 0;
+                        console.log(`保存存钱罐计数：${gameState.traps.piggyBank.savedKillCount}`);
+                        break;
+                    }
+                }
+                
+                // 记录各个机关的位置信息
+                for (let i = 0; i < gameState.units.battleField.length; i++) {
+                    const unit = gameState.units.battleField[i];
+                    if (unit && unit.isTrap) {
+                        // 根据机关类型记录位置
+                        switch (unit.type) {
+                            case 'scarecrow':
+                                gameState.traps.scarecrow.lastPosition = i;
+                                console.log(`记录稻草人位置：${i}`);
+                                break;
+                            case 'barrel':
+                                gameState.traps.barrel.lastPosition = i;
+                                console.log(`记录火药桶位置：${i}`);
+                                break;
+                            case 'crossbow':
+                                gameState.traps.crossbow.lastPosition = i;
+                                console.log(`记录连弩位置：${i}`);
+                                break;
+                            case 'piggyBank':
+                                gameState.traps.piggyBank.lastPosition = i;
+                                console.log(`记录存钱罐位置：${i}`);
+                                break;
+                            case 'holyFlag':
+                                gameState.traps.holyFlag.lastPosition = i;
+                                console.log(`记录圣旗位置：${i}`);
+                                break;
+                        }
+                    }
+                }
+                
+                // 清空场上所有机关单位
+                for (let i = 0; i < gameState.units.battleField.length; i++) {
+                    const unit = gameState.units.battleField[i];
+                    if (unit && unit.isTrap) {
+                        // 清除机关单位
+                        gameState.units.battleField[i] = null;
+                        
+                        // 清除对应的视觉显示
+                        const trapCell = document.querySelector(`.grid-cell[data-index="${i}"]`);
+                        if (trapCell) {
+                            trapCell.innerHTML = '';
+                            trapCell.style.backgroundColor = i < 24 ? 'rgba(255, 82, 82, 0.1)' : 'rgba(79, 195, 247, 0.1)';
+                        }
+                    }
+                }
+                
+                // 清理傀儡
+                if (unitTypes.earthPup && unitTypes.earthPup.skill) {
+                    unitTypes.earthPup.skill.cleanupAllPuppets();
+                }
+                
+                // 备份单位信息
+                backupUnitInfo();
+                // 返回地图
+                showScreen('dungeon-map');
+            } else {
+                // 逃跑失败
+                alert('逃跑失败！必须完成战斗才能离开。');
+                // 禁用逃跑按钮
+                const escapeButton = document.getElementById('escape-button');
+                escapeButton.disabled = true;
+                escapeButton.style.backgroundColor = '#888';
+            }
+        }
+        
+        // 开始战斗
+        function startBattle(cageType, cageAttribute) {
+            gameState.battle.isActive = true;
+            gameState.battle.cageType = cageType;
+            gameState.battle.cageAttribute = cageAttribute || 'fire'; // 默认为火属性
+            gameState.battle.dungeonLevel = gameState.dungeon.level;
+            
+            // 重置战场
+            gameState.units.battleField = Array(48).fill(null);
+            
+            // 恢复单位信息
+            if (playerUnitBackup && playerUnitBackup.length > 0) {
+                restoreUnitInfo();
+            }
+            
+            // Initialize battle UI
+            initBattleGrid();
+            initBattleReserveArea();
+            generateCageUnit();
+            generateEnemies();
+            
+            // 放置解锁的机关到战场（在生成敌方单位后执行）
+            placeTrapUnits();
+            
+            updateBattlefieldDisplay();
+            
+            // Set button text
+            battleButton.textContent = '开始战斗';
+            battleButton.disabled = false;
+            battleButton.onclick = startBattleAction;
+            
+            // 初始化单位回复按钮
+            const healButton = document.getElementById('heal-button');
+            healButton.onclick = healUnits;
+            
+            // Show battle screen
+            showScreen('battle');
+        }
+        
+        // 放置机关单位到战场
+        function placeTrapUnits() {
+            // 获取已解锁的机关
+            const unlockedTraps = [];
+            
+            // 稻草人 - 放置在我方区域
+            if (gameState.traps.scarecrow.unlocked) {
+                const scarecrow = createTrapUnit('scarecrow', gameState.traps.scarecrow.level);
+                unlockedTraps.push({
+                    unit: scarecrow,
+                    isPlayerSide: true,
+                    type: 'scarecrow',
+                    lastPosition: gameState.traps.scarecrow.lastPosition
+                });
+            }
+            
+            // 火药桶 - 放置在敌方区域
+            if (gameState.traps.barrel.unlocked) {
+                const barrel = createTrapUnit('barrel', gameState.traps.barrel.level);
+                unlockedTraps.push({
+                    unit: barrel,
+                    isPlayerSide: false,
+                    type: 'barrel',
+                    lastPosition: gameState.traps.barrel.lastPosition
+                });
+            }
+            
+            // 连弩 - 放置在我方区域
+            if (gameState.traps.crossbow.unlocked) {
+                const crossbow = createTrapUnit('crossbow', gameState.traps.crossbow.level);
+                unlockedTraps.push({
+                    unit: crossbow,
+                    isPlayerSide: true,
+                    type: 'crossbow',
+                    lastPosition: gameState.traps.crossbow.lastPosition
+                });
+            }
+            
+            // 存钱罐 - 放置在我方区域
+            if (gameState.traps.piggyBank.unlocked) {
+                const piggyBank = createTrapUnit('piggyBank', gameState.traps.piggyBank.level);
+                // 设置存钱罐的击杀计数
+                piggyBank.killCount = gameState.traps.piggyBank.savedKillCount || 0;
+                unlockedTraps.push({
+                    unit: piggyBank,
+                    isPlayerSide: true,
+                    type: 'piggyBank',
+                    lastPosition: gameState.traps.piggyBank.lastPosition
+                });
+            }
+            
+            // 圣旗 - 放置在我方区域
+            if (gameState.traps.holyFlag.unlocked) {
+                const holyFlag = createTrapUnit('holyFlag', gameState.traps.holyFlag.level);
+                unlockedTraps.push({
+                    unit: holyFlag,
+                    isPlayerSide: true,
+                    type: 'holyFlag',
+                    lastPosition: gameState.traps.holyFlag.lastPosition
+                });
+            }
+            
+            // 放置机关到战场
+            for (let i = 0; i < unlockedTraps.length; i++) {
+                const trap = unlockedTraps[i];
+                
+                // 确定放置区域
+                const startIndex = trap.isPlayerSide ? 24 : 0;
+                const endIndex = trap.isPlayerSide ? 48 : 24;
+                
+                // 找出所有空闲位置
+                const emptyPositions = [];
+                for (let j = startIndex; j < endIndex; j++) {
+                    if (gameState.units.battleField[j] === null) {
+                        emptyPositions.push(j);
+                    }
+                }
+                
+                // 如果有空闲位置
+                if (emptyPositions.length > 0) {
+                    let position;
+                    
+                    // 检查上次记录的位置是否可用
+                    if (trap.lastPosition >= startIndex && trap.lastPosition < endIndex && 
+                        gameState.units.battleField[trap.lastPosition] === null) {
+                        // 如果上次位置在有效范围内且为空，则使用上次位置
+                        position = trap.lastPosition;
+                        console.log(`${trap.unit.type}机关放置在记忆位置${position}`);
+                    } else {
+                        // 否则随机选择一个空闲位置
+                        const randomIndex = Math.floor(Math.random() * emptyPositions.length);
+                        position = emptyPositions[randomIndex];
+                        console.log(`${trap.unit.type}机关放置在随机位置${position}`);
+                    }
+                    
+                    // 放置机关
+                    gameState.units.battleField[position] = trap.unit;
+                    
+                    // 如果是存钱罐，更新显示
+                    if (trap.unit.type === 'piggyBank') {
+                        setTimeout(() => {
+                            updatePiggyBankDisplay(trap.unit);
+                        }, 100);
+                    }
+                }
+            }
+        }
+        
+        // 创建机关单位
+        function createTrapUnit(type, level) {
+            const baseStats = unitTypes[type];
+            let unit = {
+                type: type,
+                level: level,
+                element: baseStats.element,
+                job: baseStats.job,
+                isTrap: true,
+                mana: 0,
+                statusEffects: {},
+                passiveSkills: {}
+            };
+            
+            // 从unitTypes读取基础属性并根据等级调整
+            unit.maxHP = baseStats.hp + (level - 1);
+            unit.currentHP = unit.maxHP;
+            
+            // 根据机关类型调整攻击力
+            if (type === 'barrel' || type === 'crossbow') {
+                unit.attack = baseStats.attack * (1 + (level - 1) * 0.1);
+            } else {
+                unit.attack = baseStats.attack;
+            }
+            
+            unit.speed = baseStats.speed;
+            unit.manaRegen = baseStats.manaRegen;
+            
+            // 为存钱罐添加killCount属性
+            if (type === 'piggyBank') {
+                unit.killCount = 0;
+            }
+            
+            // 为稻草人添加复活倒计时属性
+            if (type === 'scarecrow') {
+                unit.resurrectionCountdown = 0; // 0表示未激活复活倒计时
+            }
+            
+            // 正确地复制被动技能
+            if (baseStats.passiveSkills) {
+                for (const skillKey in baseStats.passiveSkills) {
+                    unit.passiveSkills[skillKey] = {};
+                    
+                    // 复制技能的名称和描述
+                    unit.passiveSkills[skillKey].name = baseStats.passiveSkills[skillKey].name;
+                    unit.passiveSkills[skillKey].description = baseStats.passiveSkills[skillKey].description;
+                    
+                    // 复制特定技能的特殊属性和方法
+                    if (skillKey === 'autoAttack' && baseStats.passiveSkills[skillKey].lastAttackTime) {
+                        unit.passiveSkills[skillKey].lastAttackTime = baseStats.passiveSkills[skillKey].lastAttackTime;
+                    }
+                    
+                    // 复制技能效果函数
+                    if (baseStats.passiveSkills[skillKey].effect) {
+                        unit.passiveSkills[skillKey].effect = baseStats.passiveSkills[skillKey].effect;
+                    }
+                    
+                    // 复制特定技能的其他方法
+                    if (skillKey === 'healing' && baseStats.passiveSkills[skillKey].isInRange) {
+                        unit.passiveSkills[skillKey].isInRange = baseStats.passiveSkills[skillKey].isInRange;
+                    }
+                    
+                    // 复制存钱罐的onDeath方法
+                    if (skillKey === 'countKills' && baseStats.passiveSkills[skillKey].onDeath) {
+                        unit.passiveSkills[skillKey].onDeath = baseStats.passiveSkills[skillKey].onDeath;
+                    }
+                }
+            }
+            
+            return unit;
+        }
+        
+        // Initialize battle reserve area
+        function initBattleReserveArea() {
+            battleReserveArea.innerHTML = '';
+            
+            // Create slots for reserve units
+            for (let i = 0; i < 6; i++) {
+                const slot = document.createElement('div');
+                slot.className = 'reserve-slot';
+                slot.dataset.index = i;
+                
+                // Add drop event handlers for battlefield units
+                slot.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                });
+                
+                slot.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    let unitData, sourceType, sourceIndex;
+                    
+                    try {
+                        // 尝试解析为JSON数据
+                        unitData = JSON.parse(e.dataTransfer.getData('application/json'));
+                        sourceType = unitData.sourceType;
+                        sourceIndex = unitData.sourceIndex;
+                    } catch (error) {
+                        // 如果JSON解析失败，尝试使用text/plain格式
+                        const textData = e.dataTransfer.getData('text/plain');
+                        if (textData) {
+                            // 如果是纯文本数据，假定是从初始单位列表拖过来的
+                            sourceType = 'available';
+                            sourceIndex = parseInt(textData);
+                        } else {
+                            // 如果没有任何有效数据，则退出
+                            console.error('无法解析拖拽数据');
+                            return;
+                        }
+                    }
+                    
+                    const targetIndex = i; // 使用当前循环的索引作为目标索引
+                    
+                    // 是否拖回原位置
+                    if (sourceType === 'reserve' && sourceIndex === targetIndex) {
+                        return;
+                    }
+                    
+                    let sourceUnit;
+                    if (sourceType === 'cage') {
+                        sourceUnit = gameState.units.cage;
+                    } else {
+                        sourceUnit = sourceType === 'battlefield' ? 
+                            gameState.units.battleField[sourceIndex] : 
+                            gameState.units.reserve[sourceIndex];
+                    }
+
+                    // 禁止将机关单位拖拽到备战区
+                    if (sourceUnit && sourceUnit.isTrap) {
+                        alert('机关单位不能移动到备战区！');
+                        return;
+                    }
+
+                    const targetUnit = gameState.units.reserve[targetIndex];
+
+                    if (targetUnit && sourceUnit && targetUnit.type === sourceUnit.type && 
+                        ((targetUnit.level === sourceUnit.level && targetUnit.level < 3) || 
+                        (targetUnit.level + sourceUnit.level === 3))) {
+                        // 合并升级
+                        mergeUnits(targetUnit, sourceUnit);
+                        
+                        if (sourceType === 'battlefield') {
+                            gameState.units.battleField[sourceIndex] = null;
+                        } else {
+                            gameState.units.reserve[sourceIndex] = null;
+                        }
+                    } 
+                    // 暗夜女王献祭互动 - 备战区版本
+                    else if (targetUnit && sourceUnit && targetUnit.type === 'darkQueen' && !isBattleStarted) {
+                        // 检查蝙蝠数量是否已达上限
+                        if (targetUnit.batCount >= 5) {
+                            alert('暗夜女王的蝙蝠数量已达上限，无法再献祭更多单位！');
+                        } else {
+                            // 询问玩家是否献祭单位
+                            if (confirm(`是否将${unitTypes[sourceUnit.type].name || sourceUnit.type}献祭给暗夜女王？暗夜女王将增加该单位当前攻击力和血量，并获得1只蝙蝠。`)) {
+                                // 执行献祭逻辑
+                                // 增加暗夜女王的属性
+                                targetUnit.currentHP += sourceUnit.currentHP;
+                                targetUnit.maxHP += sourceUnit.maxHP / 2; // 增加一半的最大生命值
+                                targetUnit.attack += sourceUnit.attack;
+                                
+                                // 增加蝙蝠数量
+                                targetUnit.batCount += 1;
+                                
+                                // 显示献祭效果
+                                const reserveSlot = document.querySelector(`.reserve-slot[data-index="${targetIndex}"]`);
+                                if (reserveSlot) {
+                                    const sacrificeEffect = document.createElement('div');
+                                    sacrificeEffect.className = 'damage-number';
+                                    sacrificeEffect.style.color = '#ff0000'; // 红色
+                                    sacrificeEffect.style.fontSize = '16px';
+                                    sacrificeEffect.textContent = '献祭!';
+                                    reserveSlot.appendChild(sacrificeEffect);
+                                    
+                                    setTimeout(() => {
+                                        if (reserveSlot.contains(sacrificeEffect)) {
+                                            reserveSlot.removeChild(sacrificeEffect);
+                                        }
+                                    }, 1500);
+                                }
+                                
+                                // 移除被献祭的单位
+                                if (sourceType === 'battlefield') {
+                                    gameState.units.battleField[sourceIndex] = null;
+                                } else {
+                                    gameState.units.reserve[sourceIndex] = null;
+                                }
+                            }
+                        }
+                    }
+                    else if (!targetUnit && sourceUnit) {
+                        // 移动到空格子
+                        gameState.units.reserve[targetIndex] = sourceUnit;
+                        if (sourceType === 'battlefield') {
+                            gameState.units.battleField[sourceIndex] = null;
+                        } else if (sourceType === 'cage') {
+                            // 清空牢笼
+                            gameState.units.cage = null;
+                            cageContainer.innerHTML = '';
+                            cageContainer.style.backgroundColor = '#666';
+                            cageContainer.draggable = false;
+                        } else {
+                            gameState.units.reserve[sourceIndex] = null;
+                        }
+                    }
+                    updateBattlefieldDisplay();
+                    initBattleReserveArea();
+                });
+                
+                // If there's a unit in this slot, display it
+                if (gameState.units.reserve[i] !== null) {
+                    const unit = gameState.units.reserve[i];
+                    slot.style.backgroundColor = unitTypes[unit.type].color;
+                    
+                    // 清除旧元素
+                    const oldHp = slot.querySelector('.unit-hp');
+                    const oldAttack = slot.querySelector('.unit-attack');
+                    const oldLevel = slot.querySelector('.unit-level');
+                    if (oldHp) slot.removeChild(oldHp);
+                    if (oldAttack) slot.removeChild(oldAttack);
+                    if (oldLevel) slot.removeChild(oldLevel);
+                    
+                    const hpElement = document.createElement('div');
+                    hpElement.className = 'unit-hp';
+                    hpElement.innerHTML = `❤️${Math.round(unit.currentHP)}`;
+                    slot.appendChild(hpElement);
+                    
+                    const attackElement = document.createElement('div');
+                    attackElement.className = 'unit-attack';
+                    attackElement.innerHTML = `${unitTypes[unit.type].icon}${unit.attack}`;
+                    slot.appendChild(attackElement);
+                    
+                    const levelElement = document.createElement('div');
+                    levelElement.className = 'unit-level';
+                    levelElement.textContent = `Lv${unit.level}`;
+                    slot.appendChild(levelElement);
+                    
+
+                    
+                    // Make unit draggable
+                    slot.draggable = true;
+                    slot.addEventListener('dragstart', (e) => {
+                        const data = {
+                            sourceType: 'reserve',
+                            sourceIndex: i
+                        };
+                        e.dataTransfer.setData('application/json', JSON.stringify(data));
+                    });
+                } else {
+                    slot.style.backgroundColor = '#666';
+                }
+                
+                battleReserveArea.appendChild(slot);
+            }
+        }
+        
+        // Generate a random unit for the cage
+        function generateCageUnit() {
+            // 获取当前牢笼的属性
+            const cageAttribute = gameState.battle.cageAttribute || 'fire';
+            
+            // 根据属性筛选单位类型
+            // 只选择inPool值为1且与牢笼属性匹配的单位类型
+            const types = Object.keys(unitTypes).filter(type => {
+                return unitTypes[type].inPool === 1 && 
+                       unitTypes[type].element === cageAttribute;
+            });
+            
+            // 如果没有找到匹配的单位类型，则从所有可用单位中随机选择
+            let type;
+            if (types.length === 0) {
+                const allTypes = Object.keys(unitTypes).filter(type => unitTypes[type].inPool === 1);
+                type = allTypes[Math.floor(Math.random() * allTypes.length)];
+                console.log(`未找到${cageAttribute}属性的单位，随机选择：${type}`);
+            } else {
+                // 从匹配的单位类型中随机选择一个
+                type = types[Math.floor(Math.random() * types.length)];
+                console.log(`从${cageAttribute}属性中选择：${type}`);
+            }
+            
+            // 根据牢笼类型决定单位等级
+            const level = gameState.battle.cageType === 'elite' ? 2 : 1;
+            
+            // 创建单位
+            const unit = createUnit(type, level);
+            gameState.units.cage = unit;
+            
+            // Display cage unit
+            cageContainer.innerHTML = '';
+            cageContainer.style.backgroundColor = unitTypes[unit.type].color;
+            
+            // 清除旧元素
+            const oldHp = cageContainer.querySelector('.unit-hp');
+            const oldAttack = cageContainer.querySelector('.unit-attack');
+            const oldLevel = cageContainer.querySelector('.unit-level');
+            if (oldHp) cageContainer.removeChild(oldHp);
+            if (oldAttack) cageContainer.removeChild(oldAttack);
+            if (oldLevel) cageContainer.removeChild(oldLevel);
+            
+            const hpElement = document.createElement('div');
+            hpElement.className = 'unit-hp';
+            hpElement.innerHTML = `❤️${unit.currentHP}`;
+            cageContainer.appendChild(hpElement);
+            
+            const attackElement = document.createElement('div');
+            attackElement.className = 'unit-attack';
+            attackElement.innerHTML = `${unitTypes[unit.type].icon}${unit.attack}`;
+            cageContainer.appendChild(attackElement);
+            
+            const levelElement = document.createElement('div');
+            levelElement.className = 'unit-level';
+            levelElement.textContent = `Lv${unit.level}`;
+            cageContainer.appendChild(levelElement);
+            
+            // 添加属性显示
+            const attributeElement = document.createElement('div');
+            attributeElement.className = 'unit-attribute';
+            attributeElement.style.position = 'absolute';
+            attributeElement.style.top = '2px';
+            attributeElement.style.right = '2px';
+            attributeElement.style.fontSize = '12px';
+            
+            // 属性图标映射
+            const attributeIcons = {
+                'fire': '🔥',
+                'water': '💧',
+                'electric': '⚡',
+                'earth': '🌑',
+                'grass': '🌿'
+            };
+            
+            attributeElement.textContent = attributeIcons[unitTypes[unit.type].element] || '❓';
+            cageContainer.appendChild(attributeElement);
+        }
+        
+        // Generate enemies based on dungeon level and cage type
+        function generateEnemies() {
+            // 只选择inPool值为1的单位类型
+            const types = Object.keys(unitTypes).filter(type => unitTypes[type].inPool === 1);
+            const dungeonLevel = gameState.battle.dungeonLevel;
+            let enemyCount = 0;
+            
+            // Clear existing enemies (保留机关单位)
+            for (let i = 0; i < 24; i++) {
+                // 如果当前位置是机关单位，则保留
+                if (gameState.units.battleField[i] && !gameState.units.battleField[i].isTrap) {
+                    gameState.units.battleField[i] = null;
+                }
+            }
+            
+            if (gameState.battle.cageType === 'normal') {
+                // Normal cage: 1 level-1 unit per dungeon level
+                enemyCount = dungeonLevel;
+                
+                for (let i = 0; i < enemyCount; i++) {
+                    const type = types[Math.floor(Math.random() * types.length)];
+                    const unit = createUnit(type, 1);
+                    
+                    // Find empty cell in enemy area
+                    let cellIndex;
+                    do {
+                        cellIndex = Math.floor(Math.random() * 24); // 0-23 is enemy area
+                    } while (gameState.units.battleField[cellIndex] !== null);
+                    
+                    gameState.units.battleField[cellIndex] = unit;
+                }
+            } else if (gameState.battle.cageType === 'elite') {
+                // Elite cage: 1 level-2 unit per dungeon level
+                enemyCount = dungeonLevel;
+                
+                for (let i = 0; i < enemyCount; i++) {
+                    const type = types[Math.floor(Math.random() * types.length)];
+                    const unit = createUnit(type, 2);
+                    
+                    // Find empty cell in enemy area
+                    let cellIndex;
+                    do {
+                        cellIndex = Math.floor(Math.random() * 24); // 0-23 is enemy area
+                    } while (gameState.units.battleField[cellIndex] !== null);
+                    
+                    gameState.units.battleField[cellIndex] = unit;
+                }
+            }
+            
+            gameState.battle.enemyCount = enemyCount;
+        }
+        
+        // Update battlefield display
+        function updateBattlefieldDisplay() {
+            const cells = battleGrid.querySelectorAll('.grid-cell');
+            
+            cells.forEach((cell, index) => {
+                // Clear cell content
+                cell.innerHTML = '';
+                
+                // If there's a unit in this cell, display it
+                if (gameState.units.battleField[index] !== null) {
+                    const unit = gameState.units.battleField[index];
+                    const baseStats = unitTypes[unit.type];
+                    cell.style.backgroundColor = baseStats.color;
+                    
+                    // 清除旧元素
+                    const oldHp = cell.querySelector('.unit-hp');
+                    const oldAttack = cell.querySelector('.unit-attack');
+                    const oldLevel = cell.querySelector('.unit-level');
+                    const oldDragonEggBtn = cell.querySelector('.dragon-egg-btn');
+                    if (oldHp) cell.removeChild(oldHp);
+                    if (oldAttack) cell.removeChild(oldAttack);
+                    if (oldLevel) cell.removeChild(oldLevel);
+                    if (oldDragonEggBtn) cell.removeChild(oldDragonEggBtn);
+                    
+                    const hpElement = document.createElement('div');
+                    hpElement.className = 'unit-hp';
+                    hpElement.innerHTML = `❤️${Math.round(unit.currentHP)}`;
+                    cell.appendChild(hpElement);
+                    
+                    const attackElement = document.createElement('div');
+                    attackElement.className = 'unit-attack';
+                    attackElement.innerHTML = `${baseStats.icon}${unit.attack}`;
+                    cell.appendChild(attackElement);
+                    
+                    const levelElement = document.createElement('div');
+                    levelElement.className = 'unit-level';
+                    levelElement.textContent = `Lv${unit.level}`;
+                    cell.appendChild(levelElement);
+                    
+                    // 添加蓝量条
+                    const manaElement = document.createElement('div');
+                    manaElement.className = 'unit-mana';
+                    // 确保单位有mana属性
+                    if (unit.mana === undefined) {
+                        unit.mana = 0;
+                    }
+                    // 设置蓝量条宽度
+                    const manaPercentage = Math.min(100, Math.max(0, unit.mana));
+                    manaElement.style.width = `${manaPercentage}%`;
+                    
+                    // 添加无法行动状态显示
+                    if (unit.statusEffects && unit.statusEffects.cantAct) {
+                        const cantActEffect = unit.statusEffects.cantAct;
+                        const remainingTurns = cantActEffect.duration - (battleTurn - cantActEffect.startTurn);
+                        
+                        const cantActTurnsElement = document.createElement('div');
+                        cantActTurnsElement.className = 'cant-act-turns';
+                        cantActTurnsElement.textContent = `⛔${remainingTurns}`;
+                        cell.appendChild(cantActTurnsElement);
+                    }
+                    
+                    // 为生命之母添加龙蛋按钮（仅在战斗未开始时显示）
+                    if (unit.type === 'motherOfLife' && baseStats.dragonEggInteraction && !isBattleStarted) {
+                        const dragonEggBtn = document.createElement('button');
+                        dragonEggBtn.className = 'dragon-egg-btn';
+                        dragonEggBtn.textContent = '龙蛋';
+                        
+                        dragonEggBtn.addEventListener('click', () => {
+                            // 检查玩家是否有足够的贝壳
+                            if (gameState.player.shells >= 1) {
+                                if (confirm('是否支付1贝壳购买1颗龙蛋？')) {
+                                    // 扣除贝壳
+                                    gameState.player.shells -= 1;
+                                    
+                                    // 更新贝壳显示
+                                    if (shellDisplay) {
+                                        shellDisplay.textContent = `Shells: ${gameState.player.shells}`;
+                                    }
+                                    
+                                    // 寻找空闲位置放置龙蛋
+                                    let emptyIndex = -1;
+                                    for (let i = 24; i < 48; i++) {
+                                        if (gameState.units.battleField[i] === null) {
+                                            emptyIndex = i;
+                                            break;
+                                        }
+                                    }
+                                    
+                                    if (emptyIndex !== -1) {
+                                        // 创建龙蛋单位
+                                        const dragonEgg = {
+                                            type: 'dragonEgg',
+                                            level: 1,
+                                            attack: 0,
+                                            currentHP: 10,
+                                            maxHP: 10,
+                                            mana: 0
+                                        };
+                                        
+                                        // 放置龙蛋
+                                        gameState.units.battleField[emptyIndex] = dragonEgg;
+                                        
+                                        // 更新战场显示
+                                        updateBattlefieldDisplay();
+                                        
+                                        alert('龙蛋已放置在战场上！');
+                                    } else {
+                                        alert('战场已满，无法放置龙蛋！');
+                                        // 返还贝壳
+                                        gameState.player.shells += 1;
+                                        if (shellDisplay) {
+                                            shellDisplay.textContent = `Shells: ${gameState.player.shells}`;
+                                        }
+                                    }
+                                }
+                            } else {
+                                alert('贝壳不足，无法购买龙蛋！');
+                            }
+                        });
+                        
+                        cell.appendChild(dragonEggBtn);
+                    }
+                    
+                    // 为圣战士添加升仙按钮（仅在战斗未开始时显示）
+                    if (unit.type === 'holyWarrior' && baseStats.ascendInteraction && !isBattleStarted) {
+                        const ascendBtn = document.createElement('button');
+                        ascendBtn.className = 'ascend-btn';
+                        ascendBtn.textContent = '升仙';
+                        
+                        ascendBtn.addEventListener('click', () => {
+                            if (confirm('是否将圣战士升仙？圣战士将被移除，并有机会转化为更强大的单位！')) {
+                                // 记录当前位置
+                                const currentIndex = index;
+                                
+                                // 移除圣战士
+                                gameState.units.battleField[currentIndex] = null;
+                                
+                                // 根据概率生成新单位
+                                const rand = Math.random();
+                                let newUnit;
+                                
+                                if (rand < 0.4) {
+                                    // 40%概率生成红缨枪
+                                    newUnit = createUnit('fireSpear', 3);
+                                    alert('升仙失败... 返还红缨枪');
+                                } else if (rand < 0.8) {
+                                    // 40%概率生成熔岩守护者
+                                    newUnit = createUnit('lavaGuardian', 3);
+                                    alert('升仙失败... 返还熔岩守护者');
+                                } else {
+                                    // 20%概率生成圣天使
+                                    newUnit = createUnit('holyAngel', 3);
+                                    alert('神迹降临！');
+                                }
+                                
+                                // 放置新单位
+                                gameState.units.battleField[currentIndex] = newUnit;
+                                
+                                // 更新战场显示
+                                updateBattlefieldDisplay();
+                            }
+                        });
+                        
+                        cell.appendChild(ascendBtn);
+                    }
+                    
+                    // 为暗夜女王添加献祭按钮（仅在战斗未开始时显示）
+                    if (unit.type === 'darkQueen' && baseStats.sacrificeInteraction && !isBattleStarted) {
+                        const sacrificeBtn = document.createElement('button');
+                        sacrificeBtn.className = 'sacrifice-btn';
+                        sacrificeBtn.textContent = `献祭(🦇${unit.batCount || 0}/5)`;
+                        
+                        // 如果蝙蝠数量已达上限，禁用按钮
+                        if (unit.batCount >= 5) {
+                            sacrificeBtn.disabled = true;
+                        }
+                        
+                        sacrificeBtn.addEventListener('click', () => {
+                            alert('献祭功能：将其他单位拖放到暗夜女王上可以献祭该单位，增加暗夜女王的属性并获得一只蝙蝠。蝙蝠数量影响暗夜女王的连击次数，最多可拥有5只蝙蝠。');
+                        });
+                        
+                        cell.appendChild(sacrificeBtn);
+                    }
+                    
+                    // Make unit draggable for player units or barrel traps
+                    if (index >= 24 || (unit.type === 'barrel' && unit.isTrap)) {
+                        
+                        // Make unit draggable
+                        cell.draggable = true;
+                        cell.addEventListener('dragstart', (e) => {
+                            const data = {
+                                sourceType: 'battlefield',
+                                sourceIndex: index
+                            };
+                            e.dataTransfer.setData('application/json', JSON.stringify(data));
+                        });
+                    }
+                    
+                    // 暗夜女王显示蝙蝠数量
+                    if (unit.type === 'darkQueen' && !isBattleStarted && unitTypes.darkQueen.updateOwnBatDisplay) {
+                        unitTypes.darkQueen.updateOwnBatDisplay(index);
+                    }
+                } else {
+                    // Reset cell background
+                    if (index < 24) {
+                        cell.style.backgroundColor = 'rgba(255, 82, 82, 0.1)';
+                    } else {
+                        cell.style.backgroundColor = 'rgba(79, 195, 247, 0.1)';
+                    }
+                }
+            });
+        }
+        
+        // Move unit to battlefield
+        function moveUnitToBattlefield(sourceType, sourceIndex, targetIndex) {
+            let unit;
+            
+            if (sourceType === 'reserve') {
+                unit = gameState.units.reserve[sourceIndex];
+                if (unit) {
+                    // Move unit from reserve to battlefield
+                    gameState.units.battleField[targetIndex] = unit;
+                    // 确保单位有mana属性
+                    if (unit.mana === undefined) {
+                        unit.mana = 0;
+                    }
+                    gameState.units.reserve[sourceIndex] = null;
+                }
+            } else if (sourceType === 'battlefield') {
+                unit = gameState.units.battleField[sourceIndex];
+                if (unit) {
+                    // Move unit within battlefield
+                    gameState.units.battleField[targetIndex] = unit;
+                    gameState.units.battleField[sourceIndex] = null;
+                }
+            } else if (sourceType === 'cage') {
+                unit = gameState.units.cage;
+                if (unit) {
+                    // Move unit from cage to battlefield
+                    gameState.units.battleField[targetIndex] = unit;
+                    // 确保单位有mana属性
+                    if (unit.mana === undefined) {
+                        unit.mana = 0;
+                    }
+                    gameState.units.cage = null;
+                    
+                    // 清空牢笼显示
+                    cageContainer.innerHTML = '';
+                    cageContainer.style.backgroundColor = '#666';
+                    cageContainer.draggable = false;
+                }
+            }
+            
+            // Update displays
+            initBattleReserveArea();
+            updateBattlefieldDisplay();
+        }
+        
+        // 战斗相关状态变量
+        let battleInProgress = false;
+        let battleTurn = 0;
+        let battleUnits = [];
+        let currentUnitIndex = 0;
+        let battleInterval = null;
+        let playerUnitBackup = [];
+        
+        // 战斗是否已开始的标志
+        let isBattleStarted = false;
+        
+        // 开始战斗
+        function startBattleAction() {
+            // 设置战斗已开始标志
+            isBattleStarted = true;
+            
+            // 更新战场显示（隐藏龙蛋按钮）
+            updateBattlefieldDisplay();
+            
+            // 重置所有单位的名刀使用状态
+            for (let i = 0; i < gameState.units.battleField.length; i++) {
+                const unit = gameState.units.battleField[i];
+                if (unit) {
+                    try {
+                        unit.namedBladeUsed = false;
+                    } catch (error) {
+                        console.error(`重置单位${i}名刀状态时出错:`, error);
+                    }
+                }
+            }
+            
+            // 触发存钱罐储蓄强化技能
+            for (let i = 0; i < gameState.units.battleField.length; i++) {
+                const unit = gameState.units.battleField[i];
+                if (unit && unit.type === 'piggyBank' && unit.currentHP > 0 && 
+                    gameState.traps.piggyBank.advancedSkills && 
+                    gameState.traps.piggyBank.advancedSkills.healthBoost) {
+                    
+                    // 触发储蓄强化技能
+                    if (unit.passiveSkills && unit.passiveSkills.healthBoost) {
+                        unit.passiveSkills.healthBoost.effect(unit);
+                    }
+                }
+            }
+            
+            // 检查羁绊
+            checkAndApplySynergies();
+            
+            // 应用水属性共鸣效果
+            applyWaterResonanceEffect();
+            
+            // 应用草属性共鸣效果
+            applyGrassResonanceEffect();
+
+            // 应用拳击手的血怒效果
+            for (let i = 0; i < gameState.units.battleField.length; i++) {
+                const unit = gameState.units.battleField[i];
+                if (unit && unit.type === 'fire' && unit.level >= 3 && unit.currentHP > 0) {
+                    // 应用血怒效果
+                    if (unitTypes.fire.passiveSkills && unitTypes.fire.passiveSkills.bloodRage) {
+                        unitTypes.fire.passiveSkills.bloodRage.applyBloodRage(unit);
+                        // 更新单位显示
+                        updateUnitDisplay(i);
+                    }
+                }
+            }
+
+            // 检查玩家是否有单位在战场上
+            let playerUnitCount = 0;
+            for (let i = 24; i < 48; i++) {
+                if (gameState.units.battleField[i] !== null) {
+                    playerUnitCount++;
+                }
+            }
+            
+            if (playerUnitCount === 0) {
+                alert('请至少放置一个单位到战场上！');
+                return;
+            }
+            
+            // 如果战斗已经结束，按钮变为回到地图
+            if (battleButton.textContent === '回到地图') {
+                // 检查是否有血量为0的单位在战场上
+                let deadUnitsOnField = false;
+                for (let i = 24; i < 48; i++) {
+                    const unit = gameState.units.battleField[i];
+                    if (unit && unit.currentHP <= 0) {
+                        deadUnitsOnField = true;
+                        break;
+                    }
+                }
+                
+                if (deadUnitsOnField) {
+                    alert('请将阵亡的单位移动到备战区！');
+                    return;
+                }
+                
+                // 清理所有傀儡
+                if (unitTypes.earthPup && unitTypes.earthPup.skill) {
+                    unitTypes.earthPup.skill.cleanupAllPuppets();
+                }
+                
+                // 备份单位信息
+                backupUnitInfo();
+                showScreen('dungeon-map');
+                return;
+            }
+            
+            // 禁用战斗按钮和单位回复按钮以及逃跑按钮
+            battleButton.disabled = true;
+            battleButton.textContent = '战斗进行中';
+            document.getElementById('heal-button').disabled = true;
+            document.getElementById('escape-button').disabled = true;
+            document.getElementById('escape-button').style.backgroundColor = '#888';
+            battleInProgress = true;
+            battleTurn = 0;
+            
+            // 准备战斗单位列表（按速度排序）
+            prepareBattleUnits();
+            
+            // 触发圣旗团结之力技能
+            for (let i = 0; i < gameState.units.battleField.length; i++) {
+                const unit = gameState.units.battleField[i];
+                try {
+                    if (unit && unit.type === 'holyFlag' && unit.currentHP > 0 && 
+                        gameState.traps.holyFlag && gameState.traps.holyFlag.advancedSkills && 
+                        gameState.traps.holyFlag.advancedSkills.unityStrength) {
+
+                        // 触发团结之力技能
+                        if (unitTypes.holyFlag.passiveSkills && unitTypes.holyFlag.passiveSkills.unityStrength) {
+                            console.log('触发圣旗团结之力技能');
+                            unitTypes.holyFlag.passiveSkills.unityStrength.effect(unit, i);
+                        }
+                    }
+                } catch (error) {
+                    console.error("触发圣旗团结之力技能时出错:", error);
+                }
+            }
+            
+            // 重置修女单位的复活技能状态
+            if (unitTypes.grassNun && unitTypes.grassNun.passiveSkills && unitTypes.grassNun.passiveSkills.resurrection) {
+                unitTypes.grassNun.passiveSkills.resurrection.reset();
+            }
+            
+            // 傀儡师技能：傀儡
+            // 清理现有傀儡
+            if (unitTypes.earthPup && unitTypes.earthPup.skill) {
+                unitTypes.earthPup.skill.cleanupAllPuppets();
+                
+                // 遍历傀儡师，创建傀儡
+                for (let i = 0; i < battleUnits.length; i++) {
+                    const unitData = battleUnits[i];
+                    if (unitData.unit && unitData.unit.type === 'earthPup' && unitData.unit.currentHP > 0) {
+                        unitTypes.earthPup.skill.createPuppet(unitData);
+                    }
+                }
+            }
+            
+            // 开始战斗循环
+            battleInterval = setInterval(battleTurnLoop, 1000);
+        }
+        
+        // 准备战斗单位列表
+        function prepareBattleUnits() {
+            battleUnits = [];
+            
+            // 收集所有战场上的单位
+            for (let i = 0; i < 48; i++) {
+                const unit = gameState.units.battleField[i];
+                if (unit) {
+                    battleUnits.push({
+                        unit: unit,
+                        index: i,
+                        isEnemy: i < 24, // 0-23是敌方区域，24-47是玩家区域
+                        hasAttacked: false
+                    });
+                }
+            }
+            
+            // 初始化水魔法师技能
+            for (let i = 0; i < battleUnits.length; i++) {
+                const unitData = battleUnits[i];
+                if (unitData.unit && unitData.unit.type === 'waterMage' && unitData.unit.currentHP > 0) {
+                    const waterMageSkill = unitTypes['waterMage'].skill;
+                    waterMageSkill.effect(unitData.unit, unitData.index);
+                }
+            }
+            
+            // 触发水属性消防员技能"孤身"
+            for (let i = 0; i < battleUnits.length; i++) {
+                    const unitData = battleUnits[i];
+                    if (unitData.unit && unitData.unit.type === 'water' && 
+                        unitData.unit.level >= 3 && unitData.unit.currentHP > 0 && 
+                        unitTypes.water.passiveSkills && unitTypes.water.passiveSkills.solitude) {
+                        // 触发孤身技能
+                        unitTypes.water.passiveSkills.solitude.applyBoost(unitData.unit, unitData);
+                    }
+            }
+            
+            // 使用sortBattleUnitsBySpeed函数按速度排序
+            sortBattleUnitsBySpeed();
+            
+            // 触发暗夜女王蝙蝠释放被动技能
+            for (let i = 0; i < battleUnits.length; i++) {
+                const unitData = battleUnits[i];
+                if (unitData.unit && unitData.unit.type === 'darkQueen' && unitData.unit.currentHP > 0) {
+                    // 初始化蝙蝠显示
+                    unitTypes.darkQueen.updateOwnBatDisplay(unitData.index);
+                    
+                    // 触发蝙蝠释放技能
+                    if (unitTypes.darkQueen.passiveSkills && unitTypes.darkQueen.passiveSkills.batRelease) {
+                        console.log('暗夜女王释放蝙蝠');
+                        unitTypes.darkQueen.passiveSkills.batRelease.effect(unitData.unit);
+                    }
+                }
+            }
+            
+            currentUnitIndex = 0;
+        }
+        
+        // 技能是否正在执行
+        let isSkillExecuting = false;
+        
+        // 战斗回合循环
+        function battleTurnLoop() {
+            // 技能执行中跳过此回合
+            if (isSkillExecuting) {
+                return;
+            }
+            
+            // 检查战斗结束
+            if (checkBattleEnd()) {
+                clearInterval(battleInterval);
+                // 战斗结束重置火焰法师攻击力
+                endBattleRound();
+                endBattle();
+                return;
+            }
+            
+            // 所有单位都行动后进入下一回合
+            if (currentUnitIndex >= battleUnits.length) {
+                battleTurn++;
+                // 重置单位攻击状态
+                battleUnits.forEach(unitData => unitData.hasAttacked = false);
+                
+                // 使用统一的排序函数重新排序单位
+                sortBattleUnitsBySpeed();
+                
+                // 重置当前单位索引
+                currentUnitIndex = 0;
+                
+                // 应用火属性共鸣效果
+                if (typeof applyFireResonanceEffect === 'function') {
+                    applyFireResonanceEffect();
+                }
+                
+                // 稻草人自我修复技能
+                if (unitTypes.scarecrow && unitTypes.scarecrow.passiveSkills && unitTypes.scarecrow.passiveSkills.regeneration) {
+                    unitTypes.scarecrow.passiveSkills.regeneration.applyRegeneration();
+                }
+                
+                // 稻草人复活技能
+                if (unitTypes.scarecrow && unitTypes.scarecrow.passiveSkills && unitTypes.scarecrow.passiveSkills.resurrection) {
+                    unitTypes.scarecrow.passiveSkills.resurrection.updateResurrectionCountdown();
+                }
+                
+                // 圣旗复苏之光技能
+                if (unitTypes.holyFlag && unitTypes.holyFlag.passiveSkills && 
+                    unitTypes.holyFlag.passiveSkills.resurrectionLight && 
+                    unitTypes.holyFlag.passiveSkills.resurrectionLight.shouldTrigger()) {
+                    console.log(`回合${battleTurn}：触发圣旗复苏之光技能检查`);
+                    unitTypes.holyFlag.passiveSkills.resurrectionLight.effect();
+                }
+                
+                // 火药桶自动蓄力技能
+                for (let i = 0; i < battleUnits.length; i++) {
+                    const unitData = battleUnits[i];
+                    if (unitData.unit && 
+                        unitData.unit.type === 'barrel' && 
+                        unitData.unit.currentHP > 0 &&
+                        gameState.traps.barrel.advancedSkills && 
+                        gameState.traps.barrel.advancedSkills.autoCharge) {
+                        
+                        // 更新蓄力状态
+                        unitTypes.barrel.passiveSkills.autoCharge.updateCharge(unitData.unit, unitData.index);
+                    }
+                }
+                
+                // 存钱罐列计数技能
+                for (let i = 0; i < battleUnits.length; i++) {
+                    const unitData = battleUnits[i];
+                    if (unitData.unit && 
+                        unitData.unit.type === 'piggyBank' && 
+                        unitData.unit.currentHP > 0 &&
+                        gameState.traps.piggyBank.advancedSkills && 
+                        gameState.traps.piggyBank.advancedSkills.columnCounter) {
+                        
+                        // 触发列计数技能
+                        unitTypes.piggyBank.passiveSkills.columnCounter.effect(unitData.unit);
+                    }
+                }
+                
+                // 龙蛋孵化逻辑：每回合结束后，有50%的概率孵化成巨龙
+                for (let i = 0; i < battleUnits.length; i++) {
+                    const unitData = battleUnits[i];
+                    // 检查是否是龙蛋单位
+                    if (unitData && unitData.unit && unitData.unit.type === 'dragonEgg' && unitData.unit.currentHP > 0) {
+                        // 50%概率孵化
+                        console.log('龙蛋孵化检查');
+                        if (Math.random() < 0.5) {
+                            console.log('龙蛋孵化成功！');
+                            
+                            // 创建巨龙单位，使用createUnit函数确保所有属性都被正确设置
+                            const dragon = createUnit('dragon', 1);
+                            
+                            // 确保巨龙单位有所有必要的属性
+                            if (!dragon.statusEffects) dragon.statusEffects = {};
+                            if (!dragon.passiveSkills) dragon.passiveSkills = {};
+                            
+                            console.log('创建的巨龙单位:', dragon);
+                            
+                            // 完全替换龙蛋为巨龙
+                            gameState.units.battleField[unitData.index] = dragon;
+                            unitData.unit = dragon;
+                            
+                            // 更新单位显示
+                            updateUnitDisplay(unitData.index);
+                                                        
+                        }
+                    }
+                }
+                
+                // 更新状态效果持续时间
+                for (let i = 0; i < battleUnits.length; i++) {
+                    const unitData = battleUnits[i];
+                    if (unitData.unit && unitData.unit.statusEffects) {
+                        // 更新无法行动状态
+                        if (unitData.unit.statusEffects.cantAct) {
+                            const effect = unitData.unit.statusEffects.cantAct;
+                            if (battleTurn - effect.startTurn >= effect.duration) {
+                                // 状态效果已过期，移除
+                                delete unitData.unit.statusEffects.cantAct;
+                                
+                                // 移除水牢视觉效果
+                                const unitCell = document.querySelector(`.grid-cell[data-index="${unitData.index}"]`);
+                                if (unitCell) {
+                                    const prisonEffect = unitCell.querySelector('.water-prison-effect');
+                                    if (prisonEffect) {
+                                        unitCell.removeChild(prisonEffect);
+                                    }
+                                    
+                                    // 移除无法行动状态图标
+                                    const cantActTurnsElement = unitCell.querySelector('.cant-act-turns');
+                                    if (cantActTurnsElement) {
+                                        unitCell.removeChild(cantActTurnsElement);
+                                    }
+                                }
+                            } else {
+                                // 更新无法行动状态显示
+                                updateUnitDisplay(unitData.index);
+                            }
+                        }
+                        
+                        // 更新隐身状态
+                        if (unitData.unit.statusEffects.invisible) {
+                            const effect = unitData.unit.statusEffects.invisible;
+                            if (battleTurn - effect.startTurn >= effect.duration) {
+                                // 状态效果已过期，移除
+                                if (unitData.unit.type === 'waterDiver' && unitTypes.waterDiver.passiveSkills.diving) {
+                                    unitTypes.waterDiver.passiveSkills.diving.removeInvisibility(unitData.unit);
+                                } else {
+                                    delete unitData.unit.statusEffects.invisible;
+                                    
+                                    // 恢复单位显示
+                                    const unitCell = document.querySelector(`.grid-cell[data-index="${unitData.index}"]`);
+                                    if (unitCell) {
+                                        unitCell.style.opacity = '1';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                // 触发消防员3级技能"孤身"
+                for (let i = 0; i < battleUnits.length; i++) {
+                    const unitData = battleUnits[i];
+                    if (unitData.unit && unitData.unit.type === 'water' && 
+                        unitData.unit.level >= 3 && unitData.unit.currentHP > 0 && 
+                        unitTypes.water.passiveSkills && unitTypes.water.passiveSkills.solitude) {
+                        // 触发孤身技能
+                        unitTypes.water.passiveSkills.solitude.applyBoost(unitData.unit, unitData);
+                    }
+                }
+                
+                // 更新拳击手的血怒效果
+                for (let i = 0; i < battleUnits.length; i++) {
+                    const unitData = battleUnits[i];
+                    if (unitData.unit && unitData.unit.type === 'fire' && 
+                        unitData.unit.level >= 3 && unitData.unit.currentHP > 0 && 
+                        unitTypes.fire.passiveSkills && unitTypes.fire.passiveSkills.bloodRage) {
+                        // 应用血怒效果
+                        unitTypes.fire.passiveSkills.bloodRage.applyBloodRage(unitData.unit);
+                        // 更新显示
+                        updateUnitDisplay(unitData.index);
+                    }
+                }
+                
+                // 触发水魔法师自愈技能
+                for (let i = 0; i < battleUnits.length; i++) {
+                    const unitData = battleUnits[i];
+                    if (unitData.unit && unitData.unit.type === 'waterMage' && 
+                        unitData.unit.level >= 3 && unitData.unit.currentHP > 0) {
+                        
+                        const selfHealingSkill = unitTypes.waterMage.passiveSkills.selfHealing;
+                        const waterMageSkill = unitTypes.waterMage.skill;
+                        let linkedUnit = null;
+                        
+                        if (waterMageSkill.linkedAllies[unitData.index] && 
+                            waterMageSkill.linkedAllies[unitData.index].linkedAllyIndex !== null) {
+                            
+                            const linkedAllyIndex = waterMageSkill.linkedAllies[unitData.index].linkedAllyIndex;
+                            const linkedAllyData = battleUnits.find(unit => unit.index === linkedAllyIndex);
+                            
+                            if (linkedAllyData && linkedAllyData.unit && linkedAllyData.unit.currentHP > 0) {
+                                linkedUnit = linkedAllyData.unit;
+                            }
+                        }
+                        
+                        // 自愈效果
+                        selfHealingSkill.effect(unitData.unit, linkedUnit);
+                        
+                        // 更新单位显示
+                        updateUnitDisplay(unitData.index);
+                        
+                        // 如果有链接的盟友，也更新其显示
+                        if (linkedUnit && waterMageSkill.linkedAllies[unitData.index]) {
+                            updateUnitDisplay(waterMageSkill.linkedAllies[unitData.index].linkedAllyIndex);
+                            
+                            // 治疗效果
+                            const healAmount = Math.round(unitTypes.waterMage.hp * 0.1);
+                            
+                            // 在水魔法师上显示治疗效果
+                            const mageCell = document.querySelector(`.grid-cell[data-index="${unitData.index}"]`);
+                            if (mageCell) {
+                                const healNumber = document.createElement('div');
+                                healNumber.className = 'damage-number';
+                                healNumber.style.color = '#4CAF50'; // 绿色
+                                healNumber.textContent = `+${healAmount}`;
+                                mageCell.appendChild(healNumber);
+                                
+                                setTimeout(() => {
+                                    if (mageCell.contains(healNumber)) {
+                                        mageCell.removeChild(healNumber);
+                                    }
+                                }, 1000);
+                            }
+                            
+                            // 在链接盟友上显示治疗效果
+                            const linkedCell = document.querySelector(`.grid-cell[data-index="${waterMageSkill.linkedAllies[unitData.index].linkedAllyIndex}"]`);
+                            if (linkedCell) {
+                                const linkedHealNumber = document.createElement('div');
+                                linkedHealNumber.className = 'damage-number';
+                                linkedHealNumber.style.color = '#4CAF50'; // 绿色
+                                linkedHealNumber.textContent = `+${healAmount}`;
+                                linkedCell.appendChild(linkedHealNumber);
+                                
+                                setTimeout(() => {
+                                    if (linkedCell.contains(linkedHealNumber)) {
+                                        linkedCell.removeChild(linkedHealNumber);
+                                    }
+                                }, 1000);
+                            }
+                        }
+                    }
+                }
+                
+                // 更新状态效果持续时间
+                battleUnits.forEach(unitData => {
+                    // 检查并更新无法行动状态
+                    if (unitData.unit.statusEffects && unitData.unit.statusEffects.cantAct) {
+                        const cantActEffect = unitData.unit.statusEffects.cantAct;
+                        const elapsedTurns = battleTurn - cantActEffect.startTurn;
+                        
+                        // 状态效果结束移除效果
+                        if (elapsedTurns >= cantActEffect.duration) {
+                            delete unitData.unit.statusEffects.cantAct;
+                            
+                            // 移除视觉效果
+                            const unitCell = document.querySelector(`.grid-cell[data-index="${unitData.index}"]`);
+                            if (unitCell) {
+                                const effectElement = unitCell.querySelector('.water-prison-effect');
+                                if (effectElement) {
+                                    unitCell.removeChild(effectElement);
+                                }
+                            }
+                        } else {
+                            // 更新无法行动状态显示
+                            updateUnitDisplay(unitData.index);
+                        }
+                    }
+                    
+                    // 处理中毒状态
+                    if (unitData.unit.statusEffects && unitData.unit.statusEffects.poisoned) {
+                        const poisonEffect = unitData.unit.statusEffects.poisoned;
+                        const elapsedTurns = battleTurn - poisonEffect.startTurn;
+                        
+                        // 应用中毒伤害
+                        if (unitData.unit.currentHP > 0) {
+                            const poisonDamage = poisonEffect.damage;
+                            unitData.unit.currentHP = Math.max(0, unitData.unit.currentHP - poisonDamage); // 允许致死
+                            
+                            // 显示中毒伤害
+                            const unitCell = document.querySelector(`.grid-cell[data-index="${unitData.index}"]`);
+                            if (unitCell) {
+                                const damageNumber = document.createElement('div');
+                                damageNumber.className = 'damage-number';
+                                damageNumber.style.color = '#66BB6A'; // 绿色
+                                damageNumber.textContent = `-${poisonDamage}`;
+                                unitCell.appendChild(damageNumber);
+                                
+                                setTimeout(() => {
+                                    if (unitCell.contains(damageNumber)) {
+                                        unitCell.removeChild(damageNumber);
+                                    }
+                                }, 1000);
+                                
+                                // 更新单位显示
+                                updateUnitDisplay(unitData.index);
+                            }
+                            
+                            // 检查是否有2级或以上的生化员在场，触发疲倦效果
+                            const hasBiochemistLv2 = battleUnits.some(data => 
+                                data.unit && 
+                                data.unit.type === 'grassBiochemist' && 
+                                data.unit.level >= 2 && 
+                                data.unit.currentHP > 0 && 
+                                data.isEnemy !== unitData.isEnemy
+                            );
+                            
+                            if (hasBiochemistLv2) {
+                                // 触发疲倦效果，减少蓝量
+                                unitTypes.grassBiochemist.passiveSkills.fatigue.effect(unitData.unit);
+                            }
+                            
+                            // 检查单位是否死亡
+                            if (unitData.unit.currentHP <= 0) {
+                                // 触发单位死亡处理
+                                handleUnitDeath(unitData);
+                            }
+                        }
+                        
+                        // 状态效果结束移除效果
+                        if (elapsedTurns >= poisonEffect.duration) {
+                            delete unitData.unit.statusEffects.poisoned;
+                            
+                            // 移除视觉效果
+                            const unitCell = document.querySelector(`.grid-cell[data-index="${unitData.index}"]`);
+                            if (unitCell) {
+                                const effectElement = unitCell.querySelector('.poison-effect');
+                                if (effectElement) {
+                                    unitCell.removeChild(effectElement);
+                                }
+                            }
+                        }
+                    }
+                    
+                    // 处理灼烧状态
+                    if (unitData.unit.statusEffects && unitData.unit.statusEffects.burned) {
+                        const burnEffect = unitData.unit.statusEffects.burned;
+                        const elapsedTurns = battleTurn - burnEffect.startTurn;
+                        
+                        // 应用灼烧伤害
+                        if (unitData.unit.currentHP > 0) {
+                            const burnDamage = burnEffect.damage;
+                            unitData.unit.currentHP = Math.max(0, unitData.unit.currentHP - burnDamage); // 允许致死
+                            
+                            // 显示灼烧伤害
+                            const unitCell = document.querySelector(`.grid-cell[data-index="${unitData.index}"]`);
+                            if (unitCell) {
+                                const damageNumber = document.createElement('div');
+                                damageNumber.className = 'damage-number';
+                                damageNumber.style.color = '#FF5252'; // 红色
+                                damageNumber.textContent = `-${burnDamage}`;
+                                unitCell.appendChild(damageNumber);
+                                
+                                setTimeout(() => {
+                                    if (unitCell.contains(damageNumber)) {
+                                        unitCell.removeChild(damageNumber);
+                                    }
+                                }, 1000);
+                                
+                                // 更新单位显示
+                                updateUnitDisplay(unitData.index);
+                            }
+                            
+                            // 检查单位是否死亡
+                            if (unitData.unit.currentHP <= 0) {
+                                // 触发单位死亡处理
+                                handleUnitDeath(unitData);
+                            }
+                        }
+                        
+                        // 状态效果结束移除效果
+                        if (elapsedTurns >= burnEffect.duration) {
+                            delete unitData.unit.statusEffects.burned;
+                            
+                            // 移除视觉效果
+                            const unitCell = document.querySelector(`.grid-cell[data-index="${unitData.index}"]`);
+                            if (unitCell) {
+                                const effectElement = unitCell.querySelector('.burn-effect');
+                                if (effectElement) {
+                                    unitCell.removeChild(effectElement);
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                currentUnitIndex = 0;
+                return;
+            }
+            
+            const unitData = battleUnits[currentUnitIndex];
+            
+            // 跳过已攻击单位
+            if (unitData.hasAttacked) {
+                currentUnitIndex++;
+                return;
+            }
+            
+            // 跳过已死亡单位
+            if (unitData.unit.currentHP <= 0) {
+                currentUnitIndex++;
+                return;
+            }
+            
+            // 单位是否无法行动
+            if (unitData.unit.statusEffects && unitData.unit.statusEffects.cantAct) {
+                unitData.hasAttacked = true;
+                currentUnitIndex++;
+                return;
+            }
+            
+            // 稻草人不进行主动攻击
+            if (unitData.unit.isTrap === true) {
+                unitData.hasAttacked = true;
+                currentUnitIndex++;
+                return;
+            }
+            
+            // 执行攻击
+            performAttack(unitData);
+            
+            // 标记为已攻击并移动到下一个单位
+            unitData.hasAttacked = true;
+            currentUnitIndex++;
+        }
+        
+        // 执行攻击
+        function performAttack(attackerData) {
+            const attackerUnit = attackerData.unit;
+            const attackerIndex = attackerData.index;
+            const isEnemy = attackerData.isEnemy;
+            const baseStats = unitTypes[attackerUnit.isPuppet ? attackerUnit.originalType : attackerUnit.type];
+            
+            // 检查是否被减速，并标记已行动
+            if (unitTypes.earthGuardian.passiveSkills && unitTypes.earthGuardian.passiveSkills.slowdown && 
+                unitTypes.earthGuardian.passiveSkills.slowdown.slowedUnits[attackerIndex]) {
+                unitTypes.earthGuardian.passiveSkills.slowdown.slowedUnits[attackerIndex].hasActed = true;
+                // 重置速度
+                unitTypes.earthGuardian.passiveSkills.slowdown.resetSpeed(attackerData);
+            }
+            
+            // 检查是否有被花仙子激励的单位
+            if (unitTypes.grass.passiveSkills && unitTypes.grass.passiveSkills.inspire && 
+                    unitTypes.grass.passiveSkills.inspire.inspiredUnits[attackerData.index]) {
+                    // 重置被激励单位的速度
+                    unitTypes.grass.passiveSkills.inspire.resetSpeed(attackerData);
+                }
+                
+            // 辅助不发动普攻（包括辅助类型的傀儡），但巨龙除外
+            if (baseStats.job === 'support' && attackerUnit.type !== 'dragon') {
+                // 处理花仙子鼓舞
+                if (attackerUnit.type === 'grass') {
+                    const allyTarget = findNearestAlly(attackerIndex, isEnemy);
+                    if (allyTarget) {
+                        const success = baseStats.skill.effect(attackerUnit, allyTarget);
+                        if (success) {
+                            // 显示增益效果
+                            const attackerCell = document.querySelector(`.grid-cell[data-index="${attackerIndex}"]`);
+                            const targetCell = document.querySelector(`.grid-cell[data-index="${allyTarget.index}"]`);
+                            if (attackerCell && targetCell) {
+                                const buffNumber = document.createElement('div');
+                                buffNumber.className = 'damage-number';
+                                buffNumber.style.color = '#4CAF50'; // 绿色
+                                buffNumber.textContent = `+${attackerUnit.attack}`;
+                                targetCell.appendChild(buffNumber);
+                                
+                                setTimeout(() => {
+                                    if (targetCell.contains(buffNumber)) {
+                                        targetCell.removeChild(buffNumber);
+                                    }
+                                }, 1000);
+                                
+                                // 更新蓝量显示
+                                updateUnitDisplay(allyTarget.index);
+                                
+                                // 2级激励技能：提升目标速度
+                                if (attackerUnit.level >= 2 && unitTypes.grass.passiveSkills.inspire) {
+                                    unitTypes.grass.passiveSkills.inspire.applyInspire(allyTarget.unit, allyTarget);
+                                    
+                                    // 显示激励效果
+                                    const inspireText = document.createElement('div');
+                                    inspireText.className = 'damage-number';
+                                    inspireText.style.color = '#66BB6A'; // 绿色
+                                    inspireText.textContent = '激励!';
+                                    targetCell.appendChild(inspireText);
+                                    
+                                    setTimeout(() => {
+                                        if (targetCell.contains(inspireText)) {
+                                            targetCell.removeChild(inspireText);
+                                        }
+                                    }, 1000);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // 莲花仙女特殊处理：不需要目标，直接发动治疗
+                if (attackerUnit.type === 'lotusNymph') {
+                    // 检查蓝量是否足够发动技能
+                    if (attackerUnit.mana >= 100 && unitTypes.lotusNymph.skill) {
+                        // 发动主动技能"不染"
+                        console.log('莲花仙女发动技能：不染');
+                        attackerUnit.mana -= 100; // 消耗100蓝量                        
+                        unitTypes.lotusNymph.skill.effect(attackerUnit, null);
+                    } else {
+                        // 蓝量不足，使用普通治疗
+                        console.log('莲花仙女发动普通治疗');
+                        unitTypes.lotusNymph.normalAttack(attackerUnit, null);
+                    }
+                    
+                    // 更新显示
+                    for (let i = 0; i < battleUnits.length; i++) {
+                        if (battleUnits[i].unit.currentHP > 0) {
+                            updateUnitDisplay(battleUnits[i].index);
+                        }
+                    }
+                }
+                
+                // 生命之母特殊处理：不需要目标，直接发动治疗或禁锢
+                if (attackerUnit.type === 'motherOfLife') {
+                    // 检查蓝量是否足够发动技能
+                    if (attackerUnit.mana >= 100 && unitTypes.motherOfLife.skill) {
+                        // 发动主动技能"禁锢"
+                        console.log('生命之母发动技能：禁锢');
+                        attackerUnit.mana -= 100; // 消耗100蓝量
+                        
+                        // 显示技能效果
+                        const attackerCell = document.querySelector(`.grid-cell[data-index="${attackerIndex}"]`);
+                        if (attackerCell) {
+                            const skillIndicator = document.createElement('div');
+                            skillIndicator.className = 'damage-number';
+                            skillIndicator.style.color = '#8BC34A'; // 草绿色
+                            skillIndicator.textContent = `禁锢!`;
+                            attackerCell.appendChild(skillIndicator);
+                            
+                            setTimeout(() => {
+                                if (attackerCell.contains(skillIndicator)) {
+                                    attackerCell.removeChild(skillIndicator);
+                                }
+                            }, 1500);
+                        }
+                        
+                        // 执行技能效果
+                        unitTypes.motherOfLife.skill.effect(attackerUnit, null);
+                    } else {
+                        // 蓝量不足，使用普通治疗
+                        console.log('生命之母发动普通治疗');
+                        unitTypes.motherOfLife.normalAttack(attackerUnit, null);
+                    }
+                    
+                    // 更新显示
+                    for (let i = 0; i < battleUnits.length; i++) {
+                        if (battleUnits[i].unit.currentHP > 0) {
+                            updateUnitDisplay(battleUnits[i].index);
+                        }
+                    }
+                }
+                return;
+            }
+            
+            // 寻找攻击目标
+            let target;
+            if (attackerUnit.job === 'assassin') {
+                // 刺客优先攻击同一列距自己最远的对方单位
+                target = findFarthestTarget(attackerIndex, isEnemy);
+            } else {
+                // 战士/远程/法师的攻击目标为默认情况
+                target = findNearestTarget(attackerIndex, isEnemy);
+            }
+            
+            if (!target) return; // 没有目标可攻击
+            
+            // 获取攻击者和目标的DOM元素
+            const attackerCell = document.querySelector(`.grid-cell[data-index="${attackerIndex}"]`);
+            const targetCell = document.querySelector(`.grid-cell[data-index="${target.index}"]`);
+            
+            if (!attackerCell || !targetCell) return;
+            
+            // 是否有足够蓝量发动技能
+            let useSkill = false;
+            if (attackerUnit.mana >= 100 && baseStats.skill && baseStats.skill.type === 'active') {
+                useSkill = true;
+                attackerUnit.mana -= 100; // 消耗100蓝量
+                
+                // 技能触发效果
+                const skillIndicator = document.createElement('div');
+                skillIndicator.className = 'damage-number';
+                skillIndicator.style.color = '#FFD700'; // 金色
+                skillIndicator.textContent = `${baseStats.skill.name}!`;
+                attackerCell.appendChild(skillIndicator);
+                
+                setTimeout(() => {
+                    if (attackerCell.contains(skillIndicator)) {
+                        attackerCell.removeChild(skillIndicator);
+                    }
+                }, 1000);
+            }
+            
+            // 攻击动画
+            animateAttack(attackerCell, targetCell, () => {
+                let damage = 0;
+                
+                if (useSkill) {
+                    // 使用技能
+                    if (attackerUnit.type === 'fireSpear') {
+                        // 红缨枪灼烧技能
+                        damage = baseStats.skill.effect(attackerUnit, target.unit);
+                    }else if (attackerUnit.type === 'frostMage') {
+                        // 冰霜术士灼烧技能
+                        damage = baseStats.skill.effect(attackerUnit, target.unit);
+                    }else if (attackerUnit.type === 'lavaGuardian') {
+                        // 熔岩守护者列阵技能
+                        damage = baseStats.skill.effect(attackerUnit);                        
+                    } else if (attackerUnit.type === 'holyWarrior') {
+                        // 圣骑士无敌技能
+                        console.log('圣骑士发动无敌技能');
+                        damage = baseStats.skill.effect(attackerUnit);
+                    } else if (attackerUnit.type === 'holyAngel') {
+                        // 圣天使圣盾技能
+                        console.log('圣天使发动圣盾技能');
+                        damage = baseStats.skill.effect(attackerUnit);
+                    } else if (attackerUnit.type === 'darkQueen') {
+                        // 暗夜女王吸血技能
+                        console.log('暗夜女王发动吸血技能');
+                        damage = baseStats.skill.effect(attackerUnit);                        
+                    } else if (attackerUnit.type === 'fire') {
+                        // 拳击手暴击
+                        damage = baseStats.skill.effect(attackerUnit, target.unit);
+                        applyDamage(target, damage, targetCell, attackerData);
+                    } else if (attackerUnit.type === 'waterDiver') {
+                        // 潜水员水牢
+                        damage = baseStats.skill.effect(attackerUnit, target.unit);
+                        applyDamage(target, damage, targetCell, attackerData);
+                    } else if (attackerUnit.type === 'water') {
+                        // 消防员水流
+                        unitTypes.water.skill.executeWaterFlowSkill(attackerUnit, target, attackerIndex, isEnemy);
+                    } else if (attackerUnit.type === 'electric') {
+                        // 雷电术士天雷，延时攻击
+                        unitTypes.electric.skill.executeThunderAttack(attackerUnit, attackerIndex, isEnemy);
+                    } else if (attackerUnit.type === 'electricThor') {
+                        // 雷神重锤
+                        unitTypes.electricThor.skill.executeHammerSkill(attackerUnit, target, targetCell, attackerData);
+                    } else if (attackerUnit.type === 'electricFlash') {
+                        // 雷电侠闪击
+                        unitTypes.electricFlash.skill.executeFlashAttack(attackerUnit, attackerIndex, isEnemy);
+                    } else if (attackerUnit.type === 'earthGuardian') {
+                        // 防卫者护盾
+                        baseStats.skill.effect(attackerData);
+                    } else if (attackerUnit.type === 'fireGunner') {
+                        // 火枪手双发
+                        unitTypes.fireGunner.skill.executeDoubleShot(attackerUnit, attackerIndex, attackerData, isEnemy);
+                    } else if (attackerUnit.type === 'grassBiochemist') {
+                        // 生化员病毒
+                        damage = baseStats.skill.effect(attackerUnit, target.unit);
+                        applyDamage(target, damage, targetCell, attackerData);
+                    } else if (attackerUnit.type === 'grassNun') {
+                        // 修女回复
+                        baseStats.skill.effect(attackerUnit);
+                    } else if (attackerUnit.type === 'thunderArcher') {
+                        // 雷霆射手连射
+                        unitTypes.thunderArcher.skill.executeTripleShot(attackerUnit, attackerIndex, attackerData, isEnemy);
+                    } else if (attackerUnit.type === 'fireMage') {
+                        // 火焰法师火球
+                        unitTypes.fireMage.skill.executeFireballSkill(attackerUnit, target, attackerIndex, attackerData, isEnemy);
+                    }
+                } else {
+                    // 普通攻击
+                    if (attackerUnit.type === 'fireSpear' && unitTypes.fireSpear.normalAttack) {
+                        // 使用红缨枪的特殊普通攻击
+                        damage = unitTypes.fireSpear.normalAttack(attackerUnit, target.unit);
+                    } else if (attackerUnit.type === 'thunderArcher' && unitTypes.thunderArcher.normalAttack) {
+                        // 使用雷霆射手的特殊普通攻击
+                        damage = unitTypes.thunderArcher.normalAttack(attackerUnit, target.unit);
+                    } else if (attackerUnit.type === 'frostMage' && unitTypes.frostMage.normalAttack) {
+                        // 使用冰霜术士的特殊普通攻击
+                        damage = unitTypes.frostMage.normalAttack(attackerUnit, target.unit);
+                    } else if (attackerUnit.type ==='lavaGuardian' && unitTypes.lavaGuardian.normalAttack) {
+                        // 使用熔岩守护者的特殊普通攻击
+                        damage = unitTypes.lavaGuardian.normalAttack(attackerUnit, target.unit);
+                    } else if (attackerUnit.type === 'dragon' && unitTypes.dragon.normalAttack) {
+                        // 使用巨龙的特殊普通攻击
+                        damage = unitTypes.dragon.normalAttack(attackerUnit, target.unit);
+                    } else if (attackerUnit.type === 'holyWarrior' && unitTypes.holyWarrior.normalAttack) {
+                        // 使用圣骑士的特殊普通攻击
+                        damage = unitTypes.holyWarrior.normalAttack(attackerUnit, target.unit);
+                    } else if (attackerUnit.type === 'holyAngel' && unitTypes.holyAngel.normalAttack) {
+                        // 使用圣天使的特殊普通攻击
+                        damage = unitTypes.holyAngel.normalAttack(attackerUnit, target.unit);
+                    } else if (attackerUnit.type === 'darkQueen' && unitTypes.darkQueen.normalAttack) {
+                        // 使用暗夜女王的特殊普通攻击
+                        damage = unitTypes.darkQueen.normalAttack(attackerUnit, target.unit);
+                    } else {
+                        damage = attackerUnit.attack;
+                    }
+                    
+                    // 潜水员"窒息"
+                    if (attackerUnit.type === 'waterDiver' && attackerUnit.level >= 2 && 
+                        target.unit.statusEffects && target.unit.statusEffects.cantAct) {
+                        // 触发
+                        damage = unitTypes.waterDiver.passiveSkills.suffocation.effect(attackerUnit, target.unit);
+                        
+                        // 显示效果
+                        const suffocationIndicator = document.createElement('div');
+                        suffocationIndicator.className = 'damage-number';
+                        suffocationIndicator.style.color = '#4FC3F7'; // 蓝色
+                        suffocationIndicator.textContent = '窒息!';
+                        attackerCell.appendChild(suffocationIndicator);
+                        
+                        setTimeout(() => {
+                            if (attackerCell.contains(suffocationIndicator)) {
+                                attackerCell.removeChild(suffocationIndicator);
+                            }
+                        }, 1000);
+                    }
+                    
+                    // 属性克制检查
+                    if (weaknesses[target.unit.element] === attackerUnit.element) {
+                        damage *= 1.5; // 克制伤害提升50%
+                    } else if (weaknesses[attackerUnit.element] === target.unit.element) {
+                        damage *= 0.5; // 被克制时伤害减少50%
+                    }
+                    
+                    applyDamage(target, damage, targetCell, attackerData);
+                    
+                    // 增加蓝量（考虑辅助羁绊加成）
+                    let manaRegenAmount = attackerUnit.manaRegen;
+                    if (attackerUnit.bonusManaRegen) {
+                        manaRegenAmount += attackerUnit.bonusManaRegen;
+                    }
+                    
+                    // 考虑草属性共鸣削弱效果
+                    if (attackerUnit.grassResonanceDebuff) {
+                        // 削弱回蓝量50%
+                        manaRegenAmount = Math.floor(manaRegenAmount * 0.5);
+                    }
+                    
+                    attackerUnit.mana = Math.min(300, attackerUnit.mana + manaRegenAmount);
+                    
+                    // 被攻击单位获得20点蓝量
+                    target.unit.mana = Math.min(300, target.unit.mana + 20);
+                    
+                    // 更新显示
+                    for (let i = 0; i < battleUnits.length; i++) {
+                        if (battleUnits[i].unit.currentHP > 0) {
+                            updateUnitDisplay(battleUnits[i].index);
+                        }
+                    }
+                    
+                    // 盗贼偷钱
+                    if (attackerUnit.type === 'earth') {
+                        const success = baseStats.skill.effect(isEnemy);
+                        if (success) {
+                            const shellGain = document.createElement('div');
+                            shellGain.className = 'damage-number';
+                            shellGain.style.color = '#FFD700'; // 金色
+                            
+                            // 2级解锁被动技能"购置"
+                            if (attackerUnit.level >= 2 && baseStats.passiveSkills && baseStats.passiveSkills.purchase) {
+                                baseStats.passiveSkills.purchase.effect(attackerUnit);
+                                shellGain.textContent = '+1🐚';
+                                updateUnitDisplay(attackerIndex);
+                            }
+                            
+                            
+                            attackerCell.appendChild(shellGain);
+                            
+                            setTimeout(() => {
+                                if (attackerCell.contains(shellGain)) {
+                                    attackerCell.removeChild(shellGain);
+                                }
+                            }, 1000);
+                            
+                            if (shellDisplay) {
+                                shellDisplay.textContent = `Shells: ${gameState.player.shells}`;
+                            }
+                        }
+                    }
+                }
+                
+                // 检查是否有同列的连弩机关，如果有，触发自动攻击
+                triggerCrossbowAutoAttack(attackerIndex);
+            });
+        }
+        
+        // 触发同列连弩自动攻击
+        function triggerCrossbowAutoAttack(attackerIndex) {
+            // 获取攻击者所在列
+            const col = attackerIndex % 6;
+            const isEnemy = attackerIndex < 24; // 判断攻击者是敌方还是友方
+            
+            // 查找同列的连弩机关
+            for (let row = 0; row < 8; row++) {
+                const index = row * 6 + col;
+                const unit = gameState.units.battleField[index];
+                
+                // 连弩机关必须是同一方的，并且存活
+                if (unit && unit.type === 'crossbow' && unit.currentHP > 0 && 
+                    (index < 24) === isEnemy) {
+                    
+                    // 跳过自己
+                    if (index === attackerIndex) continue;
+                    
+                    // 触发自动攻击
+                    if (unit.passiveSkills && unit.passiveSkills.autoAttack) {
+                        unit.passiveSkills.autoAttack.effect(unit, index);
+                    }
+                }
+            }
+        }
+        
+        // 应用伤害并显示
+        function applyDamage(target, damage, targetCell, attacker = null) {
+            if (target && target.unit && target.unit.statusEffects && target.unit.statusEffects.invincible) {
+                // 触发无敌效果抵消伤害
+                const invincibleCell = document.querySelector(`.grid-cell[data-index="${target.index}"]`);
+                if (invincibleCell) {
+                    // 显示无敌触发效果
+                    const invincibleTrigger = document.createElement('div');
+                    invincibleTrigger.className = 'damage-number';
+                    invincibleTrigger.style.color = '#FFD700'; // 金色
+                    invincibleTrigger.style.fontSize = '16px';
+                    invincibleTrigger.textContent = '无敌抵挡!';
+                    invincibleCell.appendChild(invincibleTrigger);
+                    
+                    setTimeout(() => {
+                        if (invincibleCell.contains(invincibleTrigger)) {
+                            invincibleCell.removeChild(invincibleTrigger);
+                        }
+                    }, 1500);
+                    
+                    // 移除无敌状态和视觉效果
+                    delete target.unit.statusEffects.invincible;
+                    
+                    const invincibleEffect = invincibleCell.querySelector('.invincible-effect');
+                    if (invincibleEffect) {
+                        invincibleCell.removeChild(invincibleEffect);
+                    }
+                }
+                
+                // 不受到伤害
+                return;
+            }
+            
+            // 检查稻草人伤害重定向技能
+            if (target && target.unit && damage > 0 && !target.unit.isTrap && target.index >= 24) {
+                // 只对我方普通单位触发伤害重定向
+                if (unitTypes.scarecrow.passiveSkills.damageRedirection && 
+                    unitTypes.scarecrow.passiveSkills.damageRedirection.canRedirect(target.index, damage)) {
+                    
+                    // 检查同列的稻草人是否因重定向而死亡
+                    const targetCol = target.index % 6;
+                    for (let row = 4; row < 8; row++) {
+                        const scarecrowIndex = row * 6 + targetCol;
+                        const unit = gameState.units.battleField[scarecrowIndex];
+                        
+                        // 如果找到稻草人，且稻草人血量为0
+                        if (unit && unit.type === 'scarecrow' && unit.currentHP <= 0) {
+                            // 查找对应的battleUnits数据
+                            for (let i = 0; i < battleUnits.length; i++) {
+                                if (battleUnits[i].index === scarecrowIndex) {
+                                    // 立即触发死亡处理
+                                    console.log(`稻草人(${scarecrowIndex})因伤害重定向死亡，立即触发死亡处理`);
+                                    handleUnitDeath(battleUnits[i]);
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    
+                    // 伤害已被重定向到稻草人，不需要继续处理
+                    return;
+                }
+            }
+            
+            // 电属性共鸣闪避效果
+            if (target && target.unit && damage > 0) {
+                // 检查是否可以闪避
+                if (typeof canDodge === 'function' && canDodge(target)) {
+                    // 闪避成功，不受到伤害
+                    return;
+                }
+            }
+            
+            // 花仙子3级躲避技能：受到伤害时瞬移
+            if (target && target.unit && target.unit.type === 'grass' && target.unit.level >= 3 && 
+                unitTypes.grass.passiveSkills.dodge && damage > 0) {
+                // 应用躲避效果
+                const dodgeSuccess = unitTypes.grass.passiveSkills.dodge.effect(target, damage);
+                // 如果成功躲避，更新目标单元格
+                if (dodgeSuccess) {
+                    targetCell = document.querySelector(`.grid-cell[data-index="${target.index}"]`);
+                }
+            }
+            // 傀儡师2级替身技能：伤害由傀儡承担
+            if (target && target.unit && target.unit.type === 'earthPup' && target.unit.level >= 2 && 
+                unitTypes.earthPup.passiveSkills.substitute && damage > 0) {
+                // 应用替身效果
+                damage = unitTypes.earthPup.passiveSkills.substitute.effect(target, damage);
+                // 如果伤害被完全转移，则不继续处理
+                if (damage <= 0) return;
+            }
+            
+            // 雷神3级激怒技能：受到伤害时增加攻击力
+            if (target && target.unit && target.unit.type === 'electricThor' && target.unit.level >= 3 && 
+                unitTypes.electricThor.passiveSkills.rage && damage > 0) {
+                unitTypes.electricThor.passiveSkills.rage.increaseAttack(target.unit);
+                // 更新显示
+                updateUnitDisplay(target.index);
+            }
+            
+            // 土属性共鸣减伤效果
+            if (target && target.unit && target.unit.earthResonanceBuff && damage > 0) {
+                // 减少20%伤害
+                console.log('应用前的伤害:', damage);
+                damage = damage * 0.8;
+                console.log('应用后的伤害:', damage);
+                
+                // 显示减伤效果
+                const damageReductionIndicator = document.createElement('div');
+                damageReductionIndicator.className = 'damage-number';
+                damageReductionIndicator.style.color = '#8B4513'; // 棕色
+                damageReductionIndicator.textContent = '减伤20%';
+                targetCell.appendChild(damageReductionIndicator);
+                
+                setTimeout(() => {
+                    if (targetCell.contains(damageReductionIndicator)) {
+                        targetCell.removeChild(damageReductionIndicator);
+                    }
+                }, 1000);
+            }
+            
+            // 所有机关单位的伤害减免效果
+            if (target && target.unit && target.unit.isTrap && damage > 0) {
+                const originalDamage = damage;
+                
+                // 对于稻草人，使用其特有的伤害减免效果
+                if (target.unit.type === 'scarecrow' && 
+                    target.unit.passiveSkills && target.unit.passiveSkills.damageReduction) {
+                    damage = target.unit.passiveSkills.damageReduction.effect(damage);
+                } else {
+                    // 对于其他所有机关单位，固定伤害为1
+                    damage = 1;
+                }
+                
+                // 显示减伤效果
+                const reductionText = createDamageNumber(`减伤${Math.round(originalDamage - damage)}`, '#FFA500');
+                targetCell.appendChild(reductionText);
+                
+                setTimeout(() => {
+                    if (targetCell.contains(reductionText)) {
+                        targetCell.removeChild(reductionText);
+                    }
+                }, 1000);
+            }
+            
+            const damageNumber = document.createElement('div');
+            damageNumber.className = 'damage-number';
+            damageNumber.textContent = `-${Math.round(damage)}`;
+            targetCell.appendChild(damageNumber);
+            
+            setTimeout(() => {
+                if (targetCell.contains(damageNumber)) {
+                    targetCell.removeChild(damageNumber);
+                }
+            }, 1000);
+            
+            // 拳击手反击
+            if (attacker && target.unit.type === 'fire' && target.unit.level >= 2 && 
+                target.unit.currentHP > 0 && !target.unit.passiveSkills?.counterAttack?.isCountering) {
+                const counterAttackSkill = unitTypes.fire.passiveSkills.counterAttack;
+                
+                // 防止无限循环
+                target.unit.passiveSkills = target.unit.passiveSkills || {};
+                target.unit.passiveSkills.counterAttack = target.unit.passiveSkills.counterAttack || {};
+                target.unit.passiveSkills.counterAttack.isCountering = true;
+                
+                // 反击伤害
+                const counterDamage = counterAttackSkill.effect(target.unit, attacker.unit);
+                
+                // 攻击者的单元格
+                const attackerCell = document.querySelector(`.grid-cell[data-index="${attacker.index}"]`);
+                
+                if (attackerCell) {
+                    const counterIndicator = document.createElement('div');
+                    counterIndicator.className = 'damage-number';
+                    counterIndicator.style.color = '#FFD700'; // 金色
+                    counterIndicator.textContent = '反击!';
+                    targetCell.appendChild(counterIndicator);
+                    
+                    setTimeout(() => {
+                        if (targetCell.contains(counterIndicator)) {
+                            targetCell.removeChild(counterIndicator);
+                        }
+                    }, 1000);
+                    
+                    // 反击伤害
+                    setTimeout(() => {
+                        applyDamage(attacker, counterDamage, attackerCell);
+                        target.unit.passiveSkills.counterAttack.isCountering = false;
+                    }, 300);
+                }
+            }
+            
+            // 是否有水魔法师与目标相连
+            let actualDamage = damage;
+            
+            // 查找所有水魔法师
+            for (let i = 0; i < battleUnits.length; i++) {
+                const unitData = battleUnits[i];
+                if (unitData.unit && unitData.unit.type === 'waterMage' && 
+                    unitData.isEnemy === target.isEnemy && unitData.unit.currentHP > 0) {
+                    const waterMageSkill = unitTypes['waterMage'].skill;
+                    
+                    // 检查当前水魔法师是否与目标相连
+                    if (waterMageSkill.linkedAllies[unitData.index] && 
+                        waterMageSkill.linkedAllies[unitData.index].linkedAllyIndex === target.index) {
+                        const waterMageUnit = unitData.unit;
+                        const waterMageData = unitData;
+                        
+                        // 检查目标是否有护盾
+                        let hasShield = false;
+                        // 检查防卫者护盾
+                        if (target.unit.type === 'earthGuardian' && 
+                            unitTypes.earthGuardian.skill.shieldAmount[target.index] > 0) {
+                            hasShield = true;
+                        }
+                        // 检查熔岩守护者护盾
+                        else if (unitTypes.lavaGuardian.skill.shieldAmount[target.index] > 0) {
+                            hasShield = true;
+                        }
+                        
+                        // 目标没有护盾时，水魔法师才承担伤害
+                        if (!hasShield) {
+                            const sharedDamage = damage * 0.5;
+                            actualDamage = damage - sharedDamage;
+                            
+                            // 水魔法师承担伤害
+                            const waterMageCell = document.querySelector(`.grid-cell[data-index="${unitData.index}"]`);
+                            if (waterMageCell) {
+                                const sharedDamageNumber = document.createElement('div');
+                                sharedDamageNumber.className = 'damage-number';
+                                sharedDamageNumber.textContent = `-${Math.round(sharedDamage)}`;
+                                waterMageCell.appendChild(sharedDamageNumber);
+                                
+                                setTimeout(() => {
+                                    if (waterMageCell.contains(sharedDamageNumber)) {
+                                        waterMageCell.removeChild(sharedDamageNumber);
+                                    }
+                                }, 1000);
+                                
+                                // 应用伤害给水魔法师
+                                waterMageUnit.currentHP = Math.max(0, waterMageUnit.currentHP - sharedDamage);
+                                
+                                updateUnitDisplay(unitData.index);
+                                
+                                // 水魔法师是否死亡
+                                if (waterMageUnit.currentHP <= 0) {
+                                    handleUnitDeath(waterMageData);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // 是否有护盾
+            let finalDamage = actualDamage;
+            let shieldDamaged = false; // 记录护盾是否受到伤害
+            
+            // 检查防卫者护盾
+            if (target.unit.type === 'earthGuardian' && unitTypes.earthGuardian.skill.shieldAmount[target.index] > 0) {
+                const shield = unitTypes.earthGuardian.skill.shieldAmount[target.index];
+                
+                // 护盾值大于等于伤害，则完全吸收伤害
+                if (shield >= finalDamage) {
+                    unitTypes.earthGuardian.skill.shieldAmount[target.index] -= finalDamage;
+                    shieldDamaged = true; // 护盾受到伤害
+                    finalDamage = 0;
+                } else {
+                    // 否则抵消部分伤害
+                    finalDamage -= shield;
+                    unitTypes.earthGuardian.skill.shieldAmount[target.index] = 0;
+                    shieldDamaged = true; // 护盾受到伤害
+                }
+                
+                unitTypes.earthGuardian.skill.updateShieldDisplay(target.index);
+                
+                // 清除护盾
+                if (unitTypes.earthGuardian.skill.shieldAmount[target.index] <= 0) {
+                    unitTypes.earthGuardian.skill.clearShield(target.index);
+                }
+                
+                // 2级被动技能：反伤
+                if (target.unit.level >= 2 && attacker && shieldDamaged) {
+                    const reflectSkill = unitTypes.earthGuardian.passiveSkills.damageReflection;
+                    const reflectDamage = reflectSkill.effect(target.unit, attacker.unit, actualDamage);
+                    
+                    // 显示反伤效果
+                    const attackerCell = document.querySelector(`.grid-cell[data-index="${attacker.index}"]`);
+                    if (attackerCell) {
+                        const reflectIndicator = document.createElement('div');
+                        reflectIndicator.className = 'damage-number';
+                        reflectIndicator.style.color = '#8D6E63'; // 土色
+                        reflectIndicator.textContent = `反伤 ${reflectDamage}`;
+                        attackerCell.appendChild(reflectIndicator);
+                        
+                        setTimeout(() => {
+                            if (attackerCell.contains(reflectIndicator)) {
+                                attackerCell.removeChild(reflectIndicator);
+                            }
+                        }, 1000);
+                        
+                        // 应用反伤伤害
+                        attacker.unit.currentHP = Math.max(0, attacker.unit.currentHP - reflectDamage);
+                        updateUnitDisplay(attacker.index);
+                        
+                        // 检查攻击者是否死亡
+                        if (attacker.unit.currentHP <= 0) {
+                            handleUnitDeath(attacker);
+                        }
+                    }
+                }
+                
+                // 3级被动技能：减速
+                if (target.unit.level >= 3 && attacker && shieldDamaged) {
+                    const slowdownSkill = unitTypes.earthGuardian.passiveSkills.slowdown;
+                    slowdownSkill.applySlowdown(target.unit, attacker);
+                }
+            }
+            // 检查熔岩守护者护盾
+            else if (unitTypes.lavaGuardian.skill.shieldAmount && unitTypes.lavaGuardian.skill.shieldAmount[target.index] > 0) {
+                const shield = unitTypes.lavaGuardian.skill.shieldAmount[target.index];
+                
+                // 护盾值大于等于伤害，则完全吸收伤害
+                if (shield >= finalDamage) {
+                    unitTypes.lavaGuardian.skill.shieldAmount[target.index] -= finalDamage;
+                    shieldDamaged = true; // 护盾受到伤害
+                    finalDamage = 0;
+                } else {
+                    // 否则抵消部分伤害
+                    finalDamage -= shield;
+                    unitTypes.lavaGuardian.skill.shieldAmount[target.index] = 0;
+                    shieldDamaged = true; // 护盾受到伤害
+                }
+                
+                unitTypes.lavaGuardian.skill.updateShieldDisplay(target.index);
+                
+                // 清除护盾
+                if (unitTypes.lavaGuardian.skill.shieldAmount[target.index] <= 0) {
+                    unitTypes.lavaGuardian.skill.clearShield(target.index);
+                }
+            }
+            // 检查圣天使护盾
+            else if (unitTypes.holyAngel.skill.shieldAmount && unitTypes.holyAngel.skill.shieldAmount[target.index] > 0) {
+                const shield = unitTypes.holyAngel.skill.shieldAmount[target.index];
+                
+                // 护盾值大于等于伤害，则完全吸收伤害
+                if (shield >= finalDamage) {
+                    unitTypes.holyAngel.skill.shieldAmount[target.index] -= finalDamage;
+                    shieldDamaged = true; // 护盾受到伤害
+                    finalDamage = 0;
+                } else {
+                    // 否则抵消部分伤害
+                    finalDamage -= shield;
+                    unitTypes.holyAngel.skill.shieldAmount[target.index] = 0;
+                    shieldDamaged = true; // 护盾受到伤害
+                }
+                
+                unitTypes.holyAngel.skill.updateShieldDisplay(target.index);
+                
+                // 清除护盾
+                if (unitTypes.holyAngel.skill.shieldAmount[target.index] <= 0) {
+                    unitTypes.holyAngel.skill.clearShield(target.index);
+                }
+            }
+            
+            // 最终伤害给目标
+            target.unit.currentHP = Math.max(0, target.unit.currentHP - finalDamage);
+            
+            // 检查单位是否死亡
+            const isKilled = target.unit.currentHP <= 0;
+            
+            // 检查是否触发名刀效果（圣旗高级技能）
+            if (isKilled && !target.isEnemy && !target.unit.namedBladeUsed && !target.unit.isTrap) {
+                try {
+                    // 检查是否在圣旗九宫格范围内且拥有名刀效果
+                    if (unitTypes.holyFlag && unitTypes.holyFlag.passiveSkills && 
+                        unitTypes.holyFlag.passiveSkills.namedBlade && 
+                        unitTypes.holyFlag.passiveSkills.namedBlade.checkNamedBladeEffect(target.index)) {
+                        
+                        // 应用名刀效果，将单位血量设为1
+                        unitTypes.holyFlag.passiveSkills.namedBlade.applyNamedBladeEffect(target.unit, target.index);
+                        
+                        // 更新isKilled状态
+                        isKilled = false;
+                    }
+                } catch (error) {
+                    console.error("名刀效果触发错误:", error);
+                }
+            }
+            
+            // 如果有攻击者且是连弩，且目标单位被击杀，触发狩猎之力技能
+            if (isKilled && attacker && attacker.unit && attacker.unit.type === 'crossbow' && 
+                gameState.traps.crossbow.advancedSkills.killBoost) {
+                // 应用击杀加成
+                unitTypes.crossbow.applyKillBoost(attacker.unit, attacker.index);
+            }
+            
+            // 触发圣旗恢复效果
+            if (target.unit.currentHP > 0 && !target.isEnemy) {
+                // 查找场上所有圣旗
+                for (let i = 0; i < battleUnits.length; i++) {
+                    const flagData = battleUnits[i];
+                    if (flagData.unit && flagData.unit.type === 'holyFlag' && 
+                        !flagData.isEnemy && flagData.unit.currentHP > 0) {
+                        
+                        // 检查目标是否在圣旗九宫格范围内
+                        if (flagData.unit.passiveSkills && 
+                            flagData.unit.passiveSkills.healing && 
+                            flagData.unit.passiveSkills.healing.isInRange(flagData.index, target.index) &&
+                            flagData.index !== target.index) { // 排除圣旗自身
+                            
+                            // 触发恢复效果
+                            flagData.unit.passiveSkills.healing.effect(flagData.unit, target.unit, finalDamage);
+                            break; // 只触发一次恢复效果
+                        }
+                    }
+                }
+            }
+            
+            updateUnitDisplay(target.index);
+            
+            // 目标是否死亡
+            if (target.unit.currentHP <= 0) {
+                handleUnitDeath(target);
+            }
+        }
+
+        // 攻击动画
+        function animateAttack(attackerCell, targetCell, callback) {
+            // 攻击者上下移动动画
+            let attackerY = 0;
+            let attackerDirection = 1;
+            const attackerAnimation = setInterval(() => {
+                attackerY += attackerDirection * 2;
+                if (Math.abs(attackerY) >= 10) attackerDirection *= -1;
+                attackerCell.style.transform = `translateY(${attackerY}px)`;
+            }, 30);
+            
+            // 动画结束后恢复原位并执行回调
+            setTimeout(() => {
+                clearInterval(attackerAnimation);
+                attackerCell.style.transform = '';
+                if (callback) callback();
+            }, 500);
+        }
+
+        // 处理单位死亡
+        function handleUnitDeath(targetData) {
+            const targetCell = document.querySelector(`.grid-cell[data-index="${targetData.index}"]`);
+            
+            // 检查是否有修女3级复活技能可以触发
+            let resurrected = false;
+            
+            // 获取己方修女单位
+            const isEnemy = targetData.isEnemy;
+            const nunUnits = battleUnits.filter(u => 
+                u.isEnemy === isEnemy && 
+                u.unit.type === 'grassNun' && 
+                u.unit.level >= 1 && 
+                u.unit.currentHP > 0
+            );
+            
+            // 如果有修女且单位是己方单位，尝试触发复活技能
+            if (nunUnits.length > 0 && !unitTypes.grassNun.passiveSkills.resurrection.hasResurrected) {
+                resurrected = unitTypes.grassNun.passiveSkills.resurrection.effect(targetData.unit, targetData);
+            }
+            
+            // 如果单位被复活，则不继续处理死亡逻辑
+            if (resurrected) {
+                return;
+            }
+            
+            // 检查死亡单位是否是稻草人，如果是且已解锁复活技能，设置复活倒计时
+            if (targetData.unit && targetData.unit.type === 'scarecrow' && 
+                gameState.traps.scarecrow.advancedSkills && 
+                gameState.traps.scarecrow.advancedSkills.resurrection) {
+                // 设置3回合的复活倒计时
+                targetData.unit.resurrectionCountdown = 3;
+                
+                // 显示复活倒计时
+                const countdownElement = document.createElement('div');
+                countdownElement.className = 'resurrection-countdown';
+                countdownElement.textContent = `复活: ${targetData.unit.resurrectionCountdown}`;
+                targetCell.appendChild(countdownElement);
+                
+                console.log(`稻草人(${targetData.index})死亡，设置复活倒计时: ${targetData.unit.resurrectionCountdown}回合`);
+            }
+            
+            // 检查死亡单位是否是火药桶，如果是，触发爆炸效果
+            if (targetData.unit && targetData.unit.type === 'barrel' && 
+                targetData.unit.passiveSkills && targetData.unit.passiveSkills.explosion) {
+                targetData.unit.passiveSkills.explosion.effect(targetData.unit, targetData.index);
+            }
+            
+            // 检查死亡单位是否是连弩，如果是，触发攻击力转移效果
+            if (targetData.unit && targetData.unit.type === 'crossbow' && 
+                gameState.traps.crossbow.advancedSkills && 
+                gameState.traps.crossbow.advancedSkills.attackTransfer) {
+                // 触发攻击力转移效果
+                unitTypes.crossbow.transferAttack(targetData.unit, targetData.index);
+            }
+            
+            // 检查死亡单位是否是存钱罐，如果是，触发计数减半效果
+            if (targetData.unit && targetData.unit.type === 'piggyBank' && 
+                targetData.unit.passiveSkills && targetData.unit.passiveSkills.countKills) {
+                targetData.unit.passiveSkills.countKills.onDeath(targetData.unit);
+                // 更新显示
+                updatePiggyBankDisplay(targetData.unit);
+            }
+            
+            // 检查死亡单位是否有中毒状态，如果有且场上有3级或以上的生化员，则触发传染效果
+            if (targetData.unit && targetData.unit.statusEffects && targetData.unit.statusEffects.poisoned) {
+                // 检查是否有3级或以上的生化员在场
+                const hasBiochemistLv3 = battleUnits.some(data => 
+                    data.unit && 
+                    data.unit.type === 'grassBiochemist' && 
+                    data.unit.level >= 3 && 
+                    data.unit.currentHP > 0 && 
+                    data.isEnemy !== targetData.isEnemy
+                );
+                
+                if (hasBiochemistLv3) {
+                    // 触发传染效果
+                    unitTypes.grassBiochemist.passiveSkills.infection.effect(targetData.unit, targetData.index);
+                }
+            }
+            
+            // 是否有水魔法师与该单位相连
+            for (let i = 0; i < battleUnits.length; i++) {
+                const unitData = battleUnits[i];
+                if (unitData.unit && unitData.unit.type === 'waterMage' && 
+                    unitData.isEnemy === targetData.isEnemy && unitData.unit.currentHP > 0) {
+                    const waterMageSkill = unitTypes['waterMage'].skill;
+                    
+                    // 该水魔法师是否与死亡单位相连
+                    if (waterMageSkill.linkedAllies[unitData.index] && 
+                        waterMageSkill.linkedAllies[unitData.index].linkedAllyIndex === targetData.index) {
+                        // 寻找新链接目标
+                        waterMageSkill.handleAllyDeath(unitData.index);
+                    }
+                }
+            }
+            
+            // 检查是否有暗夜女王的蝙蝠附着在死亡单位上
+            for (let i = 0; i < battleUnits.length; i++) {
+                const unitData = battleUnits[i];
+                if (unitData.unit && unitData.unit.type === 'darkQueen' && 
+                    unitData.unit.currentHP > 0 && 
+                    unitData.isEnemy !== targetData.isEnemy) {
+                    // 检查死亡单位是否有暗夜女王的蝙蝠
+                    if (unitData.unit.attachedBats && unitData.unit.attachedBats[targetData.index]) {
+                        console.log(`单位 ${targetData.index} 死亡，转移暗夜女王的蝙蝠`);
+                        
+                        // 处理蝙蝠转移
+                        if (unitTypes.darkQueen.passiveSkills && 
+                            unitTypes.darkQueen.passiveSkills.batRelease && 
+                            unitTypes.darkQueen.passiveSkills.batRelease.handleUnitDeath) {
+                            unitTypes.darkQueen.passiveSkills.batRelease.handleUnitDeath(targetData.unit, targetData.index, unitData.unit);
+                        }
+                    }
+                }
+            }
+            
+            // 死亡单位是否是傀儡师，如果是则移除傀儡
+            if (targetData.unit && targetData.unit.type === 'earthPup' && unitTypes.earthPup && unitTypes.earthPup.skill) {
+                unitTypes.earthPup.skill.removePuppet(targetData.index);
+            }
+            
+            // 死亡单位是否是傀儡，如果是立即移除
+            if (targetData.unit && targetData.unit.isPuppet && unitTypes.earthPup && unitTypes.earthPup.skill) {
+                const puppetMasterIndex = unitTypes.earthPup.skill.puppetMasters[targetData.index];
+                if (puppetMasterIndex !== undefined) {
+                    // 查找傀儡师
+                    const puppetMasterData = battleUnits.find(unit => unit.index === parseInt(puppetMasterIndex));
+                    
+                    // 如果傀儡师存在且等级达到3级，触发陷阱技能
+                    if (puppetMasterData && puppetMasterData.unit.level >= 3 && 
+                        unitTypes.earthPup.passiveSkills.trap) {
+                        // 触发陷阱技能
+                        unitTypes.earthPup.passiveSkills.trap.effect(puppetMasterData, targetData.index);
+                    }
+                    
+                    // 移除傀儡
+                    gameState.units.battleField[targetData.index] = null;
+                    targetCell.innerHTML = '';
+                    targetCell.style.backgroundColor = targetData.index < 24 ? 'rgba(255, 82, 82, 0.1)' : 'rgba(79, 195, 247, 0.1)';
+                    
+                    // 从战斗单位列表中移除
+                    const index = battleUnits.findIndex(unit => unit.index === targetData.index);
+                    if (index !== -1) {
+                        battleUnits.splice(index, 1);
+                    }
+                    
+                    // 清除记录
+                    delete unitTypes.earthPup.skill.puppets[puppetMasterIndex];
+                    delete unitTypes.earthPup.skill.puppetMasters[targetData.index];
+                    
+                    console.log(`傀儡(${targetData.index})死亡，已从战场移除`);
+                }
+            }
+            
+            if (targetData.isEnemy) {
+                // 敌方单位死亡，从战场和战斗单位列表中移除
+                gameState.units.battleField[targetData.index] = null;
+                targetCell.innerHTML = '';
+                targetCell.style.backgroundColor = targetData.index < 24 ? 'rgba(255, 82, 82, 0.1)' : 'rgba(79, 195, 247, 0.1)';
+                
+                // 移除死亡单位
+                const index = battleUnits.findIndex(unit => unit.index === targetData.index);
+                if (index !== -1) {
+                    battleUnits.splice(index, 1);
+                }
+                
+                // 击杀奖励
+                const shellReward = targetData.unit.level === 1 ? 5 : targetData.unit.level === 2 ? 10 : 15;
+                gameState.player.shells += shellReward;
+                shellDisplay.textContent = `贝壳: ${gameState.player.shells}`;
+                
+                // 存钱罐计数
+                // 查找场上所有存钱罐，增加击杀计数
+                for (let i = 0; i < battleUnits.length; i++) {
+                    const unitData = battleUnits[i];
+                    if (unitData.unit && unitData.unit.type === 'piggyBank' && 
+                        !unitData.isEnemy && unitData.unit.currentHP > 0) {
+                        // 触发存钱罐计数效果
+                        if (unitData.unit.passiveSkills && unitData.unit.passiveSkills.countKills) {
+                            unitData.unit.passiveSkills.countKills.effect(unitData.unit, targetData.unit, true);
+                        }
+                    }
+                }
+            } else {
+                // 我方单位死亡，暂时隐藏但不移除
+                targetCell.style.opacity = '0.3';
+            }
+        }
+        
+        // 检查战斗是否结束
+        function checkBattleEnd() {
+            // 检查敌方单位是否全部阵亡
+            let enemyAlive = false;
+            for (let i = 0; i < battleUnits.length; i++) {
+                if (battleUnits[i].isEnemy && battleUnits[i].unit.currentHP > 0) {
+                    enemyAlive = true;
+                    break;
+                }
+            }
+            
+            if (!enemyAlive) {
+                // 战斗结束，清理所有傀儡
+                if (unitTypes.earthPup && unitTypes.earthPup.skill) {
+                    unitTypes.earthPup.skill.cleanupAllPuppets();
+                }
+                return true;
+            }
+            
+            // 检查我方单位是否全部阵亡
+            let playerAlive = false;
+            for (let i = 0; i < battleUnits.length; i++) {
+                if (!battleUnits[i].isEnemy && battleUnits[i].unit.currentHP > 0) {
+                    playerAlive = true;
+                    break;
+                }
+            }
+            
+            if (!playerAlive) {
+                // 战斗结束，清理所有傀儡
+                if (unitTypes.earthPup && unitTypes.earthPup.skill) {
+                    unitTypes.earthPup.skill.cleanupAllPuppets();
+                }
+            }
+            
+            return !playerAlive;
+        }
+        
+        // 战斗回合结束时的处理
+        function endBattleRound() {
+            
+            // 重置火焰法师的攻击力
+            for (let i = 0; i < battleUnits.length; i++) {
+                const unitData = battleUnits[i];
+                if (unitData.unit && unitData.unit.type === 'fireMage' && unitData.unit.level >= 2 && unitData.unit.currentHP > 0) {
+                    // 如果有记录原始攻击力，则重置
+                    if (unitData.unit.originalAttack) {
+                        console.log('重置火焰法师攻击力');
+                        unitData.unit.attack = unitData.unit.originalAttack;
+                        unitData.unit.originalAttack = 0;
+                        updateUnitDisplay(unitData.index);
+                    }
+                }
+                
+                // 重置消防员的攻击力
+                if (unitData.unit && unitData.unit.type === 'water' && unitData.unit.level >= 3 && unitData.unit.currentHP > 0) {
+                    // 重置消防员的攻击力
+                    if (unitTypes.water.passiveSkills && unitTypes.water.passiveSkills.solitude) {
+                        console.log('重置消防员攻击力');
+                        unitTypes.water.passiveSkills.solitude.resetAttack(unitData.unit);
+                        updateUnitDisplay(unitData.index);
+                    }
+                }
+            }
+            
+            // 清理花仙子激励效果
+            if (unitTypes.grass.passiveSkills && unitTypes.grass.passiveSkills.inspire) {
+                // 遍历所有被激励的单位，重置速度
+                const inspiredUnits = unitTypes.grass.passiveSkills.inspire.inspiredUnits;
+                for (const unitIndex in inspiredUnits) {
+                    const unitData = battleUnits.find(u => u.index === parseInt(unitIndex));
+                    if (unitData) {
+                        unitTypes.grass.passiveSkills.inspire.resetSpeed(unitData);
+                    }
+                }
+                // 清空激励单位记录
+                unitTypes.grass.passiveSkills.inspire.cleanupInspire();
+                console.log('清理花仙子激励效果');
+            }
+        }
+        
+        // 更新单位显示
+        function updateUnitDisplay(index) {
+            const unit = gameState.units.battleField[index];
+            const cell = document.querySelector(`.grid-cell[data-index="${index}"]`);
+            
+            if (!cell || !unit) return;
+            
+            const baseStats = unitTypes[unit.type];
+            
+            // 更新血量显示
+            const hpElement = cell.querySelector('.unit-hp');
+            if (hpElement) {
+                hpElement.innerHTML = `❤️${Math.round(unit.currentHP)}`;
+            }
+            
+            // 更新攻击力显示
+            const attackElement = cell.querySelector('.unit-attack');
+            if (attackElement) {
+                // 更新攻击力数值
+                attackElement.innerHTML = `⚔️${unit.attack}`;
+                
+                // 根据单位类型和状态设置不同的颜色
+                if (unit.type === 'fireMage' && unit.originalAttack && unit.attack > unit.originalAttack) {
+                    // 火焰法师提纯技能显示金色
+                    attackElement.style.color = '#FFD700';
+                } else if (unit.type === 'fire' && unit.level >= 3) {
+                    // 拳击手血怒效果高亮显示
+                    const bloodRageSkill = unitTypes.fire.passiveSkills.bloodRage;
+                    const bonusPercent = bloodRageSkill.effect(unit);
+                    
+                    // 血怒效果高亮
+                    if (bonusPercent > 0) {
+                        // 高亮效果
+                        attackElement.style.color = '#FF5252';
+                    }
+                } else {
+                    attackElement.style.color = '';
+                }
+            }
+            
+            // 更新中毒回合
+            let poisonTurnsElement = cell.querySelector('.poison-turns');
+            
+            //剩余中毒回合数
+            if (unit.statusEffects && unit.statusEffects.poisoned) {
+                const poisonEffect = unit.statusEffects.poisoned;
+                const remainingTurns = poisonEffect.duration - (battleTurn - poisonEffect.startTurn);
+                
+                if (!poisonTurnsElement) {
+                    poisonTurnsElement = document.createElement('div');
+                    poisonTurnsElement.className = 'poison-turns';
+                    cell.appendChild(poisonTurnsElement);
+                }
+                
+                poisonTurnsElement.textContent = `☠${remainingTurns}`;
+            } else if (poisonTurnsElement) {
+                // 移除中毒
+                cell.removeChild(poisonTurnsElement);
+            }
+            
+            // 更新无法行动状态
+            let cantActTurnsElement = cell.querySelector('.cant-act-turns');
+            
+            // 剩余无法行动回合数
+            if (unit.statusEffects && unit.statusEffects.cantAct) {
+                const cantActEffect = unit.statusEffects.cantAct;
+                const remainingTurns = cantActEffect.duration - (battleTurn - cantActEffect.startTurn);
+                
+                if (!cantActTurnsElement) {
+                    cantActTurnsElement = document.createElement('div');
+                    cantActTurnsElement.className = 'cant-act-turns';
+                    cell.appendChild(cantActTurnsElement);
+                }
+                
+                cantActTurnsElement.textContent = `⛔${remainingTurns}`;
+            } else if (cantActTurnsElement) {
+                // 移除无法行动状态
+                cell.removeChild(cantActTurnsElement);
+            }
+            
+            // 更新蓝量显示
+            let manaElement = cell.querySelector('.unit-mana');
+            let manaTextElement = cell.querySelector('.unit-mana-text');
+            
+            if (!manaElement) {
+                manaElement = document.createElement('div');
+                manaElement.className = 'unit-mana';
+                cell.appendChild(manaElement);
+            }
+            
+            if (!manaTextElement) {
+                manaTextElement = document.createElement('div');
+                manaTextElement.className = 'unit-mana-text';
+                cell.appendChild(manaTextElement);
+            }
+            
+            // 计算蓝量百分比（基于300的上限）
+            const manaPercentage = (unit.mana / 300) * 100;
+            manaElement.style.width = `${manaPercentage}%`;
+            manaTextElement.textContent = `${unit.mana}/300`;
+        }
+        
+        // 结束战斗
+        function endBattle() {
+            battleInProgress = false;
+            // 重置战斗已开始标志
+            isBattleStarted = false;
+            
+            // 重置连弩攻击计数
+            if (unitTypes.crossbow && unitTypes.crossbow.resetAttackCount) {
+                unitTypes.crossbow.resetAttackCount();
+            }
+            
+            // 重置连弩击杀加成
+            if (unitTypes.crossbow && unitTypes.crossbow.resetKillBoost) {
+                unitTypes.crossbow.resetKillBoost();
+            }
+            
+            // 重置连弩临终遗力效果
+            if (unitTypes.crossbow && unitTypes.crossbow.resetAttackTransfer) {
+                unitTypes.crossbow.resetAttackTransfer();
+            }
+            
+            // 保存存钱罐的击杀计数
+            for (let i = 0; i < gameState.units.battleField.length; i++) {
+                const unit = gameState.units.battleField[i];
+                if (unit && unit.type === 'piggyBank') {
+                    // 保存击杀计数到gameState
+                    gameState.traps.piggyBank.savedKillCount = unit.killCount || 0;
+                    console.log(`保存存钱罐计数：${gameState.traps.piggyBank.savedKillCount}`);
+                    break;
+                }
+            }
+            
+            // 重置拳击手的血怒效果
+            for (let i = 0; i < gameState.units.battleField.length; i++) {
+                const unit = gameState.units.battleField[i];
+                if (unit && unit.type === 'fire' && unit.level >= 3) {
+                    // 重置血怒效果
+                    if (unitTypes.fire.passiveSkills && unitTypes.fire.passiveSkills.bloodRage) {
+                        unitTypes.fire.passiveSkills.bloodRage.resetBloodRage(unit);
+                        // 更新显示
+                        updateUnitDisplay(i);
+                    }
+                }
+            }
+            
+            // 记录各个机关的位置信息
+            for (let i = 0; i < gameState.units.battleField.length; i++) {
+                const unit = gameState.units.battleField[i];
+                if (unit && unit.isTrap) {
+                    // 根据机关类型记录位置
+                    switch (unit.type) {
+                        case 'scarecrow':
+                            gameState.traps.scarecrow.lastPosition = i;
+                            break;
+                        case 'barrel':
+                            gameState.traps.barrel.lastPosition = i;
+                            break;
+                        case 'crossbow':
+                            gameState.traps.crossbow.lastPosition = i;
+                            break;
+                        case 'piggyBank':
+                            gameState.traps.piggyBank.lastPosition = i;
+                            break;
+                        case 'holyFlag':
+                            gameState.traps.holyFlag.lastPosition = i;
+                            break;
+                    }
+                }
+            }
+            
+            // 清空场上所有机关单位
+            for (let i = 0; i < gameState.units.battleField.length; i++) {
+                const unit = gameState.units.battleField[i];
+                if (unit && unit.isTrap) {
+                    // 清除机关单位
+                    gameState.units.battleField[i] = null;
+                    
+                    // 清除对应的视觉显示
+                    const trapCell = document.querySelector(`.grid-cell[data-index="${i}"]`);
+                    if (trapCell) {
+                        trapCell.innerHTML = '';
+                        trapCell.style.backgroundColor = i < 24 ? 'rgba(255, 82, 82, 0.1)' : 'rgba(79, 195, 247, 0.1)';
+                    }
+                }
+            }
+            
+            // 清除水属性共鸣效果
+            for (let i = 0; i < gameState.units.battleField.length; i++) {
+                const unit = gameState.units.battleField[i];
+                if (unit && unit.waterResonanceDebuff) {
+                    unit.attack = Math.round(unit.attack / 0.8); // 恢复被削弱的攻击力
+                    delete unit.waterResonanceDebuff;
+                    updateUnitDisplay(i);
+                }
+                
+                // 清除草属性共鸣效果
+                if (unit && unit.grassResonanceDebuff) {
+                    delete unit.grassResonanceDebuff;
+                }
+            }
+            
+            // 更新战场显示（重新显示龙蛋按钮）
+            setTimeout(() => updateBattlefieldDisplay(), 500);
+            
+            // 检查是否有敌人存活
+            let enemyAlive = false;
+            for (let i = 0; i < 24; i++) {
+                if (gameState.units.battleField[i] !== null) {
+                    enemyAlive = true;
+                    break;
+                }
+            }
+            
+            // 检查盗贼的"苟活"技能
+            let playerThieves = 0;
+            let enemyThieves = 0;
+            let hasLevel3Thief = false;
+            
+            // 统计战场上存活的盗贼数量
+            for (let i = 0; i < gameState.units.battleField.length; i++) {
+                const unit = gameState.units.battleField[i];
+                if (unit && unit.type === 'earth' && unit.currentHP > 0) {
+                    // 检查是否为敌方盗贼
+                    const isEnemy = i < 24; // 前24格为敌方区域
+                    
+                    if (isEnemy) {
+                        enemyThieves++;
+                    } else {
+                        playerThieves++;
+                        if (unit.level >= 3) {
+                            hasLevel3Thief = true;
+                        }
+                    }
+                }
+            }
+            
+            // 检查备战区的盗贼
+            for (let i = 0; i < gameState.units.reserve.length; i++) {
+                const unit = gameState.units.reserve[i];
+                if (unit && unit.type === 'earth' && unit.level >= 3) {
+                    hasLevel3Thief = true;
+                }
+            }
+            
+            // 如果有3级盗贼，触发"苟活"技能
+            if (hasLevel3Thief && unitTypes.earth.passiveSkills && unitTypes.earth.passiveSkills.survival) {
+                const netChange = unitTypes.earth.passiveSkills.survival.effect(playerThieves, enemyThieves);
+                
+                // 显示贝壳变化
+                if (netChange !== 0) {
+                    const message = netChange > 0 ? 
+                        `盗贼的"苟活"技能触发，获得 ${netChange} 贝壳！` : 
+                        `盗贼的"苟活"技能触发，失去 ${Math.abs(netChange)} 贝壳！`;
+                    
+                    alert(message);
+                    
+                    // 更新贝壳显示
+                    if (shellDisplay) {
+                        shellDisplay.textContent = `Shells: ${gameState.player.shells}`;
+                    }
+                }
+            }
+            
+            // 重置盗贼的"购置"技能加成
+            for (let i = 0; i < gameState.units.battleField.length; i++) {
+                const unit = gameState.units.battleField[i];
+                if (unit && unit.type === 'earth' && unit.purchaseBonus) {
+                    if (unitTypes.earth.passiveSkills && unitTypes.earth.passiveSkills.purchase) {
+                        unitTypes.earth.passiveSkills.purchase.reset(unit);
+                    }
+                }
+            }
+            
+            // 战斗结束后重置所有单位蓝量为0
+            // 重置战场上的单位
+            for (let i = 0; i < gameState.units.battleField.length; i++) {
+                if (gameState.units.battleField[i] !== null) {
+                    gameState.units.battleField[i].mana = 0;
+                    
+                    // 清除中毒效果
+                    if (gameState.units.battleField[i].statusEffects && gameState.units.battleField[i].statusEffects.poisoned) {
+                        delete gameState.units.battleField[i].statusEffects.poisoned;
+                        
+                        const unitCell = document.querySelector(`.grid-cell[data-index="${i}"]`);
+                        if (unitCell) {
+                            const effectElement = unitCell.querySelector('.poison-effect');
+                            if (effectElement) {
+                                unitCell.removeChild(effectElement);
+                            }
+                            
+                            const poisonTurnsElement = unitCell.querySelector('.poison-turns');
+                            if (poisonTurnsElement) {
+                                unitCell.removeChild(poisonTurnsElement);
+                            }
+                        }
+                    }
+                    
+                    // 清除无法行动状态
+                    if (gameState.units.battleField[i].statusEffects && gameState.units.battleField[i].statusEffects.cantAct) {
+                        delete gameState.units.battleField[i].statusEffects.cantAct;
+                        
+                        const unitCell = document.querySelector(`.grid-cell[data-index="${i}"]`);
+                        if (unitCell) {
+                            const stunEffect = unitCell.querySelector('.stun-effect');
+                            if (stunEffect) {
+                                unitCell.removeChild(stunEffect);
+                            }
+                            
+                            const cantActTurnsElement = unitCell.querySelector('.cant-act-turns');
+                            if (cantActTurnsElement) {
+                                unitCell.removeChild(cantActTurnsElement);
+                            }
+                        }
+                    }
+                }
+            }
+            // 重置备战区单位
+            for (let i = 0; i < gameState.units.reserve.length; i++) {
+                if (gameState.units.reserve[i] !== null) {
+                    gameState.units.reserve[i].mana = 0;
+                    
+                    // 清除中毒
+                    if (gameState.units.reserve[i].statusEffects && gameState.units.reserve[i].statusEffects.poisoned) {
+                        delete gameState.units.reserve[i].statusEffects.poisoned;
+                    }
+                }
+            }
+            
+            // 重置生长效果
+            for (let i = 0; i < gameState.units.battleField.length; i++) {
+                const unit = gameState.units.battleField[i];
+                if (unit && unit.growthApplied) {
+                    // 恢复原始属性值
+                    if (unit.originalMaxHP) {
+                        unit.maxHP = unit.originalMaxHP;
+                        unit.currentHP = Math.min(unit.currentHP, unit.maxHP);
+                        delete unit.originalMaxHP;
+                    }
+                    if (unit.originalAttack) {
+                        unit.attack = unit.originalAttack;
+                        delete unit.originalAttack;
+                    }
+                    delete unit.growthApplied;
+                }
+            }
+            
+            // 清理生命链锁效果
+            const waterMageSkill = unitTypes['waterMage'].skill;
+            waterMageSkill.cleanupLifeChain();
+            
+            // 清理护盾
+            const earthGuardianSkill = unitTypes['earthGuardian'].skill;
+            earthGuardianSkill.cleanupShields();
+            
+            // 清理熔岩守护者护盾
+            if (unitTypes['lavaGuardian'] && unitTypes['lavaGuardian'].skill) {
+                const lavaGuardianSkill = unitTypes['lavaGuardian'].skill;
+                lavaGuardianSkill.cleanupShields();
+            }
+            
+            // 清理圣天使护盾
+            if (unitTypes['holyAngel'] && unitTypes['holyAngel'].skill) {
+                const holyAngelSkill = unitTypes['holyAngel'].skill;
+                holyAngelSkill.cleanupShields();
+            }
+            
+            // 清理暗夜女王蝙蝠
+            if (unitTypes['darkQueen']) {
+                unitTypes['darkQueen'].cleanupBats();
+            }
+            
+            // 应用辅助羁绊的治疗效果
+            applySupportSynergyHealing();
+            
+            // 重置羁绊效果
+            resetSynergies();
+            
+            // 重置逃跑按钮
+            const escapeButton = document.getElementById('escape-button');
+            escapeButton.disabled = false;
+            escapeButton.style.backgroundColor = '#FF5252';
+            
+            // 更改按钮为回到地图，并重新启用单位回复按钮
+            battleButton.textContent = '回到地图';
+            battleButton.disabled = false;
+            document.getElementById('heal-button').disabled = false;
+            
+            if (!enemyAlive) {                
+                // 检查是否有氧气增幅效果
+                if (gameState.effects && gameState.effects.oxygenBoostOnVictory) {
+                    // 计算增加的氧气量（10%）
+                    const oxygenBoost = Math.round(100 * 0.1); // 氧气瓶容量为100
+                    
+                    // 增加氧气
+                    gameState.
+                    player.oxygen = Math.min(100, gameState.player.oxygen + oxygenBoost);
+                    
+                    // 更新氧气显示
+                    oxygenDisplay.textContent = `氧气: ${gameState.player.oxygen}`;
+                    
+                    // 显示效果
+                    alert(`氧气增幅效果触发！获得${oxygenBoost}点氧气`);
+                }
+                
+                // 解锁牢笼中的单位
+                alert('牢笼已解锁，你可以拖拽牢笼中的单位到战场或备战区！');
+                
+                // 使牢笼单位可拖拽
+                if (gameState.units.cage) {
+                    // 重置牢笼单位的蓝量
+                    gameState.units.cage.mana = 0;
+                    cageContainer.draggable = true;
+                    cageContainer.addEventListener('dragstart', (e) => {
+                        const data = {
+                            sourceType: 'cage',
+                            sourceIndex: -1 // 特殊标记为牢笼
+                        };
+                        e.dataTransfer.setData('application/json', JSON.stringify(data));
+                    });
+                    
+                    // 添加处理牢笼单位拖拽的事件
+                    const handleCageDrop = (e, targetType, targetIndex) => {
+                        const unitData = JSON.parse(e.dataTransfer.getData('application/json'));
+                        if (unitData.sourceType === 'cage' && gameState.units.cage) {
+                            // 检查目标位置是否有单位
+                            let targetUnit = null;
+                            let isUpgradeOperation = false;
+                            
+                            if (targetType === 'battlefield') {
+                                targetUnit = gameState.units.battleField[targetIndex];
+                                if (!targetUnit) {
+                                    // 移动到空格子
+                                    gameState.units.battleField[targetIndex] = gameState.units.cage;
+                                } else if (targetUnit.type === gameState.units.cage.type) {
+                                    isUpgradeOperation = true;
+                                    console.log('检测到升级操作');
+                                }
+                            } else if (targetType === 'reserve') {
+                                targetUnit = gameState.units.reserve[targetIndex];
+                                if (!targetUnit) {
+                                    // 移动到空格子
+                                    gameState.units.reserve[targetIndex] = gameState.units.cage;
+                                } else if (targetUnit.type === gameState.units.cage.type) {
+                                    // 拖到同属性单位上，视为升级操作
+                                    isUpgradeOperation = true;
+                                    console.log('检测到升级操作');
+                                }
+                            }
+                            
+                            // 无论如何都清空牢笼（即使是拖到了有单位的格子上）
+                            gameState.units.cage = null;
+                            cageContainer.innerHTML = '';
+                            cageContainer.style.backgroundColor = '#666';
+                            cageContainer.draggable = false;
+                            
+                            // 更新显示
+                            updateBattlefieldDisplay();
+                            initBattleReserveArea();
+                        }
+                    };
+ 
+                    // 更新战场单元格的drop事件
+                    for (let i = 24; i < 48; i++) {
+                        const cell = document.querySelector(`.grid-cell[data-index="${i}"]`);
+                        // 允许拖拽到所有格子
+                        if (cell) {
+                            cell.addEventListener('drop', (e) => {
+                                e.preventDefault();
+                                handleCageDrop(e, 'battlefield', i);
+                            });
+                        }
+                    }
+                    
+                    // 更新备战区的drop事件
+                    const reserveSlots = document.querySelectorAll('#battle-reserve-area .reserve-slot');
+                    reserveSlots.forEach((slot, index) => {
+                        // 允许拖拽到所有格子
+                        if (true) {
+                            slot.addEventListener('drop', (e) => {
+                                e.preventDefault();
+                                handleCageDrop(e, 'reserve', index);
+                            });
+                        }
+                    });
+                }
+            } else {
+                // 玩家失败
+                alert('战斗结束！');
+                
+                // 自动保存游戏
+                if (typeof saveSystem !== 'undefined') {
+                    saveSystem.saveGame();
+                }
+            }
+            
+            battleButton.onclick = () => {
+                // 检查是否有血量为0的单位在战场上
+                let deadUnitsOnField = false;
+                for (let i = 24; i < 48; i++) {
+                    const unit = gameState.units.battleField[i];
+                    if (unit && unit.currentHP <= 0) {
+                        deadUnitsOnField = true;
+                        break;
+                    }
+                }
+                
+                if (deadUnitsOnField) {
+                    alert('请将阵亡的单位移动到备战区！');
+                    return;
+                }
+                
+                // 备份单位信息
+                backupUnitInfo();
+                showScreen('dungeon-map');
+            };
+        }
+        
+        // 备份单位信息
+        function backupUnitInfo() {
+            playerUnitBackup = [];
+            
+            // 备份战场单位
+            for (let i = 24; i < 48; i++) {
+                const unit = gameState.units.battleField[i];
+                if (unit) {
+                    playerUnitBackup.push({
+                        unit: JSON.parse(JSON.stringify(unit)),
+                        index: i
+                    });
+                }
+            }
+            
+            // 备份备战区单位
+            for (let i = 0; i < gameState.units.reserve.length; i++) {
+                const unit = gameState.units.reserve[i];
+                if (unit) {
+                    playerUnitBackup.push({
+                        unit: JSON.parse(JSON.stringify(unit)),
+                        index: -i - 1 // 负数表示备战区，从-1开始
+                    });
+                }
+            }
+        }
+        
+        // 合并单位辅助函数
+        function mergeUnits(targetUnit, sourceUnit) {
+            // 保存原始类型
+            const unitType = targetUnit.type;
+            
+            // 升级等级
+            targetUnit.level = Math.min(targetUnit.level + sourceUnit.level, 3);
+            
+            // 选择较大的生命值并翻倍
+            const maxHP = Math.max(targetUnit.maxHP, sourceUnit.maxHP);
+            targetUnit.maxHP = maxHP * 2 ;
+            targetUnit.currentHP = targetUnit.maxHP; // 升级时恢复满血
+            
+            // 选择较大的攻击力并翻倍
+            const attack = Math.max(targetUnit.attack, sourceUnit.attack);
+            targetUnit.attack = attack * 2;
+            
+            // 蓝量回复和速度取较大者
+            targetUnit.manaRegen = Math.max(targetUnit.manaRegen, sourceUnit.manaRegen);
+            targetUnit.speed = Math.max(targetUnit.speed, sourceUnit.speed);
+            
+            // 初始化单位可能需要的特殊属性或技能
+            const baseStats = unitTypes[unitType];
+            
+            // 初始化反击技能
+            if (unitType === 'fire' && baseStats.passiveSkills) {
+                if (targetUnit.level >= baseStats.passiveSkills.counterAttack.unlockLevel) {
+                    targetUnit.passiveSkills = targetUnit.passiveSkills || {};
+                    targetUnit.passiveSkills.counterAttack = {
+                        isCountering: false
+                    };
+                }
+                
+                // 初始化血怒技能
+                if (targetUnit.level >= baseStats.passiveSkills.bloodRage.unlockLevel) {
+                    targetUnit.passiveSkills = targetUnit.passiveSkills || {};
+                    targetUnit.passiveSkills.bloodRage = {};
+                }
+            }
+            
+            console.log(`合并单位: ${unitType}, 新等级: ${targetUnit.level}, 血量: ${targetUnit.maxHP}, 攻击: ${targetUnit.attack}, 速度: ${targetUnit.speed}, 回蓝: ${targetUnit.manaRegen}`);
+            
+            // 在单位属性变更后更新单位类型的基础属性
+            if (unitTypes[unitType]) {
+                // 只有当单位等级为1时才更新基础属性
+                if (targetUnit.level === 1) {
+                    unitTypes[unitType].hp = targetUnit.maxHP;
+                    unitTypes[unitType].attack = targetUnit.attack;
+                    unitTypes[unitType].speed = targetUnit.speed;
+                    unitTypes[unitType].manaRegen = targetUnit.manaRegen;
+                }
+                
+                // 自动保存游戏
+                if (typeof saveSystem !== 'undefined') {
+                    saveSystem.saveGame();
+                }
+            }
+            
+            return targetUnit;
+        }
+        
+        // 恢复单位信息
+        function restoreUnitInfo() {
+            // 清空备战区
+            gameState.units.reserve = [null, null, null, null, null, null];
+            
+            // 恢复备份的单位
+            playerUnitBackup.forEach(backup => {
+                if (backup.index >= 24) {
+                    // 战场单位
+                    gameState.units.battleField[backup.index] = backup.unit;
+                } else {
+                    // 备战区单位，索引为负数
+                    const reserveIndex = -backup.index - 1;
+                    gameState.units.reserve[reserveIndex] = backup.unit;
+                }
+            });
+        }
+
+        // Initialize the game
+        showScreen('home');
+
+        // 初始化资源显示元素
+        window.levelDisplay = document.getElementById('level-display');
+        window.expDisplay = document.getElementById('exp-bar');
+        window.goldDisplay = document.getElementById('gold-display');
+        window.summonStonesDisplay = document.getElementById('summon-stones-display');
+        window.ticketsDisplay = document.getElementById('tickets-display');
+        
+        // 更新资源显示
+        function updateResourceDisplay() {
+            levelDisplay.textContent = `Lv.${gameState.player.level}`;
+            // 更新经验条
+            const expPercentage = gameState.player.exp / (gameState.player.level * 100) * 100;
+            document.getElementById('exp-fill').style.width = `${Math.min(100, expPercentage)}%`;
+            goldDisplay.textContent = gameState.player.gold;
+            summonStonesDisplay.textContent = gameState.player.summonStones;
+            ticketsDisplay.textContent = gameState.player.tickets;
+        }
+        
+        // 初始显示
+        updateResourceDisplay();
+
+        // 检查是否有保存的游戏数据
+        if (saveSystem.hasSavedGame()) {
+            const saveInfo = saveSystem.getSaveInfo();
+            if (confirm(`发现存档：等级 ${saveInfo.playerLevel}，保存于 ${saveInfo.saveDate}。是否加载？`)) {
+                saveSystem.loadGame();
+            }
+        }
+
+        // 添加保存和加载游戏按钮的事件监听器
+        document.getElementById('save-button').addEventListener('click', function() {
+            if (saveSystem.saveGame()) {
+                alert('游戏已保存！');
+            } else {
+                alert('保存游戏失败！');
+            }
+        });
+
+        document.getElementById('load-button').addEventListener('click', function() {
+            if (saveSystem.hasSavedGame()) {
+                const saveInfo = saveSystem.getSaveInfo();
+                if (confirm(`确定要加载存档：等级 ${saveInfo.playerLevel}，保存于 ${saveInfo.saveDate}？当前进度将丢失！`)) {
+                    if (saveSystem.loadGame()) {
+                        alert('游戏已加载！');
+                        // 重新加载页面以应用所有更改
+                        location.reload();
+                    } else {
+                        alert('加载游戏失败！');
+                    }
+                }
+            } else {
+                alert('没有找到保存的游戏数据！');
+            }
+        });
+        
+        // 添加清空存档按钮的事件监听器
+        document.getElementById('reset-save-button').addEventListener('click', function() {
+            if (saveSystem.hasSavedGame()) {
+                if (confirm('确定要清空游戏存档并重置游戏吗？此操作不可恢复！')) {
+                    // 清空存档
+                    if (saveSystem.deleteSave()) {
+                        alert('游戏存档已清空！游戏将重新加载。');
+                        // 重新加载页面以重置游戏
+                        location.reload();
+                    } else {
+                        alert('清空存档失败！');
+                    }
+                }
+            } else {
+                alert('没有找到保存的游戏数据！');
+            }
+        });
+    </script>
+    
+    <script src="js/shopSystem.js"></script>
+</body>
+</html>
