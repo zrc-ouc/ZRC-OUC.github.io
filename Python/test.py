@@ -254,8 +254,6 @@ def pass_slide_verification(tab):
     tab.get_screenshot(path="./captcha_shots/FAILED.png")
     return False
 
-#%% ── 工具函数 ──────────────────────────────────────────────────────────
-
 def setup_toast_observer(tab):
     """注入 MutationObserver 实时捕获 Toast，只需调用一次"""
     tab.run_js("""
@@ -397,9 +395,6 @@ def wait_for_toast(tab, timeout=2.5):
             return ' '.join(t.get('text', '') for t in toasts)
     return ''
 
-# %%
-# ── 主签到函数 ────────────────────────────────────────────────────────
-
 def attempt_checkin(tab, max_attempts=80):
     """
     随机枚举签到：每次失败后关闭并重新打开验证码弹窗，
@@ -488,13 +483,21 @@ co.auto_port()
 co.headless(True)
 # 初始化浏览器
 tab = DrissionPage.ChromiumPage(co)
+print('初始化成功！')
 tab.get(Sign_URL)
+print('前往登陆页面！')
+time.sleep(60)
 tab.ele('@name=username').input(ACCOUNT)
+print('输入用户名！')
 tab.ele('@name=password').input(PASSWORD)
+print('输入密码！')
 tab.ele('@class=semi-checkbox-inner-display').click()
+print('用户协议！')
 tab.ele('@class=semi-button semi-button-primary semi-button-size-large semi-button-solid w-full !rounded-full gradient-btn').click()
+print('登录！')
+time.sleep(60)
 tab.ele('@class=w-7 h-7 rounded-full border-2 border-green-500 border-dashed flex items-center justify-center animate-pulse shadow-sm').click()
-
+print('开始签到！')
 result = attempt_checkin(tab)
 print("签到结果：", result)
 # 关闭浏览器
@@ -502,4 +505,8 @@ tab.quit()
 
 #%%
 # tab.get_screenshot()
+
+
+
+
 
