@@ -488,7 +488,7 @@ tab.get(Sign_URL)
 print('前往登陆页面！')
 print(tab.rect.window_size)
 time.sleep(10)
-tab.set.window.size(1200, 800)
+tab.set.window.size(1920, 1080)
 print(tab.rect.window_size)
 tab.get_screenshot()
 tab.ele('@name=username').input(ACCOUNT)
@@ -500,7 +500,39 @@ print('用户协议！')
 tab.ele('@class=semi-button semi-button-primary semi-button-size-large semi-button-solid w-full !rounded-full gradient-btn').click()
 print('登录！')
 time.sleep(10)
+
 tab.get_screenshot()
+layout_data = tab.run_js('''
+    function getLayoutInfo() {
+        const elements = document.querySelectorAll('*');
+        return Array.from(elements).map(el => {
+            const rect = el.getBoundingClientRect();
+            const styles = window.getComputedStyle(el);
+            return {
+                tag: el.tagName,
+                id: el.id,
+                class: el.className,
+                rect: {
+                    left: rect.left,
+                    top: rect.top,
+                    right: rect.right,
+                    bottom: rect.bottom,
+                    width: rect.width,
+                    height: rect.height
+                },
+                display: styles.display,
+                visibility: styles.visibility,
+                position: styles.position
+            };
+        });
+    }
+    return getLayoutInfo();
+''')
+# 保存为 JSON 文件
+import json
+with open('layout_info.json', 'w', encoding='utf-8') as f:
+    json.dump(layout_data, f, ensure_ascii=False, indent=2)
+    
 tab.ele('@class=w-7 h-7 rounded-full border-2 border-green-500 border-dashed flex items-center justify-center animate-pulse shadow-sm').click()
 print('开始签到！')
 result = attempt_checkin(tab)
