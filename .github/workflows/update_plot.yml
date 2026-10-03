@@ -4,7 +4,17 @@ on:
   schedule:
     # 每小时整点运行（UTC 时区）；按需修改，参见 https://crontab.guru/
     - cron: "0 * * * *"
-  workflow_dispatch: {}   # 允许在 Actions 页面手动触发
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "运行模式：plot=正常出图; inspect=打印表结构; sample=打印最新一行原始数据(排查列名)"
+        required: false
+        default: "plot"
+        type: choice
+        options:
+          - plot
+          - inspect
+          - sample
 
 jobs:
   plot:
@@ -35,7 +45,18 @@ jobs:
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_NAME: ${{ secrets.DB_NAME }}
-        run: python fetch_and_plot.py
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            MODE="${{ inputs.mode }}"
+          else
+            MODE="plot"
+          fi
+          echo "运行模式: $MODE"
+          case "$MODE" in
+            inspect) python fetch_and_plot.py --inspect ;;
+            sample)  python fetch_and_plot.py --sample ;;
+            *)       python fetch_and_plot.py ;;
+          esac
 
       - name: Commit updated plot
         uses: stefanzweifel/git-auto-commit-action@v5
