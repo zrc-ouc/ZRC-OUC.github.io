@@ -1,0 +1,40 @@
+name: Update Ocean Plot
+
+on:
+  schedule:
+    # 每小时整点运行；按需修改，参见 https://crontab.guru/
+    - cron: "0 * * * *"
+  workflow_dispatch: {}   # 允许在 Actions 页面手动触发
+
+jobs:
+  plot:
+    runs-on: ubuntu-latest
+    # 避免并发运行导致同时写图冲突
+    concurrency:
+      group: ocean-plot
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch data & plot
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+        run: python fetch_and_plot.py
+
+      - name: Commit updated plot
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update ocean weather plot"
+          file_pattern: "figures/*.png"
