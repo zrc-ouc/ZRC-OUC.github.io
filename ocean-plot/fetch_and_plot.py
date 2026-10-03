@@ -126,7 +126,8 @@ def sample_latest_rows():
                     print(f"\n=== {t}: 表为空 ===")
                     continue
                 print(f"\n=== {t} 最新一行 ({len(cols)} 列) ===")
-                for (name, dtype), val in zip(cur.description, row):
+                for desc, val in zip(cur.description, row):
+                    name, dtype = desc[0], desc[1]
                     shown = "NULL" if val is None else repr(val)
                     if len(shown) > 80:
                         shown = shown[:77] + "..."
