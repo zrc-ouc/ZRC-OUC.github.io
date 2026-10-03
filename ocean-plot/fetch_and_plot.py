@@ -12,7 +12,8 @@ fetch_and_plot.py — 海洋观测浮标(CKEO)数据定时绘图
 用法：
   pip install -r requirements.txt
   python fetch_and_plot.py            # 生成 figures/ckeo_weather.png
-  python fetch_and_plot.py --inspect  # 仅打印各表列结构，便于确认列名
+  python fetch_and_plot.py --inspect  # 仅打印各表列名与类型
+  python fetch_and_plot.py --sample   # 打印各表最新一行的全部原始值（排查列名/数据用）
 """
 
 import os
@@ -112,6 +113,28 @@ def inspect_schema():
         conn.close()
 
 
+def sample_latest_rows():
+    """打印每张表最新一行的全部原始值（列名 = 值 [MySQL类型]），用于确定 VARIABLES。"""
+    conn = get_connection()
+    try:
+        with conn.cursor() as cur:
+            for t in TABLES:
+                cur.execute(f"SELECT * FROM `{t}` ORDER BY `time` DESC LIMIT 1")
+                cols = [d[0] for d in cur.description]
+                row = cur.fetchone()
+                if row is None:
+                    print(f"\n=== {t}: 表为空 ===")
+                    continue
+                print(f"\n=== {t} 最新一行 ({len(cols)} 列) ===")
+                for (name, dtype), val in zip(cur.description, row):
+                    shown = "NULL" if val is None else repr(val)
+                    if len(shown) > 80:
+                        shown = shown[:77] + "..."
+                    print(f"  {name:28s} = {shown:82s} [{dtype}]")
+    finally:
+        conn.close()
+
+
 def _to_utc(dt):
     if isinstance(dt, str):
         dt = pd.to_datetime(dt)
@@ -142,15 +165,25 @@ def collect_values():
                 update_time = max(update_time, _to_utc(df[tcol[0]].iloc[0]))
             val = df[column].iloc[0] if column in df.columns else None
             latest_values.append((label, fmt_value(val, fmt, unit)))
-    else:  # 简单模式：每张表最新一行的全部数值列
+    else:  # 简单模式：每张表最新一行的非主键列（含文本列，跳过 id 类列与 time）
+        skip_prefixes = ("id",)
         for table in SHOW_TABLES:
             df = fetch_latest_row(table)
             tcol = [c for c in df.columns if c.lower() == "time"]
             if tcol and pd.notna(df[tcol[0]].iloc[0]):
                 update_time = max(update_time, _to_utc(df[tcol[0]].iloc[0]))
-            num_cols = df.select_dtypes(include="number").columns.tolist()
-            for col in num_cols:
-                latest_values.append((col, fmt_value(df[col].iloc[0])))
+            for col in df.columns:
+                cl = col.lower()
+                if cl == "time" or cl.startswith(skip_prefixes) or cl.endswith("_id"):
+                    continue
+                val = df[col].iloc[0]
+                if isinstance(val, (int, float)) and pd.notna(val):
+                    latest_values.append((f"{table}.{col}", fmt_value(val)))
+                elif val is not None and not (isinstance(val, float) and pd.isna(val)):
+                    text = str(val)
+                    if len(text) > 40:
+                        text = text[:37] + "..."
+                    latest_values.append((f"{table}.{col}", text))
 
     return latest_values, update_time
 
@@ -183,11 +216,15 @@ def build_panel(latest_values, update_time):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--inspect", action="store_true", help="仅打印各表列结构后退出")
+    parser.add_argument("--inspect", action="store_true", help="仅打印各表列名与类型后退出")
+    parser.add_argument("--sample", action="store_true", help="仅打印各表最新一行的全部原始值后退出")
     args = parser.parse_args()
 
     if args.inspect:
         inspect_schema()
+        return
+    if args.sample:
+        sample_latest_rows()
         return
 
     latest_values, update_time = collect_values()
