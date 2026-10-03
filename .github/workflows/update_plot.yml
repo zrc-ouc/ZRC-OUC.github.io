@@ -2,13 +2,17 @@ name: Update Ocean Plot
 
 on:
   schedule:
-    # 每小时整点运行；按需修改，参见 https://crontab.guru/
+    # 每小时整点运行（UTC 时区）；按需修改，参见 https://crontab.guru/
     - cron: "0 * * * *"
   workflow_dispatch: {}   # 允许在 Actions 页面手动触发
 
 jobs:
   plot:
     runs-on: ubuntu-latest
+    # 所有 run 步骤默认在 ocean-plot/ 子目录执行，不干扰仓库根的网站文件
+    defaults:
+      run:
+        working-directory: ocean-plot
     # 避免并发运行导致同时写图冲突
     concurrency:
       group: ocean-plot
@@ -37,4 +41,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: update ocean weather plot"
-          file_pattern: "figures/*.png"
+          file_pattern: "ocean-plot/figures/*.png"
