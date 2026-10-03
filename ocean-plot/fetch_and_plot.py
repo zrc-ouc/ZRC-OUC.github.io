@@ -18,6 +18,7 @@ fetch_and_plot.py — 海洋观测浮标(CKEO)数据定时绘图
 
 import os
 import argparse
+import math
 from datetime import datetime, timezone
 
 import pymysql
@@ -57,21 +58,26 @@ TABLES = [
 SHOW_TABLES = ["ckeo_07_a_sensor", "ckeo_07_a_ctd"]
 
 # --------------------------------------------------------------------------
-# 4) 【精确模式·可选】只展示你指定的变量（"所选变量"）
-#    每项: (标签, 表名, 列名, 单位, 格式)
-#    ⚠️ 列名需按真实表结构填写；运行 --inspect 可查看列名。
-#    例如（请按实际列名修改，下面仅为示意）：
-# VARIABLES = [
-#     ("Wind Speed",          "ckeo_07_a_sensor", "wind_speed", "m/s", "{:.1f}"),
-#     ("Wind Direction (to)", "ckeo_07_a_sensor", "wind_dir",   "°",   "{:.0f}"),
-#     ("Air Temperature",     "ckeo_07_a_sensor", "air_temp",   "°C",  "{:.1f}"),
-#     ("Relative Humidity",   "ckeo_07_a_sensor", "rel_hum",    "%",   "{:.0f}"),
-#     ("Barometric Pressure", "ckeo_07_a_sensor", "pressure",   "hPa", "{:.1f}"),
-#     ("Solar Radiation",     "ckeo_07_a_sensor", "solar_rad",  "W/m²", "{:.0f}"),
-#     ("Infrared Radiation",  "ckeo_07_a_sensor", "ir_rad",     "W/m²", "{:.0f}"),
-#     ("Sea Surface Temp",    "ckeo_07_a_ctd",    "temp",       "°C",  "{:.1f}"),
-# ]
-VARIABLES = None  # 设为上面的列表即切换到精确模式
+# 4) 【精确模式】只展示你指定的"所选变量"（对应 MATLAB 原脚本的面板）
+#    每项: (标签, 单位, 格式, source)
+#      source 形式:
+#        ("col", 表名, 列名)            -> 直接取该列 (文本列会自动 float)
+#        ("wind_speed",)               -> 由 sensor.wind_1x/1y 计算 √(x²+y²)
+#        ("wind_dir",)                 -> 由 sensor.wind_1x/1y 计算风向(去向, °)
+#    ⚠️ 列名依据 --sample 输出的真实表结构；如需增删改这里即可。
+VARIABLES = [
+    ("Wind Speed",          "m/s",  "{:.1f}", ("wind_speed",)),
+    ("Wind Direction (to)", "°",    "{:.0f}", ("wind_dir",)),
+    ("Air Temperature",     "°C",   "{:.1f}", ("col", "ckeo_07_a_sensor", "airtemp_1")),
+    ("Relative Humidity",   "%",    "{:.0f}", ("col", "ckeo_07_a_sensor", "rh_1")),
+    ("Air Pressure",        "hPa",  "{:.1f}", ("col", "ckeo_07_a_sensor", "bp_ptb210")),
+    ("Shortwave Radiation", "W/m²", "{:.0f}", ("col", "ckeo_07_a_sensor", "spp")),
+    ("Longwave Radiation",  "W/m²", "{:.0f}", ("col", "ckeo_07_a_sensor", "pir")),
+    ("Sea Surface Temp",    "°C",   "{:.2f}", ("col", "ckeo_07_a_ctd", "sbe37_t")),
+    # 注: sbe37_c 为原始电导率(S/m), 并非盐度; 若要真实盐度需按 T/C/D 做 UNESCO 计算
+    ("Sea Surface Salinity", "psu", "{:.2f}", ("col", "ckeo_07_a_ctd", "sbe37_c")),
+    ("Depth",               "m",    "{:.2f}", ("col", "ckeo_07_a_ctd", "sbe37_d")),
+]
 
 OUTPUT_DIR = os.environ.get("OUTPUT_DIR", "figures")
 OUTPUT_PATH = os.path.join(OUTPUT_DIR, "ckeo_weather.png")
@@ -136,6 +142,43 @@ def sample_latest_rows():
         conn.close()
 
 
+def _get_col(table, column):
+    """取某表最新一行某列的值，文本列自动转 float；取不到返回 None。"""
+    df = fetch_latest_row(table)
+    if column not in df.columns:
+        return None
+    val = df[column].iloc[0]
+    if val is None or (isinstance(val, float) and pd.isna(val)):
+        return None
+    if isinstance(val, str):
+        try:
+            return float(val)
+        except ValueError:
+            return None
+    return float(val)
+
+
+def resolve_value(source):
+    """根据 source 描述解析出一个数值（直接列 或 计算型变量）。"""
+    kind = source[0]
+    if kind == "col":
+        return _get_col(source[1], source[2])
+    if kind == "wind_speed":
+        x = _get_col("ckeo_07_a_sensor", "wind_1x")
+        y = _get_col("ckeo_07_a_sensor", "wind_1y")
+        if x is None or y is None:
+            return None
+        return math.hypot(x, y)
+    if kind == "wind_dir":
+        # 风向"去向": 数学角 atan2(x=东向分量, y=北向分量), 由北顺时针
+        x = _get_col("ckeo_07_a_sensor", "wind_1x")
+        y = _get_col("ckeo_07_a_sensor", "wind_1y")
+        if x is None or y is None:
+            return None
+        return (math.degrees(math.atan2(x, y))) % 360.0
+    return None
+
+
 def _to_utc(dt):
     if isinstance(dt, str):
         dt = pd.to_datetime(dt)
@@ -159,12 +202,14 @@ def collect_values():
     update_time = datetime.now(timezone.utc)
 
     if VARIABLES:  # 精确模式
-        for label, table, column, unit, fmt in VARIABLES:
-            df = fetch_latest_row(table)
-            tcol = [c for c in df.columns if c.lower() == "time"]
-            if tcol and pd.notna(df[tcol[0]].iloc[0]):
-                update_time = max(update_time, _to_utc(df[tcol[0]].iloc[0]))
-            val = df[column].iloc[0] if column in df.columns else None
+        for label, unit, fmt, source in VARIABLES:
+            if source[0] == "col":
+                # 该表的 time 列用于确定更新时间
+                df = fetch_latest_row(source[1])
+                tcol = [c for c in df.columns if c.lower() == "time"]
+                if tcol and pd.notna(df[tcol[0]].iloc[0]):
+                    update_time = max(update_time, _to_utc(df[tcol[0]].iloc[0]))
+            val = resolve_value(source)
             latest_values.append((label, fmt_value(val, fmt, unit)))
     else:  # 简单模式：每张表最新一行的非主键列（含文本列，跳过 id 类列与 time）
         skip_prefixes = ("id",)
