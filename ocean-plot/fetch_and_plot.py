@@ -150,13 +150,15 @@ def get_connection():
 
 
 def fetch_latest_row(table):
-    """取某表按 time 降序的最新一行，返回 DataFrame。"""
+    """取某表按 time 降序的最新一行，返回 DataFrame。表为空时返回带列名、0 行的 DataFrame。"""
     conn = get_connection()
     try:
         with conn.cursor() as cur:
             cur.execute(f"SELECT * FROM `{table}` ORDER BY `time` DESC LIMIT 1")
             cols = [d[0] for d in cur.description]
             row = cur.fetchone()
+        if row is None:
+            return pd.DataFrame(columns=cols)
         return pd.DataFrame([row], columns=cols)
     finally:
         conn.close()
@@ -214,10 +216,17 @@ def sample_latest_rows():
         conn.close()
 
 
-def _get_col(table, column):
-    """取某表最新一行某列的值，文本列自动转 float；取不到返回 None。"""
-    df = fetch_latest_row(table)
-    if column not in df.columns:
+def _get_col(table, column, cache=None):
+    """取某表最新一行某列的值，文本列自动转 float；取不到返回 None。
+    cache: 可选 dict，按表名缓存 fetch_latest_row 结果，避免同一设备重复查库。"""
+    if cache is None:
+        df = fetch_latest_row(table)
+    else:
+        df = cache.get(table)
+        if df is None:
+            df = fetch_latest_row(table)
+            cache[table] = df
+    if df.empty or column not in df.columns:
         return None
     val = df[column].iloc[0]
     if val is None or (isinstance(val, float) and pd.isna(val)):
@@ -230,23 +239,23 @@ def _get_col(table, column):
     return float(val)
 
 
-def resolve_value(source):
-    """根据 source 描述解析出一个数值（直接列 或 计算型变量）。"""
+def resolve_value(source, cache=None):
+    """根据 source 描述解析出一个数值（直接列 或 计算型变量）。cache 透传给 _get_col。"""
     kind = source[0]
     if kind == "col":
-        return _get_col(source[1], source[2])
+        return _get_col(source[1], source[2], cache)
     if kind == "wind_speed":
         tbl = source[1]
-        x = _get_col(tbl, "wind_1x")
-        y = _get_col(tbl, "wind_1y")
+        x = _get_col(tbl, "wind_1x", cache)
+        y = _get_col(tbl, "wind_1y", cache)
         if x is None or y is None:
             return None
         return math.hypot(x, y)
     if kind == "wind_dir":
         # 风向"去向": 数学角 atan2(x=东向分量, y=北向分量), 由北顺时针
         tbl = source[1]
-        x = _get_col(tbl, "wind_1x")
-        y = _get_col(tbl, "wind_1y")
+        x = _get_col(tbl, "wind_1x", cache)
+        y = _get_col(tbl, "wind_1y", cache)
         if x is None or y is None:
             return None
         return (math.degrees(math.atan2(x, y))) % 360.0
@@ -295,19 +304,25 @@ def collect_values(variables, tables):
     update_time = datetime.now(timezone.utc)
 
     if variables:  # 精确模式
+        cache = {}  # 同一设备的多变量常取自相同表，按表名缓存最新行，避免重复查库
         for label, unit, fmt, source in variables:
             if source[0] == "col":
                 # 该表的 time 列用于确定更新时间
-                df = fetch_latest_row(source[1])
+                df = cache.get(source[1])
+                if df is None:
+                    df = fetch_latest_row(source[1])
+                    cache[source[1]] = df
                 tcol = [c for c in df.columns if c.lower() == "time"]
-                if tcol and pd.notna(df[tcol[0]].iloc[0]):
+                if tcol and not df.empty and pd.notna(df[tcol[0]].iloc[0]):
                     update_time = max(update_time, _to_utc(df[tcol[0]].iloc[0]))
-            val = resolve_value(source)
+            val = resolve_value(source, cache)
             latest_values.append((label, fmt_value(val, fmt, unit)))
     else:  # 简单模式：每张表最新一行的非主键列（含文本列，跳过 id 类列与 time）
         skip_prefixes = ("id",)
         for table in tables:
             df = fetch_latest_row(table)
+            if df.empty:
+                continue
             tcol = [c for c in df.columns if c.lower() == "time"]
             if tcol and pd.notna(df[tcol[0]].iloc[0]):
                 update_time = max(update_time, _to_utc(df[tcol[0]].iloc[0]))
