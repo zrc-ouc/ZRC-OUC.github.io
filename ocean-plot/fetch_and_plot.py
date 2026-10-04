@@ -84,19 +84,32 @@ DEVICES = {
             ("Depth",               "m",    "{:.2f}", ("col", "ckeo_07_a_ctd", "sbe37_d")),
         ],
     },
-    # ---- CKEO-08：采用 _tcp 那套卫星通讯表（base 表暂不画图）----
+    # ---- CKEO-08：采用 _tcp 那套卫星通讯表；注意本设备无 nuclear_radiometer 表 ----
+    # 风以 wind_1s(速度)/wind_1d(方向°) 直接给出（非 07 的 wind_1x/wind_1y 向量）
     "ckeo_08": {
         "title": "Current Weather at CKEO-08",
         "tables": [
             "ckeo_08_sensor_tcp",
             "ckeo_08_imm_data_tcp",
             "ckeo_08_under_water_tcp",
-            "ckeo_08_nuclear_radiometer_tcp",
         ],
         "output": "figures/ckeo_08_weather.png",
-        "variables": [],  # TODO: 待 --sample 确认列名后填
+        "variables": [
+            ("Wind Speed",          "m/s",  "{:.1f}", ("col", "ckeo_08_sensor_tcp", "wind_1s")),
+            ("Wind Direction",      "°",    "{:.0f}", ("col", "ckeo_08_sensor_tcp", "wind_1d")),
+            ("Air Temperature",     "°C",   "{:.1f}", ("col", "ckeo_08_sensor_tcp", "airtemp_1")),
+            ("Relative Humidity",   "%",    "{:.0f}", ("col", "ckeo_08_sensor_tcp", "rh_1")),
+            ("Air Pressure",        "hPa",  "{:.1f}", ("col", "ckeo_08_sensor_tcp", "bp_ptb210")),
+            ("Shortwave Radiation", "W/m²", "{:.0f}", ("col", "ckeo_08_sensor_tcp", "spp")),
+            ("Longwave Radiation",  "W/m²", "{:.0f}", ("col", "ckeo_08_sensor_tcp", "pir")),
+            # under_water 表合并了 CKEO-07 的 ctd+adcp，温盐深在 sbe37_* 列
+            ("Sea Surface Temp",    "°C",   "{:.2f}", ("col", "ckeo_08_under_water_tcp", "sbe37_t")),
+            # 注: sbe37_c 为原始电导率(S/m), 并非盐度; 若要真实盐度需按 T/C/D 做 UNESCO 计算
+            ("Sea Surface Salinity", "psu", "{:.2f}", ("col", "ckeo_08_under_water_tcp", "sbe37_c")),
+            ("Depth",               "m",    "{:.2f}", ("col", "ckeo_08_under_water_tcp", "sbe37_d")),
+        ],
     },
-    # ---- CKEO-08-a：同上，表名带 _a ----
+    # ---- CKEO-08-a：同上，表名带 _a；额外有 nuclear_radiometer 核辐射计（待 sample 确认列名后加）----
     "ckeo_08_a": {
         "title": "Current Weather at CKEO-08-a",
         "tables": [
@@ -106,7 +119,19 @@ DEVICES = {
             "ckeo_08_a_nuclear_radiometer_tcp",
         ],
         "output": "figures/ckeo_08_a_weather.png",
-        "variables": [],  # TODO: 待 --sample 确认列名后填
+        "variables": [
+            ("Wind Speed",          "m/s",  "{:.1f}", ("col", "ckeo_08_a_sensor_tcp", "wind_1s")),
+            ("Wind Direction",      "°",    "{:.0f}", ("col", "ckeo_08_a_sensor_tcp", "wind_1d")),
+            ("Air Temperature",     "°C",   "{:.1f}", ("col", "ckeo_08_a_sensor_tcp", "airtemp_1")),
+            ("Relative Humidity",   "%",    "{:.0f}", ("col", "ckeo_08_a_sensor_tcp", "rh_1")),
+            ("Air Pressure",        "hPa",  "{:.1f}", ("col", "ckeo_08_a_sensor_tcp", "bp_ptb210")),
+            ("Shortwave Radiation", "W/m²", "{:.0f}", ("col", "ckeo_08_a_sensor_tcp", "spp")),
+            ("Longwave Radiation",  "W/m²", "{:.0f}", ("col", "ckeo_08_a_sensor_tcp", "pir")),
+            ("Sea Surface Temp",    "°C",   "{:.2f}", ("col", "ckeo_08_a_under_water_tcp", "sbe37_t")),
+            ("Sea Surface Salinity", "psu", "{:.2f}", ("col", "ckeo_08_a_under_water_tcp", "sbe37_c")),
+            ("Depth",               "m",    "{:.2f}", ("col", "ckeo_08_a_under_water_tcp", "sbe37_d")),
+            # ("Nuclear Radiation", "?",  "{:.?f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "???")),  # TODO: 待 sample 确认列名
+        ],
     },
 }
 
