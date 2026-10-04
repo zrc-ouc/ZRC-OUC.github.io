@@ -14,6 +14,7 @@ fetch_and_plot.py — 海洋观测浮标(CKEO)数据定时绘图
   python fetch_and_plot.py            # 生成 figures/ckeo_weather.png
   python fetch_and_plot.py --inspect  # 仅打印各表列名与类型
   python fetch_and_plot.py --sample   # 打印各表最新一行的全部原始值（排查列名/数据用）
+  python fetch_and_plot.py --list-tables [--pattern ckeo_08%]  # 列出库内匹配模式的表名
 """
 
 import os
@@ -179,6 +180,25 @@ def resolve_value(source):
     return None
 
 
+def list_tables(pattern="ckeo_08%"):
+    """列出数据库中匹配给定 LIKE 模式的表名，用于发现新设备(如 CKEO-08)的表。"""
+    conn = get_connection()
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES "
+                "WHERE TABLE_SCHEMA=%s AND TABLE_NAME LIKE %s ORDER BY TABLE_NAME",
+                (DB_CONFIG["database"], pattern),
+            )
+            rows = cur.fetchall()
+        print(f"\n=== 数据库中匹配 '{pattern}' 的表 ({len(rows)} 个) ===")
+        for (name,) in rows:
+            print(f"  {name}")
+        return [r[0] for r in rows]
+    finally:
+        conn.close()
+
+
 def _to_utc(dt):
     if isinstance(dt, str):
         dt = pd.to_datetime(dt)
@@ -264,8 +284,13 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--inspect", action="store_true", help="仅打印各表列名与类型后退出")
     parser.add_argument("--sample", action="store_true", help="仅打印各表最新一行的全部原始值后退出")
+    parser.add_argument("--list-tables", action="store_true", help="列出库内匹配 --pattern 的表名后退出")
+    parser.add_argument("--pattern", default="ckeo_08%", help="配合 --list-tables 使用的 LIKE 模式")
     args = parser.parse_args()
 
+    if args.list_tables:
+        list_tables(args.pattern)
+        return
     if args.inspect:
         inspect_schema()
         return
