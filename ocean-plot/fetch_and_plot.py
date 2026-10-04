@@ -110,9 +110,7 @@ DEVICES = {
         ],
     },
     # ---- CKEO-08-a：同上，表名带 _a；额外有 nuclear_radiometer 核辐射计 ----
-    #   核辐射计表 ckeo_08_a_nuclear_radiometer_tcp 目前为空（无数据行），列名待定。
-    #   待该表有数据后，跑 `python fetch_and_plot.py --inspect` 把该表列名贴回，
-    #   即在下方 variables 增一行核辐射计变量即可。
+    #   核辐射计表 ckeo_08_a_nuclear_radiometer_tcp 含 7 个通道 radiometer_0..6（varchar，自动转 float）。
     "ckeo_08_a": {
         "title": "Current Weather at CKEO-08-a",
         "tables": [
@@ -133,9 +131,15 @@ DEVICES = {
             ("Sea Surface Temp",    "°C",   "{:.2f}", ("col", "ckeo_08_a_under_water_tcp", "sbe37_t")),
             ("Sea Surface Salinity", "psu", "{:.2f}", ("col", "ckeo_08_a_under_water_tcp", "sbe37_c")),
             ("Depth",               "m",    "{:.2f}", ("col", "ckeo_08_a_under_water_tcp", "sbe37_d")),
-            # 核辐射计（Nuclear Radiation）：ckeo_08_a_nuclear_radiometer_tcp 当前为空表，列名待定。
-            # 待有数据后 --inspect 取列名，取消下一行注释并替换列名/单位/格式即可：
-            # ("Nuclear Radiation", "?", "{:.?f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "<列名>")),
+            # 核辐射计（Nuclear Radiation）：7 个通道 radiometer_0..6（varchar 自动转 float）
+            # 单位待确认（取决于传感器，常见为 cps 计数率 或 µSv/h 剂量率）；先不显示单位，需时再补。
+            ("Nuclear Rad Ch0", "", "{:.2f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_0")),
+            ("Nuclear Rad Ch1", "", "{:.2f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_1")),
+            ("Nuclear Rad Ch2", "", "{:.2f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_2")),
+            ("Nuclear Rad Ch3", "", "{:.2f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_3")),
+            ("Nuclear Rad Ch4", "", "{:.2f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_4")),
+            ("Nuclear Rad Ch5", "", "{:.2f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_5")),
+            ("Nuclear Rad Ch6", "", "{:.2f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_6")),
         ],
     },
 }
