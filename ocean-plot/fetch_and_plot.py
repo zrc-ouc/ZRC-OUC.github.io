@@ -11,10 +11,16 @@ fetch_and_plot.py — 海洋观测浮标(CKEO)数据定时绘图
 
 用法：
   pip install -r requirements.txt
-  python fetch_and_plot.py            # 生成 figures/ckeo_weather.png
-  python fetch_and_plot.py --inspect  # 仅打印各表列名与类型
-  python fetch_and_plot.py --sample   # 打印各表最新一行的全部原始值（排查列名/数据用）
+  python fetch_and_plot.py                      # 为每个已配置设备生成 figures/<device>_weather.png
+  python fetch_and_plot.py --inspect            # 仅打印各表列名与类型
+  python fetch_and_plot.py --sample             # 打印各表最新一行的全部原始值（排查列名/数据用）
   python fetch_and_plot.py --list-tables [--pattern ckeo_08%]  # 列出库内匹配模式的表名
+
+多设备：在 DEVICES 字典里增删设备即可。每设备含：
+  title  面板标题
+  tables 该设备涉及的表（inspect/sample 用；可只列关心的）
+  output 输出图片路径
+  variables 精确模式变量列表；为空则跳过该设备（待 --sample 确认列名后填）
 """
 
 import os
@@ -41,47 +47,68 @@ DB_CONFIG = dict(
     connect_timeout=15,
 )
 
-# --------------------------------------------------------------------------
-# 2) 要查询的表（与 MATLAB 原脚本一致）
-# --------------------------------------------------------------------------
-TABLES = [
-    "ckeo_07_a_sensor",
-    "ckeo_07_a_status",
-    "ckeo_07_a_ctd",
-    "ckeo_07_a_adcp",
-    "ckeo_07_a_imm",
-]
+OUTPUT_DIR = os.environ.get("OUTPUT_DIR", "figures")
 
 # --------------------------------------------------------------------------
-# 3) 【简单模式】展示这些表"最新一行"的全部数值列
-#    想看哪些表就列哪些；默认展示气象(sensor)与温盐(ctd)。
-# --------------------------------------------------------------------------
-SHOW_TABLES = ["ckeo_07_a_sensor", "ckeo_07_a_ctd"]
-
-# --------------------------------------------------------------------------
-# 4) 【精确模式】只展示你指定的"所选变量"（对应 MATLAB 原脚本的面板）
-#    每项: (标签, 单位, 格式, source)
+# 2) 多设备配置
+#    每设备: title / tables(涉及表) / output(图片) / variables(精确模式变量)
+#    variables 项: (标签, 单位, 格式, source)
 #      source 形式:
 #        ("col", 表名, 列名)            -> 直接取该列 (文本列会自动 float)
-#        ("wind_speed",)               -> 由 sensor.wind_1x/1y 计算 √(x²+y²)
-#        ("wind_dir",)                 -> 由 sensor.wind_1x/1y 计算风向(去向, °)
+#        ("wind_speed", 表名)          -> 由 该表.wind_1x/1y 计算 √(x²+y²)
+#        ("wind_dir", 表名)            -> 由 该表.wind_1x/1y 计算风向(去向, °)
 #    ⚠️ 列名依据 --sample 输出的真实表结构；如需增删改这里即可。
-VARIABLES = [
-    ("Wind Speed",          "m/s",  "{:.1f}", ("wind_speed",)),
-    ("Wind Direction (to)", "°",    "{:.0f}", ("wind_dir",)),
-    ("Air Temperature",     "°C",   "{:.1f}", ("col", "ckeo_07_a_sensor", "airtemp_1")),
-    ("Relative Humidity",   "%",    "{:.0f}", ("col", "ckeo_07_a_sensor", "rh_1")),
-    ("Air Pressure",        "hPa",  "{:.1f}", ("col", "ckeo_07_a_sensor", "bp_ptb210")),
-    ("Shortwave Radiation", "W/m²", "{:.0f}", ("col", "ckeo_07_a_sensor", "spp")),
-    ("Longwave Radiation",  "W/m²", "{:.0f}", ("col", "ckeo_07_a_sensor", "pir")),
-    ("Sea Surface Temp",    "°C",   "{:.2f}", ("col", "ckeo_07_a_ctd", "sbe37_t")),
-    # 注: sbe37_c 为原始电导率(S/m), 并非盐度; 若要真实盐度需按 T/C/D 做 UNESCO 计算
-    ("Sea Surface Salinity", "psu", "{:.2f}", ("col", "ckeo_07_a_ctd", "sbe37_c")),
-    ("Depth",               "m",    "{:.2f}", ("col", "ckeo_07_a_ctd", "sbe37_d")),
-]
-
-OUTPUT_DIR = os.environ.get("OUTPUT_DIR", "figures")
-OUTPUT_PATH = os.path.join(OUTPUT_DIR, "ckeo_weather.png")
+# --------------------------------------------------------------------------
+DEVICES = {
+    "ckeo_07": {
+        "title": "Current Weather at CKEO-07",
+        "tables": [
+            "ckeo_07_a_sensor",
+            "ckeo_07_a_status",
+            "ckeo_07_a_ctd",
+            "ckeo_07_a_adcp",
+            "ckeo_07_a_imm",
+        ],
+        "output": "figures/ckeo_weather.png",
+        "variables": [
+            ("Wind Speed",          "m/s",  "{:.1f}", ("wind_speed", "ckeo_07_a_sensor")),
+            ("Wind Direction (to)", "°",    "{:.0f}", ("wind_dir",   "ckeo_07_a_sensor")),
+            ("Air Temperature",     "°C",   "{:.1f}", ("col", "ckeo_07_a_sensor", "airtemp_1")),
+            ("Relative Humidity",   "%",    "{:.0f}", ("col", "ckeo_07_a_sensor", "rh_1")),
+            ("Air Pressure",        "hPa",  "{:.1f}", ("col", "ckeo_07_a_sensor", "bp_ptb210")),
+            ("Shortwave Radiation", "W/m²", "{:.0f}", ("col", "ckeo_07_a_sensor", "spp")),
+            ("Longwave Radiation",  "W/m²", "{:.0f}", ("col", "ckeo_07_a_sensor", "pir")),
+            ("Sea Surface Temp",    "°C",   "{:.2f}", ("col", "ckeo_07_a_ctd", "sbe37_t")),
+            # 注: sbe37_c 为原始电导率(S/m), 并非盐度; 若要真实盐度需按 T/C/D 做 UNESCO 计算
+            ("Sea Surface Salinity", "psu", "{:.2f}", ("col", "ckeo_07_a_ctd", "sbe37_c")),
+            ("Depth",               "m",    "{:.2f}", ("col", "ckeo_07_a_ctd", "sbe37_d")),
+        ],
+    },
+    # ---- CKEO-08：采用 _tcp 那套卫星通讯表（base 表暂不画图）----
+    "ckeo_08": {
+        "title": "Current Weather at CKEO-08",
+        "tables": [
+            "ckeo_08_sensor_tcp",
+            "ckeo_08_imm_data_tcp",
+            "ckeo_08_under_water_tcp",
+            "ckeo_08_nuclear_radiometer_tcp",
+        ],
+        "output": "figures/ckeo_08_weather.png",
+        "variables": [],  # TODO: 待 --sample 确认列名后填
+    },
+    # ---- CKEO-08-a：同上，表名带 _a ----
+    "ckeo_08_a": {
+        "title": "Current Weather at CKEO-08-a",
+        "tables": [
+            "ckeo_08_a_sensor_tcp",
+            "ckeo_08_a_imm_data_tcp",
+            "ckeo_08_a_under_water_tcp",
+            "ckeo_08_a_nuclear_radiometer_tcp",
+        ],
+        "output": "figures/ckeo_08_a_weather.png",
+        "variables": [],  # TODO: 待 --sample 确认列名后填
+    },
+}
 
 
 def get_connection():
@@ -101,12 +128,22 @@ def fetch_latest_row(table):
         conn.close()
 
 
+def all_device_tables():
+    """所有设备涉及的表（去重、保序），供 inspect/sample 遍历。"""
+    seen = []
+    for dev in DEVICES.values():
+        for t in dev["tables"]:
+            if t not in seen:
+                seen.append(t)
+    return seen
+
+
 def inspect_schema():
-    """打印每个表的列名与类型，辅助确认 VARIABLES 中的列名。"""
+    """打印每个表的列名与类型，辅助确认 variables 中的列名。"""
     conn = get_connection()
     try:
         with conn.cursor() as cur:
-            for t in TABLES:
+            for t in all_device_tables():
                 cur.execute(
                     "SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS "
                     "WHERE TABLE_SCHEMA=%s AND TABLE_NAME=%s ORDER BY ORDINAL_POSITION",
@@ -121,11 +158,11 @@ def inspect_schema():
 
 
 def sample_latest_rows():
-    """打印每张表最新一行的全部原始值（列名 = 值 [MySQL类型]），用于确定 VARIABLES。"""
+    """打印每张表最新一行的全部原始值（列名 = 值 [MySQL类型]），用于确定 variables。"""
     conn = get_connection()
     try:
         with conn.cursor() as cur:
-            for t in TABLES:
+            for t in all_device_tables():
                 cur.execute(f"SELECT * FROM `{t}` ORDER BY `time` DESC LIMIT 1")
                 cols = [d[0] for d in cur.description]
                 row = cur.fetchone()
@@ -165,15 +202,17 @@ def resolve_value(source):
     if kind == "col":
         return _get_col(source[1], source[2])
     if kind == "wind_speed":
-        x = _get_col("ckeo_07_a_sensor", "wind_1x")
-        y = _get_col("ckeo_07_a_sensor", "wind_1y")
+        tbl = source[1]
+        x = _get_col(tbl, "wind_1x")
+        y = _get_col(tbl, "wind_1y")
         if x is None or y is None:
             return None
         return math.hypot(x, y)
     if kind == "wind_dir":
         # 风向"去向": 数学角 atan2(x=东向分量, y=北向分量), 由北顺时针
-        x = _get_col("ckeo_07_a_sensor", "wind_1x")
-        y = _get_col("ckeo_07_a_sensor", "wind_1y")
+        tbl = source[1]
+        x = _get_col(tbl, "wind_1x")
+        y = _get_col(tbl, "wind_1y")
         if x is None or y is None:
             return None
         return (math.degrees(math.atan2(x, y))) % 360.0
@@ -216,13 +255,13 @@ def fmt_value(val, fmt="{:.2f}", unit=""):
         return str(val)
 
 
-def collect_values():
+def collect_values(variables, tables):
     """返回 (latest_values, update_time)。latest_values: list of (label, value_str)"""
     latest_values = []
     update_time = datetime.now(timezone.utc)
 
-    if VARIABLES:  # 精确模式
-        for label, unit, fmt, source in VARIABLES:
+    if variables:  # 精确模式
+        for label, unit, fmt, source in variables:
             if source[0] == "col":
                 # 该表的 time 列用于确定更新时间
                 df = fetch_latest_row(source[1])
@@ -233,7 +272,7 @@ def collect_values():
             latest_values.append((label, fmt_value(val, fmt, unit)))
     else:  # 简单模式：每张表最新一行的非主键列（含文本列，跳过 id 类列与 time）
         skip_prefixes = ("id",)
-        for table in SHOW_TABLES:
+        for table in tables:
             df = fetch_latest_row(table)
             tcol = [c for c in df.columns if c.lower() == "time"]
             if tcol and pd.notna(df[tcol[0]].iloc[0]):
@@ -254,10 +293,10 @@ def collect_values():
     return latest_values, update_time
 
 
-def build_panel(latest_values, update_time):
+def build_panel(latest_values, update_time, title, output_path):
     n = max(len(latest_values), 1)
     fig = plt.figure(figsize=(8, 1.0 + 0.55 * n), facecolor="white")
-    fig.text(0.5, 0.97, "Current Weather at CKEO",
+    fig.text(0.5, 0.97, title,
              ha="center", va="center", fontsize=30, fontweight="bold",
              color=(0.5, 0.25, 0.22))
     ts = update_time.strftime("%H:%M UTC on %d %b %Y")
@@ -275,9 +314,9 @@ def build_panel(latest_values, update_time):
         ax.text(0.70, y, str(value), fontsize=18, va="center", color=(0.1, 0.1, 0.1))
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    fig.savefig(OUTPUT_PATH, dpi=100, bbox_inches="tight")
+    fig.savefig(output_path, dpi=100, bbox_inches="tight")
     plt.close(fig)
-    print(f"已保存图片: {OUTPUT_PATH}  ({len(latest_values)} 个变量)")
+    print(f"已保存图片: {output_path}  ({len(latest_values)} 个变量)")
 
 
 def main():
@@ -298,8 +337,14 @@ def main():
         sample_latest_rows()
         return
 
-    latest_values, update_time = collect_values()
-    build_panel(latest_values, update_time)
+    for key, dev in DEVICES.items():
+        variables = dev["variables"]
+        tables = dev["tables"]
+        if not variables:
+            print(f"[跳过] {key}: 尚未配置 variables（待 --sample 确认列名后填）")
+            continue
+        latest_values, update_time = collect_values(variables, tables)
+        build_panel(latest_values, update_time, dev["title"], dev["output"])
 
 
 if __name__ == "__main__":
