@@ -107,6 +107,10 @@ DEVICES = {
             # 真实盐度由 practical_salinity 按 UNESCO 1983 (PSS-78) 计算（需 sbe37_t/c/d 三列）
             ("Sea Surface Salinity", "psu", "{:.1f}", ("salinity", "ckeo_08_under_water_tcp", "sbe37_t", "sbe37_c", "sbe37_d")),
             ("Depth",               "m",    "{:.1f}", ("col", "ckeo_08_under_water_tcp", "sbe37_d")),
+            # 海浪要素（波浪参数，同在 under_water 表）：有效波高 hm0 / 谱峰周期 tp / 波向 dir
+            ("Wave Height",         "m",    "{:.1f}", ("col", "ckeo_08_under_water_tcp", "hm0")),
+            ("Wave Period",         "s",    "{:.1f}", ("col", "ckeo_08_under_water_tcp", "tp")),
+            ("Wave Direction",      "°",    "{:.0f}", ("col", "ckeo_08_under_water_tcp", "dir")),
         ],
     },
     # ---- CKEO-08-a：同上，表名带 _a；额外有 nuclear_radiometer 核辐射计 ----
@@ -131,6 +135,10 @@ DEVICES = {
             ("Sea Surface Temp",    "°C",   "{:.1f}", ("col", "ckeo_08_a_under_water_tcp", "sbe37_t")),
             ("Sea Surface Salinity", "psu", "{:.1f}", ("salinity", "ckeo_08_a_under_water_tcp", "sbe37_t", "sbe37_c", "sbe37_d")),
             ("Depth",               "m",    "{:.1f}", ("col", "ckeo_08_a_under_water_tcp", "sbe37_d")),
+            # 海浪要素（波浪参数，同在 under_water 表）：有效波高 hm0 / 谱峰周期 tp / 波向 dir
+            ("Wave Height",         "m",    "{:.1f}", ("col", "ckeo_08_a_under_water_tcp", "hm0")),
+            ("Wave Period",         "s",    "{:.1f}", ("col", "ckeo_08_a_under_water_tcp", "tp")),
+            ("Wave Direction",      "°",    "{:.0f}", ("col", "ckeo_08_a_under_water_tcp", "dir")),
             # 核辐射计（Nuclear Radiation）：7 个通道 radiometer_0..6（varchar 自动转 float）
             # 单位待确认（取决于传感器，常见为 cps 计数率 或 µSv/h 剂量率）；先不显示单位，需时再补。
             ("Nuclear Rad Ch0", "", "{:.1f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_0")),
