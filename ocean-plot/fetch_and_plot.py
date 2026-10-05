@@ -74,14 +74,14 @@ DEVICES = {
             ("Wind Speed",          "m/s",  "{:.1f}", ("wind_speed", "ckeo_07_a_sensor")),
             ("Wind Direction (to)", "°",    "{:.0f}", ("wind_dir",   "ckeo_07_a_sensor")),
             ("Air Temperature",     "°C",   "{:.1f}", ("col", "ckeo_07_a_sensor", "airtemp_1")),
-            ("Relative Humidity",   "%",    "{:.0f}", ("col", "ckeo_07_a_sensor", "rh_1")),
+            ("Relative Humidity",   "%",    "{:.1f}", ("col", "ckeo_07_a_sensor", "rh_1")),
             ("Air Pressure",        "hPa",  "{:.1f}", ("col", "ckeo_07_a_sensor", "bp_ptb210")),
-            ("Shortwave Radiation", "W/m²", "{:.0f}", ("col", "ckeo_07_a_sensor", "spp")),
-            ("Longwave Radiation",  "W/m²", "{:.0f}", ("col", "ckeo_07_a_sensor", "pir")),
-            ("Sea Surface Temp",    "°C",   "{:.2f}", ("col", "ckeo_07_a_ctd", "sbe37_t")),
-            # 注: sbe37_c 为原始电导率(S/m), 并非盐度; 若要真实盐度需按 T/C/D 做 UNESCO 计算
-            ("Sea Surface Salinity", "psu", "{:.2f}", ("col", "ckeo_07_a_ctd", "sbe37_c")),
-            ("Depth",               "m",    "{:.2f}", ("col", "ckeo_07_a_ctd", "sbe37_d")),
+            ("Shortwave Radiation", "W/m²", "{:.1f}", ("col", "ckeo_07_a_sensor", "spp")),
+            ("Longwave Radiation",  "W/m²", "{:.1f}", ("col", "ckeo_07_a_sensor", "pir")),
+            ("Sea Surface Temp",    "°C",   "{:.1f}", ("col", "ckeo_07_a_ctd", "sbe37_t")),
+            # 真实盐度由 practical_salinity 按 UNESCO 1983 (PSS-78) 计算（需 sbe37_t/c/d 三列）
+            ("Sea Surface Salinity", "psu", "{:.1f}", ("salinity", "ckeo_07_a_ctd", "sbe37_t", "sbe37_c", "sbe37_d")),
+            ("Depth",               "m",    "{:.1f}", ("col", "ckeo_07_a_ctd", "sbe37_d")),
         ],
     },
     # ---- CKEO-08：采用 _tcp 那套卫星通讯表；注意本设备无 nuclear_radiometer 表 ----
@@ -98,15 +98,15 @@ DEVICES = {
             ("Wind Speed",          "m/s",  "{:.1f}", ("col", "ckeo_08_sensor_tcp", "wind_1s")),
             ("Wind Direction",      "°",    "{:.0f}", ("col", "ckeo_08_sensor_tcp", "wind_1d")),
             ("Air Temperature",     "°C",   "{:.1f}", ("col", "ckeo_08_sensor_tcp", "airtemp_1")),
-            ("Relative Humidity",   "%",    "{:.0f}", ("col", "ckeo_08_sensor_tcp", "rh_1")),
+            ("Relative Humidity",   "%",    "{:.1f}", ("col", "ckeo_08_sensor_tcp", "rh_1")),
             ("Air Pressure",        "hPa",  "{:.1f}", ("col", "ckeo_08_sensor_tcp", "bp_ptb210")),
-            ("Shortwave Radiation", "W/m²", "{:.0f}", ("col", "ckeo_08_sensor_tcp", "spp")),
-            ("Longwave Radiation",  "W/m²", "{:.0f}", ("col", "ckeo_08_sensor_tcp", "pir")),
+            ("Shortwave Radiation", "W/m²", "{:.1f}", ("col", "ckeo_08_sensor_tcp", "spp")),
+            ("Longwave Radiation",  "W/m²", "{:.1f}", ("col", "ckeo_08_sensor_tcp", "pir")),
             # under_water 表合并了 CKEO-07 的 ctd+adcp，温盐深在 sbe37_* 列
-            ("Sea Surface Temp",    "°C",   "{:.2f}", ("col", "ckeo_08_under_water_tcp", "sbe37_t")),
-            # 注: sbe37_c 为原始电导率(S/m), 并非盐度; 若要真实盐度需按 T/C/D 做 UNESCO 计算
-            ("Sea Surface Salinity", "psu", "{:.2f}", ("col", "ckeo_08_under_water_tcp", "sbe37_c")),
-            ("Depth",               "m",    "{:.2f}", ("col", "ckeo_08_under_water_tcp", "sbe37_d")),
+            ("Sea Surface Temp",    "°C",   "{:.1f}", ("col", "ckeo_08_under_water_tcp", "sbe37_t")),
+            # 真实盐度由 practical_salinity 按 UNESCO 1983 (PSS-78) 计算（需 sbe37_t/c/d 三列）
+            ("Sea Surface Salinity", "psu", "{:.1f}", ("salinity", "ckeo_08_under_water_tcp", "sbe37_t", "sbe37_c", "sbe37_d")),
+            ("Depth",               "m",    "{:.1f}", ("col", "ckeo_08_under_water_tcp", "sbe37_d")),
         ],
     },
     # ---- CKEO-08-a：同上，表名带 _a；额外有 nuclear_radiometer 核辐射计 ----
@@ -124,22 +124,22 @@ DEVICES = {
             ("Wind Speed",          "m/s",  "{:.1f}", ("col", "ckeo_08_a_sensor_tcp", "wind_1s")),
             ("Wind Direction",      "°",    "{:.0f}", ("col", "ckeo_08_a_sensor_tcp", "wind_1d")),
             ("Air Temperature",     "°C",   "{:.1f}", ("col", "ckeo_08_a_sensor_tcp", "airtemp_1")),
-            ("Relative Humidity",   "%",    "{:.0f}", ("col", "ckeo_08_a_sensor_tcp", "rh_1")),
+            ("Relative Humidity",   "%",    "{:.1f}", ("col", "ckeo_08_a_sensor_tcp", "rh_1")),
             ("Air Pressure",        "hPa",  "{:.1f}", ("col", "ckeo_08_a_sensor_tcp", "bp_ptb210")),
-            ("Shortwave Radiation", "W/m²", "{:.0f}", ("col", "ckeo_08_a_sensor_tcp", "spp")),
-            ("Longwave Radiation",  "W/m²", "{:.0f}", ("col", "ckeo_08_a_sensor_tcp", "pir")),
-            ("Sea Surface Temp",    "°C",   "{:.2f}", ("col", "ckeo_08_a_under_water_tcp", "sbe37_t")),
-            ("Sea Surface Salinity", "psu", "{:.2f}", ("col", "ckeo_08_a_under_water_tcp", "sbe37_c")),
-            ("Depth",               "m",    "{:.2f}", ("col", "ckeo_08_a_under_water_tcp", "sbe37_d")),
+            ("Shortwave Radiation", "W/m²", "{:.1f}", ("col", "ckeo_08_a_sensor_tcp", "spp")),
+            ("Longwave Radiation",  "W/m²", "{:.1f}", ("col", "ckeo_08_a_sensor_tcp", "pir")),
+            ("Sea Surface Temp",    "°C",   "{:.1f}", ("col", "ckeo_08_a_under_water_tcp", "sbe37_t")),
+            ("Sea Surface Salinity", "psu", "{:.1f}", ("salinity", "ckeo_08_a_under_water_tcp", "sbe37_t", "sbe37_c", "sbe37_d")),
+            ("Depth",               "m",    "{:.1f}", ("col", "ckeo_08_a_under_water_tcp", "sbe37_d")),
             # 核辐射计（Nuclear Radiation）：7 个通道 radiometer_0..6（varchar 自动转 float）
             # 单位待确认（取决于传感器，常见为 cps 计数率 或 µSv/h 剂量率）；先不显示单位，需时再补。
-            ("Nuclear Rad Ch0", "", "{:.2f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_0")),
-            ("Nuclear Rad Ch1", "", "{:.2f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_1")),
-            ("Nuclear Rad Ch2", "", "{:.2f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_2")),
-            ("Nuclear Rad Ch3", "", "{:.2f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_3")),
-            ("Nuclear Rad Ch4", "", "{:.2f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_4")),
-            ("Nuclear Rad Ch5", "", "{:.2f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_5")),
-            ("Nuclear Rad Ch6", "", "{:.2f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_6")),
+            ("Nuclear Rad Ch0", "", "{:.1f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_0")),
+            ("Nuclear Rad Ch1", "", "{:.1f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_1")),
+            ("Nuclear Rad Ch2", "", "{:.1f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_2")),
+            ("Nuclear Rad Ch3", "", "{:.1f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_3")),
+            ("Nuclear Rad Ch4", "", "{:.1f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_4")),
+            ("Nuclear Rad Ch5", "", "{:.1f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_5")),
+            ("Nuclear Rad Ch6", "", "{:.1f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_6")),
         ],
     },
 }
@@ -239,6 +239,90 @@ def _get_col(table, column, cache=None):
     return float(val)
 
 
+def gsw_hill_ratio_at_sp2(t):
+    """gsw_Hill_ratio_at_SP2 (TEOS-10, v3.05)：在 Practical Salinity=2 处求 Hill 比值。
+    忠实移植 MATLAB 官方源码：用 9 阶嵌套多项式给 Rtx 初值，再做一次修正 Newton-Raphson
+    (McDougall & Wotherspoon 2013)，最后按 Hill et al. (1986) 公式取 ratio = 2 / SP_Hill_raw。
+    t 单位 °C (ITS-90)。"""
+    a0 = 0.0080;   a1 = -0.1692;   a2 = 25.3851;  a3 = 14.0941;  a4 = -7.0261;  a5 = 2.7081
+    b0 = 0.0005;   b1 = -0.0056;   b2 = -0.0066;  b3 = -0.0375;  b4 = 0.0636;   b5 = -0.0144
+    g0 = 2.641463563366498e-1
+    g1 = 2.007883247811176e-4
+    g2 = -4.107694432853053e-6
+    g3 = 8.401670882091225e-8
+    g4 = -1.711392021989210e-9
+    g5 = 3.374193893377380e-11
+    g6 = -5.923731174730784e-13
+    g7 = 8.057771569962299e-15
+    g8 = -7.054313817447962e-17
+    g9 = 2.859992717347235e-19
+    k = 0.0162
+    SP2 = 2.0
+    t68 = t * 1.00024
+    ft68 = (t68 - 15.0) / (1.0 + k * (t68 - 15.0))
+    # 初始估计 Rtx0（9 阶嵌套多项式）
+    Rtx0 = g0 + t68 * (g1 + t68 * (g2 + t68 * (g3 + t68 * (g4 + t68 * (g5 +
+           t68 * (g6 + t68 * (g7 + t68 * (g8 + t68 * g9))))))))
+    dSP_dRtx = a1 + (2 * a2 + (3 * a3 + (4 * a4 + 5 * a5 * Rtx0) * Rtx0) * Rtx0) * Rtx0 + \
+               ft68 * (b1 + (2 * b2 + (3 * b3 + (4 * b4 + 5 * b5 * Rtx0) * Rtx0) * Rtx0) * Rtx0)
+    SP_est = a0 + (a1 + (a2 + (a3 + (a4 + a5 * Rtx0) * Rtx0) * Rtx0) * Rtx0) * Rtx0 + \
+             ft68 * (b0 + (b1 + (b2 + (b3 + (b4 + b5 * Rtx0) * Rtx0) * Rtx0) * Rtx0) * Rtx0)
+    Rtx = Rtx0 - (SP_est - SP2) / dSP_dRtx
+    Rtxm = 0.5 * (Rtx + Rtx0)
+    dSP_dRtx = a1 + (2 * a2 + (3 * a3 + (4 * a4 + 5 * a5 * Rtxm) * Rtxm) * Rtxm) * Rtxm + \
+               ft68 * (b1 + (2 * b2 + (3 * b3 + (4 * b4 + 5 * b5 * Rtxm) * Rtxm) * Rtxm) * Rtxm)
+    Rtx = Rtx0 - (SP_est - SP2) / dSP_dRtx
+    x = 400.0 * Rtx * Rtx
+    sqrty = 10.0 * Rtx
+    part1 = 1.0 + x * (1.5 + x)
+    part2 = 1.0 + sqrty * (1.0 + sqrty * (1.0 + sqrty))
+    SP_Hill_raw_at_SP2 = SP2 - a0 / part1 - b0 * ft68 / part2
+    return 2.0 / SP_Hill_raw_at_SP2
+
+
+def practical_salinity(cond_ms_cm, temp_c, depth_m):
+    """忠实移植 MATLAB gsw_SP_from_C (TEOS-10 / PSS-78)。
+    输入均从数据库原值直送，前后不做任何数值缩放：
+      cond_ms_cm : sbe37_c，单位 mS/cm（gsw 要求的输入单位）
+      temp_c     : sbe37_t，单位 °C (ITS-90)
+      depth_m    : sbe37_d，单位 m（近似作压力 dbar，浅水浮标足够）
+    返回 PSS-78 实用盐度（无量纲）。"""
+    if cond_ms_cm is None or temp_c is None or depth_m is None:
+        return None
+    a0 = 0.0080;   a1 = -0.1692;   a2 = 25.3851;  a3 = 14.0941;  a4 = -7.0261;  a5 = 2.7081
+    b0 = 0.0005;   b1 = -0.0056;   b2 = -0.0066;  b3 = -0.0375;  b4 = 0.0636;   b5 = -0.0144
+    c0 = 0.6766097; c1 = 2.00564e-2; c2 = 1.104259e-4; c3 = -6.9698e-7; c4 = 1.0031e-9
+    d1 = 3.426e-2;  d2 = 4.464e-4;   d3 = 4.215e-1;    d4 = -3.107e-3
+    e1 = 2.070e-5;  e2 = -6.370e-10; e3 = 3.989e-15
+    k = 0.0162
+
+    t68 = temp_c * 1.00024
+    ft68 = (t68 - 15.0) / (1.0 + k * (t68 - 15.0))
+    # 无量纲电导率比 R = C / C(35,15,0)；参考电导率 42.9140 mS/cm (Culkin & Smith 1980)
+    R = 0.023302418791070513 * cond_ms_cm          # 1 / 42.9140
+    rt_lc = c0 + (c1 + (c2 + (c3 + c4 * t68) * t68) * t68) * t68
+    Rp = 1.0 + (depth_m * (e1 + e2 * depth_m + e3 * depth_m * depth_m)) / \
+         (1.0 + d1 * t68 + d2 * t68 * t68 + (d3 + d4 * t68) * R)
+    Rt = R / (Rp * rt_lc)
+    if Rt != Rt or Rt < 0:            # NaN 或负值 -> 无效
+        return None
+    Rtx = math.sqrt(Rt)
+    SP = a0 + (a1 + (a2 + (a3 + (a4 + a5 * Rtx) * Rtx) * Rtx) * Rtx) * Rtx + \
+         ft68 * (b0 + (b1 + (b2 + (b3 + (b4 + b5 * Rtx) * Rtx) * Rtx) * Rtx) * Rtx)
+    # SP < 2 时改用 Hill et al. (1986) 修正（与 PSS-78 在 SP=2 处严格衔接）；真海水不会触发
+    if SP < 2.0:
+        Hill_ratio = gsw_hill_ratio_at_sp2(temp_c)
+        x = 400.0 * Rt
+        sqrty = 10.0 * Rtx
+        part1 = 1.0 + x * (1.5 + x)
+        part2 = 1.0 + sqrty * (1.0 + sqrty * (1.0 + sqrty))
+        SP_Hill_raw = SP - a0 / part1 - b0 * ft68 / part2
+        SP = Hill_ratio * SP_Hill_raw
+    if SP < 0:
+        SP = 0.0
+    return float(SP)
+
+
 def resolve_value(source, cache=None):
     """根据 source 描述解析出一个数值（直接列 或 计算型变量）。cache 透传给 _get_col。"""
     kind = source[0]
@@ -259,6 +343,12 @@ def resolve_value(source, cache=None):
         if x is None or y is None:
             return None
         return (math.degrees(math.atan2(x, y))) % 360.0
+    if kind == "salinity":
+        # source = ("salinity", table, t_col, c_col, d_col)
+        tbl, tcol, ccol, dcol = source[1], source[2], source[3], source[4]
+        return practical_salinity(_get_col(tbl, ccol, cache),
+                                  _get_col(tbl, tcol, cache),
+                                  _get_col(tbl, dcol, cache))
     return None
 
 
