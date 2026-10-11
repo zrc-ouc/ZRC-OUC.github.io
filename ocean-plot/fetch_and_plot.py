@@ -4,7 +4,8 @@ fetch_and_plot.py — 海洋观测浮标(CKEO)数据定时绘图
 =================================================
 把原 MATLAB 脚本（从 MySQL 取海洋观测数据、画"所选变量最新值"面板图）
 改写为可在 GitHub Actions 定时运行的 Python 版本。
-已忽略原脚本中的数据质控(QC)与剖面/流场插值等复杂处理。
+CKEO-08-a 面板复现 AutoPlotCKEO_A.m 的 Fig0 变量、质控、回退和排版；
+其它设备仍使用各自配置的简化最新值面板。
 
 数据库凭据通过环境变量注入（GitHub Actions 中用 secrets）：
   DB_HOST / DB_PORT / DB_USER / DB_PASSWORD / DB_NAME
@@ -48,6 +49,7 @@ DB_CONFIG = dict(
 )
 
 OUTPUT_DIR = os.environ.get("OUTPUT_DIR", "figures")
+CKEO_A_DEPLOYMENT_TIME = "2026-09-28 22:00:00"
 
 # --------------------------------------------------------------------------
 # 2) 多设备配置
@@ -57,6 +59,7 @@ OUTPUT_DIR = os.environ.get("OUTPUT_DIR", "figures")
 #        ("col", 表名, 列名)            -> 直接取该列 (文本列会自动 float)
 #        ("wind_speed", 表名)          -> 由 该表.wind_1x/1y 计算 √(x²+y²)
 #        ("wind_dir", 表名)            -> 由 该表.wind_1x/1y 计算风向(去向, °)
+#        ("matlab_priority", 候选列表) -> CKEO-A 按列序号执行 MATLAB QC 和传感器回退
 #    ⚠️ 列名依据 --sample 输出的真实表结构；如需增删改这里即可。
 # --------------------------------------------------------------------------
 DEVICES = {
@@ -112,10 +115,12 @@ DEVICES = {
             ("Wave Direction",      "°",    "{:.0f}", ("col", "ckeo_08_under_water_tcp", "dir")),
         ],
     },
-    # ---- CKEO-08-a：同上，表名带 _a；额外有 nuclear_radiometer 核辐射计 ----
-    #   核辐射计表 ckeo_08_a_nuclear_radiometer_tcp 含 7 个通道 radiometer_0..6（varchar，自动转 float）。
+    # ---- CKEO-08-a：Weather panel follows AutoPlotCKEO_A.m 的首张天气面板 ----
+    # 每个候选项为 (表名, SQL列号, QA模式, 最小值, 最大值, maxwidth, 是否将负值截为0)。
+    # MATLAB update 脚本先选 SQL 表列 6:31，再将时间放在 output 第1列；此处按同一
+    # SQL 原始列号（1-based）取值，避免猜测或依赖数据库字段别名。
     "ckeo_08_a": {
-        "title": "Current Weather at CKEO-08-a",
+        "title": "Current Weather at CKEO-A",
         "tables": [
             "ckeo_08_a_sensor_tcp",
             "ckeo_08_a_imm_data_tcp",
@@ -124,29 +129,16 @@ DEVICES = {
         ],
         "output": "figures/ckeo_08_a_weather.png",
         "variables": [
-            ("Wind Speed",          "m/s",  "{:.1f}", ("col", "ckeo_08_a_sensor_tcp", "wind_1s")),
-            ("Wind Direction",      "°",    "{:.0f}", ("col", "ckeo_08_a_sensor_tcp", "wind_1d")),
-            ("Air Temperature",     "°C",   "{:.1f}", ("col", "ckeo_08_a_sensor_tcp", "airtemp_1")),
-            ("Relative Humidity",   "%",    "{:.1f}", ("col", "ckeo_08_a_sensor_tcp", "rh_1")),
-            ("Air Pressure",        "hPa",  "{:.1f}", ("col", "ckeo_08_a_sensor_tcp", "bp_ptb210")),
-            ("Shortwave Radiation", "W/m²", "{:.1f}", ("col", "ckeo_08_a_sensor_tcp", "spp")),
-            ("Longwave Radiation",  "W/m²", "{:.1f}", ("col", "ckeo_08_a_sensor_tcp", "pir")),
-            ("Sea Surface Temp",    "°C",   "{:.1f}", ("col", "ckeo_08_a_under_water_tcp", "sbe37_t")),
-            ("Sea Surface Salinity", "psu", "{:.1f}", ("salinity", "ckeo_08_a_under_water_tcp", "sbe37_t", "sbe37_c", "sbe37_d")),
-            # 海浪要素（波浪参数，同在 under_water 表）：有效波高 hm0 / 谱峰周期 tp / 波向 dir
-            ("Wave Height",         "m",    "{:.1f}", ("col", "ckeo_08_a_under_water_tcp", "hm0")),
-            ("Wave Period",         "s",    "{:.1f}", ("col", "ckeo_08_a_under_water_tcp", "tp")),
-            ("Wave Direction",      "°",    "{:.0f}", ("col", "ckeo_08_a_under_water_tcp", "dir")),
-            # 核辐射计（Nuclear Radiation）：7 个通道 radiometer_0..6（varchar 自动转 float）
-            # 单位待确认（取决于传感器，常见为 cps 计数率 或 µSv/h 剂量率）；先不显示单位，需时再补。
-            ("Nuclear Rad Ch0", "", "{:.1f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_0")),
-            ("Nuclear Rad Ch1", "", "{:.1f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_1")),
-            ("Nuclear Rad Ch2", "", "{:.1f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_2")),
-            ("Nuclear Rad Ch3", "", "{:.1f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_3")),
-            ("Nuclear Rad Ch4", "", "{:.1f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_4")),
-            ("Nuclear Rad Ch5", "", "{:.1f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_5")),
-            ("Nuclear Rad Ch6", "", "{:.1f}", ("col", "ckeo_08_a_nuclear_radiometer_tcp", "radiometer_6")),
+            ("Wind Speed",          "m/s",  "{:.1f}", ("matlab_priority", [("ckeo_08_a_sensor_tcp", 11, 1, 1e-6, 40, 12, False), ("ckeo_08_a_sensor_tcp", 21, 1, 1e-6, 40, 12, False)])),
+            ("Wind Direction (to)", "°",    "{:.0f}", ("matlab_priority", [("ckeo_08_a_sensor_tcp", 10, -1, 1e-6, 360, 24, False), ("ckeo_08_a_sensor_tcp", 20, -1, 1e-6, 360, 24, False)])),
+            ("Air Temperature",     "°C",   "{:.1f}", ("matlab_priority", [("ckeo_08_a_sensor_tcp", 14, 1, -20, 40, 24, False), ("ckeo_08_a_sensor_tcp", 24, 1, 1, 40, 6, False), ("ckeo_08_a_sensor_tcp", 26, 1, -20, 40, 24, False)])),
+            ("Relative Humidity",   "%",    "{:.0f}", ("matlab_priority", [("ckeo_08_a_sensor_tcp", 13, 1, 20, 100, 24, False), ("ckeo_08_a_sensor_tcp", 23, 1, 20, 100, 24, False), ("ckeo_08_a_sensor_tcp", 27, 1, 20, 100, 24, False)])),
+            ("Barometric Pressure", "hPa",  "{:.1f}", ("matlab_priority", [("ckeo_08_a_sensor_tcp", 12, 1, 800, 1100, 24, False), ("ckeo_08_a_sensor_tcp", 22, 1, 800, 1100, 24, False), ("ckeo_08_a_sensor_tcp", 28, 1, 800, 1100, 7, False)])),
+            ("Solar Radiation",     "W/m²", "{:.0f}", ("matlab_priority", [("ckeo_08_a_sensor_tcp", 30, -1, 0, 2000, 24, True)])),
+            ("Infrared Radiation",  "W/m²", "{:.0f}", ("matlab_priority", [("ckeo_08_a_sensor_tcp", 31, 1, 100, 600, 24, False)])),
+            ("Sea Surface Temperature", "°C", "{:.1f}", ("matlab_priority", [("ckeo_08_a_under_water_tcp", 13, 1, 1e-6, 40, 7, False)])),
         ],
+        "matlab_layout": True,
     },
 }
 
@@ -166,6 +158,40 @@ def fetch_latest_row(table):
         if row is None:
             return pd.DataFrame(columns=cols)
         return pd.DataFrame([row], columns=cols)
+    finally:
+        conn.close()
+
+
+def fetch_rows_since(table, start_time, step_minutes):
+    """Fetch a table and reproduce remove_dup.m slot alignment and gap rows."""
+    conn = get_connection()
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                f"SELECT * FROM `{table}` WHERE `time` >= %s ORDER BY `time` ASC",
+                (start_time,),
+            )
+            cols = [d[0] for d in cur.description]
+            rows = cur.fetchall()
+        df = pd.DataFrame(rows, columns=cols)
+        time_col = next((c for c in df.columns if c.lower() == "time"), None)
+        if not time_col or df.empty:
+            return df
+
+        times = pd.to_datetime(df[time_col])
+        # MATLAB datenum's zero point and Unix epoch differ by a whole number
+        # of 10-minute and 60-minute slots, so epoch minutes produce identical slots.
+        minutes = (times - pd.Timestamp("1970-01-01")).dt.total_seconds() / 60.0
+        df["_matlab_slot"] = [math.floor(m / step_minutes + 0.5) for m in minutes]
+        df = df.drop_duplicates(subset=["_matlab_slot"], keep="first")
+        df = df.sort_values("_matlab_slot").set_index("_matlab_slot")
+        full_slots = range(int(df.index.min()), int(df.index.max()) + 1)
+        df = df.reindex(full_slots)
+        df[time_col] = (
+            pd.Timestamp("1970-01-01")
+            + pd.to_timedelta(list(full_slots), unit="m") * step_minutes
+        )
+        return df.reset_index(drop=True)
     finally:
         conn.close()
 
@@ -243,6 +269,22 @@ def _get_col(table, column, cache=None):
         except ValueError:
             return None
     return float(val)
+
+
+def _get_matlab_series(table, one_based_index, cache=None):
+    """Read a 1-based SQL column history, using CKEO_A_update.m's time window."""
+    step_minutes = 10 if table == "ckeo_08_a_sensor_tcp" else 60
+    if cache is None:
+        df = fetch_rows_since(table, CKEO_A_DEPLOYMENT_TIME, step_minutes)
+    else:
+        df = cache.get(table)
+        if df is None:
+            df = fetch_rows_since(table, CKEO_A_DEPLOYMENT_TIME, step_minutes)
+            cache[table] = df
+    idx = one_based_index - 1
+    if df.empty or idx < 0 or idx >= len(df.columns):
+        return pd.Series(dtype=float)
+    return pd.to_numeric(df.iloc[:, idx].astype(str).str.strip("'\""), errors="coerce")
 
 
 def gsw_hill_ratio_at_sp2(t):
@@ -329,6 +371,47 @@ def practical_salinity(cond_ms_cm, temp_c, depth_m):
     return float(SP)
 
 
+def matlab_quality_assurance(values, mode, minimum=None, maximum=None,
+                             maxwidth=24, window=12, clip_negative=False):
+    """Port Quality_Assurance.m's range, movmedian, fill, and maxwidth steps.
+
+    MATLAB's default movmedian outlier threshold is three scaled MADs. The
+    centred rolling window and linear interpolation mirror its default
+    isoutlier/fillmissing behavior for the buoy series used by Fig0.
+    """
+    s = pd.to_numeric(pd.Series(values), errors="coerce").astype(float)
+    if clip_negative:
+        s.loc[s < 0] = 0.0
+    if minimum is not None:
+        s.loc[s < minimum] = float("nan")
+    if maximum is not None:
+        s.loc[s > maximum] = float("nan")
+    if mode == 0:
+        s.loc[s == 0] = float("nan")
+    elif mode == 1:
+        rolling = s.rolling(window=window, center=True, min_periods=1)
+        med = rolling.median()
+        scaled_mad = rolling.apply(
+            lambda x: 1.4826 * float((x - x.median()).abs().median()), raw=False
+        )
+        outlier = (s - med).abs() > (3.0 * scaled_mad)
+        s.loc[outlier.fillna(False)] = float("nan")
+
+    missing = s.isna()
+    out = s.interpolate(method="linear", limit_area="inside")
+    filled = missing & out.notna()
+    # Quality_Assurance.m reverts every interpolated run of maxwidth or more.
+    run_start = None
+    for i, is_filled in enumerate(filled.to_numpy().tolist() + [False]):
+        if is_filled and run_start is None:
+            run_start = i
+        elif not is_filled and run_start is not None:
+            if i - run_start >= maxwidth:
+                out.iloc[run_start:i] = float("nan")
+            run_start = None
+    return out
+
+
 def resolve_value(source, cache=None):
     """根据 source 描述解析出一个数值（直接列 或 计算型变量）。cache 透传给 _get_col。"""
     kind = source[0]
@@ -355,6 +438,21 @@ def resolve_value(source, cache=None):
         return practical_salinity(_get_col(tbl, ccol, cache),
                                   _get_col(tbl, tcol, cache),
                                   _get_col(tbl, dcol, cache))
+    if kind == "matlab_priority":
+        # Match Fig0's sequence: quality-check each sensor, then use the first
+        # acceptable value (GMX1 -> GMX2 -> HMP/PTB210 as applicable).
+        for table, column_index, mode, minimum, maximum, maxwidth, clip_negative in source[1]:
+            raw = _get_matlab_series(table, column_index, cache)
+            if raw.empty:
+                continue
+            checked = matlab_quality_assurance(
+                raw, mode, minimum, maximum, maxwidth=maxwidth,
+                window=12, clip_negative=clip_negative,
+            )
+            val = checked.iloc[-1]
+            if pd.notna(val):
+                return float(val)
+        return None
     return None
 
 
@@ -387,7 +485,7 @@ def _to_utc(dt):
 
 def fmt_value(val, fmt="{:.2f}", unit=""):
     if val is None or (isinstance(val, float) and pd.isna(val)):
-        return "---"
+        return "---" + (f" {unit}" if unit else "")
     try:
         return fmt.format(val) + (f" {unit}" if unit else "")
     except (ValueError, TypeError):
@@ -464,6 +562,43 @@ def build_panel(latest_values, update_time, title, output_path):
     print(f"已保存图片: {output_path}  ({len(latest_values)} 个变量)")
 
 
+def build_matlab_weather_panel(latest_values, update_time, title, output_path):
+    """Render the 8-row CKEO-A Fig0 weather card in MATLAB's 800x1000 layout."""
+    fig = plt.figure(figsize=(8, 10), dpi=100, facecolor="white")
+    title_ax = fig.add_axes([0, 0.85, 1, 0.15], facecolor="none")
+    title_ax.axis("off")
+    content_ax = fig.add_axes([0.1, 0.1, 0.8, 0.7], facecolor=(74 / 255, 160 / 255, 221 / 255))
+    content_ax.set_xlim(0, 1)
+    content_ax.set_ylim(0, 1)
+    content_ax.set_xticks([])
+    content_ax.set_yticks([])
+    for spine in content_ax.spines.values():
+        spine.set_visible(False)
+
+    title_color = (0.5, 0.25, 0.22)
+    timestamp_color = (0.85, 0.35, 0.13)
+    text_color = (0.1, 0.1, 0.1)
+    title_ax.text(0.5, 0.4, title, fontsize=35, fontweight="bold", color=title_color,
+                  ha="center", va="center")
+    ts = update_time.strftime("At %H:%M UTC on %d %b %Y")
+    title_ax.text(0.5, 0.05, ts, fontsize=20, fontweight="bold", color=timestamp_color,
+                  ha="center", va="center")
+
+    n = len(latest_values)
+    line_height = 0.9 / n
+    for i, (label, value) in enumerate(latest_values):
+        y = 0.95 - (i + 0.5) * line_height
+        content_ax.text(0.05, y, label, fontsize=25, color=text_color,
+                        fontname="Liberation Serif", va="center")
+        content_ax.text(0.72, y, value, fontsize=25, color=text_color,
+                        fontname="Liberation Serif", va="center")
+
+    os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
+    fig.savefig(output_path, dpi=100)
+    plt.close(fig)
+    print(f"已保存图片: {output_path}  ({len(latest_values)} 个变量)")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--inspect", action="store_true", help="仅打印各表列名与类型后退出")
@@ -489,7 +624,10 @@ def main():
             print(f"[跳过] {key}: 尚未配置 variables（待 --sample 确认列名后填）")
             continue
         latest_values, update_time = collect_values(variables, tables)
-        build_panel(latest_values, update_time, dev["title"], dev["output"])
+        if dev.get("matlab_layout"):
+            build_matlab_weather_panel(latest_values, update_time, dev["title"], dev["output"])
+        else:
+            build_panel(latest_values, update_time, dev["title"], dev["output"])
 
 
 if __name__ == "__main__":
