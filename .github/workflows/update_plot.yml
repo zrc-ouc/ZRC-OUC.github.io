@@ -3,7 +3,7 @@ name: Update Ocean Plot
 on:
   schedule:
     # 每小时整点运行（UTC 时区）；按需修改，参见 https://crontab.guru/
-    - cron: "17 * * * *"
+    - cron: "7,17,27,37,47,57 * * * *"
   workflow_dispatch:
     inputs:
       mode:
