@@ -2,12 +2,12 @@ name: Update Ocean Plot
 
 on:
   schedule:
-    # 每小时整点运行（UTC 时区）；按需修改，参见 https://crontab.guru/
+    # 每小时第 7、17、27、37、47、57 分钟运行（UTC）；避开整点高峰
     - cron: "7,17,27,37,47,57 * * * *"
   workflow_dispatch:
     inputs:
       mode:
-        description: "运行模式：plot=正常出图; inspect=打印表结构; sample=打印最新一行原始数据(排查列名)"
+        description: "运行模式：plot=正常出图; inspect=打印表结构; sample=打印最新一行原始数据(排查列名); list=列出表名"
         required: false
         default: "plot"
         type: choice
@@ -24,7 +24,7 @@ jobs:
     defaults:
       run:
         working-directory: ocean-plot
-    # 避免并发运行导致同时写图冲突
+    # 防止同一轮任务同时写图
     concurrency:
       group: ocean-plot
       cancel-in-progress: false
@@ -59,14 +59,27 @@ jobs:
           fi
           echo "运行模式: $MODE"
           case "$MODE" in
-            inspect) python fetch_and_plot.py --inspect ;;
-            sample)  python fetch_and_plot.py --sample ;;
-            list)    python fetch_and_plot.py --list-tables ;;
-            *)       python fetch_and_plot.py ;;
+            inspect)
+              python fetch_and_plot_ckeo.py --inspect
+              python fetch_and_plot_ckeo_a.py --inspect
+              ;;
+            sample)
+              python fetch_and_plot_ckeo.py --sample
+              python fetch_and_plot_ckeo_a.py --sample
+              ;;
+            list)
+              python fetch_and_plot_ckeo.py --list-tables
+              python fetch_and_plot_ckeo_a.py --list-tables
+              ;;
+            *)
+              # 同一 job 内按顺序执行：先 CKEO，再 CKEO-A
+              python fetch_and_plot_ckeo.py
+              python fetch_and_plot_ckeo_a.py
+              ;;
           esac
 
-      - name: Commit updated plot
+      - name: Commit updated plots
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: update ocean weather plot"
+          commit_message: "chore: update ocean weather plots"
           file_pattern: "ocean-plot/figures/*.png"
