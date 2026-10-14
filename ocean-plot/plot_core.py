@@ -932,6 +932,9 @@ def _draw_adcp(underwater):
         axes.append(ax)
     axes[0].tick_params(labelbottom=False)
     times = _utc_plot_times(underwater)
+    # _utc_plot_times returns a Series; contourf expects datetime values, while
+    # to_pydatetime() is a DatetimeIndex method (not available on Series).
+    plot_times = pd.DatetimeIndex(pd.to_datetime(times)).to_pydatetime()
     # MATLAB ADCP values occupy WATER columns 13:36; convert mm/s to m/s.
     u_sql = list(range(16, 39, 2))
     v_sql = list(range(17, 40, 2))
@@ -949,14 +952,14 @@ def _draw_adcp(underwater):
     cmap = ListedColormap(MATLAB_DIVERGING_20)
     mappable = None
     if len(times) >= 2 and np.isfinite(u_plot).any():
-        mappable = axes[0].contourf(times.to_pydatetime(), depth, u_plot, levels=levels,
+        mappable = axes[0].contourf(plot_times, depth, u_plot, levels=levels,
                                     cmap=cmap, vmin=-1, vmax=1)
     else:
         axes[0].text(0.5, 0.5, "Insufficient valid ADCP U data", transform=axes[0].transAxes,
                      ha="center", va="center", color="0.35")
     _annotate_axis(fig, axes[0], "U")
     if len(times) >= 2 and np.isfinite(v_plot).any():
-        axes[1].contourf(times.to_pydatetime(), depth, v_plot, levels=levels,
+        axes[1].contourf(plot_times, depth, v_plot, levels=levels,
                          cmap=cmap, vmin=-1, vmax=1)
     else:
         axes[1].text(0.5, 0.5, "Insufficient valid ADCP V data", transform=axes[1].transAxes,
