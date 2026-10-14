@@ -680,7 +680,9 @@ def _make_time_axes(fig, height_px, row_count, row_height_px=150, blank_px=40):
         bottom = 1.0 - ((row_height_px + blank_px) * row) / height_px
         ax = fig.add_axes([0.1, bottom, 0.85, row_height_px / height_px])
         ax.grid(True)
-        ax.box(True)
+        # Matplotlib's Axes has no box() method; keep the full frame visible
+        # to match MATLAB's `box on`.
+        ax.set_frame_on(True)
         ax.tick_params(direction="out", labelsize=10)
         ax.set_xlim(*_chart_xlim())
         ax.xaxis.set_major_locator(mdates.AutoDateLocator(minticks=3, maxticks=7))
