@@ -794,16 +794,19 @@ def _imm_values(imm_frame):
     rows = []
     for payload in imm_frame[data_col]:
         if payload is None or pd.isna(payload):
-            rows.append([])
+            rows.append(np.full(37, np.nan, dtype=float))
             continue
         if isinstance(payload, bytes):
             payload = payload.decode("utf-8", errors="replace")
         text = str(payload).strip().strip("'\"")
-        row = pd.to_numeric(pd.Series(text.split(",")), errors="coerce").to_list()
-        rows.append(row[:37] + [np.nan] * max(0, 37 - len(row)))
+        values = pd.to_numeric(pd.Series(text.split(",")), errors="coerce").to_numpy(dtype=float)
+        # MATLAB update truncates payloads to 37 columns and pads short rows with NaN.
+        row = np.full(37, np.nan, dtype=float)
+        row[:min(len(values), 37)] = values[:37]
+        rows.append(row)
     if not rows:
         return np.empty((0, 37), dtype=float)
-    return np.asarray(rows, dtype=float)
+    return np.vstack(rows)
 
 
 def gsw_z_from_p(pressure_dbar, latitude_deg):
