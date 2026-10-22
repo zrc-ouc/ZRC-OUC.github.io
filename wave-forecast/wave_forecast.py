@@ -184,9 +184,7 @@ def render_frame(data, index: int) -> Image.Image:
 
 def create_product(data, output_dir: Path) -> Path:
     output_dir.mkdir(parents=True, exist_ok=True)
-    run_key = data["run"].replace("-", "").replace("T", "")[:10]
-    stem = f"ecmwf_swh_{run_key}_15days_41N151E"
-    gif_path = output_dir / f"{stem}.gif"
+    gif_path = output_dir / "ecmwf_swh_latest_15days_41N151E.gif"
     frames = []
     for i, valid in enumerate(data["valid_times"]):
         frames.append(render_frame(data, i))
@@ -199,6 +197,9 @@ def create_product(data, output_dir: Path) -> Path:
     with Image.open(gif_path) as gif:
         if gif.n_frames != 15:
             raise RuntimeError(f"GIF has {gif.n_frames} frames instead of 15")
+    for old_gif in output_dir.glob("*.gif"):
+        if old_gif != gif_path:
+            old_gif.unlink()
     print(f"GIF: {gif_path}")
     return gif_path
 
