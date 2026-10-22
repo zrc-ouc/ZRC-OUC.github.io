@@ -3,8 +3,8 @@ name: ECMWF 15-day wave forecast
 on:
   workflow_dispatch:
   schedule:
-    # 20:17 China Standard Time. Change this schedule as desired.
-    - cron: '17 20 * * *'
+    # At minute 17 of every hour in China. Change this schedule as desired.
+    - cron: '17 * * * *'
       timezone: Asia/Shanghai
 
 permissions:
