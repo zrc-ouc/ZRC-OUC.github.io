@@ -8,10 +8,11 @@ on:
       timezone: Asia/Shanghai
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: ecmwf-wave-forecast
+  # Share the buoy workflow's commit queue because both push to master.
+  group: ocean-plot
   cancel-in-progress: false
 
 jobs:
@@ -31,10 +32,22 @@ jobs:
         env:
           MPLCONFIGDIR: ${{ runner.temp }}/matplotlib
         run: python wave-forecast/wave_forecast.py --output-dir wave-forecast/output
-      - name: Upload forecast GIF
-        uses: actions/upload-artifact@v5
-        with:
-          name: ecmwf-wave-forecast-${{ github.run_id }}
-          path: wave-forecast/output/*.gif
-          if-no-files-found: error
-          retention-days: 30
+      - name: Commit latest forecast GIF
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- wave-forecast/output
+          if git diff --cached --quiet; then
+            echo "Forecast GIF is unchanged; no commit needed."
+            exit 0
+          fi
+          git commit -m "chore: update latest wave forecast GIF"
+          for attempt in 1 2 3; do
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              exit 0
+            fi
+            echo "Push attempt ${attempt} failed; rebasing onto latest ${GITHUB_REF_NAME}."
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase "origin/${GITHUB_REF_NAME}"
+          done
+          exit 1
