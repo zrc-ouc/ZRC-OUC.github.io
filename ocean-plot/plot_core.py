@@ -2,10 +2,8 @@
 """
 plot_core.py — CKEO 浮标绘图共享模块
 =================================================
-把原 MATLAB 脚本（从 MySQL 取海洋观测数据、画"所选变量最新值"面板图）
-改写为可在 GitHub Actions 定时运行的 Python 版本。
-CKEO-08-a 面板复现 AutoPlotCKEO_A.m 的 Fig0 变量、质控、回退和排版；
-其它设备仍使用各自配置的简化最新值面板。
+把 MATLAB 海洋浮标绘图流程改写为可在 GitHub Actions 定时运行的 Python 版本。
+CKEO 生成 MATLAB 对应的 Weather 面板和 Fig.0–6；CKEO-A 生成其 Weather 面板和 Fig.1–6。
 
 数据库凭据通过环境变量注入（GitHub Actions 中用 secrets）：
   DB_HOST / DB_PORT / DB_USER / DB_PASSWORD / DB_NAME
@@ -90,33 +88,28 @@ DEVICES = {
             ("Depth",               "m",    "{:.1f}", ("col", "ckeo_07_a_ctd", "sbe37_d")),
         ],
     },
-    # ---- CKEO-08：采用 _tcp 那套卫星通讯表；注意本设备无 nuclear_radiometer 表 ----
-    # 风以 wind_1s(速度)/wind_1d(方向°) 直接给出（非 07 的 wind_1x/wind_1y 向量）
+    # ---- CKEO-08：MATLAB AutoPlotCKEO.m 的 Fig.Weather 与 Fig.1–6 ----
+    # MATLAB 的 SQL UPDATE 选 air 列 6:35、underwater 列 5:60；
+    # matlab_priority 的数字是数据库 SELECT * 返回结果中的 1-based 列号。
     "ckeo_08": {
-        "title": "Current Weather at CKEO-08",
+        "title": "Current Weather at CKEO",
         "tables": [
             "ckeo_08_sensor_tcp",
             "ckeo_08_imm_data_tcp",
             "ckeo_08_under_water_tcp",
         ],
-        "output": "figures/ckeo_08_weather.png",
+        "output": "figures/CKEO_Fig_Weather.png",
         "variables": [
-            ("Wind Speed",          "m/s",  "{:.1f}", ("col", "ckeo_08_sensor_tcp", "wind_1s")),
-            ("Wind Direction",      "°",    "{:.0f}", ("col", "ckeo_08_sensor_tcp", "wind_1d")),
-            ("Air Temperature",     "°C",   "{:.1f}", ("col", "ckeo_08_sensor_tcp", "airtemp_1")),
-            ("Relative Humidity",   "%",    "{:.1f}", ("col", "ckeo_08_sensor_tcp", "rh_1")),
-            ("Air Pressure",        "hPa",  "{:.1f}", ("col", "ckeo_08_sensor_tcp", "bp_ptb210")),
-            ("Shortwave Radiation", "W/m²", "{:.1f}", ("col", "ckeo_08_sensor_tcp", "spp")),
-            ("Longwave Radiation",  "W/m²", "{:.1f}", ("col", "ckeo_08_sensor_tcp", "pir")),
-            # under_water 表合并了 CKEO-07 的 ctd+adcp，温盐深在 sbe37_* 列
-            ("Sea Surface Temp",    "°C",   "{:.1f}", ("col", "ckeo_08_under_water_tcp", "sbe37_t")),
-            # 真实盐度由 practical_salinity 按 UNESCO 1983 (PSS-78) 计算（需 sbe37_t/c/d 三列）
-            ("Sea Surface Salinity", "psu", "{:.1f}", ("salinity", "ckeo_08_under_water_tcp", "sbe37_t", "sbe37_c", "sbe37_d")),
-            # 海浪要素（波浪参数，同在 under_water 表）：有效波高 hm0 / 谱峰周期 tp / 波向 dir
-            ("Wave Height",         "m",    "{:.1f}", ("col", "ckeo_08_under_water_tcp", "hm0")),
-            ("Wave Period",         "s",    "{:.1f}", ("col", "ckeo_08_under_water_tcp", "tp")),
-            ("Wave Direction",      "°",    "{:.0f}", ("col", "ckeo_08_under_water_tcp", "dir")),
+            ("Wind Speed", "m/s", "{:.1f}", ("matlab_priority", [("ckeo_08_sensor_tcp", 11, 1, 1e-6, 40, 24, False), ("ckeo_08_sensor_tcp", 21, 1, 1e-6, 40, 24, False)])),
+            ("Wind Direction (to)", "°", "{:.0f}", ("matlab_priority", [("ckeo_08_sensor_tcp", 10, -1, 1e-6, 360, 24, False), ("ckeo_08_sensor_tcp", 20, -1, 1e-6, 360, 24, False)])),
+            ("Air Temperature", "°C", "{:.1f}", ("matlab_priority", [("ckeo_08_sensor_tcp", 14, 1, -20, 40, 24, False), ("ckeo_08_sensor_tcp", 24, 1, 1, 40, 6, False), ("ckeo_08_sensor_tcp", 30, 1, -20, 40, 24, False)])),
+            ("Relative Humidity", "%", "{:.0f}", ("matlab_priority", [("ckeo_08_sensor_tcp", 13, 1, 20, 100, 24, False), ("ckeo_08_sensor_tcp", 23, 1, 20, 100, 24, False), ("ckeo_08_sensor_tcp", 31, 1, 20, 100, 24, False)])),
+            ("Barometric Pressure", "hPa", "{:.1f}", ("matlab_priority", [("ckeo_08_sensor_tcp", 12, 1, 800, 1100, 24, False), ("ckeo_08_sensor_tcp", 22, 1, 800, 1100, 24, False), ("ckeo_08_sensor_tcp", 32, 1, 800, 1100, 7, False)])),
+            ("Solar Radiation", "W/m²", "{:.0f}", ("matlab_priority", [("ckeo_08_sensor_tcp", 34, -1, 0, 2000, 24, True)])),
+            ("Infrared Radiation", "W/m²", "{:.0f}", ("matlab_priority", [("ckeo_08_sensor_tcp", 35, 1, 100, 600, 24, False)])),
+            ("Sea Surface Temperature", "°C", "{:.1f}", ("matlab_priority", [("ckeo_08_under_water_tcp", 13, 1, 1e-6, 40, 7, False)])),
         ],
+        "matlab_layout": True,
     },
     # ---- CKEO-08-a：Weather panel follows AutoPlotCKEO_A.m 的首张天气面板 ----
     # 每个候选项为 (表名, SQL列号, QA模式, 最小值, 最大值, maxwidth, 是否将负值截为0)。
@@ -279,7 +272,7 @@ def _get_col(table, column, cache=None):
 
 def _get_matlab_series(table, one_based_index, cache=None):
     """Read a 1-based SQL column history, using CKEO_A_update.m's time window."""
-    step_minutes = 10 if table == "ckeo_08_a_sensor_tcp" else 60
+    step_minutes = 10 if table in {"ckeo_08_sensor_tcp", "ckeo_08_a_sensor_tcp"} else 60
     if cache is None:
         df = fetch_rows_since(table, CKEO_A_DEPLOYMENT_TIME, step_minutes)
     else:
@@ -636,6 +629,20 @@ MATLAB_JET_28 = [
     [0.6994915555555555, 0.09252033333333334, 0.27770544444444445],
     [0.619608, 0.003922, 0.258824],
 ]
+MATLAB_JET_12 = [
+    [0.0, 0.0, 0.8209798703236633],
+    [0.0, 0.24499900651510384, 0.9162408137255003],
+    [0.09239844279821571, 0.4713060244280479, 0.567507532896141],
+    [0.2520848371514006, 0.6134666597727767, 0.21827715542808618],
+    [0.5182574320778442, 0.7115118710709776, 0.07460416868695935],
+    [0.8207275698641849, 0.7827514560863011, 0.12461231435394388],
+    [0.9986256672387794, 0.7146071697819305, 0.10681435864044123],
+    [1.0, 0.5162780344831066, 0.013860106252814471],
+    [0.9998699132813483, 0.2629577030903463, 0.0],
+    [0.8535093279027985, 0.11192251552588384, 0.0],
+    [0.6721112571459957, 0.035745274045036204, 0.0],
+    [0.5000276972311224, 0.0, 0.0],
+]
 MATLAB_DIVERGING_20 = [
     [0.164062, 0.0, 0.496094], [0.148438, 0.0, 0.648438],
     [0.097656, 0.0, 0.812500], [0.015625, 0.0, 0.964844],
@@ -774,6 +781,44 @@ def _prepare_ckeo_a_series(air, water):
     return air_vars, water_vars
 
 
+def _prepare_ckeo_series(air, water):
+    """Apply AutoPlotCKEO.m's QC rules to active CKEO Fig.1–4 series."""
+    A = lambda col: _air_matrix_column(air, col)
+    W = lambda col: _water_matrix_column(water, col)
+    air_vars = {
+        "ws1": _qc(A(7), 1, 1e-6, 40),
+        "wd1": _qc(A(6), -1, 1e-6, 360),
+        "at1": _qc(A(10), 1, -20, 40),
+        "rh1": _qc(A(9), 1, 20, 100),
+        "ap1": _qc(A(8), 1, 800, 1100),
+        "precip": _qc(A(13) / 100.0, -1, 0, 1000),
+        "sw": _qc(A(30), -1, 0, 2000, clip_negative=True),
+        "lw": _qc(A(31), 1, 100, 600),
+        "at_hmp": _qc(A(26), 1, -20, 40),
+        "rh_hmp": _qc(A(27), 1, 20, 100),
+        "ap_ptb": _qc(A(28), 1, 800, 1100, maxwidth=7),
+        "ws2": _qc(A(17), 1, 1e-6, 40),
+        "wd2": _qc(A(16), -1, 1e-6, 360),
+        "at2": _qc(A(20), 1, 1, 40, maxwidth=6),
+        "rh2": _qc(A(19), 1, 20, 100),
+        "ap2": _qc(A(18), 1, 800, 1100),
+    }
+    water_vars = {
+        "wave_height": _qc(W(5), 0, 0, 99, maxwidth=1),
+        "wave_period": _qc(W(6), 1, 0, 999, maxwidth=20),
+        "wave_direction": _qc(W(8), 0, 0, 360, maxwidth=1),
+        "sst": _qc(W(10), 1, 1e-6, 40, maxwidth=7),
+        "depth": _qc(W(11), 1, 0),
+        "conductivity": _qc(W(12), 1, 2, 100),
+    }
+    salinity_raw = np.array([
+        practical_salinity(c * 10.0, t, 1.0) if pd.notna(c) and pd.notna(t) else np.nan
+        for c, t in zip(water_vars["conductivity"], water_vars["sst"])
+    ], dtype=float)
+    water_vars["salinity"] = _qc(salinity_raw, 1, 30, 40)
+    return air_vars, water_vars
+
+
 def _draw_timeseries_figure(filename, height_px, rows, xlim, hide_x_for_rows=()):
     """Draw rows as MATLAB-sized 800 px wide time-series panels."""
     fig = plt.figure(figsize=(8, height_px / 100.0), dpi=100, facecolor="white")
@@ -806,6 +851,15 @@ def _compose_fig1(top_path, bottom_path, output_path):
         os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
         combined.save(output_path, format="PNG")
     print(f"已保存图片: {output_path}")
+
+
+def _draw_update_title(filename, title, update_time):
+    """Reproduce MATLAB's compact Fig.0 buoy-name/update-time image."""
+    fig = plt.figure(figsize=(8, 1.0), dpi=100, facecolor="white")
+    update_utc = pd.Timestamp(update_time).strftime("%Y-%m-%d %H:%M:%S")
+    fig.text(0.45, 0.8, title, fontsize=18, color="black", va="bottom")
+    fig.text(0.28, 0.4, f"(Updated to UTC {update_utc})", fontsize=14, color="black", va="bottom")
+    return _save_fig(fig, filename)
 
 
 def _imm_values(imm_frame):
@@ -851,7 +905,7 @@ def gsw_z_from_p(pressure_dbar, latitude_deg):
     return height
 
 
-def _temperature_profile(air, imm_frame):
+def _temperature_profile(air, imm_frame, buoy="ckeo_a"):
     payload = _imm_values(imm_frame)
     n = len(payload)
     if n == 0:
@@ -861,19 +915,36 @@ def _temperature_profile(air, imm_frame):
     lat = _qc(_air_matrix_column(air, 2), 0)
     latitude = float(lat[0]) if len(lat) else np.nan
     lat1 = np.full(n, latitude)
-    measured_depth_30 = -gsw_z_from_p(imm[:, 17], lat1)  # IMM(:,18)
-    measured_depth_100 = -gsw_z_from_p(imm[:, 20], lat1) # IMM(:,21)
-    measured_depth_400 = -gsw_z_from_p(imm[:, 12], lat1) # IMM(:,13)
-    measured_depth_500 = -gsw_z_from_p(imm[:, 14], lat1) # IMM(:,15)
-    pres = np.column_stack([
-        np.full(n, 10.0), np.full(n, 20.0), np.full(n, 30.0), np.full(n, 40.0),
-        np.full(n, 50.0), measured_depth_30, np.full(n, 70.0), np.full(n, 80.0),
-        np.full(n, 90.0), measured_depth_100, np.full(n, 200.0), np.full(n, 300.0),
-        measured_depth_400, measured_depth_500,
-    ]).T
-    temp = np.column_stack([
-        imm[:, 1:6], imm[:, 16], imm[:, 6:9], imm[:, 19], imm[:, 9:12], imm[:, 13]
-    ]).T
+    if buoy == "ckeo":
+        # AutoPlotCKEO.m: 16 temperature sensors at 10–450 m.
+        pres = np.column_stack([
+            -gsw_z_from_p(imm[:, 3], lat1), np.full(n, 20.0), np.full(n, 30.0),
+            -gsw_z_from_p(imm[:, 7], lat1), np.full(n, 50.0), np.full(n, 60.0),
+            -gsw_z_from_p(imm[:, 12], lat1), np.full(n, 80.0),
+            -gsw_z_from_p(imm[:, 15], lat1), np.full(n, 100.0),
+            np.full(n, 150.0), np.full(n, 200.0), np.full(n, 300.0),
+            -gsw_z_from_p(imm[:, 26], lat1), np.full(n, 400.0),
+            -gsw_z_from_p(imm[:, 33], lat1),
+        ]).T
+        temp = np.column_stack([
+            imm[:, 1], imm[:, 4:7], imm[:, 8:11], imm[:, 13:15],
+            imm[:, 16:19], imm[:, 23:25], imm[:, 34:36],
+        ]).T
+    else:
+        # AutoPlotCKEO_A.m: 14 temperature sensors at 10–500 m.
+        measured_depth_30 = -gsw_z_from_p(imm[:, 17], lat1)  # IMM(:,18)
+        measured_depth_100 = -gsw_z_from_p(imm[:, 20], lat1) # IMM(:,21)
+        measured_depth_400 = -gsw_z_from_p(imm[:, 12], lat1) # IMM(:,13)
+        measured_depth_500 = -gsw_z_from_p(imm[:, 14], lat1) # IMM(:,15)
+        pres = np.column_stack([
+            np.full(n, 10.0), np.full(n, 20.0), np.full(n, 30.0), np.full(n, 40.0),
+            np.full(n, 50.0), measured_depth_30, np.full(n, 70.0), np.full(n, 80.0),
+            np.full(n, 90.0), measured_depth_100, np.full(n, 200.0), np.full(n, 300.0),
+            measured_depth_400, measured_depth_500,
+        ]).T
+        temp = np.column_stack([
+            imm[:, 1:6], imm[:, 16], imm[:, 6:9], imm[:, 19], imm[:, 9:12], imm[:, 13]
+        ]).T
     pres[(pres < 1) | (pres > 500)] = 0.0
     temp[(temp < 1) | (temp > 40)] = 0.0
     sum_pres = np.sum(pres, axis=0)
@@ -904,13 +975,13 @@ def _temperature_profile(air, imm_frame):
             continue
         temp_grid[:, column] = np.interp(grid, x, y, left=np.nan, right=np.nan)
     if temp.shape[1]:
-        # AutoPlotCKEO_A.m explicitly replaces the shallowest 5 m row with sensor 1.
+        # Both MATLAB scripts replace the shallowest 5 m row with sensor 1.
         temp_grid[0, :] = temp[0, :]
     return times, grid, temp_grid
 
 
-def _draw_temperature_profile(air, imm_frame):
-    times, depth, values = _temperature_profile(air, imm_frame)
+def _draw_temperature_profile(air, imm_frame, buoy="ckeo_a"):
+    times, depth, values = _temperature_profile(air, imm_frame, buoy=buoy)
     height_px = 620
     fig = plt.figure(figsize=(8, 6.2), dpi=100, facecolor="white")
     ax = fig.add_axes([0.1, 0.13, 0.85, 500 / height_px])
@@ -924,22 +995,30 @@ def _draw_temperature_profile(air, imm_frame):
     _annotate_axis(fig, ax, "Temperature Profile")
     if values.shape[1] >= 2 and np.isfinite(values).any():
         x_dates = pd.to_datetime(times).to_pydatetime()
-        # m_jet_28 has 28 RGB rows, so use 28 filled contour intervals across
-        # the requested 10–28 °C range (29 boundaries).
-        contour_levels = np.linspace(10.0, 28.0, len(MATLAB_JET_28) + 1)
+        if buoy == "ckeo":
+            contour_levels = np.arange(0.0, 26.0, 2.0)
+            colormap, vmin, vmax = MATLAB_JET_12, 0.0, 24.0
+            colorbar_ticks = np.arange(0, 25, 2)
+            filename = "CKEO_Fig_5.png"
+        else:
+            # m_jet_28 has 28 RGB rows: use 28 filled intervals over 10–28 °C.
+            contour_levels = np.linspace(10.0, 28.0, len(MATLAB_JET_28) + 1)
+            colormap, vmin, vmax = MATLAB_JET_28, 10.0, 28.0
+            colorbar_ticks = np.arange(10, 29, 2)
+            filename = "CKEO_A_Fig_5.png"
         cf = ax.contourf(x_dates, depth, values, levels=contour_levels,
-                         cmap=ListedColormap(MATLAB_JET_28), vmin=10, vmax=28)
+                         cmap=ListedColormap(colormap), vmin=vmin, vmax=vmax)
         cax = fig.add_axes([0.1, 0.05, 0.85, 0.02])
-        cb = fig.colorbar(cf, cax=cax, orientation="horizontal", ticks=np.arange(10, 29, 2))
+        cb = fig.colorbar(cf, cax=cax, orientation="horizontal", ticks=colorbar_ticks)
         cb.set_label("[°C]", fontsize=7, labelpad=-1)
         cb.ax.tick_params(labelsize=7, length=2)
     else:
         ax.text(0.5, 0.5, "Insufficient valid IMM profiles", transform=ax.transAxes,
                 ha="center", va="center", color="0.35")
-    _save_fig(fig, "CKEO_A_Fig_5.png")
+    _save_fig(fig, "CKEO_Fig_5.png" if buoy == "ckeo" else "CKEO_A_Fig_5.png")
 
 
-def _draw_adcp(underwater):
+def _draw_adcp(underwater, buoy="ckeo_a"):
     height_px = 620
     fig = plt.figure(figsize=(8, 6.2), dpi=100, facecolor="white")
     row_height_px, blank_px = 230, 30
@@ -960,9 +1039,10 @@ def _draw_adcp(underwater):
     # _utc_plot_times returns a Series; contourf expects datetime values, while
     # to_pydatetime() is a DatetimeIndex method (not available on Series).
     plot_times = pd.DatetimeIndex(pd.to_datetime(times)).to_pydatetime()
-    # MATLAB ADCP values occupy WATER columns 13:36; convert mm/s to m/s.
-    u_sql = list(range(16, 39, 2))
-    v_sql = list(range(17, 40, 2))
+    # MATLAB ADCP values occupy WATER 13:36 for CKEO-A, 22:45 for CKEO.
+    first_u_column = 22 if buoy == "ckeo" else 13
+    u_sql = list(range(first_u_column + 3, first_u_column + 3 + 24, 2))
+    v_sql = list(range(first_u_column + 4, first_u_column + 4 + 24, 2))
     u = np.column_stack([_numeric_sql_column(underwater, col) for col in u_sql]) / 1000.0
     v = np.column_stack([_numeric_sql_column(underwater, col) for col in v_sql]) / 1000.0
     u[np.isclose(u, -32.768)] = np.nan  # Raw -32768 mm/s marker after MATLAB's /1000 scale.
@@ -995,7 +1075,7 @@ def _draw_adcp(underwater):
         cb = fig.colorbar(mappable, cax=cax, orientation="horizontal", ticks=np.arange(-1, 1.01, 0.5))
         cb.set_label("[m s⁻¹]", fontsize=9, labelpad=-1)
         cb.ax.tick_params(labelsize=8, length=2)
-    _save_fig(fig, "CKEO_A_Fig_6.png")
+    _save_fig(fig, "CKEO_Fig_6.png" if buoy == "ckeo" else "CKEO_A_Fig_6.png")
 
 
 def build_ckeo_a_history_figures():
@@ -1048,6 +1128,58 @@ def build_ckeo_a_history_figures():
     _draw_adcp(water)
 
 
+def build_ckeo_history_figures(update_time):
+    """Build MATLAB's active CKEO Fig.0–6 from its three buoy history tables."""
+    end_time = (datetime.now(timezone.utc) + pd.Timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")
+    air = fetch_rows_since("ckeo_08_sensor_tcp", CKEO_A_DEPLOYMENT_TIME, 10, end_time=end_time)
+    water = fetch_rows_since("ckeo_08_under_water_tcp", CKEO_A_DEPLOYMENT_TIME, 60, end_time=end_time)
+    imm = fetch_rows_since("ckeo_08_imm_data_tcp", CKEO_A_DEPLOYMENT_TIME, 60, end_time=end_time)
+    if air.empty or water.empty:
+        raise RuntimeError("CKEO 空气或水下历史数据为空，无法生成 MATLAB Fig.0–6")
+
+    _draw_update_title("CKEO_Fig_0.png", "CKEO", update_time)
+    at, wt = _utc_plot_times(air), _utc_plot_times(water)
+    av, wv = _prepare_ckeo_series(air, water)
+    xlim = _chart_xlim()
+    navy = (0.0, 0.0, 0.59765625)
+    red = (0.796875, 0.19921875, 0.0)
+    gray = (0.7, 0.7, 0.7)
+
+    f11 = _draw_timeseries_figure("CKEO_Fig_1_1.png", 390, [
+        {"times": at, "ylabel": "Wind Speed [m s⁻¹]", "legend": True, "legend_loc": "upper left",
+         "series": [{"values": av["ws1"], "color": navy, "label": "GMX1"}, {"values": av["ws2"], "color": gray, "label": "GMX2"}]},
+        {"times": at, "ylabel": "Wind Direction [°]", "ylim": (0, 360), "yticks": [0, 90, 180, 270, 360],
+         "legend": True, "legend_loc": "upper left",
+         "series": [{"values": av["wd1"], "color": navy, "label": "GMX1"}, {"values": av["wd2"], "color": gray, "label": "GMX2"}]},
+    ], xlim, hide_x_for_rows=(1, 2))
+    f12 = _draw_timeseries_figure("CKEO_Fig_1_2.png", 620, [
+        {"times": at, "ylabel": "Air Temperature [°C]", "legend": True, "legend_loc": "lower left",
+         "series": [{"values": av["at_hmp"], "color": red, "label": "HMP"}, {"values": av["at2"], "color": gray, "label": "GMX2"}]},
+        {"times": at, "ylabel": "Relative Humidity [%]", "ylim": (60, 100), "legend": True, "legend_loc": "lower left",
+         "series": [{"values": av["rh_hmp"], "color": red, "label": "HMP"}, {"values": av["rh2"], "color": gray, "label": "GMX2"}]},
+        {"times": at, "ylabel": "Air Pressure [hPa]", "legend": True, "legend_loc": "upper left",
+         "series": [{"values": av["ap1"], "color": navy, "label": "GMX1"}, {"values": av["ap_ptb"], "color": red, "label": "PTB"}, {"values": av["ap2"], "color": gray, "label": "GMX2"}]},
+    ], xlim)
+    _compose_fig1(f11, f12, os.path.join(OUTPUT_DIR, "CKEO_Fig_1.png"))
+
+    _draw_timeseries_figure("CKEO_Fig_2.png", 620, [
+        {"times": at, "ylabel": "Precipitation [mm hr⁻¹]", "series": [{"values": av["precip"], "color": navy}]},
+        {"times": at, "ylabel": "Longwave Radiation [W m⁻²]", "series": [{"values": av["lw"], "color": navy}]},
+        {"times": at, "ylabel": "Shortwave Radiation [W m⁻²]", "series": [{"values": av["sw"], "color": navy}]},
+    ], xlim)
+    _draw_timeseries_figure("CKEO_Fig_3.png", 620, [
+        {"times": wt, "ylabel": "Sea Surface Temperature [°C]", "series": [{"values": wv["sst"], "color": navy}]},
+        {"times": wt, "ylabel": "Sea Surface Salinity [PSU]", "series": [{"values": wv["salinity"], "color": navy}]},
+        {"times": wt, "ylabel": "Sea Surface Conductivity [mS/cm]", "series": [{"values": wv["conductivity"] * 10.0, "color": navy}]},
+    ], xlim)
+    _draw_timeseries_figure("CKEO_Fig_4.png", 420, [
+        {"times": wt, "ylabel": "Significant Wave Height [m]", "series": [{"values": wv["wave_height"], "color": navy}]},
+        {"times": wt, "ylabel": "Peak Wave Period [s]", "series": [{"values": wv["wave_period"], "color": navy}]},
+    ], xlim)
+    _draw_temperature_profile(air, imm, buoy="ckeo")
+    _draw_adcp(water, buoy="ckeo")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--inspect", action="store_true", help="仅打印各表列名与类型后退出")
@@ -1075,7 +1207,9 @@ def main():
         latest_values, update_time = collect_values(variables, tables)
         if dev.get("matlab_layout"):
             build_matlab_weather_panel(latest_values, update_time, dev["title"], dev["output"])
-            if key == "ckeo_08_a":
+            if key == "ckeo_08":
+                build_ckeo_history_figures(update_time)
+            elif key == "ckeo_08_a":
                 build_ckeo_a_history_figures()
         else:
             build_panel(latest_values, update_time, dev["title"], dev["output"])
