@@ -51,6 +51,8 @@ DB_CONFIG = dict(
 
 OUTPUT_DIR = os.environ.get("OUTPUT_DIR", "figures")
 CKEO_A_DEPLOYMENT_TIME = "2026-09-28 22:00:00"
+# CKEO plots begin at 2026-10-25 16:00 UTC; the database stores Beijing time.
+CKEO_START_TIME = "2026-10-26 00:00:00"
 
 # --------------------------------------------------------------------------
 # 2) 多设备配置
@@ -273,12 +275,13 @@ def _get_col(table, column, cache=None):
 def _get_matlab_series(table, one_based_index, cache=None):
     """Read a 1-based SQL column history, using CKEO_A_update.m's time window."""
     step_minutes = 10 if table in {"ckeo_08_sensor_tcp", "ckeo_08_a_sensor_tcp"} else 60
+    start_time = CKEO_START_TIME if table == "ckeo_08_sensor_tcp" else CKEO_A_DEPLOYMENT_TIME
     if cache is None:
-        df = fetch_rows_since(table, CKEO_A_DEPLOYMENT_TIME, step_minutes)
+        df = fetch_rows_since(table, start_time, step_minutes)
     else:
         df = cache.get(table)
         if df is None:
-            df = fetch_rows_since(table, CKEO_A_DEPLOYMENT_TIME, step_minutes)
+            df = fetch_rows_since(table, start_time, step_minutes)
             cache[table] = df
     idx = one_based_index - 1
     if df.empty or idx < 0 or idx >= len(df.columns):
@@ -694,10 +697,13 @@ def _deployment_utc():
     return pd.Timestamp(CKEO_A_DEPLOYMENT_TIME) - pd.Timedelta(hours=8)
 
 
-def _chart_xlim():
+def _chart_xlim(buoy="ckeo_a"):
     # MATLAB's x-limit ends at the update time of its freshly generated data file.
     now_utc = pd.Timestamp.now(tz="UTC").tz_localize(None)
-    start = _deployment_utc()
+    start = (
+        pd.Timestamp(CKEO_START_TIME) - pd.Timedelta(hours=8)
+        if buoy == "ckeo" else _deployment_utc()
+    )
     if now_utc <= start:
         now_utc = start + pd.Timedelta(hours=1)
     return start, now_utc
@@ -986,8 +992,9 @@ def _draw_temperature_profile(air, imm_frame, buoy="ckeo_a"):
     fig = plt.figure(figsize=(8, 6.2), dpi=100, facecolor="white")
     ax = fig.add_axes([0.1, 0.13, 0.85, 500 / height_px])
     ax.set_ylim(500, 0)
-    ax.set_xlim(*_chart_xlim())
-    ax.set_xticks(mdates.date2num(pd.date_range(_chart_xlim()[0], _chart_xlim()[1], periods=6)))
+    chart_xlim = _chart_xlim(buoy)
+    ax.set_xlim(*chart_xlim)
+    ax.set_xticks(mdates.date2num(pd.date_range(chart_xlim[0], chart_xlim[1], periods=6)))
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%d-%b"))
     ax.tick_params(direction="out", labelsize=10)
     ax.set_ylabel("Depth [m]")
@@ -1027,7 +1034,7 @@ def _draw_adcp(underwater, buoy="ckeo_a"):
         bottom = 1.0 - ((row_height_px + blank_px) * row) / height_px
         ax = fig.add_axes([0.1, bottom, 0.85, row_height_px / height_px])
         ax.set_ylim(120, 15)
-        ax.set_xlim(*_chart_xlim())
+        ax.set_xlim(*_chart_xlim(buoy))
         ax.xaxis.set_major_locator(mdates.AutoDateLocator(minticks=3, maxticks=7))
         ax.xaxis.set_major_formatter(mdates.DateFormatter("%d-%b"))
         ax.tick_params(direction="out", labelsize=10)
@@ -1131,16 +1138,16 @@ def build_ckeo_a_history_figures():
 def build_ckeo_history_figures(update_time):
     """Build MATLAB's active CKEO Fig.0–6 from its three buoy history tables."""
     end_time = (datetime.now(timezone.utc) + pd.Timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")
-    air = fetch_rows_since("ckeo_08_sensor_tcp", CKEO_A_DEPLOYMENT_TIME, 10, end_time=end_time)
-    water = fetch_rows_since("ckeo_08_under_water_tcp", CKEO_A_DEPLOYMENT_TIME, 60, end_time=end_time)
-    imm = fetch_rows_since("ckeo_08_imm_data_tcp", CKEO_A_DEPLOYMENT_TIME, 60, end_time=end_time)
+    air = fetch_rows_since("ckeo_08_sensor_tcp", CKEO_START_TIME, 10, end_time=end_time)
+    water = fetch_rows_since("ckeo_08_under_water_tcp", CKEO_START_TIME, 60, end_time=end_time)
+    imm = fetch_rows_since("ckeo_08_imm_data_tcp", CKEO_START_TIME, 60, end_time=end_time)
     if air.empty or water.empty:
         raise RuntimeError("CKEO 空气或水下历史数据为空，无法生成 MATLAB Fig.0–6")
 
     _draw_update_title("CKEO_Fig_0.png", "CKEO", update_time)
     at, wt = _utc_plot_times(air), _utc_plot_times(water)
     av, wv = _prepare_ckeo_series(air, water)
-    xlim = _chart_xlim()
+    xlim = _chart_xlim("ckeo")
     navy = (0.0, 0.0, 0.59765625)
     red = (0.796875, 0.19921875, 0.0)
     gray = (0.7, 0.7, 0.7)
