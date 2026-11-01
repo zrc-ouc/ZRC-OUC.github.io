@@ -207,8 +207,17 @@ def all_device_tables():
     return seen
 
 
+# AIR（气象）表的表名集合
+_AIR_TABLES = {"ckeo_08_a_sensor_tcp", "ckeo_08_sensor_tcp"}
+
+# 代码里实际用到的 MATLAB AIR 矩阵列号（见 _prepare_ckeo_a_series / _prepare_ckeo_series）
+_AIR_USED_MATLAB_COLS = (6, 7, 8, 9, 10, 13, 16, 17, 18, 19, 20, 22, 23, 24, 26, 27, 30, 31)
+
+
 def inspect_schema():
-    """打印每个表的列名与类型，辅助确认 variables 中的列名。"""
+    """打印每个表的列名与类型，辅助确认 variables 中的列名。
+    对 AIR（气象）表额外打印 MATLAB 矩阵列号 → SQL 列名 的对照，
+    方便核对 precip 等变量到底取自哪一列。"""
     conn = get_connection()
     try:
         with conn.cursor() as cur:
@@ -222,8 +231,30 @@ def inspect_schema():
                 print(f"\n=== {t} ({len(rows)} 列) ===")
                 for name, dtype in rows:
                     print(f"  {name:30s} {dtype}")
+                # AIR（气象）表：_air_matrix_column(matlab_col) 取 SQL 第 (matlab_col+4) 列
+                if t in _AIR_TABLES:
+                    _print_air_matrix_map(t, rows)
     finally:
         conn.close()
+
+
+def _print_air_matrix_map(table, columns):
+    """把 AIR 表的 MATLAB 矩阵列号映射到 SQL 列名。
+
+    plot_core 中 _air_matrix_column(matlab_col) 读取的是
+    `SELECT *` 结果里第 (matlab_col + 4) 列（1-based），
+    等价于 INFORMATION_SCHEMA 的 ORDINAL_POSITION。
+    因此 MATLAB AIR 列 13（代码里的 precip / 雨量）对应 SQL 第 17 列。
+    """
+    print("  --- AIR 矩阵列号 -> SQL 列名 (sql_ordinal = matlab_col + 4) ---")
+    for m in _AIR_USED_MATLAB_COLS:
+        sql_pos = m + 4
+        if 1 <= sql_pos <= len(columns):
+            name = columns[sql_pos - 1][0]
+            mark = "   <== precip (雨量)" if m == 13 else ""
+            print(f"    AIR[{m:2d}] -> SQL #{sql_pos:2d}: {name}{mark}")
+        else:
+            print(f"    AIR[{m:2d}] -> SQL #{sql_pos:2d}: (超出列数范围)")
 
 
 def sample_latest_rows():
